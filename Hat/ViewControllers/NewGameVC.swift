@@ -8,18 +8,19 @@
 
 import UIKit
 
-class NewGame: UIViewController {
+class NewGameVC: UIViewController {
 
     var startVC : StartVC!
     var playersTVC: PlayersTVC!
-    var game = Game()
+    var game: Game!
+    var players: [Player] = K.startPlayers
     
     @IBOutlet weak var play: MyButton!
     @IBOutlet weak var add: MyButton!
     
     @IBAction func pressAdd(_ sender: Any) {
-        let player = Player(name: "")
-        playersTVC!.insertRow(player: player, at: game.players.count)
+        let emptyPlayer = Player(name: "")
+        playersTVC!.insertRow(player: emptyPlayer, at: players.count)
     }
     
     override func viewDidLoad() {
@@ -27,7 +28,6 @@ class NewGame: UIViewController {
         view.backgroundColor = K.Colors.background
         play.makeRounded(color: K.Colors.foreground, textColor: K.Colors.background, sound: K.Sounds.click)
         //view.setBackgroundImage(named: K.FileNames.background, alpha: K.Alpha.Background.main)
-        game.players = K.startPlayers
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -37,11 +37,12 @@ class NewGame: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPlayersList" {
             playersTVC = segue.destination as? PlayersTVC
-            playersTVC?.game = self.game
+            playersTVC?.players = players
         }
-        if segue.identifier == "toPlay" {
-            let playVC = segue.destination as? PlayVC
-            playVC?.game = self.game
+        if segue.identifier == "toStartPair" {
+            game = Game(wordsQty: 60, difficulty: Difficulty.hard, time: 30, players: players)
+            let startPairVC = segue.destination as? StartPairVC
+            startPairVC?.game = self.game
         }
         
     }

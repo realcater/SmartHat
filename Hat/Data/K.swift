@@ -53,9 +53,5 @@ struct K {
     struct Delays {
         static let moveOneRow = 0.2
     }
-    static let words = [
-        "Поросёнок",
-        "Крыса",
-        "Собака"
-    ]
+    
 }

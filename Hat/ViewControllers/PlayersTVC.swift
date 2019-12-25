@@ -10,7 +10,7 @@ import UIKit
 
 class PlayersTVC: UITableViewController {//}, UITextFieldDelegate {
     
-    var game: Game!
+    var players: [Player]!
     var rowEdit: Int?
     
     override func viewDidLoad() {
@@ -21,13 +21,13 @@ class PlayersTVC: UITableViewController {//}, UITextFieldDelegate {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return game.players.count
+        return players.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PlayersListItem", for: indexPath)
         let textField = cell.viewWithTag(1000) as! UITextField
-        let player = game.players[indexPath.row]
+        let player = players[indexPath.row]
         textField.text = player.name
         textField.delegate = self
         return cell
@@ -37,17 +37,17 @@ class PlayersTVC: UITableViewController {//}, UITextFieldDelegate {
         return true
     }
     /*
-    override func tableView(_ tableView: UITableView,
-                            editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return UITableViewCell.EditingStyle.delete
-    }
-    */
+     override func tableView(_ tableView: UITableView,
+     editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+     return UITableViewCell.EditingStyle.delete
+     }
+     */
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
-            game.players.remove(at: indexPath.row)
+            players.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        for player in game.players { print(player.name) }
-        print("===")
+            for player in players { print(player.name) }
+            print("===")
         }
     }
     
@@ -56,7 +56,7 @@ class PlayersTVC: UITableViewController {//}, UITextFieldDelegate {
                             shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
     }
- 
+    
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
@@ -64,9 +64,9 @@ class PlayersTVC: UITableViewController {//}, UITextFieldDelegate {
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let itemToMove = game.players[sourceIndexPath.row]
-        game.players.remove(at: sourceIndexPath.row)
-        game.players.insert(itemToMove, at: destinationIndexPath.row)
+        let itemToMove = players[sourceIndexPath.row]
+        players.remove(at: sourceIndexPath.row)
+        players.insert(itemToMove, at: destinationIndexPath.row)
     }
 }
 //MARK: - Public functions
@@ -75,7 +75,7 @@ extension PlayersTVC {
         let indexPath = IndexPath(row: row, section: 0)
         tableView.beginUpdates()
         tableView.deleteRows(at: [indexPath], with: .automatic)
-        game.players.remove(at: row)
+        players.remove(at: row)
         tableView.endUpdates()
     }
     
@@ -86,26 +86,26 @@ extension PlayersTVC {
         UIView.animate(withDuration: K.Delays.moveOneRow, animations: {
             self.tableView.moveRow(at: indexPathAt, to: indexPathTo)
         })
-        let itemToMove = game.players[at]
-        game.players.remove(at: at)
-        game.players.insert(itemToMove, at: to)
+        let itemToMove = players[at]
+        players.remove(at: at)
+        players.insert(itemToMove, at: to)
     }
     func deleteAll() {
-        game.players.removeAll()
+        players.removeAll()
         tableView.reloadData()
     }
     func insertRow(player: Player, at row: Int) {
         let indexPath = IndexPath(row: row, section: 0)
         tableView.beginUpdates()
         tableView.insertRows(at: [indexPath], with: .automatic)
-        game.players.insert(player, at: indexPath.row)
+        players.insert(player, at: indexPath.row)
         tableView.endUpdates()
     }
     /*
-    func deletePlayer(player: Player) {
-        let row = players.index{$0 === player}
-        if let row = row { deleteRow(at: row) }
-    }*/
+     func deletePlayer(player: Player) {
+     let row = players.index{$0 === player}
+     if let row = row { deleteRow(at: row) }
+     }*/
     func show() {
         tableView.isHidden = false
     }
@@ -117,12 +117,12 @@ extension PlayersTVC {
 extension PlayersTVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let rowEdit = rowEdit {
-            game.players[rowEdit].name = textField.text!
+            players[rowEdit].name = textField.text!
         }
         textField.resignFirstResponder()
         return true
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        rowEdit = game.players.index{$0.name == textField.text}
+        rowEdit = players.index{$0.name == textField.text}
     }
 }

@@ -9,16 +9,22 @@
 import UIKit
 
 class PlayVC: UIViewController {
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var wordLabel: UILabel!
     
     @IBOutlet weak var guessed: MyButton!
     @IBOutlet weak var notGuessed: MyButton!
     
     @IBAction func guessedPressed(_ sender: Any) {
+        game.setGuessed(word)
+        nextWord()
     }
+    
     @IBAction func notGuessedPressed(_ sender: Any) {
+        nextPair()
     }
-    var game = Game()
+    
+    var game: Game!
+    var word = ""
     
     private func prepareButtons() {
         guessed.makeRounded(color: K.Colors.foreground, textColor: K.Colors.background, sound: K.Sounds.click)
@@ -29,10 +35,18 @@ class PlayVC: UIViewController {
         view.backgroundColor = K.Colors.background
         view.setBackgroundImage(named: K.FileNames.background, alpha: K.Alpha.Background.main)
         prepareButtons()
-        title = "Играем!"
-        for _ in Range(0...36) {
-            game.startRound()
-        }
+        title = game.currentTeller.name + "  >>  " + game.currentListener.name
+        nextWord()
+        
+    }
+    private func nextWord() {
+        word = game.getRandomWordFromPool()
+        wordLabel.text = word
+    }
+    
+    private func nextPair() {
+        //game.startNewPair()
+        _ = navigationController?.popViewController(animated: true)
     }
 
     // MARK: - Navigation

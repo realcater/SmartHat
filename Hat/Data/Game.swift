@@ -1,3 +1,9 @@
+enum Difficulty {
+    case easy
+    case normal
+    case hard
+}
+
 class Player {
     var name: String
     var sayGuessed: Int
@@ -17,29 +23,58 @@ class Player {
 
 class Game {
     var players: [Player] = []
-    var words: [String] = []
+    var leftWords: [String] = []
+    var guessedWords: [String] = []
+    var missedWords: [String] = []
+    
+    var time: Int
+    
     var tellerNumber: Int = -1
     var listenerNumber: Int = 0
     var dist: Int = 1
     
-    var playersQty: Int {
-        get {
-            return players.count
+    init(wordsQty: Int, difficulty: Difficulty, time: Int, players: [Player]) {
+        self.time = time
+        self.players = players
+
+        var allWords = Words.words[difficulty]!
+        for _ in 0..<wordsQty {
+            let number = Int.random(in: 0 ..< allWords.count)
+            Helper.move(
+                str: allWords[number],
+                from: &allWords,
+                to: &leftWords)
         }
     }
-    func initWords() {
-        words = K.words
+    var currentTeller: Player {
+        get {
+            return players[tellerNumber]
+        }
+    }
+    var currentListener: Player {
+        get {
+            return players[listenerNumber]
+        }
     }
     
-    func startRound() {
+    func getRandomWordFromPool() -> String {
+        let number = Int.random(in: 0 ..< leftWords.count)
+        return leftWords[number]
+    }
+    
+    func setGuessed(_ word: String) {
+        Helper.move(str: word, from: &leftWords, to: &guessedWords)
+    }
+    
+    func startNewPair() {
         tellerNumber+=1
         listenerNumber+=1
-        if listenerNumber == playersQty {
+        if listenerNumber == players.count {
             listenerNumber = 0
         }
-        if tellerNumber == playersQty {
+        if tellerNumber == players.count {
             dist+=1
-            if dist==playersQty {
+            if dist == players.count {
                 tellerNumber = 0
                 listenerNumber = 1
                 dist = 1

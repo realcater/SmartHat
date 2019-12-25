@@ -13,7 +13,7 @@
 		C1561CF02133124A00C8B674 /* help.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1561CEF2133124A00C8B674 /* help.xib */; };
 		C1561CF42134186E00C8B674 /* StartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1561CF32134186E00C8B674 /* StartVC.swift */; };
 		C15647202121FC6100F1602E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C156471F2121FC6100F1602E /* AppDelegate.swift */; };
-		C15647222121FC6100F1602E /* NewGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15647212121FC6100F1602E /* NewGame.swift */; };
+		C15647222121FC6100F1602E /* NewGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15647212121FC6100F1602E /* NewGameVC.swift */; };
 		C15647252121FC6100F1602E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C15647232121FC6100F1602E /* Main.storyboard */; };
 		C15647272121FC6100F1602E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C15647262121FC6100F1602E /* Assets.xcassets */; };
 		C156472A2121FC6200F1602E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C15647282121FC6200F1602E /* LaunchScreen.storyboard */; };
@@ -32,6 +32,9 @@
 		CA023D2321756243008AE815 /* AVAudioPlayer+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA023D2221756243008AE815 /* AVAudioPlayer+extension.swift */; };
 		CA3281D12376DAD200822B22 /* PlayersTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3281D02376DAD200822B22 /* PlayersTVC.swift */; };
 		CA3281D32376E0AB00822B22 /* UIPaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3281D22376E0AB00822B22 /* UIPaddingLabel.swift */; };
+		CA5916D423B3C74D007625A1 /* StartPairVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5916D323B3C74D007625A1 /* StartPairVC.swift */; };
+		CA5916D623B3CBF1007625A1 /* Words.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5916D523B3CBF1007625A1 /* Words.swift */; };
+		CAC9D91823B3E0F9005472AD /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC9D91723B3E0F9005472AD /* Helper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +45,7 @@
 		C1561CF32134186E00C8B674 /* StartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartVC.swift; sourceTree = "<group>"; };
 		C156471C2121FC6100F1602E /* Hat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C156471F2121FC6100F1602E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C15647212121FC6100F1602E /* NewGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGame.swift; sourceTree = "<group>"; };
+		C15647212121FC6100F1602E /* NewGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameVC.swift; sourceTree = "<group>"; };
 		C15647242121FC6100F1602E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C15647262121FC6100F1602E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C15647292121FC6200F1602E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -62,6 +65,9 @@
 		CA023D2221756243008AE815 /* AVAudioPlayer+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AVAudioPlayer+extension.swift"; sourceTree = "<group>"; };
 		CA3281D02376DAD200822B22 /* PlayersTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersTVC.swift; sourceTree = "<group>"; };
 		CA3281D22376E0AB00822B22 /* UIPaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPaddingLabel.swift; sourceTree = "<group>"; };
+		CA5916D323B3C74D007625A1 /* StartPairVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPairVC.swift; sourceTree = "<group>"; };
+		CA5916D523B3CBF1007625A1 /* Words.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Words.swift; sourceTree = "<group>"; };
+		CAC9D91723B3E0F9005472AD /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,7 +146,8 @@
 			isa = PBXGroup;
 			children = (
 				C1561CF32134186E00C8B674 /* StartVC.swift */,
-				C15647212121FC6100F1602E /* NewGame.swift */,
+				C15647212121FC6100F1602E /* NewGameVC.swift */,
+				CA5916D323B3C74D007625A1 /* StartPairVC.swift */,
 				C1480A902123649500137C37 /* PlayVC.swift */,
 				CA3281D02376DAD200822B22 /* PlayersTVC.swift */,
 			);
@@ -152,6 +159,8 @@
 			children = (
 				CA023D0C217561CD008AE815 /* Game.swift */,
 				C130986321239082001D894D /* K.swift */,
+				CA5916D523B3CBF1007625A1 /* Words.swift */,
+				CAC9D91723B3E0F9005472AD /* Helper.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -247,15 +256,18 @@
 			files = (
 				C1480A912123649500137C37 /* PlayVC.swift in Sources */,
 				C130986421239082001D894D /* K.swift in Sources */,
-				C15647222121FC6100F1602E /* NewGame.swift in Sources */,
+				C15647222121FC6100F1602E /* NewGameVC.swift in Sources */,
 				CA023D2321756243008AE815 /* AVAudioPlayer+extension.swift in Sources */,
 				C1561CF42134186E00C8B674 /* StartVC.swift in Sources */,
 				C15647202121FC6100F1602E /* AppDelegate.swift in Sources */,
 				C1A1956E21391328000A1A51 /* UIRotatedImageView.swift in Sources */,
+				CAC9D91823B3E0F9005472AD /* Helper.swift in Sources */,
 				C1A1956A21387531000A1A51 /* UIView+extension.swift in Sources */,
 				CA3281D12376DAD200822B22 /* PlayersTVC.swift in Sources */,
+				CA5916D623B3CBF1007625A1 /* Words.swift in Sources */,
 				C1A1957021391522000A1A51 /* UIViewController+extension.swift in Sources */,
 				CA3281D32376E0AB00822B22 /* UIPaddingLabel.swift in Sources */,
+				CA5916D423B3C74D007625A1 /* StartPairVC.swift in Sources */,
 				CA023D0F217561CE008AE815 /* Game.swift in Sources */,
 				C1A1956C21387710000A1A51 /* MyButton.swift in Sources */,
 			);

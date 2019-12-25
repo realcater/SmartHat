@@ -13,16 +13,16 @@
         <!--NewGame-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="ChooseYearView" id="BYZ-38-t0r" userLabel="NewGame" customClass="NewGame" customModule="Hat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewGameVC" id="BYZ-38-t0r" userLabel="NewGame" customClass="NewGameVC" customModule="Hat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFM-K3-PgJ" userLabel="topButton" customClass="MyButton" customModule="Hat" customModuleProvider="target">
-                                <rect key="frame" x="67.666666666666686" y="639" width="240" height="50"/>
+                                <rect key="frame" x="27.666666666666657" y="639" width="320" height="50"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="HHg-xg-R1O"/>
+                                    <constraint firstAttribute="width" constant="320" id="HHg-xg-R1O"/>
                                     <constraint firstAttribute="height" constant="50" id="LFO-kP-RyD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -30,7 +30,7 @@
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="S0w-Z2-ro9" kind="show" identifier="toPlay" id="BAQ-eC-aKo"/>
+                                    <segue destination="S0w-Z2-ro9" kind="show" identifier="toStartPair" id="J6q-xR-Bma"/>
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jOy-4v-Nu9">
@@ -81,7 +81,7 @@
         <!--StartGameView-->
         <scene sceneID="JPv-SI-VU0">
             <objects>
-                <viewController storyboardIdentifier="QuestionsView" id="S0w-Z2-ro9" userLabel="StartGameView" customClass="PlayVC" customModule="Hat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StartPairView" id="S0w-Z2-ro9" userLabel="StartGameView" customClass="StartPairVC" customModule="Hat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="D7Y-BT-YTz">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -99,34 +99,18 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Km0-Ta-mCv" userLabel="bottomButton" customClass="MyButton" customModule="Hat" customModuleProvider="target">
-                                <rect key="frame" x="87.666666666666686" y="645" width="200" height="50"/>
-                                <color key="backgroundColor" red="0.7843137255" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="27.666666666666657" y="639" width="320" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.43137254901960786" blue="0.71372549019607845" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="n22-b5-0uK"/>
-                                    <constraint firstAttribute="width" constant="200" id="nHT-Cb-RVn"/>
+                                    <constraint firstAttribute="width" constant="320" id="nHT-Cb-RVn"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Не угадано">
+                                <state key="normal" title="Поехали!">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="notGuessedPressed:" destination="S0w-Z2-ro9" eventType="touchUpInside" id="DaK-lw-P4p"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwP-jG-DWh" userLabel="bottomButton" customClass="MyButton" customModule="Hat" customModuleProvider="target">
-                                <rect key="frame" x="87.666666666666686" y="571" width="200" height="50"/>
-                                <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="2Ha-6N-tDE"/>
-                                    <constraint firstAttribute="width" constant="200" id="IYq-d6-f9f"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Угадано">
-                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="guessedPressed:" destination="S0w-Z2-ro9" eventType="touchUpInside" id="EQS-Pm-L5U"/>
-                                    <action selector="notGuessedPressed:" destination="S0w-Z2-ro9" eventType="touchUpInside" id="b0r-KR-Gl0"/>
+                                    <segue destination="n5c-B9-13Q" kind="show" identifier="toPlay" id="hop-oG-ZoO"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="tj4-sL-32X">
@@ -143,12 +127,8 @@
                         <constraints>
                             <constraint firstItem="9tl-vi-6uL" firstAttribute="trailing" secondItem="ojr-U3-i2p" secondAttribute="trailing" constant="40" id="0F4-RQ-EMQ"/>
                             <constraint firstItem="PqC-9K-Psk" firstAttribute="top" secondItem="tj4-sL-32X" secondAttribute="bottom" constant="10" id="20t-Sg-sm5"/>
-                            <constraint firstItem="9tl-vi-6uL" firstAttribute="bottom" secondItem="Km0-Ta-mCv" secondAttribute="bottom" constant="34" id="61f-U6-q2R"/>
-                            <constraint firstItem="9tl-vi-6uL" firstAttribute="trailing" secondItem="Km0-Ta-mCv" secondAttribute="trailing" priority="750" constant="40" id="Fd2-9O-UBI"/>
-                            <constraint firstItem="Km0-Ta-mCv" firstAttribute="top" secondItem="jwP-jG-DWh" secondAttribute="bottom" constant="24" id="GKt-ep-hUw"/>
+                            <constraint firstItem="9tl-vi-6uL" firstAttribute="bottom" secondItem="Km0-Ta-mCv" secondAttribute="bottom" constant="40" id="61f-U6-q2R"/>
                             <constraint firstItem="ojr-U3-i2p" firstAttribute="top" secondItem="9tl-vi-6uL" secondAttribute="top" constant="100" id="Oay-0B-N7m"/>
-                            <constraint firstItem="jwP-jG-DWh" firstAttribute="centerX" secondItem="D7Y-BT-YTz" secondAttribute="centerX" id="Upr-ii-Bk7"/>
-                            <constraint firstItem="Km0-Ta-mCv" firstAttribute="leading" secondItem="9tl-vi-6uL" secondAttribute="leading" priority="750" constant="40" id="WQ3-SI-9aA"/>
                             <constraint firstItem="Km0-Ta-mCv" firstAttribute="centerX" secondItem="D7Y-BT-YTz" secondAttribute="centerX" id="YDd-NX-Ubw"/>
                             <constraint firstItem="9tl-vi-6uL" firstAttribute="trailing" secondItem="PqC-9K-Psk" secondAttribute="trailing" constant="40" id="cYS-gj-j1h"/>
                             <constraint firstItem="tj4-sL-32X" firstAttribute="top" secondItem="ojr-U3-i2p" secondAttribute="bottom" constant="10" id="egU-tp-zOG"/>
@@ -162,9 +142,9 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="lpd-d5-O9Q"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="guessed" destination="jwP-jG-DWh" id="yeV-TS-kqd"/>
-                        <outlet property="label" destination="ojr-U3-i2p" id="zm2-s0-GER"/>
-                        <outlet property="notGuessed" destination="Km0-Ta-mCv" id="woK-Bt-mKh"/>
+                        <outlet property="goButton" destination="Km0-Ta-mCv" id="KkE-zR-MPq"/>
+                        <outlet property="listenerNameLabel" destination="PqC-9K-Psk" id="yVo-SH-YIV"/>
+                        <outlet property="tellerNameLabel" destination="ojr-U3-i2p" id="Npj-z7-VuK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KM3-ds-kNL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -250,7 +230,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7CE-i2-d8k">
-                                            <rect key="frame" x="0.0" y="0.0" width="295" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43.666666666666664"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <textInputTraits key="textInputTraits"/>
@@ -275,6 +255,91 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Le9-5J-CSy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1084" y="742"/>
+        </scene>
+        <!--StartGameView-->
+        <scene sceneID="ne6-Vd-i1P">
+            <objects>
+                <viewController storyboardIdentifier="PlayVC" id="n5c-B9-13Q" userLabel="StartGameView" customClass="PlayVC" customModule="Hat" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9W2-UA-sYY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BhK-Bc-ojQ" userLabel="bottomButton" customClass="MyButton" customModule="Hat" customModuleProvider="target">
+                                <rect key="frame" x="27.666666666666657" y="645" width="320" height="50"/>
+                                <color key="backgroundColor" red="0.7843137255" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="RRE-46-n4B"/>
+                                    <constraint firstAttribute="width" constant="320" id="iJ2-Z3-i4x"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Не угадано">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="notGuessedPressed:" destination="n5c-B9-13Q" eventType="touchUpInside" id="lDJ-bS-wod"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="clg-o4-tCf" userLabel="bottomButton" customClass="MyButton" customModule="Hat" customModuleProvider="target">
+                                <rect key="frame" x="27.666666666666657" y="571" width="320" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="XAw-Jc-Sg1"/>
+                                    <constraint firstAttribute="width" constant="320" id="wND-rD-nrW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Угадано">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="guessedPressed:" destination="n5c-B9-13Q" eventType="touchUpInside" id="ns1-l9-Zd2"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f2g-ek-Jjt">
+                                <rect key="frame" x="0.0" y="88" width="375" height="483"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Недоросль" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gkn-36-nZ5">
+                                        <rect key="frame" x="0.0" y="220" width="375" height="43"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="36"/>
+                                        <color key="textColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Gkn-36-nZ5" firstAttribute="centerY" secondItem="f2g-ek-Jjt" secondAttribute="centerY" id="6F9-sg-qke"/>
+                                    <constraint firstItem="Gkn-36-nZ5" firstAttribute="centerX" secondItem="f2g-ek-Jjt" secondAttribute="centerX" id="Vy4-aA-0Mc"/>
+                                    <constraint firstItem="Gkn-36-nZ5" firstAttribute="leading" secondItem="f2g-ek-Jjt" secondAttribute="leading" id="XHS-W4-pqf"/>
+                                    <constraint firstAttribute="trailing" secondItem="Gkn-36-nZ5" secondAttribute="trailing" id="bxb-RT-UjD"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="f2g-ek-Jjt" firstAttribute="leading" secondItem="Cc5-gf-Dig" secondAttribute="leading" id="0xg-DR-PEs"/>
+                            <constraint firstItem="Cc5-gf-Dig" firstAttribute="bottom" secondItem="BhK-Bc-ojQ" secondAttribute="bottom" constant="34" id="6cX-eH-6ln"/>
+                            <constraint firstItem="BhK-Bc-ojQ" firstAttribute="centerX" secondItem="9W2-UA-sYY" secondAttribute="centerX" id="Evl-V1-z3z"/>
+                            <constraint firstItem="Cc5-gf-Dig" firstAttribute="trailing" secondItem="f2g-ek-Jjt" secondAttribute="trailing" id="FDj-7H-KmS"/>
+                            <constraint firstItem="f2g-ek-Jjt" firstAttribute="top" secondItem="Cc5-gf-Dig" secondAttribute="top" id="QWP-gb-Rey"/>
+                            <constraint firstItem="Cc5-gf-Dig" firstAttribute="trailing" secondItem="BhK-Bc-ojQ" secondAttribute="trailing" priority="750" constant="40" id="QY6-aL-vaW"/>
+                            <constraint firstItem="BhK-Bc-ojQ" firstAttribute="leading" secondItem="Cc5-gf-Dig" secondAttribute="leading" priority="750" constant="40" id="cHj-rO-13E"/>
+                            <constraint firstItem="clg-o4-tCf" firstAttribute="top" secondItem="f2g-ek-Jjt" secondAttribute="bottom" id="kAI-NR-ufd"/>
+                            <constraint firstItem="clg-o4-tCf" firstAttribute="centerX" secondItem="9W2-UA-sYY" secondAttribute="centerX" id="pOC-N9-Ve1"/>
+                            <constraint firstItem="BhK-Bc-ojQ" firstAttribute="top" secondItem="clg-o4-tCf" secondAttribute="bottom" constant="24" id="ytF-5b-Gme"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Cc5-gf-Dig"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Играем..." id="rSP-6v-4be">
+                        <barButtonItem key="backBarButtonItem" title=" " id="T2u-aK-hTB"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="guessed" destination="clg-o4-tCf" id="mbe-hs-rw1"/>
+                        <outlet property="notGuessed" destination="BhK-Bc-ojQ" id="WXK-hO-Rfv"/>
+                        <outlet property="wordLabel" destination="Gkn-36-nZ5" id="4ky-cm-vxU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cb2-9K-93c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2490" y="40"/>
         </scene>
     </scenes>
     <resources>
