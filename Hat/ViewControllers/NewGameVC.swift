@@ -26,7 +26,9 @@ class NewGameVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = K.Colors.background
         play.makeRounded(color: K.Colors.foreground, textColor: K.Colors.background, sound: K.Sounds.click)
-        //view.setBackgroundImage(named: K.FileNames.background, alpha: K.Alpha.Background.main)
+        view.setBackgroundImage(named: K.FileNames.background, alpha: K.Alpha.Background.main)
+        navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
+        title = "Кто играет?"
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -39,7 +41,7 @@ class NewGameVC: UIViewController {
             playersTVC?.playersNames = playersNames
         }
         if segue.identifier == "toStartPair" {
-            game = Game(wordsQty: 60, difficulty: Difficulty.hard, time: 10, playersNames: playersNames)
+            game = Game(wordsQty: 60, difficulty: Difficulty.hard, time: 30, playersNames: playersNames)
             let startPairVC = segue.destination as? StartPairVC
             startPairVC?.game = self.game
             print(playersNames)

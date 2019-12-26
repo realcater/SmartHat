@@ -20,7 +20,8 @@ class StartPairVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = K.Colors.background
         goButton.makeRounded(color: K.Colors.foreground, textColor: K.Colors.background, sound: K.Sounds.click)
-        title = "Играют"
+        view.setBackgroundImage(named: K.FileNames.background, alpha: K.Alpha.Background.main)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -28,6 +29,7 @@ class StartPairVC: UIViewController {
         game.startNewPair()
         tellerNameLabel.text = game.currentTeller.name
         listenerNameLabel.text = game.currentListener.name
+        title = "Осталось: \(game.leftWords.count) слов"
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

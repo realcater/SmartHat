@@ -2,10 +2,10 @@ import UIKit
 
 struct K {
     static let startPlayersNames: NSMutableArray = [
-        "Dima",
-        "Lena",
-        "Gleb",
-        "Anya"
+        "Дима",
+        "Лена",
+        "Глеб",
+        "Аня"
         ]
     static let useSmallerFonts = (UIScreen.main.currentMode!.size.width >= 750) ? false : true
     static let cornerRadius : CGFloat = 16

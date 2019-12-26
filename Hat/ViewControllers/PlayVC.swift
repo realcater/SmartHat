@@ -11,6 +11,7 @@ import UIKit
 class PlayVC: UIViewController {
     @IBOutlet weak var wordLabel: UILabel!
     
+    @IBOutlet weak var circleView: UIView!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var guessed: MyButton!
     @IBOutlet weak var notGuessed: MyButton!
@@ -18,6 +19,8 @@ class PlayVC: UIViewController {
     @IBAction func guessedPressed(_ sender: Any) {
         game.setGuessed(word)
         K.Sounds.correct?.play()
+        guessedQty+=1
+        updateTitle()
         nextWord()
     }
     
@@ -29,21 +32,21 @@ class PlayVC: UIViewController {
     var word = ""
     var timer: Timer?
     var timeLeft: Int!
+    var guessedQty: Int = 0
     
-    private func prepareButtons() {
-        guessed.makeRounded(color: K.Colors.foreground, textColor: K.Colors.background, sound: K.Sounds.click)
-        notGuessed.makeRounded(color: UIColor.red, textColor: K.Colors.background, sound: K.Sounds.click)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = K.Colors.background
-        view.setBackgroundImage(named: K.FileNames.background, alpha: K.Alpha.Background.main)
-        prepareButtons()
-        title = game.currentTeller.name + "  >>  " + game.currentListener.name
+        circleView.layer.cornerRadius = 40
+        updateTitle()
         nextWord()
         createTimer()
-        
     }
+
+    private func updateTitle() {
+        title = "Угадано: \(guessedQty) слов"
+    }
+    
     private func nextWord() {
         word = game.getRandomWordFromPool()
         wordLabel.text = word
