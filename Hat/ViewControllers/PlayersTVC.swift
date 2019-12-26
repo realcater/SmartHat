@@ -8,9 +8,9 @@
 
 import UIKit
 
-class PlayersTVC: UITableViewController {//}, UITextFieldDelegate {
+class PlayersTVC: UITableViewController {
     
-    var players: [Player]!
+    var playersNames: NSMutableArray!
     var rowEdit: Int?
     
     override func viewDidLoad() {
@@ -21,14 +21,13 @@ class PlayersTVC: UITableViewController {//}, UITextFieldDelegate {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return players.count
+        return playersNames.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PlayersListItem", for: indexPath)
         let textField = cell.viewWithTag(1000) as! UITextField
-        let player = players[indexPath.row]
-        textField.text = player.name
+        textField.text = playersNames[indexPath.row] as? String
         textField.delegate = self
         return cell
     }
@@ -44,10 +43,9 @@ class PlayersTVC: UITableViewController {//}, UITextFieldDelegate {
      */
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
-            players.remove(at: indexPath.row)
+            playersNames.removeObject(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            for player in players { print(player.name) }
-            print("===")
+            
         }
     }
     
@@ -64,9 +62,9 @@ class PlayersTVC: UITableViewController {//}, UITextFieldDelegate {
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let itemToMove = players[sourceIndexPath.row]
-        players.remove(at: sourceIndexPath.row)
-        players.insert(itemToMove, at: destinationIndexPath.row)
+        let itemToMove = playersNames[sourceIndexPath.row]
+        playersNames.removeObject(at: sourceIndexPath.row)
+        playersNames.insert(itemToMove, at: destinationIndexPath.row)
     }
 }
 //MARK: - Public functions
@@ -75,7 +73,7 @@ extension PlayersTVC {
         let indexPath = IndexPath(row: row, section: 0)
         tableView.beginUpdates()
         tableView.deleteRows(at: [indexPath], with: .automatic)
-        players.remove(at: row)
+        playersNames.removeObject(at: row)
         tableView.endUpdates()
     }
     
@@ -86,19 +84,16 @@ extension PlayersTVC {
         UIView.animate(withDuration: K.Delays.moveOneRow, animations: {
             self.tableView.moveRow(at: indexPathAt, to: indexPathTo)
         })
-        let itemToMove = players[at]
-        players.remove(at: at)
-        players.insert(itemToMove, at: to)
+        let itemToMove = playersNames[at]
+        playersNames.removeObject(at: at)
+        playersNames.insert(itemToMove, at: to)
     }
-    func deleteAll() {
-        players.removeAll()
-        tableView.reloadData()
-    }
-    func insertRow(player: Player, at row: Int) {
+    
+    func insertRow(playerName: String, at row: Int) {
         let indexPath = IndexPath(row: row, section: 0)
         tableView.beginUpdates()
         tableView.insertRows(at: [indexPath], with: .automatic)
-        players.insert(player, at: indexPath.row)
+        playersNames.insert(playerName, at: indexPath.row)
         tableView.endUpdates()
     }
     /*
@@ -116,13 +111,15 @@ extension PlayersTVC {
 
 extension PlayersTVC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let rowEdit = rowEdit {
-            players[rowEdit].name = textField.text!
-        }
         textField.resignFirstResponder()
         return true
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        rowEdit = players.index{$0.name == textField.text}
+        rowEdit = (playersNames as! [String]).index{$0 == textField.text}
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if let rowEdit = rowEdit {
+            playersNames[rowEdit] = textField.text!
+        }
     }
 }

@@ -13,14 +13,13 @@ class NewGameVC: UIViewController {
     var startVC : StartVC!
     var playersTVC: PlayersTVC!
     var game: Game!
-    var players: [Player] = K.startPlayers
+    var playersNames = K.startPlayersNames
     
     @IBOutlet weak var play: MyButton!
     @IBOutlet weak var add: MyButton!
     
     @IBAction func pressAdd(_ sender: Any) {
-        let emptyPlayer = Player(name: "")
-        playersTVC!.insertRow(player: emptyPlayer, at: players.count)
+        playersTVC!.insertRow(playerName: "", at: playersNames.count)
     }
     
     override func viewDidLoad() {
@@ -37,12 +36,13 @@ class NewGameVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPlayersList" {
             playersTVC = segue.destination as? PlayersTVC
-            playersTVC?.players = players
+            playersTVC?.playersNames = playersNames
         }
         if segue.identifier == "toStartPair" {
-            game = Game(wordsQty: 60, difficulty: Difficulty.hard, time: 30, players: players)
+            game = Game(wordsQty: 60, difficulty: Difficulty.hard, time: 30, playersNames: playersNames)
             let startPairVC = segue.destination as? StartPairVC
             startPairVC?.game = self.game
+            print(playersNames)
         }
         
     }

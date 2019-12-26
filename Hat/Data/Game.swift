@@ -1,3 +1,5 @@
+import Foundation
+
 enum Difficulty {
     case easy
     case normal
@@ -33,9 +35,11 @@ class Game {
     var listenerNumber: Int = 0
     var dist: Int = 1
     
-    init(wordsQty: Int, difficulty: Difficulty, time: Int, players: [Player]) {
+    init(wordsQty: Int, difficulty: Difficulty, time: Int, playersNames: NSMutableArray) {
         self.time = time
-        self.players = players
+        for name in playersNames {
+            self.players.append(Player(name: name as! String))
+        }
 
         var allWords = Words.words[difficulty]!
         for _ in 0..<wordsQty {
