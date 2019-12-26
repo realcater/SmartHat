@@ -14,9 +14,7 @@ struct K {
         static let click = initSound(filename: "click.wav", volume: 0.2)
         static let correct = initSound(filename: "true.wav", volume: 0.2)
         static let error = initSound(filename: "false.wav", volume: 0.5)
-        static let page = initSound(filename: "page.mp3", volume: 0.2)
         static let applause = initSound(filename: "applause.wav")
-        static let rotate = initSound(filename: "rotate.wav")
     }
     
     struct Colors {
@@ -53,5 +51,5 @@ struct K {
     struct Delays {
         static let moveOneRow = 0.2
     }
-    
+    static let timeWithClicks = 3
 }

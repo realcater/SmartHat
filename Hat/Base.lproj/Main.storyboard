@@ -295,10 +295,10 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f2g-ek-Jjt">
-                                <rect key="frame" x="0.0" y="88" width="375" height="483"/>
+                                <rect key="frame" x="0.0" y="151" width="375" height="420"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Недоросль" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gkn-36-nZ5">
-                                        <rect key="frame" x="0.0" y="220" width="375" height="43"/>
+                                        <rect key="frame" x="0.0" y="188.66666666666669" width="375" height="43"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="36"/>
                                         <color key="textColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -312,15 +312,26 @@
                                     <constraint firstAttribute="trailing" secondItem="Gkn-36-nZ5" secondAttribute="trailing" id="bxb-RT-UjD"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q68-nO-qYT">
+                                <rect key="frame" x="137.66666666666666" y="108" width="100" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="dRe-L0-1tS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="36"/>
+                                <color key="textColor" red="0.78431372549019607" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="f2g-ek-Jjt" firstAttribute="leading" secondItem="Cc5-gf-Dig" secondAttribute="leading" id="0xg-DR-PEs"/>
+                            <constraint firstItem="q68-nO-qYT" firstAttribute="centerX" secondItem="9W2-UA-sYY" secondAttribute="centerX" id="672-z3-Lil"/>
                             <constraint firstItem="Cc5-gf-Dig" firstAttribute="bottom" secondItem="BhK-Bc-ojQ" secondAttribute="bottom" constant="34" id="6cX-eH-6ln"/>
+                            <constraint firstItem="q68-nO-qYT" firstAttribute="top" secondItem="Cc5-gf-Dig" secondAttribute="top" constant="20" id="8vq-fs-ocI"/>
                             <constraint firstItem="BhK-Bc-ojQ" firstAttribute="centerX" secondItem="9W2-UA-sYY" secondAttribute="centerX" id="Evl-V1-z3z"/>
                             <constraint firstItem="Cc5-gf-Dig" firstAttribute="trailing" secondItem="f2g-ek-Jjt" secondAttribute="trailing" id="FDj-7H-KmS"/>
-                            <constraint firstItem="f2g-ek-Jjt" firstAttribute="top" secondItem="Cc5-gf-Dig" secondAttribute="top" id="QWP-gb-Rey"/>
                             <constraint firstItem="Cc5-gf-Dig" firstAttribute="trailing" secondItem="BhK-Bc-ojQ" secondAttribute="trailing" priority="750" constant="40" id="QY6-aL-vaW"/>
+                            <constraint firstItem="f2g-ek-Jjt" firstAttribute="top" secondItem="q68-nO-qYT" secondAttribute="bottom" id="WCF-L0-Rzn"/>
                             <constraint firstItem="BhK-Bc-ojQ" firstAttribute="leading" secondItem="Cc5-gf-Dig" secondAttribute="leading" priority="750" constant="40" id="cHj-rO-13E"/>
                             <constraint firstItem="clg-o4-tCf" firstAttribute="top" secondItem="f2g-ek-Jjt" secondAttribute="bottom" id="kAI-NR-ufd"/>
                             <constraint firstItem="clg-o4-tCf" firstAttribute="centerX" secondItem="9W2-UA-sYY" secondAttribute="centerX" id="pOC-N9-Ve1"/>
@@ -334,6 +345,7 @@
                     <connections>
                         <outlet property="guessed" destination="clg-o4-tCf" id="mbe-hs-rw1"/>
                         <outlet property="notGuessed" destination="BhK-Bc-ojQ" id="WXK-hO-Rfv"/>
+                        <outlet property="timerLabel" destination="q68-nO-qYT" id="jo2-3c-4Le"/>
                         <outlet property="wordLabel" destination="Gkn-36-nZ5" id="4ky-cm-vxU"/>
                     </connections>
                 </viewController>

@@ -35,12 +35,7 @@ class PlayersTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    /*
-     override func tableView(_ tableView: UITableView,
-     editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-     return UITableViewCell.EditingStyle.delete
-     }
-     */
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             playersNames.removeObject(at: indexPath.row)
@@ -96,11 +91,7 @@ extension PlayersTVC {
         playersNames.insert(playerName, at: indexPath.row)
         tableView.endUpdates()
     }
-    /*
-     func deletePlayer(player: Player) {
-     let row = players.index{$0 === player}
-     if let row = row { deleteRow(at: row) }
-     }*/
+    
     func show() {
         tableView.isHidden = false
     }

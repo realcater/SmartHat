@@ -11,11 +11,13 @@ import UIKit
 class PlayVC: UIViewController {
     @IBOutlet weak var wordLabel: UILabel!
     
+    @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var guessed: MyButton!
     @IBOutlet weak var notGuessed: MyButton!
     
     @IBAction func guessedPressed(_ sender: Any) {
         game.setGuessed(word)
+        K.Sounds.correct?.play()
         nextWord()
     }
     
@@ -25,6 +27,8 @@ class PlayVC: UIViewController {
     
     var game: Game!
     var word = ""
+    var timer: Timer?
+    var timeLeft: Int!
     
     private func prepareButtons() {
         guessed.makeRounded(color: K.Colors.foreground, textColor: K.Colors.background, sound: K.Sounds.click)
@@ -37,6 +41,7 @@ class PlayVC: UIViewController {
         prepareButtons()
         title = game.currentTeller.name + "  >>  " + game.currentListener.name
         nextWord()
+        createTimer()
         
     }
     private func nextWord() {
@@ -45,10 +50,42 @@ class PlayVC: UIViewController {
     }
     
     private func nextPair() {
-        //game.startNewPair()
-        _ = navigationController?.popViewController(animated: true)
+        cancelTimer()
+        K.Sounds.error?.play()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+            _ = self.navigationController?.popViewController(animated: true)
+        })
     }
 
-    // MARK: - Navigation
+}
+
+// MARK: - Timer
+extension PlayVC {
+    @objc func updateTimer() {
+        timeLeft -= 1
+        timerLabel.text = String(timeLeft)
+        if timeLeft <= K.timeWithClicks { K.Sounds.click?.play() }
+        if timeLeft == 0 {
+            K.Sounds.error?.play()
+            nextPair()
+        }
+    }
     
+    func createTimer() {
+        if timer == nil {
+            timer = Timer.scheduledTimer(timeInterval: 1.0,
+                                         target: self,
+                                         selector: #selector(updateTimer),
+                                         userInfo: nil,
+                                        repeats: true)
+            timer?.tolerance = 0.1
+            timeLeft = game.time
+            timerLabel.text = String(timeLeft)
+        }
+    }
+    
+    func cancelTimer() {
+        timer?.invalidate()
+        timer = nil
+    }
 }

@@ -39,7 +39,7 @@ class NewGameVC: UIViewController {
             playersTVC?.playersNames = playersNames
         }
         if segue.identifier == "toStartPair" {
-            game = Game(wordsQty: 60, difficulty: Difficulty.hard, time: 30, playersNames: playersNames)
+            game = Game(wordsQty: 60, difficulty: Difficulty.hard, time: 10, playersNames: playersNames)
             let startPairVC = segue.destination as? StartPairVC
             startPairVC?.game = self.game
             print(playersNames)
