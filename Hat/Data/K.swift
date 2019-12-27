@@ -23,6 +23,7 @@ struct K {
         static let foregroundDarker = UIColor(red: 0, green: 73/256, blue: 121/256, alpha: 1)
         static let background = UIColor.white
         static let gray = UIColor.gray
+        static let lightGray = UIColor(red: 170/256, green: 170/256, blue: 170/256, alpha: 1)
         
         static let resultBar = [true: UIColor(red: 0, green: 143/256, blue: 0, alpha: 1),
                                 false: UIColor(red: 200/256, green: 0, blue: 0, alpha: 1)]

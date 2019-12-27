@@ -26,6 +26,7 @@ class StartPairVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
         game.startNewPair()
         tellerNameLabel.text = game.currentTeller.name
         listenerNameLabel.text = game.currentListener.name

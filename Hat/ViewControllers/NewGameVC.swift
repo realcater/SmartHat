@@ -27,12 +27,12 @@ class NewGameVC: UIViewController {
         view.backgroundColor = K.Colors.background
         play.turnClickSoundOn(sound: K.Sounds.click)
         //view.setBackgroundImage(named: K.FileNames.background, alpha: K.Alpha.Background.main)
-        navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
         title = "Кто играет?"
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

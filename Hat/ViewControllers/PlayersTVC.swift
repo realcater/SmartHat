@@ -16,8 +16,6 @@ class PlayersTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         isEditing = true
-        tableView.backgroundColor = .clear
-        tableView.separatorColor = .clear
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

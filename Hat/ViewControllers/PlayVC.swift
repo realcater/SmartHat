@@ -37,6 +37,7 @@ class PlayVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = K.Colors.background
+        navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.lightGray]
         circleView.layer.cornerRadius = 40
         updateTitle()
         nextWord()
