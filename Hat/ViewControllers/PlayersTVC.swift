@@ -16,6 +16,7 @@ class PlayersTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         isEditing = true
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

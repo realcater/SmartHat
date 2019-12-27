@@ -8,6 +8,11 @@
 
 import UIKit
 
+struct AlertButton {
+    var text: String
+    var action: () -> Void
+}
+
 extension UIViewController {
     func addTaps(for tappedView: UIView? = nil, singleTapAction: Selector? = nil, doubleTapAction: Selector? = nil, anySwipeAction: Selector? = nil) {
         let tappedView: UIView = tappedView ?? self.view //if ==nil than we use default view of VC
@@ -25,7 +30,6 @@ extension UIViewController {
         }
         if let anySwipeAction = anySwipeAction {
             anySwipe = UISwipeGestureRecognizer(target: self, action: anySwipeAction)
-            print("===", anySwipe.direction)
         }
 
         if let singleTap = singleTap, let doubleTap = doubleTap  {

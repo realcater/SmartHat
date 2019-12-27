@@ -16,10 +16,12 @@ class PlayVC: UIViewController {
     @IBOutlet weak var guessed: MyButton!
     @IBOutlet weak var notGuessed: MyButton!
     
+    
     @IBAction func guessedPressed(_ sender: Any) {
         game.setGuessed(word)
         K.Sounds.correct?.play()
         guessedQty+=1
+        
         updateTitle()
         nextWord()
     }
@@ -50,7 +52,12 @@ class PlayVC: UIViewController {
     
     private func nextWord() {
         word = game.getRandomWordFromPool()
-        wordLabel.text = word
+        if word == "" {
+            cancelTimer()
+            performSegue(withIdentifier: "noWords", sender: self)
+        } else {
+            wordLabel.text = word
+        }
     }
     
     private func nextPair() {
@@ -59,6 +66,13 @@ class PlayVC: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
             _ = self.navigationController?.popViewController(animated: true)
         })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "noWords" {
+            let endGameVC = segue.destination as? EndGameVC
+            endGameVC?.players = self.game.players.sorted { $0.ttlGuesses > $1.ttlGuesses }
+        }
     }
 
 }

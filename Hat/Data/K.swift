@@ -7,6 +7,12 @@ struct K {
         "Глеб",
         "Аня"
         ]
+    static let diffNames : [Difficulty: String] = [
+        .easy: "Изи",
+        .normal: "Норм",
+        .hard: "Хард"
+    ]
+    
     static let useSmallerFonts = (UIScreen.main.currentMode!.size.width >= 750) ? false : true
     static let cornerRadius : CGFloat = 16
     

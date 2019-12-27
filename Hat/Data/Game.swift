@@ -8,17 +8,17 @@ enum Difficulty {
 
 class Player {
     var name: String
-    var sayGuessed: Int
+    var tellGuessed: Int
     var listenGuessed: Int
     var ttlGuesses: Int {
         get {
-            return sayGuessed + listenGuessed
+            return tellGuessed + listenGuessed
         }
     }
     
     init(name: String) {
         self.name = name
-        sayGuessed = 0
+        tellGuessed = 0
         listenGuessed = 0
     }
 }
@@ -34,6 +34,7 @@ class Game {
     var tellerNumber: Int = -1
     var listenerNumber: Int = 0
     var dist: Int = 1
+    var started = false
     
     init(wordsQty: Int, difficulty: Difficulty, time: Int, playersNames: NSMutableArray) {
         self.time = time
@@ -62,15 +63,20 @@ class Game {
     }
     
     func getRandomWordFromPool() -> String {
+        if leftWords.count == 0 { return "" }
         let number = Int.random(in: 0 ..< leftWords.count)
         return leftWords[number]
     }
     
     func setGuessed(_ word: String) {
         Helper.move(str: word, from: &leftWords, to: &guessedWords)
+        currentTeller.tellGuessed+=1
+        currentListener.listenGuessed+=1
     }
     
     func startNewPair() {
+        if listenerNumber == 2 { started = true }
+        
         tellerNumber+=1
         listenerNumber+=1
         if listenerNumber == players.count {
@@ -87,6 +93,8 @@ class Game {
                 listenerNumber = tellerNumber + dist
             }
         }
-        print(tellerNumber, listenerNumber)
+    }
+    func isOneFullCircle() -> Bool {
+        return tellerNumber == 0 && listenerNumber == 1 && started
     }
 }
