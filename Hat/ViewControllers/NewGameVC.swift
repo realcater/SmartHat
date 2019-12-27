@@ -25,8 +25,8 @@ class NewGameVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = K.Colors.background
-        play.makeRounded(color: K.Colors.foreground, textColor: K.Colors.background, sound: K.Sounds.click)
-        view.setBackgroundImage(named: K.FileNames.background, alpha: K.Alpha.Background.main)
+        play.turnClickSoundOn(sound: K.Sounds.click)
+        //view.setBackgroundImage(named: K.FileNames.background, alpha: K.Alpha.Background.main)
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
         title = "Кто играет?"
     }

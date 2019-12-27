@@ -19,7 +19,7 @@ class StartPairVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = K.Colors.background
-        goButton.makeRounded(color: K.Colors.foreground, textColor: K.Colors.background, sound: K.Sounds.click)
+        goButton.turnClickSoundOn(sound: K.Sounds.click)
         view.setBackgroundImage(named: K.FileNames.background, alpha: K.Alpha.Background.main)
         
     }

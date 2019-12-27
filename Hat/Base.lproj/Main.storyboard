@@ -19,10 +19,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFM-K3-PgJ" userLabel="topButton" customClass="MyButton" customModule="Hat" customModuleProvider="target">
-                                <rect key="frame" x="20" y="678" width="335" height="60"/>
+                                <rect key="frame" x="0.0" y="668" width="375" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="LFO-kP-RyD"/>
+                                    <constraint firstAttribute="height" constant="70" id="LFO-kP-RyD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Играть">
@@ -33,13 +33,13 @@
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jOy-4v-Nu9">
-                                <rect key="frame" x="20" y="64" width="335" height="515"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="525"/>
                                 <connections>
                                     <segue destination="8F1-tt-3SW" kind="embed" identifier="toPlayersList" id="n2Z-xe-8bc"/>
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RvF-43-XdN" customClass="MyButton" customModule="Hat" customModuleProvider="target">
-                                <rect key="frame" x="168" y="599" width="39" height="79"/>
+                                <rect key="frame" x="168" y="589" width="39" height="79"/>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="56"/>
                                 <state key="normal" title="+">
                                     <color key="titleColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -52,16 +52,16 @@
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="jOy-4v-Nu9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1fO-pg-tEa"/>
-                            <constraint firstItem="QFM-K3-PgJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="5n7-FO-v6l"/>
+                            <constraint firstItem="QFM-K3-PgJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5n7-FO-v6l"/>
                             <constraint firstItem="jOy-4v-Nu9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7EN-QR-khp"/>
-                            <constraint firstItem="jOy-4v-Nu9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="8yA-of-F9j"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QFM-K3-PgJ" secondAttribute="trailing" constant="20" id="FEm-rj-98u"/>
+                            <constraint firstItem="jOy-4v-Nu9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="8yA-of-F9j"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QFM-K3-PgJ" secondAttribute="trailing" id="FEm-rj-98u"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="QFM-K3-PgJ" secondAttribute="bottom" constant="40" id="NQo-QI-W97"/>
                             <constraint firstItem="RvF-43-XdN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XoH-r4-niI"/>
                             <constraint firstItem="RvF-43-XdN" firstAttribute="top" secondItem="jOy-4v-Nu9" secondAttribute="bottom" constant="20" id="bAU-Ml-hHD"/>
                             <constraint firstItem="QFM-K3-PgJ" firstAttribute="top" secondItem="RvF-43-XdN" secondAttribute="bottom" id="ewa-pV-g9Y"/>
-                            <constraint firstItem="jOy-4v-Nu9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="gVT-rq-PnP"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jOy-4v-Nu9" secondAttribute="trailing" constant="20" id="ib7-zt-OPH"/>
+                            <constraint firstItem="jOy-4v-Nu9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gVT-rq-PnP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jOy-4v-Nu9" secondAttribute="trailing" id="ib7-zt-OPH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -98,10 +98,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Km0-Ta-mCv" userLabel="bottomButton" customClass="MyButton" customModule="Hat" customModuleProvider="target">
-                                <rect key="frame" x="20" y="678" width="335" height="60"/>
+                                <rect key="frame" x="0.0" y="668" width="375" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254901960786" blue="0.71372549019607845" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="n22-b5-0uK"/>
+                                    <constraint firstAttribute="height" constant="70" id="n22-b5-0uK"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Поехали!">
@@ -125,9 +125,9 @@
                         <constraints>
                             <constraint firstItem="9tl-vi-6uL" firstAttribute="trailing" secondItem="ojr-U3-i2p" secondAttribute="trailing" constant="40" id="0F4-RQ-EMQ"/>
                             <constraint firstItem="PqC-9K-Psk" firstAttribute="top" secondItem="tj4-sL-32X" secondAttribute="bottom" constant="4" id="20t-Sg-sm5"/>
-                            <constraint firstItem="Km0-Ta-mCv" firstAttribute="leading" secondItem="9tl-vi-6uL" secondAttribute="leading" constant="20" id="2yL-WY-5xx"/>
+                            <constraint firstItem="Km0-Ta-mCv" firstAttribute="leading" secondItem="9tl-vi-6uL" secondAttribute="leading" id="2yL-WY-5xx"/>
                             <constraint firstItem="9tl-vi-6uL" firstAttribute="bottom" secondItem="Km0-Ta-mCv" secondAttribute="bottom" constant="40" id="61f-U6-q2R"/>
-                            <constraint firstItem="9tl-vi-6uL" firstAttribute="trailing" secondItem="Km0-Ta-mCv" secondAttribute="trailing" constant="20" id="Bpv-40-sIN"/>
+                            <constraint firstItem="9tl-vi-6uL" firstAttribute="trailing" secondItem="Km0-Ta-mCv" secondAttribute="trailing" id="Bpv-40-sIN"/>
                             <constraint firstItem="ojr-U3-i2p" firstAttribute="top" secondItem="9tl-vi-6uL" secondAttribute="top" constant="100" id="Oay-0B-N7m"/>
                             <constraint firstItem="9tl-vi-6uL" firstAttribute="trailing" secondItem="PqC-9K-Psk" secondAttribute="trailing" constant="40" id="cYS-gj-j1h"/>
                             <constraint firstItem="tj4-sL-32X" firstAttribute="top" secondItem="ojr-U3-i2p" secondAttribute="bottom" constant="10" id="egU-tp-zOG"/>
@@ -162,11 +162,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Qi-MR-tuY" userLabel="topButton" customClass="MyButton" customModule="Hat" customModuleProvider="target">
-                                <rect key="frame" x="20" y="376" width="335" height="60"/>
+                                <rect key="frame" x="0.0" y="371" width="375" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="0Vo-5K-AEA"/>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="374" id="v9u-jW-OKi"/>
+                                    <constraint firstAttribute="height" constant="70" id="0Vo-5K-AEA"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <state key="normal" title="Играть">
@@ -179,10 +178,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="3Qi-MR-tuY" firstAttribute="centerY" secondItem="YG3-EU-qXa" secondAttribute="centerY" id="8y7-oe-X6o"/>
-                            <constraint firstItem="wqu-0V-SZc" firstAttribute="trailing" secondItem="3Qi-MR-tuY" secondAttribute="trailing" priority="750" constant="20" id="izQ-fN-txf"/>
-                            <constraint firstItem="3Qi-MR-tuY" firstAttribute="centerX" secondItem="YG3-EU-qXa" secondAttribute="centerX" id="k46-1t-uol"/>
-                            <constraint firstItem="3Qi-MR-tuY" firstAttribute="leading" secondItem="wqu-0V-SZc" secondAttribute="leading" priority="750" constant="20" id="sZS-gQ-k2B"/>
+                            <constraint firstItem="3Qi-MR-tuY" firstAttribute="centerY" secondItem="YG3-EU-qXa" secondAttribute="centerY" id="NS9-mY-lWc"/>
+                            <constraint firstItem="wqu-0V-SZc" firstAttribute="trailing" secondItem="3Qi-MR-tuY" secondAttribute="trailing" priority="750" id="izQ-fN-txf"/>
+                            <constraint firstItem="3Qi-MR-tuY" firstAttribute="leading" secondItem="wqu-0V-SZc" secondAttribute="leading" priority="750" id="sZS-gQ-k2B"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wqu-0V-SZc"/>
                     </view>
@@ -202,20 +200,20 @@
             <objects>
                 <tableViewController id="8F1-tt-3SW" customClass="PlayersTVC" customModule="Hat" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Rc7-fP-g6l">
-                        <rect key="frame" x="0.0" y="0.0" width="335" height="515"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="525"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlayersListItem" id="OPR-ZT-XO1">
-                                <rect key="frame" x="0.0" y="28" width="335" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OPR-ZT-XO1" id="799-xK-PW0">
-                                    <rect key="frame" x="0.0" y="0.0" width="335" height="43.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7CE-i2-d8k">
-                                            <rect key="frame" x="0.0" y="0.0" width="280" height="43.666666666666664"/>
+                                        <textField opaque="NO" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7CE-i2-d8k">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="textColor" red="0.0" green="0.43137254901960786" blue="0.71372549019607845" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
