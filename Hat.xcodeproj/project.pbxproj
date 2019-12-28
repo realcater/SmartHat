@@ -27,6 +27,9 @@
 		CA023D202175620E008AE815 /* applause.wav in Resources */ = {isa = PBXBuildFile; fileRef = CA023D182175620E008AE815 /* applause.wav */; };
 		CA023D212175620E008AE815 /* click.wav in Resources */ = {isa = PBXBuildFile; fileRef = CA023D192175620E008AE815 /* click.wav */; };
 		CA023D2321756243008AE815 /* AVAudioPlayer+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA023D2221756243008AE815 /* AVAudioPlayer+extension.swift */; };
+		CA0CD5EA23B7D52400A76B75 /* countdown.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA0CD5E923B7D52400A76B75 /* countdown.mp3 */; };
+		CA0CD5EC23B7D54E00A76B75 /* timeOver1.wav in Resources */ = {isa = PBXBuildFile; fileRef = CA0CD5EB23B7D54E00A76B75 /* timeOver1.wav */; };
+		CA0CD5EE23B7D56400A76B75 /* timeOver2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA0CD5ED23B7D56400A76B75 /* timeOver2.mp3 */; };
 		CA3281D12376DAD200822B22 /* PlayersTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3281D02376DAD200822B22 /* PlayersTVC.swift */; };
 		CA3281D32376E0AB00822B22 /* UIPaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3281D22376E0AB00822B22 /* UIPaddingLabel.swift */; };
 		CA5916D423B3C74D007625A1 /* StartPairVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5916D323B3C74D007625A1 /* StartPairVC.swift */; };
@@ -35,7 +38,6 @@
 		CA8A2F9D23B66DF7008D7EBE /* EndGameTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8A2F9C23B66DF7008D7EBE /* EndGameTVC.swift */; };
 		CA8A2F9F23B6A034008D7EBE /* BasketVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8A2F9E23B6A034008D7EBE /* BasketVC.swift */; };
 		CA8A2FA123B6A1D2008D7EBE /* BasketTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8A2FA023B6A1D2008D7EBE /* BasketTVC.swift */; };
-		CA8A2FA523B7BE91008D7EBE /* countdown.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA8A2FA423B7BE91008D7EBE /* countdown.mp3 */; };
 		CAC9D91823B3E0F9005472AD /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC9D91723B3E0F9005472AD /* Helper.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +64,9 @@
 		CA023D182175620E008AE815 /* applause.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = applause.wav; sourceTree = "<group>"; };
 		CA023D192175620E008AE815 /* click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click.wav; sourceTree = "<group>"; };
 		CA023D2221756243008AE815 /* AVAudioPlayer+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AVAudioPlayer+extension.swift"; sourceTree = "<group>"; };
+		CA0CD5E923B7D52400A76B75 /* countdown.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = countdown.mp3; path = "../../../../Dropbox/Шляпа/countdown.mp3"; sourceTree = "<group>"; };
+		CA0CD5EB23B7D54E00A76B75 /* timeOver1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = timeOver1.wav; sourceTree = "<group>"; };
+		CA0CD5ED23B7D56400A76B75 /* timeOver2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = timeOver2.mp3; sourceTree = "<group>"; };
 		CA3281D02376DAD200822B22 /* PlayersTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersTVC.swift; sourceTree = "<group>"; };
 		CA3281D22376E0AB00822B22 /* UIPaddingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPaddingLabel.swift; sourceTree = "<group>"; };
 		CA5916D323B3C74D007625A1 /* StartPairVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPairVC.swift; sourceTree = "<group>"; };
@@ -70,7 +75,6 @@
 		CA8A2F9C23B66DF7008D7EBE /* EndGameTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameTVC.swift; sourceTree = "<group>"; };
 		CA8A2F9E23B6A034008D7EBE /* BasketVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketVC.swift; sourceTree = "<group>"; };
 		CA8A2FA023B6A1D2008D7EBE /* BasketTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketTVC.swift; sourceTree = "<group>"; };
-		CA8A2FA423B7BE91008D7EBE /* countdown.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = countdown.mp3; sourceTree = "<group>"; };
 		CAC9D91723B3E0F9005472AD /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,7 +125,9 @@
 		C18E7F95212DA92700FE1BFF /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				CA8A2FA423B7BE91008D7EBE /* countdown.mp3 */,
+				CA0CD5ED23B7D56400A76B75 /* timeOver2.mp3 */,
+				CA0CD5EB23B7D54E00A76B75 /* timeOver1.wav */,
+				CA0CD5E923B7D52400A76B75 /* countdown.mp3 */,
 				CA023D182175620E008AE815 /* applause.wav */,
 				CA023D192175620E008AE815 /* click.wav */,
 				CA023D152175620E008AE815 /* false.wav */,
@@ -240,13 +246,15 @@
 			files = (
 				CA023D1D2175620E008AE815 /* false.wav in Resources */,
 				C156472A2121FC6200F1602E /* LaunchScreen.storyboard in Resources */,
+				CA0CD5EA23B7D52400A76B75 /* countdown.mp3 in Resources */,
 				C14B02A4212983E300B2E96C /* 12009.ttf in Resources */,
 				CA023D212175620E008AE815 /* click.wav in Resources */,
+				CA0CD5EC23B7D54E00A76B75 /* timeOver1.wav in Resources */,
 				C1561CF02133124A00C8B674 /* help.xib in Resources */,
 				CA023D1C2175620E008AE815 /* true.wav in Resources */,
 				C15647272121FC6100F1602E /* Assets.xcassets in Resources */,
+				CA0CD5EE23B7D56400A76B75 /* timeOver2.mp3 in Resources */,
 				C15647252121FC6100F1602E /* Main.storyboard in Resources */,
-				CA8A2FA523B7BE91008D7EBE /* countdown.mp3 in Resources */,
 				CA023D202175620E008AE815 /* applause.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

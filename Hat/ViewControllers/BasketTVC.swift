@@ -36,10 +36,14 @@ class BasketTVC: UITableViewController {
         let textField = cell.viewWithTag(1000) as! UITextField
         textField.text = game.basketWords[indexPath.row]
         
-        let button = cell.viewWithTag(1001) as! UIButton
-        button.setTitle(K.statusWordImages[game.basketStatus[indexPath.row]], for: .normal)
-        button.tag = indexPath.row
-        button.addTarget(self, action: #selector(buttonSelected), for: .touchUpInside)
+        if let button = cell.viewWithTag(1001) as? UIButton {
+            button.setTitle(K.statusWordImages[game.basketStatus[indexPath.row]], for: .normal)
+            button.tag = indexPath.row
+            button.addTarget(self, action: #selector(buttonSelected), for: .touchUpInside)
+        } else {
+            print("noButton")
+            print(indexPath.row)
+        }
         
         return cell
     }

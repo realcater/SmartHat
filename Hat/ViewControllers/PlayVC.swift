@@ -29,7 +29,7 @@ class PlayVC: UIViewController {
     @IBOutlet weak var helpMessage: UILabel!
     
     @IBAction func guessedPressed(_ sender: Any) {
-        K.Sounds.correct?.play()
+        K.Sounds.correct?.resetAndPlay()
         game.setWordGuessed()
         
         guessedQty+=1
@@ -40,15 +40,14 @@ class PlayVC: UIViewController {
 
     @IBAction func notGuessedTouchDown(_ sender: Any) {
         notGuessedButton.backgroundColor = K.Colors.redDarker
-        createBtnTimer(duration: 1.5)
-        helpMessage.isHidden = false
+        createBtnTimer(duration: K.Delays.notGuessedBtn)
     }
     @IBAction func notGuessedTouchUp(_ sender: Any) {
         notGuessedButton.backgroundColor = K.Colors.gray
+        helpMessage.isHidden = false
         cancelBtnTimer()
+        K.Sounds.error?.play()
     }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +76,7 @@ class PlayVC: UIViewController {
     
     private func nextPair() {
         cancelTimer()
-        K.Sounds.error?.play()
+        
         navigationController?.popViewController(animated: true)
     }
     
@@ -95,11 +94,18 @@ extension PlayVC {
     @objc func updateTimer() {
         timeLeft -= 1
         timerLabel.text = String(timeLeft)
-        if timeLeft <= K.timeWithClicks { K.Sounds.click?.play() }
+
         if timeLeft == 0 {
-            K.Sounds.error?.play()
+            K.Sounds.timeOver?.resetAndPlay()
+            circleView.backgroundColor = K.Colors.redDarker
+        } else if timeLeft == -1*K.secsAfter {
+            K.Sounds.timeOver?.resetAndPlay()
             game.setWordLeft()
-            nextPair()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                self.nextPair()
+            })
+        } else if timeLeft <= K.timeWithClicks {
+            K.Sounds.click?.play()
         }
     }
     
@@ -125,7 +131,6 @@ extension PlayVC {
 // MARK: - Timer
 extension PlayVC {
     @objc func resolveBtnTimer() {
-        K.Sounds.error?.play()
         game.setWordMissed()
         nextPair()
     }

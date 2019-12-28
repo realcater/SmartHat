@@ -22,12 +22,10 @@ class StartPairVC: UIViewController {
     var btnTimeLeft: Int!
     
     @IBAction func goButtonTouchDown(_ sender: Any) {
-        //goButton.backgroundColor = K.Colors.redDarker
-        createBtnTimer(duration: 3.5)
+        createBtnTimer(duration: K.Delays.goBtn)
         K.Sounds.countdown?.resetAndPlay()
     }
     @IBAction func goButtonTouchUp(_ sender: Any) {
-        //notGuessedButton.backgroundColor = K.Colors.gray
         cancelBtnTimer()
         K.Sounds.countdown?.stop()
         helpMessage.isHidden = false
@@ -65,7 +63,6 @@ class StartPairVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = K.Colors.background
-        goButton.turnClickSoundOn(sound: K.Sounds.click)
         view.setBackgroundImage(named: K.FileNames.background, alpha: K.Alpha.Background.main)
     }
     
@@ -100,6 +97,7 @@ class StartPairVC: UIViewController {
 // MARK: - BtnTimer
 extension StartPairVC {
     @objc func resolveBtnTimer() {
+        cancelBtnTimer()
         performSegue(withIdentifier: "toPlay", sender: self)
     }
     

@@ -1,6 +1,7 @@
 import UIKit
 
 struct K {
+    static let secsAfter = 3
     static let startPlayersNames: NSMutableArray = [
         "Дима",
         "Лена",
@@ -28,6 +29,7 @@ struct K {
         static let error = initSound(filename: "false.wav", volume: 0.5)
         static let applause = initSound(filename: "applause.wav")
         static let countdown = initSound(filename: "countdown.mp3")
+        static let timeOver = initSound(filename: "timeOver2.mp3")
     }
     
     struct Colors {
@@ -56,8 +58,7 @@ struct K {
     
     struct Alpha {
         struct Background {
-            static let main : CGFloat = 0.1
-            static let questions : CGFloat = 0.04
+            static let main : CGFloat = 0.07
         }
     }
     struct FileNames {
@@ -65,6 +66,8 @@ struct K {
     }
     struct Delays {
         static let moveOneRow = 0.2
+        static let notGuessedBtn = 1.3
+        static let goBtn = 2.2
     }
     static let timeWithClicks = 3
 }
