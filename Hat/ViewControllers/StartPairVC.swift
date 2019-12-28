@@ -33,7 +33,6 @@ class StartPairVC: UIViewController {
     
     @IBAction func pressEndButton(_ sender: Any) {
         tryEndGame(title: "Закончить игру?", message: "")
-        print("press")
     }
     
     @IBAction func unwindFromBasketVC(_ unwindSegue: UIStoryboardSegue) {

@@ -37,7 +37,6 @@ class Game {
     
     var basketWords: [String] = []
     var basketStatus: [WordStatus] = []
-    //var basketData = BasketData()
     
     var time: Int
     

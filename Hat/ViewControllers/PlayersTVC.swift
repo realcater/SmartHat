@@ -39,7 +39,6 @@ class PlayersTVC: UITableViewController {
         if (editingStyle == .delete) {
             playersNames.removeObject(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            
         }
     }
     

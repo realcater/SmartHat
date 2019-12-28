@@ -46,7 +46,7 @@ class PlayVC: UIViewController {
         notGuessedButton.backgroundColor = K.Colors.gray
         helpMessage.isHidden = false
         cancelBtnTimer()
-        K.Sounds.error?.play()
+        
     }
     
     override func viewDidLoad() {
@@ -76,7 +76,6 @@ class PlayVC: UIViewController {
     
     private func nextPair() {
         cancelTimer()
-        
         navigationController?.popViewController(animated: true)
     }
     
@@ -104,7 +103,7 @@ extension PlayVC {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                 self.nextPair()
             })
-        } else if timeLeft <= K.timeWithClicks {
+        } else if timeLeft <= K.Delays.withClicks {
             K.Sounds.click?.play()
         }
     }
@@ -132,6 +131,7 @@ extension PlayVC {
 extension PlayVC {
     @objc func resolveBtnTimer() {
         game.setWordMissed()
+        K.Sounds.error?.play()
         nextPair()
     }
     

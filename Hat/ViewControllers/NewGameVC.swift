@@ -61,7 +61,6 @@ class NewGameVC: UIViewController {
             let startPairVC = segue.destination as? StartPairVC
             startPairVC?.game = self.game
         }
-        
     }
 }
 

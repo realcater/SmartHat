@@ -13,7 +13,7 @@ class BasketTVC: UITableViewController {
     var game: Game!
     
     @objc func buttonSelected(sender: UIButton){
-        let row = sender.tag
+        let row = Int(sender.accessibilityIdentifier!)!
         game.changeStatusInBasket(for: row)
         sender.setTitle(K.statusWordImages[game.basketStatus[row]], for: .normal)
     }
@@ -26,7 +26,6 @@ class BasketTVC: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return game.basketWords.count
     }
 
@@ -36,14 +35,10 @@ class BasketTVC: UITableViewController {
         let textField = cell.viewWithTag(1000) as! UITextField
         textField.text = game.basketWords[indexPath.row]
         
-        if let button = cell.viewWithTag(1001) as? UIButton {
-            button.setTitle(K.statusWordImages[game.basketStatus[indexPath.row]], for: .normal)
-            button.tag = indexPath.row
-            button.addTarget(self, action: #selector(buttonSelected), for: .touchUpInside)
-        } else {
-            print("noButton")
-            print(indexPath.row)
-        }
+        let button = cell.viewWithTag(1001) as! UIButton
+        button.setTitle(K.statusWordImages[game.basketStatus[indexPath.row]], for: .normal)
+        button.accessibilityIdentifier = String(indexPath.row)
+        button.addTarget(self, action: #selector(buttonSelected), for: .touchUpInside)
         
         return cell
     }

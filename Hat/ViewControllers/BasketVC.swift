@@ -20,14 +20,8 @@ class BasketVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        popupView.layer.cornerRadius = CGFloat(16)
+        popupView.layer.cornerRadius = K.cornerRadius
         popupView.layer.masksToBounds = true
-        
-        if game.basketStatus.count == 0 { return }
-        for _ in game.basketWords {
-            game.basketStatus.append(.guessed)
-        }
-        game.basketStatus[game.basketStatus.endIndex-1] = .left
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
