@@ -37,3 +37,11 @@ class MyButton: UIButton {
         }
     }
 }
+
+extension MyButton {
+    func addLongPress(duration: Double, longPressAction: Selector? = nil) {
+        let longPress = UILongPressGestureRecognizer(target: self, action: longPressAction)
+        longPress.minimumPressDuration = duration
+        self.addGestureRecognizer(longPress)
+    }
+}

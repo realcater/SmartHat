@@ -13,13 +13,34 @@ class StartPairVC: UIViewController {
     @IBOutlet weak var goButton: MyButton!
     @IBOutlet weak var tellerNameLabel: UILabel!
     
+    @IBOutlet weak var helpMessage: UILabel!
     @IBOutlet weak var listenerNameLabel: UILabel!
+    
     var game: Game!
     
+    var btnTimer: Timer?
+    var btnTimeLeft: Int!
+    
+    @IBAction func goButtonTouchDown(_ sender: Any) {
+        //goButton.backgroundColor = K.Colors.redDarker
+        createBtnTimer(duration: 3.5)
+        K.Sounds.countdown?.resetAndPlay()
+    }
+    @IBAction func goButtonTouchUp(_ sender: Any) {
+        //notGuessedButton.backgroundColor = K.Colors.gray
+        cancelBtnTimer()
+        K.Sounds.countdown?.stop()
+        helpMessage.isHidden = false
+    }
     
     @IBAction func pressEndButton(_ sender: Any) {
         tryEndGame(title: "Закончить игру?", message: "")
         print("press")
+    }
+    
+    @IBAction func unwindFromBasketVC(_ unwindSegue: UIStoryboardSegue) {
+        let _ = unwindSegue.source
+        checkWordsCount()
     }
     
     private func tryEndGame(title: String, message: String) {
@@ -32,6 +53,12 @@ class StartPairVC: UIViewController {
         
     }
     
+    private func checkWordsCount() {
+        title = "Осталось: \(game.leftWords.count) слов"
+        if game.leftWords.count == 0 {
+            showResults()
+        }
+    }
     private func showResults() {
         performSegue(withIdentifier: "toEndGame", sender: self)
     }
@@ -48,10 +75,11 @@ class StartPairVC: UIViewController {
         game.startNewPair()
         tellerNameLabel.text = game.currentTeller.name
         listenerNameLabel.text = game.currentListener.name
-        title = "Осталось: \(game.leftWords.count) слов"
+        checkWordsCount()
+        helpMessage.isHidden = true
         
         if game.isOneFullCircle() {
-            tryEndGame(title: "Закончим игру?", message: "Вы закончили полный круг: все сыграли со всеми")
+            tryEndGame(title: "Вы закончили полный круг", message: "Все сыграли со всеми. Закончим игру?")
         }
     }
     
@@ -62,7 +90,33 @@ class StartPairVC: UIViewController {
         } else if segue.identifier == "toEndGame" {
             let endGameVC = segue.destination as? EndGameVC
             endGameVC?.players = self.game.players.sorted { $0.ttlGuesses > $1.ttlGuesses }
+        } else if segue.identifier == "toBasket" {
+            let basketVC = segue.destination as? BasketVC
+            basketVC?.game = game
         }
+    }
+}
+
+// MARK: - BtnTimer
+extension StartPairVC {
+    @objc func resolveBtnTimer() {
+        performSegue(withIdentifier: "toPlay", sender: self)
+    }
+    
+    func createBtnTimer(duration: Double) {
+        if btnTimer == nil {
+            btnTimer = Timer.scheduledTimer(timeInterval: duration,
+                                            target: self,
+                                            selector: #selector(resolveBtnTimer),
+                                            userInfo: nil,
+                                            repeats: false)
+            btnTimer?.tolerance = 0.1
+        }
+    }
+    
+    func cancelBtnTimer() {
+        btnTimer?.invalidate()
+        btnTimer = nil
     }
 }
 

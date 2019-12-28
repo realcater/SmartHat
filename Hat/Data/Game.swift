@@ -6,6 +6,12 @@ enum Difficulty {
     case hard
 }
 
+enum WordStatus {
+    case guessed
+    case left
+    case missed
+}
+
 class Player {
     var name: String
     var tellGuessed: Int
@@ -29,12 +35,20 @@ class Game {
     var guessedWords: [String] = []
     var missedWords: [String] = []
     
+    var basketWords: [String] = []
+    var basketStatus: [WordStatus] = []
+    //var basketData = BasketData()
+    
     var time: Int
     
+    var currentWord: String = ""
     var tellerNumber: Int = -1
     var listenerNumber: Int = 0
     var dist: Int = 1
     var started = false
+    
+    var prevTellerNumber: Int!
+    var prevListenerNumber: Int!
     
     init(wordsQty: Int, difficulty: Difficulty, time: Int, playersNames: NSMutableArray) {
         self.time = time
@@ -45,10 +59,7 @@ class Game {
         var allWords = Words.words[difficulty]!
         for _ in 0..<wordsQty {
             let number = Int.random(in: 0 ..< allWords.count)
-            Helper.move(
-                str: allWords[number],
-                from: &allWords,
-                to: &leftWords)
+            Helper.move(str: allWords[number], from: &allWords, to: &leftWords)
         }
     }
     var currentTeller: Player {
@@ -62,19 +73,35 @@ class Game {
         }
     }
     
-    func getRandomWordFromPool() -> String {
-        if leftWords.count == 0 { return "" }
+    func getRandomWordFromPool() -> Bool {
+        if leftWords.count == 0 { return false }
         let number = Int.random(in: 0 ..< leftWords.count)
-        return leftWords[number]
+        currentWord = leftWords[number]
+        return true
     }
     
-    func setGuessed(_ word: String) {
-        Helper.move(str: word, from: &leftWords, to: &guessedWords)
+    func setWordGuessed() {
+        Helper.move(str: currentWord, from: &leftWords, to: &guessedWords)
         currentTeller.tellGuessed+=1
         currentListener.listenGuessed+=1
+        basketWords.append(currentWord)
+        basketStatus.append(.guessed)
     }
     
+    func setWordMissed() {
+        Helper.move(str: currentWord, from: &leftWords, to: &missedWords)
+        basketWords.append(currentWord)
+        basketStatus.append(.missed)
+    }
+    
+    func setWordLeft() {
+        basketWords.append(currentWord)
+        basketStatus.append(.left)
+    }
     func startNewPair() {
+        prevTellerNumber = tellerNumber
+        prevListenerNumber = listenerNumber
+        
         if listenerNumber == 2 { started = true }
         
         tellerNumber+=1
@@ -96,5 +123,24 @@ class Game {
     }
     func isOneFullCircle() -> Bool {
         return tellerNumber == 0 && listenerNumber == 1 && started
+    }
+    func changeStatusInBasket(for num: Int) {
+        let word = basketWords[num]
+        switch basketStatus[num] {
+        case .guessed:
+            Helper.move(str: word, from: &guessedWords, to: &leftWords)
+            basketStatus[num] = .left
+            players[prevListenerNumber].listenGuessed-=1
+            players[prevTellerNumber].tellGuessed-=1
+            
+        case .missed:
+            Helper.move(str: word, from: &missedWords, to: &guessedWords)
+            basketStatus[num] = .guessed
+            players[prevListenerNumber].listenGuessed+=1
+            players[prevTellerNumber].tellGuessed+=1
+        case .left:
+            Helper.move(str: word, from: &leftWords, to: &missedWords)
+            basketStatus[num] = .missed
+        }
     }
 }

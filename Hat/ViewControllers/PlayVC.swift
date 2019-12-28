@@ -9,38 +9,54 @@
 import UIKit
 
 class PlayVC: UIViewController {
+    
+    var game: Game!
+    var timer: Timer?
+    var timeLeft: Int!
+    
+    var btnTimer: Timer?
+    var btnTimeLeft: Int!
+    
+    var guessedQty: Int = 0
+    
     @IBOutlet weak var wordLabel: UILabel!
     
     @IBOutlet weak var circleView: UIView!
     @IBOutlet weak var timerLabel: UILabel!
-    @IBOutlet weak var guessed: MyButton!
-    @IBOutlet weak var notGuessed: MyButton!
+    @IBOutlet weak var guessedButton: MyButton!
+    @IBOutlet weak var notGuessedButton: MyButton!
     
+    @IBOutlet weak var helpMessage: UILabel!
     
     @IBAction func guessedPressed(_ sender: Any) {
-        game.setGuessed(word)
         K.Sounds.correct?.play()
-        guessedQty+=1
+        game.setWordGuessed()
         
+        guessedQty+=1
         updateTitle()
+        
         nextWord()
     }
-    
-    @IBAction func notGuessedPressed(_ sender: Any) {
-        nextPair()
+
+    @IBAction func notGuessedTouchDown(_ sender: Any) {
+        notGuessedButton.backgroundColor = K.Colors.redDarker
+        createBtnTimer(duration: 1.5)
+        helpMessage.isHidden = false
+    }
+    @IBAction func notGuessedTouchUp(_ sender: Any) {
+        notGuessedButton.backgroundColor = K.Colors.gray
+        cancelBtnTimer()
     }
     
-    var game: Game!
-    var word = ""
-    var timer: Timer?
-    var timeLeft: Int!
-    var guessedQty: Int = 0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = K.Colors.background
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.lightGray]
         circleView.layer.cornerRadius = 40
+        game.basketWords = []
+        game.basketStatus = []
         updateTitle()
         nextWord()
         createTimer()
@@ -51,21 +67,18 @@ class PlayVC: UIViewController {
     }
     
     private func nextWord() {
-        word = game.getRandomWordFromPool()
-        if word == "" {
+        if game.getRandomWordFromPool() {
+             wordLabel.text = game.currentWord
+        } else {
             cancelTimer()
             performSegue(withIdentifier: "noWords", sender: self)
-        } else {
-            wordLabel.text = word
         }
     }
     
     private func nextPair() {
         cancelTimer()
         K.Sounds.error?.play()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
-            _ = self.navigationController?.popViewController(animated: true)
-        })
+        navigationController?.popViewController(animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -85,6 +98,7 @@ extension PlayVC {
         if timeLeft <= K.timeWithClicks { K.Sounds.click?.play() }
         if timeLeft == 0 {
             K.Sounds.error?.play()
+            game.setWordLeft()
             nextPair()
         }
     }
@@ -105,5 +119,30 @@ extension PlayVC {
     func cancelTimer() {
         timer?.invalidate()
         timer = nil
+    }
+}
+
+// MARK: - Timer
+extension PlayVC {
+    @objc func resolveBtnTimer() {
+        K.Sounds.error?.play()
+        game.setWordMissed()
+        nextPair()
+    }
+    
+    func createBtnTimer(duration: Double) {
+        if btnTimer == nil {
+            btnTimer = Timer.scheduledTimer(timeInterval: duration,
+                                         target: self,
+                                         selector: #selector(resolveBtnTimer),
+                                         userInfo: nil,
+                                         repeats: false)
+            btnTimer?.tolerance = 0.1
+        }
+    }
+    
+    func cancelBtnTimer() {
+        btnTimer?.invalidate()
+        btnTimer = nil
     }
 }

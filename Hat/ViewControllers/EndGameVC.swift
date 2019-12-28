@@ -17,6 +17,7 @@ class EndGameVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: false)
+        navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
         K.Sounds.applause?.play()
         title = "Результаты"
     }

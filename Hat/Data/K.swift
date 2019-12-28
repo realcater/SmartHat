@@ -13,6 +13,12 @@ struct K {
         .hard: "Хард"
     ]
     
+    static let statusWordImages: [WordStatus: String] = [
+        .guessed: "✅",
+        .missed: "❌",
+        .left: "🎩"
+    ]
+    
     static let useSmallerFonts = (UIScreen.main.currentMode!.size.width >= 750) ? false : true
     static let cornerRadius : CGFloat = 16
     
@@ -21,6 +27,7 @@ struct K {
         static let correct = initSound(filename: "true.wav", volume: 0.2)
         static let error = initSound(filename: "false.wav", volume: 0.5)
         static let applause = initSound(filename: "applause.wav")
+        static let countdown = initSound(filename: "countdown.mp3")
     }
     
     struct Colors {
@@ -28,6 +35,7 @@ struct K {
         static let foregroundLighter = UIColor(red: 0, green: 165/256, blue: 1, alpha: 1)
         static let foregroundDarker = UIColor(red: 0, green: 73/256, blue: 121/256, alpha: 1)
         static let background = UIColor.white
+        static let redDarker = UIColor(red: 148/256, green: 17/256, blue: 0, alpha: 1)
         static let gray = UIColor.gray
         static let lightGray = UIColor(red: 170/256, green: 170/256, blue: 170/256, alpha: 1)
         
