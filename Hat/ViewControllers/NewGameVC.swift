@@ -13,7 +13,7 @@ class NewGameVC: UIViewController {
     //var startVC : StartVC!
     var playersTVC: PlayersTVC!
     var game: Game!
-    var playersNames = K.startPlayersNames
+    var playersNames: NSMutableArray = []
     var wordsQtyData = [20,30,40,50,60,70,80,90,100,110,120,130,140,150,160]
     var hardnessData : [Difficulty] = [.easy, .normal, .hard]
     var secQtyData = [10,20,30,40,50,60]
@@ -25,6 +25,26 @@ class NewGameVC: UIViewController {
     
     @IBAction func pressAdd(_ sender: Any) {
         playersTVC!.insertRow(playerName: "", at: playersNames.count)
+    }
+    
+    func savePlayerNames() {
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let fileUrl = dir.appendingPathComponent("playerNames.txt")
+            (playersNames as NSArray).write(to: fileUrl as URL, atomically: true)
+        }
+    }
+        
+    func loadPlayerNames() {
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let fileUrl = dir.appendingPathComponent("playerNames.txt")
+            if let playersNames = NSArray(contentsOf: fileUrl as URL) as? NSMutableArray {
+                self.playersNames = playersNames
+            } else {
+                playersNames = K.startPlayersNames
+            }
+        } else {
+            playersNames = K.startPlayersNames
+        }
     }
     
     override func viewDidLoad() {
@@ -39,6 +59,8 @@ class NewGameVC: UIViewController {
         picker.selectRow(4, inComponent: 0, animated: true)
         picker.selectRow(1, inComponent: 1, animated: true)
         picker.selectRow(2, inComponent: 2, animated: true)
+        
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -48,6 +70,7 @@ class NewGameVC: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPlayersList" {
+            loadPlayerNames()
             playersTVC = segue.destination as? PlayersTVC
             playersTVC?.playersNames = playersNames
         }
@@ -60,6 +83,7 @@ class NewGameVC: UIViewController {
             
             let startPairVC = segue.destination as? StartPairVC
             startPairVC?.game = self.game
+            savePlayerNames()
         }
     }
 }

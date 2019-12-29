@@ -3,10 +3,10 @@ import UIKit
 struct K {
     static let secsAfter = 3
     static let startPlayersNames: NSMutableArray = [
-        "Дима",
-        "Лена",
-        "Глеб",
-        "Аня"
+        "Анжела",
+        "Евстигней",
+        "Снежана",
+        "Евлампий"
         ]
     static let diffNames : [Difficulty: String] = [
         .easy: "Изи",
