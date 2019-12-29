@@ -10,7 +10,6 @@ import UIKit
 
 class NewGameVC: UIViewController {
 
-    //var startVC : StartVC!
     var playersTVC: PlayersTVC!
     var game: Game!
     var playersNames: NSMutableArray = []
