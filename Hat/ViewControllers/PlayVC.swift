@@ -23,8 +23,10 @@ class PlayVC: UIViewController {
     
     @IBOutlet weak var circleView: UIView!
     @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var warningView: UIView!
     @IBOutlet weak var guessedButton: MyButton!
     @IBOutlet weak var notGuessedButton: MyButton!
+    @IBOutlet weak var endTurnButton: MyButton!
     
     @IBOutlet weak var helpMessage: UILabel!
     
@@ -38,6 +40,11 @@ class PlayVC: UIViewController {
         nextWord()
     }
 
+    @IBAction func endTurnButtonPressed(_ sender: Any) {
+        game.setWordLeft()
+        nextPair()
+    }
+    
     @IBAction func notGuessedTouchDown(_ sender: Any) {
         notGuessedButton.backgroundColor = K.Colors.redDarker
         createBtnTimer(duration: K.Delays.notGuessedBtn)
@@ -97,6 +104,7 @@ extension PlayVC {
         if timeLeft == 0 {
             K.Sounds.timeOver?.resetAndPlay()
             circleView.backgroundColor = K.Colors.redDarker
+            warningView.isHidden = false
         } else if timeLeft == -1*K.secsAfter {
             K.Sounds.timeOver?.resetAndPlay()
             game.setWordLeft()
@@ -105,6 +113,9 @@ extension PlayVC {
             })
         } else if timeLeft <= K.Delays.withClicks {
             K.Sounds.click?.play()
+            endTurnButton.isHidden = false
+            
+            
         }
     }
     

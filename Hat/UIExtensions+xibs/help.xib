@@ -156,7 +156,37 @@
             <viewLayoutGuide key="safeArea" id="sit-G0-FF3"/>
             <point key="canvasLocation" x="53.600000000000001" y="48.125937031484263"/>
         </view>
-        <view contentMode="scaleToFill" id="DgY-ef-WuE" userLabel="Screen6">
+        <view contentMode="scaleToFill" id="BxK-cn-WLc" userLabel="Screen6">
+            <rect key="frame" x="0.0" y="0.0" width="335" height="474"/>
+            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="helpScreen6" translatesAutoresizingMaskIntoConstraints="NO" id="GiE-Y0-Uau">
+                    <rect key="frame" x="0.0" y="0.0" width="335" height="404"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="31q-Qy-FxW">
+                    <rect key="frame" x="12" y="416" width="311" height="58"/>
+                    <string key="text">В последние секунды появится кнопка "Закончить ход". Если вы понимаете, что уже не успеете объяснить очередное слово, то чтобы не тратить время, нажмите её: ваш ход закончится, а слово останется в шляпе</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ou8-4V-Tgq" firstAttribute="bottom" secondItem="GiE-Y0-Uau" secondAttribute="bottom" constant="70" id="FkT-lC-geW"/>
+                <constraint firstItem="31q-Qy-FxW" firstAttribute="top" secondItem="GiE-Y0-Uau" secondAttribute="bottom" constant="12" id="Gp8-K6-MdY"/>
+                <constraint firstItem="GiE-Y0-Uau" firstAttribute="leading" secondItem="ou8-4V-Tgq" secondAttribute="leading" id="HND-Bq-nv9"/>
+                <constraint firstItem="ou8-4V-Tgq" firstAttribute="trailing" secondItem="GiE-Y0-Uau" secondAttribute="trailing" id="Jdi-cu-Nra"/>
+                <constraint firstItem="GiE-Y0-Uau" firstAttribute="top" secondItem="ou8-4V-Tgq" secondAttribute="top" id="PW7-aN-CGD"/>
+                <constraint firstItem="31q-Qy-FxW" firstAttribute="leading" secondItem="ou8-4V-Tgq" secondAttribute="leading" constant="12" id="fCu-hR-g5n"/>
+                <constraint firstItem="ou8-4V-Tgq" firstAttribute="bottom" secondItem="31q-Qy-FxW" secondAttribute="bottom" id="jjG-5K-hcB"/>
+                <constraint firstItem="ou8-4V-Tgq" firstAttribute="trailing" secondItem="31q-Qy-FxW" secondAttribute="trailing" constant="12" id="vrd-Ig-Vl6"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="ou8-4V-Tgq"/>
+            <point key="canvasLocation" x="53.600000000000001" y="48.125937031484263"/>
+        </view>
+        <view contentMode="scaleToFill" id="DgY-ef-WuE" userLabel="Screen7">
             <rect key="frame" x="0.0" y="0.0" width="335" height="474"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -186,7 +216,7 @@
             <viewLayoutGuide key="safeArea" id="LEa-U2-WVb"/>
             <point key="canvasLocation" x="53.600000000000001" y="48.125937031484263"/>
         </view>
-        <view contentMode="scaleToFill" id="Jga-Y5-Pac" userLabel="Screen7">
+        <view contentMode="scaleToFill" id="Jga-Y5-Pac" userLabel="Screen8">
             <rect key="frame" x="0.0" y="0.0" width="335" height="474"/>
             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -221,7 +251,8 @@
         <image name="helpScreen1" width="562" height="1040"/>
         <image name="helpScreen2" width="562" height="1040"/>
         <image name="helpScreen3" width="326" height="603"/>
-        <image name="helpScreen4" width="326" height="603"/>
+        <image name="helpScreen4" width="301" height="558"/>
         <image name="helpScreen5" width="562" height="1040"/>
+        <image name="helpScreen6" width="326" height="603"/>
     </resources>
 </document>

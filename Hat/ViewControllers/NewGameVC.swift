@@ -13,7 +13,7 @@ class NewGameVC: UIViewController {
     var playersTVC: PlayersTVC!
     var game: Game!
     var playersNames: NSMutableArray = []
-    var wordsQtyData = [20,30,40,50,60,70,80,90,100,110,120,130,140,150,160]
+    var wordsQtyData = [20,30,40,50,60,70,80,90,100,120,140,160,200,250,300,400,500,600]
     var hardnessData : [Difficulty] = [.easy, .normal, .hard]
     var secQtyData = [10,20,30,40,50,60]
     
