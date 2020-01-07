@@ -22,8 +22,12 @@ class PlayVC: UIViewController {
     @IBOutlet weak var wordLabel: UILabel!
     
     @IBOutlet weak var circleView: UIView!
+    @IBOutlet weak var whiteCircleView: UIView!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var warningView: UIView!
+    @IBOutlet weak var warning1Label: UILabel!
+    @IBOutlet weak var warning2Label: UILabel!
+    
     @IBOutlet weak var guessedButton: MyButton!
     @IBOutlet weak var notGuessedButton: MyButton!
     @IBOutlet weak var endTurnButton: MyButton!
@@ -61,6 +65,7 @@ class PlayVC: UIViewController {
         view.backgroundColor = K.Colors.background
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.lightGray]
         circleView.layer.cornerRadius = 40
+        whiteCircleView.layer.cornerRadius = 46
         game.basketWords = []
         game.basketStatus = []
         updateTitle()
@@ -104,8 +109,11 @@ extension PlayVC {
         if timeLeft == 0 {
             K.Sounds.timeOver?.resetAndPlay()
             circleView.backgroundColor = K.Colors.redDarker
+            warningView.backgroundColor = K.Colors.redDarker
             warningView.isHidden = false
-        } else if timeLeft == -1*K.secsAfter {
+            warning1Label.isHidden = false
+            warning2Label.isHidden = false
+        } else if timeLeft == -1*K.Delays.secsAfter {
             K.Sounds.timeOver?.resetAndPlay()
             game.setWordLeft()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {

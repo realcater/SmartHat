@@ -1,7 +1,7 @@
 import UIKit
 
 struct K {
-    static let secsAfter = 3
+    
     static let startPlayersNames: NSMutableArray = [
         "Анжела",
         "Евстигней",
@@ -56,6 +56,7 @@ struct K {
         static let goBtn = 2.2
         static let withClicks = 3
         static let pageChangeViaPageControl = 0.3
+        static let secsAfter = 3
     }
     struct Urls {
         static let fbDmitry = "https://www.facebook.com/dmitry.realcater"
