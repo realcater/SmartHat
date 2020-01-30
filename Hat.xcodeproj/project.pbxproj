@@ -110,13 +110,13 @@
 			children = (
 				C156471F2121FC6100F1602E /* AppDelegate.swift */,
 				C15647232121FC6100F1602E /* Main.storyboard */,
+				C15647262121FC6100F1602E /* Assets.xcassets */,
 				CA14E75221756412008C23A6 /* ViewControllers */,
 				CA14E7532175644A008C23A6 /* Data */,
 				CA14E751217563DA008C23A6 /* UIExtensions+xibs */,
 				C18E7F95212DA92700FE1BFF /* Sounds */,
 				CA432A1F2175696C0080C831 /* Fonts */,
 				C156472B2121FC6200F1602E /* Info.plist */,
-				C15647262121FC6100F1602E /* Assets.xcassets */,
 				C15647282121FC6200F1602E /* LaunchScreen.storyboard */,
 			);
 			path = Hat;
