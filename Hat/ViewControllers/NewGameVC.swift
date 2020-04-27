@@ -16,6 +16,7 @@ class NewGameVC: UIViewController {
     var wordsQtyData = [20,30,40,50,60,70,80,90,100,120,140,160,200,250,300,400,500,600]
     var hardnessData : [Difficulty] = [.easy, .normal, .hard]
     var secQtyData = [10,20,30,40,50,60]
+    var isOnlineGame : Bool!
     
     @IBOutlet weak var picker: UIPickerView!
     
@@ -58,13 +59,15 @@ class NewGameVC: UIViewController {
         picker.selectRow(4, inComponent: 0, animated: true)
         picker.selectRow(1, inComponent: 1, animated: true)
         picker.selectRow(2, inComponent: 2, animated: true)
-        
-        
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
+        if isOnlineGame {
+            play.isEnabled = false
+            play.backgroundColor = UIColor.lightGray
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -72,6 +75,8 @@ class NewGameVC: UIViewController {
             loadPlayerNames()
             playersTVC = segue.destination as? PlayersTVC
             playersTVC?.playersNames = playersNames
+            playersTVC.isOnlineGame = isOnlineGame
+            
         }
         if segue.identifier == "toStartPair" {
             let wordsQty = wordsQtyData[picker.selectedRow(inComponent: 0)]

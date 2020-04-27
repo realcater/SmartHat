@@ -50,6 +50,7 @@ struct K {
     struct FileNames {
         static let background = "textBackground"
         static let addPlayerIcon = "addPlayerIcon"
+        static let waitIcon = "waitIcon"
     }
     struct Delays {
         static let moveOneRow = 0.2

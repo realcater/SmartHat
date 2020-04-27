@@ -15,6 +15,7 @@ class PlayersTVC: UITableViewController {
     
     var playersNames: NSMutableArray!
     var rowEdit: Int?
+    var isOnlineGame : Bool!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +31,7 @@ class PlayersTVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PlayersListItem", for: indexPath)
         let textField = cell.viewWithTag(1000) as! UITextField
         let addPlayerButton = cell.viewWithTag(1001) as! MyButton
+        let statusImageView = cell.viewWithTag(1002) as! UIImageView
         if (indexPath.row == playersNames.count) {
             textField.isHidden = true
             addPlayerButton.isHidden = false
@@ -37,7 +39,10 @@ class PlayersTVC: UITableViewController {
         } else {
             textField.text = playersNames[indexPath.row] as? String
             addPlayerButton.isHidden = true
-            
+            if isOnlineGame {
+                statusImageView.image = UIImage(named: K.FileNames.waitIcon)
+                statusImageView.rotate(duration: 4)
+            }
         }
         textField.delegate = self
         return cell
