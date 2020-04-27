@@ -107,13 +107,14 @@ extension PlayVC {
         timerLabel.text = String(timeLeft)
 
         if timeLeft == 0 {
+/*
             K.Sounds.timeOver?.resetAndPlay()
             circleView.backgroundColor = K.Colors.redDarker
             warningView.backgroundColor = K.Colors.redDarker
             warningView.isHidden = false
             warning1Label.isHidden = false
             warning2Label.isHidden = false
-        } else if timeLeft == -1*K.Delays.secsAfter {
+        } else if timeLeft == -1*K.Delays.secsAfter { */
             K.Sounds.timeOver?.resetAndPlay()
             game.setWordLeft()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {

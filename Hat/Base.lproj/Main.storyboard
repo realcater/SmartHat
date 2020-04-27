@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nVN-h5-dIY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nVN-h5-dIY">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,7 +31,7 @@
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jOy-4v-Nu9">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="386"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="456"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="900" constant="250" id="Iru-ri-nO9"/>
                                 </constraints>
@@ -39,22 +39,8 @@
                                     <segue destination="8F1-tt-3SW" kind="embed" identifier="toPlayersList" id="n2Z-xe-8bc"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RvF-43-XdN" customClass="MyButton" customModule="Hat" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="536" width="414" height="70"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="pKM-Mf-wGr"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Добавить игрока">
-                                    <color key="titleColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="pressAdd:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EjJ-hp-AJJ"/>
-                                </connections>
-                            </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o2N-Fd-Owz">
-                                <rect key="frame" x="20" y="386" width="374" height="150"/>
+                                <rect key="frame" x="20" y="456" width="374" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="nd8-73-vok"/>
                                 </constraints>
@@ -62,22 +48,17 @@
                         </subviews>
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="QFM-K3-PgJ" firstAttribute="top" secondItem="o2N-Fd-Owz" secondAttribute="bottom" id="47M-P5-SmH"/>
                             <constraint firstItem="QFM-K3-PgJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="5n7-FO-v6l"/>
                             <constraint firstItem="jOy-4v-Nu9" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="8yA-of-F9j"/>
-                            <constraint firstItem="QFM-K3-PgJ" firstAttribute="top" secondItem="RvF-43-XdN" secondAttribute="bottom" id="9OD-LY-Twy"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RvF-43-XdN" secondAttribute="trailing" id="EvH-cQ-4Gw"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="QFM-K3-PgJ" secondAttribute="trailing" id="FEm-rj-98u"/>
-                            <constraint firstItem="RvF-43-XdN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="IMF-K2-znh"/>
                             <constraint firstItem="o2N-Fd-Owz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Mew-1G-V5r"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="QFM-K3-PgJ" secondAttribute="bottom" priority="500" constant="60" id="NQo-QI-W97"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="QFM-K3-PgJ" secondAttribute="bottom" id="RAk-Dj-LxO"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="o2N-Fd-Owz" secondAttribute="trailing" constant="20" id="X4U-Kz-AQF"/>
-                            <constraint firstItem="RvF-43-XdN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XoH-r4-niI"/>
-                            <constraint firstItem="QFM-K3-PgJ" firstAttribute="top" secondItem="RvF-43-XdN" secondAttribute="bottom" id="ewa-pV-g9Y"/>
                             <constraint firstItem="jOy-4v-Nu9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gVT-rq-PnP"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jOy-4v-Nu9" secondAttribute="trailing" id="ib7-zt-OPH"/>
                             <constraint firstItem="o2N-Fd-Owz" firstAttribute="top" secondItem="jOy-4v-Nu9" secondAttribute="bottom" id="nIw-1h-u85"/>
-                            <constraint firstItem="RvF-43-XdN" firstAttribute="top" secondItem="o2N-Fd-Owz" secondAttribute="bottom" id="xI6-YR-H0U"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -85,7 +66,6 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="add" destination="RvF-43-XdN" id="Ub4-Np-oCZ"/>
                         <outlet property="picker" destination="o2N-Fd-Owz" id="IOm-h2-gyC"/>
                         <outlet property="play" destination="QFM-K3-PgJ" id="o52-Yi-1Fg"/>
                     </connections>
@@ -340,7 +320,7 @@
             <objects>
                 <tableViewController id="8F1-tt-3SW" customClass="PlayersTVC" customModule="Hat" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Rc7-fP-g6l">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="386"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="456"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -360,13 +340,27 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
+                                        <button opaque="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5NW-4q-3Nn" customClass="MyButton" customModule="Hat" customModuleProvider="target">
+                                            <rect key="frame" x="169" y="4" width="76" height="38"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="5NW-4q-3Nn" secondAttribute="height" multiplier="2:1" id="RPO-3f-AQH"/>
+                                            </constraints>
+                                            <color key="tintColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <state key="normal" backgroundImage="addPlayerIcon"/>
+                                            <connections>
+                                                <action selector="pressAddPlayerButton:" destination="8F1-tt-3SW" eventType="touchUpInside" id="uF7-Ou-hd3"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="7CE-i2-d8k" secondAttribute="bottom" id="7S0-OP-s5m"/>
                                         <constraint firstItem="7CE-i2-d8k" firstAttribute="top" secondItem="799-xK-PW0" secondAttribute="top" id="NfK-Dx-Mv1"/>
                                         <constraint firstItem="7CE-i2-d8k" firstAttribute="leading" secondItem="799-xK-PW0" secondAttribute="leading" constant="12" id="TDY-7N-WHf"/>
+                                        <constraint firstItem="5NW-4q-3Nn" firstAttribute="centerX" secondItem="799-xK-PW0" secondAttribute="centerX" id="bY5-1r-LpH"/>
+                                        <constraint firstItem="5NW-4q-3Nn" firstAttribute="top" secondItem="799-xK-PW0" secondAttribute="top" constant="4" id="e5Z-rG-prS"/>
                                         <constraint firstAttribute="trailing" secondItem="7CE-i2-d8k" secondAttribute="trailing" id="qBl-RI-4PV"/>
+                                        <constraint firstAttribute="bottom" secondItem="5NW-4q-3Nn" secondAttribute="bottom" constant="2" id="z2N-qJ-hwT"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1165,14 +1159,16 @@
             <point key="canvasLocation" x="1296" y="-687"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="J6q-xR-Bma"/>
+        <segue reference="2qu-Nz-h0H"/>
+        <segue reference="Vb6-hb-Jzo"/>
+    </inferredMetricsTieBreakers>
     <resources>
+        <image name="addPlayerIcon" width="152" height="76"/>
         <image name="bubble" width="128" height="128"/>
         <image name="ear" width="128" height="128"/>
         <image name="fb" width="72" height="72"/>
         <image name="hat" width="500" height="500"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="2qu-Nz-h0H"/>
-        <segue reference="Vb6-hb-Jzo"/>
-    </inferredMetricsTieBreakers>
 </document>

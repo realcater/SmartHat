@@ -49,14 +49,15 @@ struct K {
     }
     struct FileNames {
         static let background = "textBackground"
+        static let addPlayerIcon = "addPlayerIcon"
     }
     struct Delays {
         static let moveOneRow = 0.2
         static let notGuessedBtn = 1.3
         static let goBtn = 2.2
-        static let withClicks = 3
+        static let withClicks = 5
         static let pageChangeViaPageControl = 0.3
-        static let secsAfter = 3
+        static let secsAfter = 0
     }
     struct Urls {
         static let fbDmitry = "https://www.facebook.com/dmitry.realcater"

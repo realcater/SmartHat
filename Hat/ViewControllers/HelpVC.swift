@@ -13,7 +13,7 @@ class HelpVC: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
-    var pagesForLoad : [Int] = [0,1,2,3,4,5,6,7]
+    let pagesForLoad : [Int] = [0,1,2,3,4,5,7]
     
     @objc private func singleTap(recognizer: UITapGestureRecognizer) {
         if (recognizer.state == UIGestureRecognizer.State.ended) {

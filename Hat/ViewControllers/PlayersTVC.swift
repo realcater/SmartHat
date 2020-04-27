@@ -9,6 +9,9 @@
 import UIKit
 
 class PlayersTVC: UITableViewController {
+    @IBAction func pressAddPlayerButton(_ sender: Any) {
+        insertRow(playerName: "", at: playersNames.count)
+    }
     
     var playersNames: NSMutableArray!
     var rowEdit: Int?
@@ -20,19 +23,28 @@ class PlayersTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return playersNames.count
+        return playersNames.count + 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PlayersListItem", for: indexPath)
         let textField = cell.viewWithTag(1000) as! UITextField
-        textField.text = playersNames[indexPath.row] as? String
+        let addPlayerButton = cell.viewWithTag(1001) as! MyButton
+        if (indexPath.row == playersNames.count) {
+            textField.isHidden = true
+            addPlayerButton.isHidden = false
+            addPlayerButton.turnClickSoundOn(sound: K.Sounds.click)
+        } else {
+            textField.text = playersNames[indexPath.row] as? String
+            addPlayerButton.isHidden = true
+            
+        }
         textField.delegate = self
         return cell
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
+        return (indexPath.row == playersNames.count) ? false : true
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
