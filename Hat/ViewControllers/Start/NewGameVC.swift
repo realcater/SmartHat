@@ -104,9 +104,8 @@ extension NewGameVC {
     }
     
     var plistFileName : String {
-        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory,FileManager.SearchPathDomainMask.allDomainsMask, true)
-        let fileName = isOnlineGame ? "/online.plist" : "/offline.plist"
-        return paths[0].appending(fileName)
+        let fileName = isOnlineGame ? "online" : "offline"
+        return Helper.plistFileName(fileName)
     }
 }
 

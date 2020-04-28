@@ -25,7 +25,7 @@ class GameListTVC: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ResultsListItem", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GamesListItem", for: indexPath)
         let gameOwnerTextField = cell.viewWithTag(1001) as! UITextField
         let playersCountTextField = cell.viewWithTag(1002) as! UITextField
         

@@ -12,6 +12,7 @@ class GameTypeVC: UIViewController {
 
     @IBOutlet weak var offlineGameButton: MyButton!
     @IBOutlet weak var onlineGameButton: MyButton!
+    var notConfirmedName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,35 @@ class GameTypeVC: UIViewController {
         if segue.identifier == "offline" {
             let newGameVC = segue.destination as? NewGameVC
             newGameVC?.isOnlineGame = false
+        } else if segue.identifier == "online" {
+            let isRegistered = loadRegistration()
+            if !isRegistered {
+                performSegue(withIdentifier: "toRegistration", sender: self)
+            }
+        } else if segue.identifier == "toRegistration" {
+            let newUserVC = segue.destination as? NewUserVC
+            newUserVC?.delegate = self
+            newUserVC!.name = notConfirmedName
         }
+    }
+}
+
+extension GameTypeVC {
+    func loadRegistration() -> Bool {
+        let fileName = Helper.plistFileName("isRegistered")
+        if let encodedData = NSKeyedUnarchiver.unarchiveObject(withFile: fileName) as? Data, let isRegistered = try? JSONDecoder().decode(Bool.self, from: encodedData) {
+                return isRegistered
+        }
+        return false
+    }
+}
+
+protocol GameTypeVCDelegate: class {
+    func setNotConfirmedName(name: String)
+}
+
+extension GameTypeVC: GameTypeVCDelegate {
+    func setNotConfirmedName(name: String) {
+        notConfirmedName = name
     }
 }

@@ -18,6 +18,8 @@
 		C15647272121FC6100F1602E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C15647262121FC6100F1602E /* Assets.xcassets */; };
 		C156472A2121FC6200F1602E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C15647282121FC6200F1602E /* LaunchScreen.storyboard */; };
 		C1669C502458806700B19384 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1669C4F2458806700B19384 /* Player.swift */; };
+		C1669C542458ADC600B19384 /* ResourceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1669C532458ADC600B19384 /* ResourceRequest.swift */; };
+		C1669C562458AEB100B19384 /* NewUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1669C552458AEB100B19384 /* NewUserVC.swift */; };
 		C1A1956A21387531000A1A51 /* UIView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1956921387531000A1A51 /* UIView+extension.swift */; };
 		C1A1956C21387710000A1A51 /* MyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1956B21387710000A1A51 /* MyButton.swift */; };
 		C1A1957021391522000A1A51 /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1956F21391522000A1A51 /* UIViewController+extension.swift */; };
@@ -54,7 +56,7 @@
 		C14B02A3212983E200B2E96C /* 12009.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 12009.ttf; sourceTree = "<group>"; };
 		C1561CEF2133124A00C8B674 /* help.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = help.xib; sourceTree = "<group>"; };
 		C1561CF32134186E00C8B674 /* StartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartVC.swift; sourceTree = "<group>"; };
-		C156471C2121FC6100F1602E /* Hat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C156471C2121FC6100F1602E /* Шляпа.Онлайн.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Шляпа.Онлайн.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C156471F2121FC6100F1602E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C15647212121FC6100F1602E /* NewGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameVC.swift; sourceTree = "<group>"; };
 		C15647242121FC6100F1602E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -62,6 +64,8 @@
 		C15647292121FC6200F1602E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C156472B2121FC6200F1602E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1669C4F2458806700B19384 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		C1669C532458ADC600B19384 /* ResourceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceRequest.swift; sourceTree = "<group>"; };
+		C1669C552458AEB100B19384 /* NewUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserVC.swift; sourceTree = "<group>"; };
 		C1A1956921387531000A1A51 /* UIView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extension.swift"; sourceTree = "<group>"; };
 		C1A1956B21387710000A1A51 /* MyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyButton.swift; sourceTree = "<group>"; };
 		C1A1956F21391522000A1A51 /* UIViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extension.swift"; sourceTree = "<group>"; };
@@ -114,7 +118,7 @@
 		C156471D2121FC6100F1602E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C156471C2121FC6100F1602E /* Hat.app */,
+				C156471C2121FC6100F1602E /* Шляпа.Онлайн.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -125,7 +129,9 @@
 				C156471F2121FC6100F1602E /* AppDelegate.swift */,
 				C15647232121FC6100F1602E /* Main.storyboard */,
 				CA14E75221756412008C23A6 /* ViewControllers */,
-				CA14E7532175644A008C23A6 /* Data */,
+				CA14E7532175644A008C23A6 /* Models */,
+				C1669C512458AD2000B19384 /* Constants */,
+				C1669C522458AD4A00B19384 /* Utilities */,
 				CA14E751217563DA008C23A6 /* UIExtensions+xibs */,
 				C18E7F95212DA92700FE1BFF /* Sounds */,
 				CA432A1F2175696C0080C831 /* Fonts */,
@@ -134,6 +140,24 @@
 				C15647262121FC6100F1602E /* Assets.xcassets */,
 			);
 			path = Hat;
+			sourceTree = "<group>";
+		};
+		C1669C512458AD2000B19384 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				C130986321239082001D894D /* K.swift */,
+				CA5916D523B3CBF1007625A1 /* Words.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		C1669C522458AD4A00B19384 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				CAC9D91723B3E0F9005472AD /* Helper.swift */,
+				C1669C532458ADC600B19384 /* ResourceRequest.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		C18E7F95212DA92700FE1BFF /* Sounds */ = {
@@ -159,6 +183,7 @@
 				C1D0968224579A0E00A03A21 /* GameTypeVC.swift */,
 				C15647212121FC6100F1602E /* NewGameVC.swift */,
 				CA3281D02376DAD200822B22 /* PlayersTVC.swift */,
+				C1669C552458AEB100B19384 /* NewUserVC.swift */,
 			);
 			path = Start;
 			sourceTree = "<group>";
@@ -186,15 +211,6 @@
 			path = GameFlow;
 			sourceTree = "<group>";
 		};
-		C1D09691245832F800A03A21 /* db */ = {
-			isa = PBXGroup;
-			children = (
-				C1D0968F245832E500A03A21 /* User.swift */,
-				C1D0968D2458329600A03A21 /* Game.swift */,
-			);
-			path = db;
-			sourceTree = "<group>";
-		};
 		CA14E751217563DA008C23A6 /* UIExtensions+xibs */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,17 +233,15 @@
 			path = ViewControllers;
 			sourceTree = "<group>";
 		};
-		CA14E7532175644A008C23A6 /* Data */ = {
+		CA14E7532175644A008C23A6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C1D09691245832F800A03A21 /* db */,
+				C1D0968F245832E500A03A21 /* User.swift */,
+				C1D0968D2458329600A03A21 /* Game.swift */,
 				CA023D0C217561CD008AE815 /* GameData.swift */,
 				C1669C4F2458806700B19384 /* Player.swift */,
-				C130986321239082001D894D /* K.swift */,
-				CA5916D523B3CBF1007625A1 /* Words.swift */,
-				CAC9D91723B3E0F9005472AD /* Helper.swift */,
 			);
-			path = Data;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		CA432A1F2175696C0080C831 /* Fonts */ = {
@@ -255,7 +269,7 @@
 			);
 			name = Hat;
 			productName = TrustOr;
-			productReference = C156471C2121FC6100F1602E /* Hat.app */;
+			productReference = C156471C2121FC6100F1602E /* Шляпа.Онлайн.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -328,7 +342,9 @@
 				CA023D2321756243008AE815 /* AVAudioPlayer+extension.swift in Sources */,
 				C1561CF42134186E00C8B674 /* StartVC.swift in Sources */,
 				C1D0968324579A0E00A03A21 /* GameTypeVC.swift in Sources */,
+				C1669C562458AEB100B19384 /* NewUserVC.swift in Sources */,
 				C1D0968724582C1A00A03A21 /* GamesListVC.swift in Sources */,
+				C1669C542458ADC600B19384 /* ResourceRequest.swift in Sources */,
 				C15647202121FC6100F1602E /* AppDelegate.swift in Sources */,
 				CA0CD5F123B8B2AB00A76B75 /* AboutVC.swift in Sources */,
 				CAC9D91823B3E0F9005472AD /* Helper.swift in Sources */,
@@ -498,7 +514,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = realcater.Hat;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Шляпа.Онлайн";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -517,7 +533,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = realcater.Hat;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Шляпа.Онлайн";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

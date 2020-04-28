@@ -11,8 +11,8 @@ class GamesListVC: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toResultsList" {
-            let endGameTVC = segue.destination as? EndGameTVC
+        if segue.identifier == "toGamesList" {
+            let gameListTVC = segue.destination as? GameListTVC
         }
     }
 }
