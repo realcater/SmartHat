@@ -12,7 +12,7 @@ class BasketVC: UIViewController {
 
     @IBOutlet weak var popupView: UIView!
     
-    var game: Game!
+    var game: GameData!
     
     @IBAction func pressSaveButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -20,7 +20,7 @@ class BasketVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        popupView.layer.cornerRadius = K.cornerRadius
+        popupView.layer.cornerRadius = K.windowsCornerRadius
         popupView.layer.masksToBounds = true
     }
     

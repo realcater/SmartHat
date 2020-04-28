@@ -8,6 +8,12 @@ struct K {
         "Снежана",
         "Евлампий"
         ]
+    static let startPlayers: [Player] = [
+        Player(name: "Анжела"),
+        Player(name: "Евстигней"),
+        Player(name: "Снежана"),
+        Player(name: "Евлампий")
+    ]
     static let diffNames : [Difficulty: String] = [
         .easy: "Изи",
         .normal: "Норм",
@@ -20,14 +26,15 @@ struct K {
         .left: "🎩"
     ]
     
-    static let useSmallerFonts = (UIScreen.main.currentMode!.size.width >= 750) ? false : true
-    static let cornerRadius : CGFloat = 16
+    static let windowsCornerRadius : CGFloat = 16
+    static let circleLeftTimeCornerRadius : CGFloat = 40
+    
     
     struct Sounds {
         static let click = initSound(filename: "click.wav", volume: 0.2)
         static let correct = initSound(filename: "true.wav", volume: 0.2)
         static let error = initSound(filename: "false.wav", volume: 0.1)
-        static let applause = initSound(filename: "applause.wav", volume: 0.5)
+        static let applause = initSound(filename: "applause.wav", volume: 0.2)
         static let countdown = initSound(filename: "countdown.mp3")
         static let timeOver = initSound(filename: "timeOver.mp3")
     }
@@ -58,7 +65,6 @@ struct K {
         static let goBtn = 2.2
         static let withClicks = 5
         static let pageChangeViaPageControl = 0.3
-        static let secsAfter = 0
     }
     struct Urls {
         static let fbDmitry = "https://www.facebook.com/dmitry.realcater"

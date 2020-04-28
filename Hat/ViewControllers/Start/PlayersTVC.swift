@@ -121,7 +121,7 @@ extension PlayersTVC: UITextFieldDelegate {
         return true
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        rowEdit = (playersNames as! [String]).index{$0 == textField.text}
+        rowEdit = (playersNames as! [String]).firstIndex{$0 == textField.text}
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         if let rowEdit = rowEdit {

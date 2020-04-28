@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChooseGameVC: UIViewController {
+class GameTypeVC: UIViewController {
 
     @IBOutlet weak var offlineGameButton: MyButton!
     @IBOutlet weak var onlineGameButton: MyButton!
@@ -25,7 +25,9 @@ class ChooseGameVC: UIViewController {
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let newGameVC = segue.destination as? NewGameVC
-        newGameVC?.isOnlineGame = (segue.identifier == "online") ? true : false
+        if segue.identifier == "offline" {
+            let newGameVC = segue.destination as? NewGameVC
+            newGameVC?.isOnlineGame = false
+        }
     }
 }

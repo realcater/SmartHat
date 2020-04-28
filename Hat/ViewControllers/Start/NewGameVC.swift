@@ -11,41 +11,15 @@ import UIKit
 class NewGameVC: UIViewController {
 
     var playersTVC: PlayersTVC!
-    var game: Game!
-    var playersNames: NSMutableArray = []
-    var wordsQtyData = [20,30,40,50,60,70,80,90,100,120,140,160,200,250,300,400,500,600]
+    var game: GameData!
+    var players: [Player] = []
+    var wordsQtyData = [20,30,40,50,60,70,80,90,100,120,140,160,250,400,600]
     var hardnessData : [Difficulty] = [.easy, .normal, .hard]
     var secQtyData = [10,20,30,40,50,60]
     var isOnlineGame : Bool!
     
     @IBOutlet weak var picker: UIPickerView!
-    
     @IBOutlet weak var play: MyButton!
-    @IBOutlet weak var add: MyButton!
-    
-    @IBAction func pressAdd(_ sender: Any) {
-        playersTVC!.insertRow(playerName: "", at: playersNames.count)
-    }
-    
-    func savePlayerNames() {
-        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let fileUrl = dir.appendingPathComponent("playerNames.txt")
-            (playersNames as NSArray).write(to: fileUrl as URL, atomically: true)
-        }
-    }
-        
-    func loadPlayerNames() {
-        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
-            let fileUrl = dir.appendingPathComponent("playerNames.txt")
-            if let playersNames = NSArray(contentsOf: fileUrl as URL) as? NSMutableArray {
-                self.playersNames = playersNames
-            } else {
-                playersNames = K.startPlayersNames
-            }
-        } else {
-            playersNames = K.startPlayersNames
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,15 +40,15 @@ class NewGameVC: UIViewController {
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
         if isOnlineGame {
             play.isEnabled = false
-            play.backgroundColor = UIColor.lightGray
+            play.backgroundColor = K.Colors.lightGray
         }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPlayersList" {
-            loadPlayerNames()
+            players = load()
             playersTVC = segue.destination as? PlayersTVC
-            playersTVC?.playersNames = playersNames
+            playersTVC?.playersNames = NSMutableArray(array: players.map { $0.name })
             playersTVC.isOnlineGame = isOnlineGame
             
         }
@@ -82,12 +56,13 @@ class NewGameVC: UIViewController {
             let wordsQty = wordsQtyData[picker.selectedRow(inComponent: 0)]
             let difficulty = hardnessData[picker.selectedRow(inComponent: 1)]
             let time = secQtyData[picker.selectedRow(inComponent: 2)]
-
-            game = Game(wordsQty: wordsQty, difficulty: difficulty, time: time, playersNames: playersNames)
-            
+            if !isOnlineGame {
+                players = playersTVC.playersNames.map { Player(name: $0 as! String) }
+            }
+            game = GameData(wordsQty: wordsQty, difficulty: difficulty, time: time, players: players)
             let startPairVC = segue.destination as? StartPairVC
             startPairVC?.game = self.game
-            savePlayerNames()
+            save(players: players)
         }
     }
 }
@@ -113,6 +88,26 @@ extension NewGameVC: UIPickerViewDelegate {
         }
     }
     
+}
+    // MARK: - Save/Load Players
+extension NewGameVC {
+    func save(players: [Player]) {
+        let encodedData = try! JSONEncoder().encode(players)
+        NSKeyedArchiver.archiveRootObject(encodedData, toFile: plistFileName)
+    }
+        
+    func load() -> [Player] {
+        if let encodedData = NSKeyedUnarchiver.unarchiveObject(withFile: plistFileName) as? Data, let players = try? JSONDecoder().decode([Player].self, from: encodedData) {
+                return  players
+        }
+        return K.startPlayers
+    }
+    
+    var plistFileName : String {
+        let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory,FileManager.SearchPathDomainMask.allDomainsMask, true)
+        let fileName = isOnlineGame ? "/online.plist" : "/offline.plist"
+        return paths[0].appending(fileName)
+    }
 }
 
 

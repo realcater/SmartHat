@@ -53,6 +53,4 @@ class EndGameTVC: UITableViewController {
         }
         return cell
     }
-    
-
 }

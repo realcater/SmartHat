@@ -16,7 +16,7 @@ class StartPairVC: UIViewController {
     @IBOutlet weak var helpMessage: UILabel!
     @IBOutlet weak var listenerNameLabel: UILabel!
     
-    var game: Game!
+    var game: GameData!
     
     var btnTimer: Timer?
     var btnTimeLeft: Int!

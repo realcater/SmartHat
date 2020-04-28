@@ -12,24 +12,7 @@ enum WordStatus {
     case missed
 }
 
-class Player {
-    var name: String
-    var tellGuessed: Int
-    var listenGuessed: Int
-    var ttlGuesses: Int {
-        get {
-            return tellGuessed + listenGuessed
-        }
-    }
-    
-    init(name: String) {
-        self.name = name
-        tellGuessed = 0
-        listenGuessed = 0
-    }
-}
-
-class Game {
+class GameData {
     var players: [Player] = []
     var leftWords: [String] = []
     var guessedWords: [String] = []
@@ -49,11 +32,9 @@ class Game {
     var prevTellerNumber: Int!
     var prevListenerNumber: Int!
     
-    init(wordsQty: Int, difficulty: Difficulty, time: Int, playersNames: NSMutableArray) {
+    init(wordsQty: Int, difficulty: Difficulty, time: Int, players: [Player]) {
         self.time = time
-        for name in playersNames {
-            self.players.append(Player(name: name as! String))
-        }
+        self.players = players
 
         var allWords = Words.words[difficulty]!
         for _ in 0..<wordsQty {
@@ -61,6 +42,7 @@ class Game {
             Helper.move(str: allWords[number], from: &allWords, to: &leftWords)
         }
     }
+    
     var currentTeller: Player {
         get {
             return players[tellerNumber]

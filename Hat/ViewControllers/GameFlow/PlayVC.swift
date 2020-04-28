@@ -10,7 +10,7 @@ import UIKit
 
 class PlayVC: UIViewController {
     
-    var game: Game!
+    var game: GameData!
     var timer: Timer?
     var timeLeft: Int!
     
@@ -22,11 +22,7 @@ class PlayVC: UIViewController {
     @IBOutlet weak var wordLabel: UILabel!
     
     @IBOutlet weak var circleView: UIView!
-    @IBOutlet weak var whiteCircleView: UIView!
     @IBOutlet weak var timerLabel: UILabel!
-    @IBOutlet weak var warningView: UIView!
-    @IBOutlet weak var warning1Label: UILabel!
-    @IBOutlet weak var warning2Label: UILabel!
     
     @IBOutlet weak var guessedButton: MyButton!
     @IBOutlet weak var notGuessedButton: MyButton!
@@ -64,8 +60,7 @@ class PlayVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = K.Colors.background
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.lightGray]
-        circleView.layer.cornerRadius = 40
-        whiteCircleView.layer.cornerRadius = 46
+        circleView.layer.cornerRadius = K.circleLeftTimeCornerRadius
         game.basketWords = []
         game.basketStatus = []
         updateTitle()
@@ -107,24 +102,17 @@ extension PlayVC {
         timerLabel.text = String(timeLeft)
 
         if timeLeft == 0 {
-/*
-            K.Sounds.timeOver?.resetAndPlay()
-            circleView.backgroundColor = K.Colors.redDarker
-            warningView.backgroundColor = K.Colors.redDarker
-            warningView.isHidden = false
-            warning1Label.isHidden = false
-            warning2Label.isHidden = false
-        } else if timeLeft == -1*K.Delays.secsAfter { */
             K.Sounds.timeOver?.resetAndPlay()
             game.setWordLeft()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                 self.nextPair()
             })
-        } else if timeLeft <= K.Delays.withClicks {
+        } else if timeLeft == K.Delays.withClicks {
             K.Sounds.click?.play()
             endTurnButton.isHidden = false
-            
-            
+            circleView.backgroundColor = K.Colors.redDarker
+        } else if timeLeft < K.Delays.withClicks {
+            K.Sounds.click?.play()
         }
     }
     

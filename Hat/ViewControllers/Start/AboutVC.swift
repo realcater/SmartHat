@@ -22,6 +22,6 @@ class AboutVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addTaps(singleTapAction: #selector(singleTap))
-        popupView.layer.cornerRadius = K.cornerRadius
+        popupView.layer.cornerRadius = K.windowsCornerRadius
     }
 }
