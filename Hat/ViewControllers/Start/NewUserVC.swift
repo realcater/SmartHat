@@ -37,12 +37,13 @@ class NewUserVC: UIViewController {
         let user = User(id: uuid, name: name, password: "password")
         UserRequest().create(user) { [weak self] result in
             switch result {
+            case .noConnection:
+                self?.showWarning(K.Server.Warnings.noConnection)
             case .failureDuplicate:
-                self?.showWarning("Этот Никнейм уже занят")
+                self?.showWarning(K.Server.Warnings.nickNameIsBusy)
             case .failureOther:
-                self?.showWarning("There was a problem saving the user")
+                self?.showWarning(K.Server.Warnings.serverError)
             case .success:
-                self?.showWarning("Successfull")
                 DispatchQueue.main.async { [weak self] in
                     self?.dismiss(animated: true, completion: nil)
                     self?.delegate?.successfullRegistration(name: name)

@@ -58,7 +58,15 @@ extension GameTypeVC {
                     self?.title = "Как играем, \(self?.name ?? "")?"
                     self?.performSegue(withIdentifier: "online", sender: self)
                 }
-            case .failure:
+            case .noConnection:
+                DispatchQueue.main.async { [weak self] in
+                    self?.title = K.Server.Warnings.noConnection
+                }
+            case .failureOther:
+                DispatchQueue.main.async { [weak self] in
+                    self?.title = K.Server.Warnings.serverError
+                }
+            case .notFound:
                 DispatchQueue.main.async { [weak self] in
                     self?.title = "Давайте знакомиться!"
                     self?.performSegue(withIdentifier: "toRegistration", sender: self)

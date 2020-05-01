@@ -5,6 +5,12 @@ struct K {
         static let name = "http://192.168.1.190:8080/api/"
         static let duplicateNameRespondPrefix = "server: duplicate key value violates unique constraint"
         static let duplicateNameRespondPrefixLength = duplicateNameRespondPrefix.count
+        struct Warnings {
+            static let noConnection = "Нет связи или сервер не отвечает"
+            static let serverError = "Ошибка сервера"
+            static let nickNameIsBusy = "Этот Никнейм уже занят"
+        
+        }
     }
     
     static let startPlayersNames: NSMutableArray = [
