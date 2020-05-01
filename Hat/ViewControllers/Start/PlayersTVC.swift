@@ -10,10 +10,10 @@ import UIKit
 
 class PlayersTVC: UITableViewController {
     @IBAction func pressAddPlayerButton(_ sender: Any) {
-        insertRow(playerName: "", at: playersNames.count)
+        insertRow(player: Player(name: ""), at: playersData.players.count)
     }
     
-    var playersNames: NSMutableArray!
+    var playersData: PlayersData!
     var rowEdit: Int?
     var isOnlineGame : Bool!
     
@@ -24,7 +24,7 @@ class PlayersTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return playersNames.count + 1
+        return playersData.players.count + 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -32,33 +32,37 @@ class PlayersTVC: UITableViewController {
         let textField = cell.viewWithTag(1000) as! UITextField
         let addPlayerButton = cell.viewWithTag(1001) as! MyButton
         let statusImageView = cell.viewWithTag(1002) as! UIImageView
-        if (indexPath.row == playersNames.count) {
+        if (indexPath.row == playersData.players.count) {
             textField.isHidden = true
             addPlayerButton.isHidden = false
             addPlayerButton.turnClickSoundOn(sound: K.Sounds.click)
         } else {
-            textField.text = playersNames[indexPath.row] as? String
+            textField.text = playersData.players[indexPath.row].name
             addPlayerButton.isHidden = true
             if isOnlineGame {
                 statusImageView.image = UIImage(named: K.FileNames.waitIcon)
                 statusImageView.rotate(duration: 4)
             }
         }
+        if textField.text!.count == 0 {
+            textField.becomeFirstResponder()
+        }
         textField.delegate = self
         return cell
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return (indexPath.row == playersNames.count) ? false : true
+        return (indexPath.row == playersData.players.count) ? false : true
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
-            playersNames.removeObject(at: indexPath.row)
+            guard playersData.players.count > K.minPlayersQty else { return }
+            playersData.players.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            if let rowEdit = rowEdit, indexPath.row < rowEdit { self.rowEdit!-=1 }
         }
     }
-    
     
     override func tableView(_ tableView: UITableView,
                             shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
@@ -72,46 +76,19 @@ class PlayersTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let itemToMove = playersNames[sourceIndexPath.row]
-        playersNames.removeObject(at: sourceIndexPath.row)
-        playersNames.insert(itemToMove, at: destinationIndexPath.row)
+        let itemToMove = playersData.players[sourceIndexPath.row]
+        playersData.players.remove(at: sourceIndexPath.row)
+        playersData.players.insert(itemToMove, at: destinationIndexPath.row)
     }
 }
 //MARK: - Public functions
 extension PlayersTVC {
-    func deleteRow(at row: Int) {
-        let indexPath = IndexPath(row: row, section: 0)
-        tableView.beginUpdates()
-        tableView.deleteRows(at: [indexPath], with: .automatic)
-        playersNames.removeObject(at: row)
-        tableView.endUpdates()
-    }
-    
-    func moveRow(at: Int, to: Int) {
-        let indexPathAt = IndexPath(row: at, section: 0)
-        let indexPathTo = IndexPath(row: to, section: 0)
-        //tableView.beginUpdates()
-        UIView.animate(withDuration: K.Delays.moveOneRow, animations: {
-            self.tableView.moveRow(at: indexPathAt, to: indexPathTo)
-        })
-        let itemToMove = playersNames[at]
-        playersNames.removeObject(at: at)
-        playersNames.insert(itemToMove, at: to)
-    }
-    
-    func insertRow(playerName: String, at row: Int) {
+    func insertRow(player: Player, at row: Int) {
         let indexPath = IndexPath(row: row, section: 0)
         tableView.beginUpdates()
         tableView.insertRows(at: [indexPath], with: .automatic)
-        playersNames.insert(playerName, at: indexPath.row)
+        playersData.players.insert(player, at: indexPath.row)
         tableView.endUpdates()
-    }
-    
-    func show() {
-        tableView.isHidden = false
-    }
-    func hide() {
-        tableView.isHidden = true
     }
 }
 
@@ -121,11 +98,11 @@ extension PlayersTVC: UITextFieldDelegate {
         return true
     }
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        rowEdit = (playersNames as! [String]).firstIndex{$0 == textField.text}
+        rowEdit = (playersData.players.map {$0.name}).firstIndex{$0 == textField.text}
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         if let rowEdit = rowEdit {
-            playersNames[rowEdit] = textField.text!
+            playersData.players[rowEdit].name = textField.text!
         }
     }
 }

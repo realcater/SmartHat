@@ -12,13 +12,6 @@ struct K {
         
         }
     }
-    
-    static let startPlayersNames: NSMutableArray = [
-        "Анжела",
-        "Евстигней",
-        "Снежана",
-        "Евлампий"
-        ]
     static let startPlayers: [Player] = [
         Player(name: "Анжела"),
         Player(name: "Евстигней"),
@@ -30,6 +23,7 @@ struct K {
         .normal: "Норм",
         .hard: "Хард"
     ]
+    static let minPlayersQty = 2
     
     static let statusWordImages: [WordStatus: String] = [
         .guessed: "✅",
@@ -42,7 +36,7 @@ struct K {
     
     
     struct Sounds {
-        static let click = initSound(filename: "click.wav", volume: 0.2)
+        static let click = initSound(filename: "click.wav", volume: 0.1)
         static let correct = initSound(filename: "true.wav", volume: 0.2)
         static let error = initSound(filename: "false.wav", volume: 0.1)
         static let applause = initSound(filename: "applause.wav", volume: 0.2)
@@ -72,7 +66,7 @@ struct K {
     }
     struct Delays {
         static let moveOneRow = 0.2
-        static let notGuessedBtn = 1.3
+        static let notGuessedBtn = 1.1
         static let goBtn = 2.2
         static let withClicks = 5
         static let pageChangeViaPageControl = 0.3

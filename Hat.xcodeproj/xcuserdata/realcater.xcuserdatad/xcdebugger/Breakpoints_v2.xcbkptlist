@@ -352,9 +352,9 @@
             filePath = "Hat/ViewControllers/Start/PlayersTVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
-            landmarkName = "insertRow(playerName:at:)"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "insertRow(player:at:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -611,6 +611,22 @@
             startingLineNumber = "75"
             endingLineNumber = "75"
             landmarkName = "create(_:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "70C91A13-BDF3-430D-8ED3-CC4FE148B57F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Hat/ViewControllers/Start/PlayersTVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "tableView(_:commit:forRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

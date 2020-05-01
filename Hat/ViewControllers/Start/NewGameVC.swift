@@ -8,11 +8,30 @@
 
 import UIKit
 
+class PlayersData {
+    var players: [Player] = []
+    var plistFileName : String {
+        let fileName = "offline"
+        return Helper.plistFileName(fileName)
+    }
+    
+    func load() {
+        if let encodedData = NSKeyedUnarchiver.unarchiveObject(withFile: plistFileName) as? Data, let players = try? JSONDecoder().decode([Player].self, from: encodedData) {
+            self.players = players
+        } else {
+            self.players = K.startPlayers
+        }
+    }
+    func save() {
+        let encodedData = try! JSONEncoder().encode(players)
+        NSKeyedArchiver.archiveRootObject(encodedData, toFile: plistFileName)
+    }
+}
 class NewGameVC: UIViewController {
 
     var playersTVC: PlayersTVC!
     var game: GameData!
-    var players: [Player] = []
+    var playersData = PlayersData()
     var wordsQtyData = [20,30,40,50,60,70,80,90,100,120,140,160,250,400,600]
     var hardnessData : [Difficulty] = [.easy, .normal, .hard]
     var secQtyData = [10,20,30,40,50,60]
@@ -46,9 +65,9 @@ class NewGameVC: UIViewController {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPlayersList" {
-            players = load()
+            playersData.load()
             playersTVC = segue.destination as? PlayersTVC
-            playersTVC?.playersNames = NSMutableArray(array: players.map { $0.name })
+            playersTVC?.playersData = playersData
             playersTVC.isOnlineGame = isOnlineGame
             
         }
@@ -56,13 +75,10 @@ class NewGameVC: UIViewController {
             let wordsQty = wordsQtyData[picker.selectedRow(inComponent: 0)]
             let difficulty = hardnessData[picker.selectedRow(inComponent: 1)]
             let time = secQtyData[picker.selectedRow(inComponent: 2)]
-            if !isOnlineGame {
-                players = playersTVC.playersNames.map { Player(name: $0 as! String) }
-            }
-            game = GameData(wordsQty: wordsQty, difficulty: difficulty, time: time, players: players)
+            game = GameData(wordsQty: wordsQty, difficulty: difficulty, time: time, players: playersData.players)
             let startPairVC = segue.destination as? StartPairVC
             startPairVC?.game = self.game
-            save(players: players)
+            playersData.save()
         }
     }
 }
@@ -86,26 +102,6 @@ extension NewGameVC: UIPickerViewDelegate {
         case 1: return NSAttributedString(string: K.diffNames[hardnessData[row]]!, attributes: [NSAttributedString.Key.foregroundColor : K.Colors.foreground])
         default: return NSAttributedString(string: String(secQtyData[row])+" сек", attributes: [NSAttributedString.Key.foregroundColor : K.Colors.foreground])
         }
-    }
-    
-}
-    // MARK: - Save/Load Players
-extension NewGameVC {
-    func save(players: [Player]) {
-        let encodedData = try! JSONEncoder().encode(players)
-        NSKeyedArchiver.archiveRootObject(encodedData, toFile: plistFileName)
-    }
-        
-    func load() -> [Player] {
-        if let encodedData = NSKeyedUnarchiver.unarchiveObject(withFile: plistFileName) as? Data, let players = try? JSONDecoder().decode([Player].self, from: encodedData) {
-                return  players
-        }
-        return K.startPlayers
-    }
-    
-    var plistFileName : String {
-        let fileName = isOnlineGame ? "online" : "offline"
-        return Helper.plistFileName(fileName)
     }
 }
 
