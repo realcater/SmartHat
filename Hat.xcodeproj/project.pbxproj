@@ -18,8 +18,10 @@
 		C15647272121FC6100F1602E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C15647262121FC6100F1602E /* Assets.xcassets */; };
 		C156472A2121FC6200F1602E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C15647282121FC6200F1602E /* LaunchScreen.storyboard */; };
 		C1669C502458806700B19384 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1669C4F2458806700B19384 /* Player.swift */; };
-		C1669C542458ADC600B19384 /* ResourceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1669C532458ADC600B19384 /* ResourceRequest.swift */; };
+		C1669C542458ADC600B19384 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1669C532458ADC600B19384 /* UserRequest.swift */; };
 		C1669C562458AEB100B19384 /* NewUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1669C552458AEB100B19384 /* NewUserVC.swift */; };
+		C1669C5B245B5E6D00B19384 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1669C5A245B5E6D00B19384 /* Environment.swift */; };
+		C1669C5D245B8A4400B19384 /* ErrorRespond.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1669C5C245B8A4400B19384 /* ErrorRespond.swift */; };
 		C1A1956A21387531000A1A51 /* UIView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1956921387531000A1A51 /* UIView+extension.swift */; };
 		C1A1956C21387710000A1A51 /* MyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1956B21387710000A1A51 /* MyButton.swift */; };
 		C1A1957021391522000A1A51 /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1956F21391522000A1A51 /* UIViewController+extension.swift */; };
@@ -64,8 +66,10 @@
 		C15647292121FC6200F1602E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C156472B2121FC6200F1602E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C1669C4F2458806700B19384 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		C1669C532458ADC600B19384 /* ResourceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceRequest.swift; sourceTree = "<group>"; };
+		C1669C532458ADC600B19384 /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		C1669C552458AEB100B19384 /* NewUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserVC.swift; sourceTree = "<group>"; };
+		C1669C5A245B5E6D00B19384 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		C1669C5C245B8A4400B19384 /* ErrorRespond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorRespond.swift; sourceTree = "<group>"; };
 		C1A1956921387531000A1A51 /* UIView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extension.swift"; sourceTree = "<group>"; };
 		C1A1956B21387710000A1A51 /* MyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyButton.swift; sourceTree = "<group>"; };
 		C1A1956F21391522000A1A51 /* UIViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extension.swift"; sourceTree = "<group>"; };
@@ -130,8 +134,8 @@
 				C15647232121FC6100F1602E /* Main.storyboard */,
 				CA14E75221756412008C23A6 /* ViewControllers */,
 				CA14E7532175644A008C23A6 /* Models */,
-				C1669C512458AD2000B19384 /* Constants */,
-				C1669C522458AD4A00B19384 /* Utilities */,
+				C1669C59245B574800B19384 /* Requests */,
+				C1669C512458AD2000B19384 /* Const&Helpers */,
 				CA14E751217563DA008C23A6 /* UIExtensions+xibs */,
 				C18E7F95212DA92700FE1BFF /* Sounds */,
 				CA432A1F2175696C0080C831 /* Fonts */,
@@ -142,22 +146,23 @@
 			path = Hat;
 			sourceTree = "<group>";
 		};
-		C1669C512458AD2000B19384 /* Constants */ = {
+		C1669C512458AD2000B19384 /* Const&Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				C130986321239082001D894D /* K.swift */,
 				CA5916D523B3CBF1007625A1 /* Words.swift */,
+				CAC9D91723B3E0F9005472AD /* Helper.swift */,
+				C1669C5A245B5E6D00B19384 /* Environment.swift */,
 			);
-			path = Constants;
+			path = "Const&Helpers";
 			sourceTree = "<group>";
 		};
-		C1669C522458AD4A00B19384 /* Utilities */ = {
+		C1669C59245B574800B19384 /* Requests */ = {
 			isa = PBXGroup;
 			children = (
-				CAC9D91723B3E0F9005472AD /* Helper.swift */,
-				C1669C532458ADC600B19384 /* ResourceRequest.swift */,
+				C1669C532458ADC600B19384 /* UserRequest.swift */,
 			);
-			path = Utilities;
+			path = Requests;
 			sourceTree = "<group>";
 		};
 		C18E7F95212DA92700FE1BFF /* Sounds */ = {
@@ -240,6 +245,7 @@
 				C1D0968D2458329600A03A21 /* Game.swift */,
 				CA023D0C217561CD008AE815 /* GameData.swift */,
 				C1669C4F2458806700B19384 /* Player.swift */,
+				C1669C5C245B8A4400B19384 /* ErrorRespond.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -344,13 +350,15 @@
 				C1D0968324579A0E00A03A21 /* GameTypeVC.swift in Sources */,
 				C1669C562458AEB100B19384 /* NewUserVC.swift in Sources */,
 				C1D0968724582C1A00A03A21 /* GamesListVC.swift in Sources */,
-				C1669C542458ADC600B19384 /* ResourceRequest.swift in Sources */,
+				C1669C542458ADC600B19384 /* UserRequest.swift in Sources */,
 				C15647202121FC6100F1602E /* AppDelegate.swift in Sources */,
 				CA0CD5F123B8B2AB00A76B75 /* AboutVC.swift in Sources */,
 				CAC9D91823B3E0F9005472AD /* Helper.swift in Sources */,
 				CA8A2F9F23B6A034008D7EBE /* BasketVC.swift in Sources */,
 				CA8A2FA123B6A1D2008D7EBE /* BasketTVC.swift in Sources */,
+				C1669C5D245B8A4400B19384 /* ErrorRespond.swift in Sources */,
 				C1D096852458299600A03A21 /* CreateJoinVC.swift in Sources */,
+				C1669C5B245B5E6D00B19384 /* Environment.swift in Sources */,
 				C1A1956A21387531000A1A51 /* UIView+extension.swift in Sources */,
 				CA3281D12376DAD200822B22 /* PlayersTVC.swift in Sources */,
 				CA8A2F9D23B66DF7008D7EBE /* EndGameTVC.swift in Sources */,

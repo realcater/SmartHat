@@ -10,8 +10,9 @@ import UIKit
 
 class AboutVC: UIViewController {
     
-    @IBOutlet weak var popupView: UIView!
-
+    //@IBOutlet weak var popView: UIView!
+    @IBOutlet weak var pop4View: UIView!
+    
     @objc private func singleTap(recognizer: UITapGestureRecognizer) {
         if (recognizer.state == UIGestureRecognizer.State.ended) {
             dismiss(animated: true, completion: nil)
@@ -22,6 +23,6 @@ class AboutVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addTaps(singleTapAction: #selector(singleTap))
-        popupView.layer.cornerRadius = K.windowsCornerRadius
+        pop4View.layer.cornerRadius = K.windowsCornerRadius
     }
 }

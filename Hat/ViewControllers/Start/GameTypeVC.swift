@@ -12,7 +12,11 @@ class GameTypeVC: UIViewController {
 
     @IBOutlet weak var offlineGameButton: MyButton!
     @IBOutlet weak var onlineGameButton: MyButton!
+    @IBAction func onlineGameButtonPressed(_ sender: Any) {
+        checkRegistration()
+    }
     var notConfirmedName = ""
+    var name: String? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +34,8 @@ class GameTypeVC: UIViewController {
             let newGameVC = segue.destination as? NewGameVC
             newGameVC?.isOnlineGame = false
         } else if segue.identifier == "online" {
-            let isRegistered = loadRegistration()
-            if !isRegistered {
-                performSegue(withIdentifier: "toRegistration", sender: self)
-            }
+            let createJoinVC = segue.destination as? CreateJoinVC
+            createJoinVC?.title = name
         } else if segue.identifier == "toRegistration" {
             let newUserVC = segue.destination as? NewUserVC
             newUserVC?.delegate = self
@@ -43,21 +45,39 @@ class GameTypeVC: UIViewController {
 }
 
 extension GameTypeVC {
-    func loadRegistration() -> Bool {
-        let fileName = Helper.plistFileName("isRegistered")
-        if let encodedData = NSKeyedUnarchiver.unarchiveObject(withFile: fileName) as? Data, let isRegistered = try? JSONDecoder().decode(Bool.self, from: encodedData) {
-                return isRegistered
+    func checkRegistration() {
+        guard let uuid = UIDevice.current.identifierForVendor else {
+            fatalError("Can't get UIDevice")
         }
-        return false
+        title = "Подключаемся к серверу..."
+        UserRequest(userID: uuid).searchByID(uuid) { [weak self] result in
+            switch result {
+            case .success(let user):
+                self?.name = user.name
+                DispatchQueue.main.async { [weak self] in
+                    self?.title = "Как играем, \(self?.name ?? "")?"
+                    self?.performSegue(withIdentifier: "online", sender: self)
+                }
+            case .failure:
+                DispatchQueue.main.async { [weak self] in
+                    self?.title = "Давайте знакомиться!"
+                    self?.performSegue(withIdentifier: "toRegistration", sender: self)
+                }
+            }
+        }
     }
 }
 
 protocol GameTypeVCDelegate: class {
-    func setNotConfirmedName(name: String)
+    func successfullRegistration(name: String)
 }
 
 extension GameTypeVC: GameTypeVCDelegate {
-    func setNotConfirmedName(name: String) {
-        notConfirmedName = name
+    func successfullRegistration(name: String) {
+        self.name = name
+        title = "Добро пожаловать, \(name)!"
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+            self.performSegue(withIdentifier: "online", sender: self)
+        })
     }
 }

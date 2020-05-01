@@ -1,6 +1,11 @@
 import UIKit
 
 struct K {
+    struct Server {
+        static let name = "http://192.168.1.190:8080/api/"
+        static let duplicateNameRespondPrefix = "server: duplicate key value violates unique constraint"
+        static let duplicateNameRespondPrefixLength = duplicateNameRespondPrefix.count
+    }
     
     static let startPlayersNames: NSMutableArray = [
         "Анжела",
@@ -72,5 +77,12 @@ struct K {
     }
     struct Margins {
         static let helpScreen: CGFloat = 0
+    }
+    
+    struct Name {
+        static let minLength = 4
+        static let maxLength = 12
+        static let minLengthWarning = "Имя должно быть не менее "+String(minLength)+" символов"
+        static let maxLengthWarning = "Имя должно быть не более "+String(maxLength)+" символов"
     }
 }

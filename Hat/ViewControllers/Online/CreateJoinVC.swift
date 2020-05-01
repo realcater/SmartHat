@@ -10,7 +10,6 @@ class CreateJoinVC: UIViewController {
         view.setBackgroundImage(named: K.FileNames.background, alpha: K.Alpha.Background.main)
         createButton.turnClickSoundOn(sound: K.Sounds.click)
         joinButton.turnClickSoundOn(sound: K.Sounds.click)
-        title = "Тварь дрожащая?"
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

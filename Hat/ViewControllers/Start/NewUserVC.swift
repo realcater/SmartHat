@@ -17,9 +17,38 @@ class NewUserVC: UIViewController {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var popupView: UIView!
     @IBOutlet weak var registerButton: MyButton!
-
+    
     @IBAction func pressRegisterButton(_ sender: Any) {
-        warningTextView.isHidden = false
+        guard let uuid = UIDevice.current.identifierForVendor else {
+            fatalError("Can't get UIDevice")
+        }
+        guard let name = textField.text else {
+            showWarning("Имя не может быть пустым")
+            return
+        }
+        guard textField.text!.count >= K.Name.minLength else {
+            showWarning(K.Name.minLengthWarning)
+            return
+        }
+        guard textField.text!.count <= K.Name.maxLength else {
+            showWarning(K.Name.maxLengthWarning)
+            return
+        }
+        let user = User(id: uuid, name: name, password: "password")
+        UserRequest().create(user) { [weak self] result in
+            switch result {
+            case .failureDuplicate:
+                self?.showWarning("Этот Никнейм уже занят")
+            case .failureOther:
+                self?.showWarning("There was a problem saving the user")
+            case .success:
+                self?.showWarning("Successfull")
+                DispatchQueue.main.async { [weak self] in
+                    self?.dismiss(animated: true, completion: nil)
+                    self?.delegate?.successfullRegistration(name: name)
+                }
+            }
+        }
     }
 
     @objc private func singleTap(recognizer: UITapGestureRecognizer) {
@@ -31,7 +60,12 @@ class NewUserVC: UIViewController {
             }
         }
     }
- 
+    private func showWarning(_ text: String) {
+        DispatchQueue.main.async {
+            self.warningTextView.text = text
+            self.warningTextView.isHidden = false
+        }
+    }
     // MARK:- Override class func
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +86,5 @@ extension NewUserVC: UITextFieldDelegate {
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         name = textField.text!
-        delegate?.setNotConfirmedName(name: textField.text!)
     }
 }
