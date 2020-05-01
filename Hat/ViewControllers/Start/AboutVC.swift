@@ -10,7 +10,6 @@ import UIKit
 
 class AboutVC: UIViewController {
     
-    
     @IBOutlet weak var popupView: UIView!
     @objc private func singleTap(recognizer: UITapGestureRecognizer) {
         if (recognizer.state == UIGestureRecognizer.State.ended) {

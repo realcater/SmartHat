@@ -35,18 +35,14 @@ class NewUserVC: UIViewController {
             return
         }
         let user = User(id: uuid, name: name, password: "password")
-        UserRequest().create(user) { [weak self] result in
-            switch result {
-            case .noConnection:
-                self?.showWarning(K.Server.Warnings.noConnection)
-            case .failureDuplicate:
-                self?.showWarning(K.Server.Warnings.nickNameIsBusy)
-            case .failureOther:
-                self?.showWarning(K.Server.Warnings.serverError)
-            case .success:
-                DispatchQueue.main.async { [weak self] in
+        UserRequest.create(user) { [weak self] result in
+            DispatchQueue.main.async { [weak self] in
+                switch result {
+                case .success:
                     self?.dismiss(animated: true, completion: nil)
                     self?.delegate?.successfullRegistration(name: name)
+                case .failure(let error):
+                    self?.showWarning(K.Server.warnings[error]!)
                 }
             }
         }
@@ -62,10 +58,8 @@ class NewUserVC: UIViewController {
         }
     }
     private func showWarning(_ text: String) {
-        DispatchQueue.main.async {
-            self.warningTextView.text = text
-            self.warningTextView.isHidden = false
-        }
+        self.warningTextView.text = text
+        self.warningTextView.isHidden = false
     }
     // MARK:- Override class func
     override func viewDidLoad() {

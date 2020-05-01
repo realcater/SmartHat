@@ -50,26 +50,21 @@ extension GameTypeVC {
             fatalError("Can't get UIDevice")
         }
         title = "Подключаемся к серверу..."
-        UserRequest(userID: uuid).searchByID(uuid) { [weak self] result in
-            switch result {
-            case .success(let user):
-                self?.name = user.name
-                DispatchQueue.main.async { [weak self] in
+        UserRequest.search(uuid) { [weak self] result in
+            DispatchQueue.main.async { [weak self] in
+                switch result {
+                case .success(let user):
+                    self?.name = user.name
                     self?.title = "Как играем, \(self?.name ?? "")?"
                     self?.performSegue(withIdentifier: "online", sender: self)
-                }
-            case .noConnection:
-                DispatchQueue.main.async { [weak self] in
-                    self?.title = K.Server.Warnings.noConnection
-                }
-            case .failureOther:
-                DispatchQueue.main.async { [weak self] in
-                    self?.title = K.Server.Warnings.serverError
-                }
-            case .notFound:
-                DispatchQueue.main.async { [weak self] in
-                    self?.title = "Давайте знакомиться!"
-                    self?.performSegue(withIdentifier: "toRegistration", sender: self)
+                case .failure(let error):
+                    switch error {
+                    case .notFound:
+                        self?.title = "Давайте знакомиться!"
+                        self?.performSegue(withIdentifier: "toRegistration", sender: self)
+                    default:
+                        self?.title = K.Server.warnings[error]
+                    }
                 }
             }
         }

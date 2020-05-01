@@ -368,8 +368,8 @@
             filePath = "Hat/ViewControllers/Start/NewUserVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "77"
-            endingLineNumber = "77"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -425,22 +425,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C50120DC-DD9F-4B7C-A406-FD886077DC5F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Hat/Requests/UserRequest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "create(_:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "5F215C3E-D607-4F42-915D-A2F9F058109D"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -489,54 +473,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "44AD099C-DA86-42EF-A092-ADE04E407409"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Hat/Requests/UserRequest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "create(_:completion:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "44AD099C-DA86-42EF-A092-ADE04E407409 - d7f8f8dbd91233fa"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "&#x428;&#x43b;&#x44f;&#x43f;&#x430;_&#x41e;&#x43d;&#x43b;&#x430;&#x439;&#x43d;.UserRequest.create(_: &#x428;&#x43b;&#x44f;&#x43f;&#x430;_&#x41e;&#x43d;&#x43b;&#x430;&#x439;&#x43d;.User, completion: (&#x428;&#x43b;&#x44f;&#x43f;&#x430;_&#x41e;&#x43d;&#x43b;&#x430;&#x439;&#x43d;.UserCreateResult) -&gt; ()) -&gt; ()"
-                  moduleName = "&#x428;&#x43b;&#x44f;&#x43f;&#x430;.&#x41e;&#x43d;&#x43b;&#x430;&#x438;&#x306;&#x43d;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/realcater/Documents/Hat/Hat/Requests/UserRequest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "74"
-                  endingLineNumber = "74"
-                  offsetFromSymbolStart = "1368">
-               </Location>
-               <Location
-                  uuid = "44AD099C-DA86-42EF-A092-ADE04E407409 - 6438efcc6604358d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in &#x428;&#x43b;&#x44f;&#x43f;&#x430;_&#x41e;&#x43d;&#x43b;&#x430;&#x439;&#x43d;.UserRequest.create(_: &#x428;&#x43b;&#x44f;&#x43f;&#x430;_&#x41e;&#x43d;&#x43b;&#x430;&#x439;&#x43d;.User, completion: (&#x428;&#x43b;&#x44f;&#x43f;&#x430;_&#x41e;&#x43d;&#x43b;&#x430;&#x439;&#x43d;.UserCreateResult) -&gt; ()) -&gt; ()"
-                  moduleName = "&#x428;&#x43b;&#x44f;&#x43f;&#x430;.&#x41e;&#x43d;&#x43b;&#x430;&#x438;&#x306;&#x43d;"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/realcater/Documents/Hat/Hat/Requests/UserRequest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "75"
-                  endingLineNumber = "75"
-                  offsetFromSymbolStart = "212">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "6819135F-4178-478B-B555-0FAF9B33748B"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -544,9 +480,9 @@
             filePath = "Hat/Requests/UserRequest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "searchByID(_:completion:)"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "search(_:completion:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -592,25 +528,9 @@
             filePath = "Hat/Requests/UserRequest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "searchByID(_:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "55FC4E55-F425-46CA-B61D-CAC63E6229BE"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Hat/Requests/UserRequest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "create(_:completion:)"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "search(_:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

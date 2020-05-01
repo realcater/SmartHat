@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C10F3F9E245C6E9E001D353E /* RequestErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10F3F9D245C6E9E001D353E /* RequestErrors.swift */; };
 		C130986421239082001D894D /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = C130986321239082001D894D /* K.swift */; };
 		C1480A912123649500137C37 /* PlayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1480A902123649500137C37 /* PlayVC.swift */; };
 		C14B02A4212983E300B2E96C /* 12009.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C14B02A3212983E200B2E96C /* 12009.ttf */; };
@@ -53,6 +54,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C10F3F9D245C6E9E001D353E /* RequestErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestErrors.swift; sourceTree = "<group>"; };
 		C130986321239082001D894D /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
 		C1480A902123649500137C37 /* PlayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayVC.swift; sourceTree = "<group>"; };
 		C14B02A3212983E200B2E96C /* 12009.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 12009.ttf; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				C1669C532458ADC600B19384 /* UserRequest.swift */,
+				C10F3F9D245C6E9E001D353E /* RequestErrors.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -338,6 +341,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C10F3F9E245C6E9E001D353E /* RequestErrors.swift in Sources */,
 				C1480A912123649500137C37 /* PlayVC.swift in Sources */,
 				C130986421239082001D894D /* K.swift in Sources */,
 				C1D0968C2458305400A03A21 /* GameListTVC.swift in Sources */,
