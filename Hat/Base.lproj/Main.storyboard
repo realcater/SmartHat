@@ -531,7 +531,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cb2-9K-93c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3462" y="38"/>
+            <point key="canvasLocation" x="3758" y="450"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CWd-Ua-Qvo">
@@ -602,7 +602,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IIo-Mv-PHf" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2727" y="-686"/>
+            <point key="canvasLocation" x="4554" y="-350"/>
         </scene>
         <!--EndGameTVC-->
         <scene sceneID="qSw-1c-gQS">
@@ -688,7 +688,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZKl-Yu-hAd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3461" y="-687"/>
+            <point key="canvasLocation" x="4554" y="-957"/>
         </scene>
         <!--BasketVC-->
         <scene sceneID="9Nd-nk-dTO">
@@ -818,7 +818,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i6L-ag-qsy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3422" y="757"/>
+            <point key="canvasLocation" x="2726" y="1326"/>
         </scene>
         <!--AboutTableVC-->
         <scene sceneID="YMi-Lg-w1B">
@@ -1010,7 +1010,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qor-c8-77p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1158" y="757"/>
+            <point key="canvasLocation" x="-405" y="1369"/>
         </scene>
         <!--HelpVC-->
         <scene sceneID="6wl-Uq-E08">
@@ -1071,7 +1071,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SFH-hc-Glr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-404" y="-686"/>
+            <point key="canvasLocation" x="-405" y="-745"/>
         </scene>
         <!--GameTypeVC-->
         <scene sceneID="hCC-Zl-pcI">
@@ -1196,7 +1196,7 @@
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="P9G-f0-XMa" kind="show" id="pAL-Jj-fMV"/>
+                                    <segue destination="P9G-f0-XMa" kind="show" identifier="toGameList" id="pAL-Jj-fMV"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" text="Создаем новую игру, чтобы остальные участники могли к ней присоединиться со своих устройств" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mux-yr-Qxk">
@@ -1252,15 +1252,15 @@
             </objects>
             <point key="canvasLocation" x="1204" y="38"/>
         </scene>
-        <!--NewGame-->
+        <!--GamesListVC-->
         <scene sceneID="9mf-No-qhU">
             <objects>
-                <viewController id="P9G-f0-XMa" userLabel="NewGame" customClass="GamesListVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="P9G-f0-XMa" userLabel="GamesListVC" customClass="GamesListVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UHM-Qf-j4F">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1d-pq-Oid" userLabel="topButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1d-pq-Oid" userLabel="topButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="438" width="320" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1270,11 +1270,14 @@
                                 <state key="normal" title="Выбрать">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="chooseGameButtonPressed:" destination="P9G-f0-XMa" eventType="touchUpInside" id="70q-cd-nPy"/>
+                                </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="52b-Uz-wXM">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="438"/>
                                 <connections>
-                                    <segue destination="vmu-yf-oew" kind="embed" id="9qh-Pb-qRw"/>
+                                    <segue destination="vmu-yf-oew" kind="embed" identifier="toGamesList" id="9qh-Pb-qRw"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -1296,42 +1299,43 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="chooseGameButton" destination="K1d-pq-Oid" id="XZJ-Bi-eti"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="joinGame" id="Dmi-q9-w4E"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xfk-m8-bU5" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1204" y="-686"/>
+            <point key="canvasLocation" x="1204" y="-782"/>
         </scene>
         <!--GameListTVC-->
         <scene sceneID="j5R-fn-efI">
             <objects>
-                <tableViewController id="vmu-yf-oew" userLabel="GameListTVC" customClass="GameListTVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="XBb-rp-qoI">
+                <tableViewController id="vmu-yf-oew" userLabel="GameListTVC" customClass="GamesListTVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="XBb-rp-qoI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="438"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="separatorColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ResultsListItem" id="buc-hD-r3X">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="GamesList" id="buc-hD-r3X">
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1000" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="buc-hD-r3X" id="pQX-0X-Jqz">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Имя" textAlignment="natural" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="E98-VU-K6d">
-                                            <rect key="frame" x="20" y="0.0" width="232" height="44"/>
+                                        <textField opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Имя" textAlignment="natural" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="E98-VU-K6d">
+                                            <rect key="frame" x="20" y="0.0" width="172" height="44"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="textColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
-                                        <textField opaque="NO" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="6" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jrv-u5-Mvz">
-                                            <rect key="frame" x="272" y="0.0" width="40" height="44"/>
+                                        <textField opaque="NO" userInteractionEnabled="NO" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="12.04.2020" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jrv-u5-Mvz">
+                                            <rect key="frame" x="212" y="0.0" width="100" height="44"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="40" id="UOo-Bh-u8y"/>
+                                                <constraint firstAttribute="width" constant="100" id="UOo-Bh-u8y"/>
                                             </constraints>
                                             <color key="textColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
@@ -1361,7 +1365,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZbP-KV-q6q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2004" y="-755"/>
+            <point key="canvasLocation" x="1204" y="-1427"/>
         </scene>
         <!--NewUserVC-->
         <scene sceneID="7L0-2X-PXP">
@@ -1525,7 +1529,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="2qu-Nz-h0H"/>
         <segue reference="Vb6-hb-Jzo"/>
-        <segue reference="sIo-hW-gb7"/>
+        <segue reference="Dmi-q9-w4E"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="addPlayerIcon" width="152" height="76"/>

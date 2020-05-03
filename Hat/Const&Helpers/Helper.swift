@@ -11,4 +11,13 @@ class Helper {
         let paths = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory,FileManager.SearchPathDomainMask.allDomainsMask, true)
         return paths[0].appending("/"+fileName+".plist")
     }
+    static func generatePassword() -> String {
+        let length = 12
+        let pswdChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+        return String((0..<length).compactMap{ _ in pswdChars.randomElement() })
+        
+    }
+    static func getStringTime(from DateTime: String) -> String {
+        return String(DateTime.suffix(9).prefix(8))
+    }
 }

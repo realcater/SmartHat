@@ -18,7 +18,11 @@ class CreateJoinVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "createOnline" {
             let newGameVC = segue.destination as? NewGameVC
-            newGameVC?.isOnlineGame = true
+            newGameVC?.mode = .onlineNew
         }
+        /*else if segue.identifier == "toGameList" {
+            let gamesListVC = segue.destination as? GamesListVC
+         }
+         */
     }
 }

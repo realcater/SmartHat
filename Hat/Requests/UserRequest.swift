@@ -2,7 +2,7 @@ import Foundation
 
 enum UserPublicResult {
     case success(User.Public)
-    case failure(RequestErrors)
+    case failure(RequestError)
 }
 
 struct UserRequest {
@@ -18,7 +18,9 @@ struct UserRequest {
                 return
             }
             guard httpResponse.statusCode == 200, let jsonData = data else {
-                if httpResponse.statusCode == 404 {
+                if httpResponse.statusCode == 401 {
+                    completion(.failure(.unauthorised))
+                } else if httpResponse.statusCode == 404 {
                     completion(.failure(.notFound))
                 } else {
                     completion(.failure(.other))
@@ -57,7 +59,7 @@ struct UserRequest {
                 completion(.success(userPublic))
             } catch {
                 do {
-                    let errorRespond = try JSONDecoder().decode(ErrorRespond.self, from: jsonData)
+                    let errorRespond = try JSONDecoder().decode(ErrorResponse.self, from: jsonData)
                     if errorRespond.reason.prefix(K.Server.duplicateNameRespondPrefixLength) == K.Server.duplicateNameRespondPrefix {
                         completion(.failure(.duplicate))
                     } else {

@@ -1,12 +1,5 @@
-//
-//  AboutVC.swift
-//  Верю-Не-верю
-//
-//  Created by Dmitry Dementyev on 03.09.2018.
-//  Copyright © 2018 Dmitry Dementyev. All rights reserved.
-//
-
 import UIKit
+import SwiftKeychainWrapper
 
 class NewUserVC: UIViewController {
     
@@ -19,7 +12,7 @@ class NewUserVC: UIViewController {
     @IBOutlet weak var registerButton: MyButton!
     
     @IBAction func pressRegisterButton(_ sender: Any) {
-        guard let uuid = UIDevice.current.identifierForVendor else {
+        guard let id = UIDevice.current.identifierForVendor else {
             fatalError("Can't get UIDevice")
         }
         guard let name = textField.text else {
@@ -34,20 +27,30 @@ class NewUserVC: UIViewController {
             showWarning(K.Name.maxLengthWarning)
             return
         }
-        let user = User(id: uuid, name: name, password: "password")
+        let password = Helper.generatePassword()
+        let user = User(id: id, name: name, password: password)
         UserRequest.create(user) { [weak self] result in
-            DispatchQueue.main.async { [weak self] in
-                switch result {
-                case .success:
-                    self?.dismiss(animated: true, completion: nil)
-                    self?.delegate?.successfullRegistration(name: name)
-                case .failure(let error):
+            switch result {
+            case .success:
+                self?.saveCredentials(id: id, name: name, password: password)
+                Auth().login() { result in
+                    DispatchQueue.main.async { [weak self] in
+                        switch result {
+                        case .success:
+                            self?.dismiss(animated: true, completion: nil)
+                            self?.delegate?.successfullRegistration(name: name)
+                        case .failure(let error):
+                            self?.showWarning(K.Server.warnings[error]!)
+                        }
+                    }
+                }
+            case .failure(let error):
+                DispatchQueue.main.async { [weak self] in
                     self?.showWarning(K.Server.warnings[error]!)
                 }
             }
         }
     }
-
     @objc private func singleTap(recognizer: UITapGestureRecognizer) {
         if (recognizer.state == UIGestureRecognizer.State.ended) {
             if textField.isFirstResponder {
@@ -57,20 +60,24 @@ class NewUserVC: UIViewController {
             }
         }
     }
-    private func showWarning(_ text: String) {
-        self.warningTextView.text = text
-        self.warningTextView.isHidden = false
-    }
-    // MARK:- Override class func
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.addTaps(singleTapAction: #selector(singleTap))
+        //self.addTaps(singleTapAction: #selector(singleTap))
         popupView.layer.cornerRadius = K.windowsCornerRadius
         textField.delegate = self
         textField.text = name
         textField.becomeFirstResponder()
         textField.layer.borderColor = K.Colors.foreground.cgColor
         textField.layer.borderWidth = 1.0
+    }
+    private func showWarning(_ text: String) {
+        self.warningTextView.text = text
+        self.warningTextView.isHidden = false
+    }
+    func saveCredentials(id: UUID, name: String, password: String) {
+        KeychainWrapper.standard.set(id.uuidString, forKey: "id")
+        KeychainWrapper.standard.set(name, forKey: "name")
+        KeychainWrapper.standard.set(password, forKey: "password")
     }
 }
 

@@ -8,25 +8,12 @@
 
 import UIKit
 
-class PlayersData {
-    var players: [Player] = []
-    var plistFileName : String {
-        let fileName = "offline"
-        return Helper.plistFileName(fileName)
-    }
-    
-    func load() {
-        if let encodedData = NSKeyedUnarchiver.unarchiveObject(withFile: plistFileName) as? Data, let players = try? JSONDecoder().decode([Player].self, from: encodedData) {
-            self.players = players
-        } else {
-            self.players = K.startPlayers
-        }
-    }
-    func save() {
-        let encodedData = try! JSONEncoder().encode(players)
-        NSKeyedArchiver.archiveRootObject(encodedData, toFile: plistFileName)
-    }
+enum Mode {
+    case offline
+    case onlineNew
+    case onlineJoin
 }
+
 class NewGameVC: UIViewController {
 
     var playersTVC: PlayersTVC!
@@ -35,7 +22,7 @@ class NewGameVC: UIViewController {
     var wordsQtyData = [20,30,40,50,60,70,80,90,100,120,140,160,250,400,600]
     var hardnessData : [Difficulty] = [.easy, .normal, .hard]
     var secQtyData = [10,20,30,40,50,60]
-    var isOnlineGame : Bool!
+    var mode : Mode!
     
     @IBOutlet weak var picker: UIPickerView!
     @IBOutlet weak var play: MyButton!
@@ -57,10 +44,11 @@ class NewGameVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
-        if isOnlineGame {
+        if mode != .offline {
             play.isEnabled = false
             play.backgroundColor = K.Colors.lightGray
         }
+        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -68,7 +56,7 @@ class NewGameVC: UIViewController {
             playersData.load()
             playersTVC = segue.destination as? PlayersTVC
             playersTVC?.playersData = playersData
-            playersTVC.isOnlineGame = isOnlineGame
+            playersTVC.mode = mode
             
         }
         if segue.identifier == "toStartPair" {

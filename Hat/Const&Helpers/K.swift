@@ -5,8 +5,10 @@ struct K {
         static let name = "http://192.168.1.190:8080/api/"
         static let duplicateNameRespondPrefix = "server: duplicate key value violates unique constraint"
         static let duplicateNameRespondPrefixLength = duplicateNameRespondPrefix.count
-        static let warnings: [RequestErrors: String] = [
+        static let warnings: [RequestError: String] = [
             .noConnection: "Нет связи или сервер не отвечает",
+            .unauthorised: "Пользователь не авторизован",
+            .notFound: "Не найден",
             .duplicate: "Этот Никнейм уже занят",
             .other: "Ошибка сервера"
         ]

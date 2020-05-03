@@ -15,7 +15,7 @@ class PlayersTVC: UITableViewController {
     
     var playersData: PlayersData!
     var rowEdit: Int?
-    var isOnlineGame : Bool!
+    var mode : Mode!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,12 +39,12 @@ class PlayersTVC: UITableViewController {
         } else {
             textField.text = playersData.players[indexPath.row].name
             addPlayerButton.isHidden = true
-            if isOnlineGame {
+            if mode != .offline {
                 statusImageView.image = UIImage(named: K.FileNames.waitIcon)
                 statusImageView.rotate(duration: 4)
             }
         }
-        if textField.text!.count == 0 {
+        if (indexPath.row == playersData.players.count-1) && (textField.text!.count == 0) {
             textField.becomeFirstResponder()
         }
         textField.delegate = self
@@ -79,6 +79,9 @@ class PlayersTVC: UITableViewController {
         let itemToMove = playersData.players[sourceIndexPath.row]
         playersData.players.remove(at: sourceIndexPath.row)
         playersData.players.insert(itemToMove, at: destinationIndexPath.row)
+    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("Cool!")
     }
 }
 //MARK: - Public functions

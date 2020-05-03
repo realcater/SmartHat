@@ -32,7 +32,7 @@ class GameTypeVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "offline" {
             let newGameVC = segue.destination as? NewGameVC
-            newGameVC?.isOnlineGame = false
+            newGameVC?.mode = .offline
         } else if segue.identifier == "online" {
             let createJoinVC = segue.destination as? CreateJoinVC
             createJoinVC?.title = name
