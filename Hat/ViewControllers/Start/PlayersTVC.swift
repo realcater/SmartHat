@@ -75,6 +75,14 @@ class PlayersTVC: UITableViewController {
         return true
     }
     
+    override func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
+        if proposedDestinationIndexPath.row == playersData.players.count {
+            return sourceIndexPath
+        } else {
+            return proposedDestinationIndexPath
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let itemToMove = playersData.players[sourceIndexPath.row]
         playersData.players.remove(at: sourceIndexPath.row)

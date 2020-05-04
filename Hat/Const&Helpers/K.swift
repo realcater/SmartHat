@@ -19,10 +19,28 @@ struct K {
         Player(name: "Снежана"),
         Player(name: "Евлампий")
     ]
-    static let diffNames : [Difficulty: String] = [
-        .easy: "Изи",
-        .normal: "Норм",
-        .hard: "Хард"
+    static let gameDiffNames : [GameDifficulty: String] = [
+        .veryEasy: "Детский (1)",
+        .easy: "Легко (2)",
+        .normal: "Норм (3)",
+        .hard: "Сложно (4)",
+        .veryHard: "Безумно (5)",
+        .separator1: "-----",
+        .easyMix: "Easy Mix (1-2)",
+        .normalMix: "Norm Mix (2-4)",
+        .hardMix: "Hard Mix (4-5)"
+    ]
+    
+    static let wordsDifInGameDif: [GameDifficulty: [WordsDifficulty]] = [
+        .veryEasy: [.veryEasy],
+        .easy: [.easy],
+        .normal: [.normal],
+        .hard: [.hard],
+        .veryHard: [.veryHard],
+        .separator1: [],
+        .easyMix: [.veryEasy, .easy],
+        .normalMix: [.easy,.normal,.hard],
+        .hardMix: [.hard,.veryHard]
     ]
     static let minPlayersQty = 2
     

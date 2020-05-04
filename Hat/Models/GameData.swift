@@ -1,9 +1,23 @@
 import Foundation
 
-enum Difficulty {
+enum GameDifficulty: CaseIterable {
+    case veryEasy
     case easy
     case normal
     case hard
+    case veryHard
+    case separator1
+    case easyMix
+    case normalMix
+    case hardMix
+}
+
+enum WordsDifficulty {
+    case veryEasy
+    case easy
+    case normal
+    case hard
+    case veryHard
 }
 
 enum WordStatus {
@@ -32,11 +46,15 @@ class GameData {
     var prevTellerNumber: Int!
     var prevListenerNumber: Int!
     
-    init(wordsQty: Int, difficulty: Difficulty, time: Int, players: [Player]) {
+    init(wordsQty: Int, gameDifficulty: GameDifficulty, time: Int, players: [Player]) {
         self.time = time
         self.players = players
 
-        var allWords = Words.words[difficulty]!
+        var allWords: [String] = []
+        for wordsDifficulty in K.wordsDifInGameDif[gameDifficulty]! {
+            allWords.append(contentsOf: Words.words[wordsDifficulty]!)
+        }
+        print(allWords.count)
         for _ in 0..<wordsQty {
             let number = Int.random(in: 0 ..< allWords.count)
             Helper.move(str: allWords[number], from: &allWords, to: &leftWords)
