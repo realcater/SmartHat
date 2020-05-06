@@ -50,7 +50,7 @@ extension GameTypeVC {
             fatalError("Can't get UIDevice")
         }
         title = "Подключаемся к серверу..."
-        UserRequest.search(uuid) { [weak self] result in
+        UserRequest.search(by: uuid) { [weak self] result in
             DispatchQueue.main.async { [weak self] in
                 switch result {
                 case .success(let user):

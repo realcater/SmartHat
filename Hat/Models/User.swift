@@ -18,5 +18,8 @@ class User: Codable {
             self.id = id
             self.name = name
         }
+        func makePlayer() -> Player {
+            return Player(id: id, name: name)
+        }
     }
 }

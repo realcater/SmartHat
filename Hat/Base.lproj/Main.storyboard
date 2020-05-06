@@ -761,20 +761,20 @@
         <scene sceneID="MNT-Sn-xP3">
             <objects>
                 <tableViewController storyboardIdentifier="InvitePlayerTVC" id="MZD-Uz-aHJ" customClass="InvitePlayerTVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lfy-Ut-1Y5">
-                        <rect key="frame" x="0.0" y="0.0" width="280" height="120"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lfy-Ut-1Y5">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="108"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Players" rowHeight="44" id="nsf-rv-4UC">
-                                <rect key="frame" x="0.0" y="28" width="280" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Players" id="nsf-rv-4UC">
+                                <rect key="frame" x="0.0" y="28" width="280" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nsf-rv-4UC" id="4cB-Ti-ncU">
-                                    <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="280" height="40"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oS5-ID-2rR">
-                                            <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="40"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="textColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -1517,7 +1517,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r9k-dQ-67D" userLabel="popupView">
-                                <rect key="frame" x="20" y="19" width="280" height="314"/>
+                                <rect key="frame" x="20" y="31" width="280" height="302"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введите никнейм игрока" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8NP-u3-8ie">
                                         <rect key="frame" x="0.0" y="4" width="280" height="40"/>
@@ -1538,8 +1538,17 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="75O-dk-d34" userLabel="tableView">
+                                        <rect key="frame" x="0.0" y="96" width="280" height="108"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="108" id="Phn-wl-fMX"/>
+                                        </constraints>
+                                        <connections>
+                                            <segue destination="MZD-Uz-aHJ" kind="embed" identifier="toInvitePlayerTVC" id="H26-FQ-wlJ"/>
+                                        </connections>
+                                    </containerView>
                                     <textView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" text="Warning" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pvc-6v-e5B">
-                                        <rect key="frame" x="0.0" y="192" width="280" height="24"/>
+                                        <rect key="frame" x="0.0" y="178" width="280" height="24"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -1549,15 +1558,6 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="75O-dk-d34" userLabel="tableView">
-                                        <rect key="frame" x="0.0" y="96" width="280" height="120"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="120" id="Phn-wl-fMX"/>
-                                        </constraints>
-                                        <connections>
-                                            <segue destination="MZD-Uz-aHJ" kind="embed" identifier="toInvitePlayerTVC" id="H26-FQ-wlJ"/>
-                                        </connections>
-                                    </containerView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -1592,10 +1592,10 @@
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="vkt-tC-FsC" firstAttribute="trailing" secondItem="S4u-Xo-b6c" secondAttribute="trailing" constant="20" id="2Zs-K2-lxl"/>
+                            <constraint firstItem="S4u-Xo-b6c" firstAttribute="top" secondItem="75O-dk-d34" secondAttribute="bottom" constant="4" id="9qR-hv-fvN"/>
                             <constraint firstItem="S4u-Xo-b6c" firstAttribute="centerY" secondItem="8ax-gN-5ro" secondAttribute="centerY" constant="-10" id="Bqs-Gb-oOh"/>
-                            <constraint firstItem="S4u-Xo-b6c" firstAttribute="top" secondItem="pvc-6v-e5B" secondAttribute="bottom" constant="4" id="I28-sy-AHz"/>
+                            <constraint firstItem="S4u-Xo-b6c" firstAttribute="top" secondItem="pvc-6v-e5B" secondAttribute="bottom" constant="6" id="I28-sy-AHz"/>
                             <constraint firstItem="S4u-Xo-b6c" firstAttribute="leading" secondItem="vkt-tC-FsC" secondAttribute="leading" constant="20" id="OFK-HA-eBh"/>
-                            <constraint firstItem="S4u-Xo-b6c" firstAttribute="top" secondItem="75O-dk-d34" secondAttribute="bottom" constant="4" id="QXp-hS-0pm"/>
                             <constraint firstItem="r9k-dQ-67D" firstAttribute="leading" secondItem="vkt-tC-FsC" secondAttribute="leading" constant="20" id="eM9-aT-VCQ"/>
                             <constraint firstItem="S4u-Xo-b6c" firstAttribute="top" secondItem="r9k-dQ-67D" secondAttribute="bottom" constant="-94" id="p7k-Jf-Ql3"/>
                             <constraint firstItem="vkt-tC-FsC" firstAttribute="trailing" secondItem="r9k-dQ-67D" secondAttribute="trailing" constant="20" id="tXa-ue-fsD"/>
@@ -1604,7 +1604,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="fOu-zC-DrH"/>
                     <connections>
-                        <outlet property="AddUserButton" destination="S4u-Xo-b6c" id="6Up-G4-tGz"/>
+                        <outlet property="addPlayerButton" destination="S4u-Xo-b6c" id="6Up-G4-tGz"/>
                         <outlet property="popupView" destination="r9k-dQ-67D" id="EER-4r-mr7"/>
                         <outlet property="textField" destination="V15-LC-4qG" id="d9c-zH-P6x"/>
                         <outlet property="warningTextView" destination="pvc-6v-e5B" id="zw2-hV-Twp"/>

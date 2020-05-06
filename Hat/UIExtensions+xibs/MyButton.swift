@@ -36,4 +36,12 @@ class MyButton: UIButton {
             self.removeTarget(nil, action: nil, for: .touchDown)
         }
     }
+    func disable() {
+        self.isEnabled = false
+        self.alpha = 0.1
+    }
+    func enable() {
+        self.isEnabled = true
+        self.alpha = 1.0
+    }
 }

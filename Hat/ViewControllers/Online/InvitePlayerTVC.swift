@@ -10,7 +10,7 @@ import UIKit
 
 class InvitePlayerTVC: UITableViewController {
     
-    var playersData: PlayersList!
+    var playersList: PlayersList!
     var rowEdit: Int?
     weak var delegate: InvitePlayerVCDelegate?
     
@@ -19,13 +19,13 @@ class InvitePlayerTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return playersData.players.count
+        return playersList.players.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Players", for: indexPath)
         let textField = cell.viewWithTag(1000) as! UITextField
-        textField.text = playersData.players[indexPath.row].name
+        textField.text = playersList.players[indexPath.row].name
         return cell
     }
     
@@ -49,7 +49,7 @@ class InvitePlayerTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        delegate?.select(player: playersData.players[indexPath.row])
+        tableView.deselectRow(at: indexPath, animated: false)
+        delegate?.select(player: playersList.players[indexPath.row])
     }
 }

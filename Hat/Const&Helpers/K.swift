@@ -8,7 +8,7 @@ struct K {
         static let warnings: [RequestError: String] = [
             .noConnection: "Нет связи или сервер не отвечает",
             .unauthorised: "Пользователь не авторизован",
-            .notFound: "Не найден",
+            .notFound: "Не найдено",
             .duplicate: "Этот Никнейм уже занят",
             .other: "Ошибка сервера"
         ]

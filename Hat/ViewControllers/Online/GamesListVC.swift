@@ -37,7 +37,7 @@ extension GamesListVC {
                 case .success(let gamesList):
                     self?.gamesList = gamesList
                     gamesListTVC.gamesList = self!.gamesList
-                    self?.title = "Доступные игры"
+                    self?.title = (gamesListTVC.gamesList.count > 0) ? "Доступные игры" : "Нет доступных игр"
                     gamesListTVC.tableView.reloadData()
                 case .failure(let error):
                     self?.showWarning(K.Server.warnings[error]!)

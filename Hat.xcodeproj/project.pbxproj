@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C10F3F9E245C6E9E001D353E /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10F3F9D245C6E9E001D353E /* RequestError.swift */; };
 		C10F3FA0245C81FA001D353E /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10F3F9F245C81FA001D353E /* Auth.swift */; };
-		C10F3FA2245C8695001D353E /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10F3FA1245C8695001D353E /* LoginResponse.swift */; };
 		C10F3FA6245E0FF2001D353E /* GameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10F3FA5245E0FF2001D353E /* GameRequest.swift */; };
 		C10F4261245F5719001D353E /* PlayersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10F4260245F5719001D353E /* PlayersList.swift */; };
 		C10F42632461CE76001D353E /* InvitePlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10F42622461CE76001D353E /* InvitePlayerVC.swift */; };
@@ -28,7 +27,6 @@
 		C1669C542458ADC600B19384 /* UserRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1669C532458ADC600B19384 /* UserRequest.swift */; };
 		C1669C562458AEB100B19384 /* NewUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1669C552458AEB100B19384 /* NewUserVC.swift */; };
 		C1669C5B245B5E6D00B19384 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1669C5A245B5E6D00B19384 /* Environment.swift */; };
-		C1669C5D245B8A4400B19384 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1669C5C245B8A4400B19384 /* ErrorResponse.swift */; };
 		C1A1956A21387531000A1A51 /* UIView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1956921387531000A1A51 /* UIView+extension.swift */; };
 		C1A1956C21387710000A1A51 /* MyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1956B21387710000A1A51 /* MyButton.swift */; };
 		C1A1957021391522000A1A51 /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1956F21391522000A1A51 /* UIViewController+extension.swift */; };
@@ -66,7 +64,6 @@
 		BC9B614AEC439B4C0CB0A341 /* Pods-Hat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hat.release.xcconfig"; path = "Target Support Files/Pods-Hat/Pods-Hat.release.xcconfig"; sourceTree = "<group>"; };
 		C10F3F9D245C6E9E001D353E /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
 		C10F3F9F245C81FA001D353E /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
-		C10F3FA1245C8695001D353E /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		C10F3FA5245E0FF2001D353E /* GameRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRequest.swift; sourceTree = "<group>"; };
 		C10F4260245F5719001D353E /* PlayersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersList.swift; sourceTree = "<group>"; };
 		C10F42622461CE76001D353E /* InvitePlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitePlayerVC.swift; sourceTree = "<group>"; };
@@ -87,7 +84,6 @@
 		C1669C532458ADC600B19384 /* UserRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequest.swift; sourceTree = "<group>"; };
 		C1669C552458AEB100B19384 /* NewUserVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserVC.swift; sourceTree = "<group>"; };
 		C1669C5A245B5E6D00B19384 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
-		C1669C5C245B8A4400B19384 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		C1A1956921387531000A1A51 /* UIView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extension.swift"; sourceTree = "<group>"; };
 		C1A1956B21387710000A1A51 /* MyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyButton.swift; sourceTree = "<group>"; };
 		C1A1956F21391522000A1A51 /* UIViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extension.swift"; sourceTree = "<group>"; };
@@ -288,8 +284,6 @@
 				C1D0968D2458329600A03A21 /* GameDBItem.swift */,
 				CA023D0C217561CD008AE815 /* Game.swift */,
 				C1669C4F2458806700B19384 /* Player.swift */,
-				C1669C5C245B8A4400B19384 /* ErrorResponse.swift */,
-				C10F3FA1245C8695001D353E /* LoginResponse.swift */,
 				C10F4260245F5719001D353E /* PlayersList.swift */,
 			);
 			path = Models;
@@ -450,7 +444,6 @@
 				C10F4261245F5719001D353E /* PlayersList.swift in Sources */,
 				CA8A2F9F23B6A034008D7EBE /* BasketVC.swift in Sources */,
 				CA8A2FA123B6A1D2008D7EBE /* BasketTVC.swift in Sources */,
-				C1669C5D245B8A4400B19384 /* ErrorResponse.swift in Sources */,
 				C1D096852458299600A03A21 /* CreateJoinVC.swift in Sources */,
 				C10F42632461CE76001D353E /* InvitePlayerVC.swift in Sources */,
 				C1669C5B245B5E6D00B19384 /* Environment.swift in Sources */,
@@ -465,7 +458,6 @@
 				CA0CD5F223B8B2AB00A76B75 /* AboutTableVC.swift in Sources */,
 				CA023D0F217561CE008AE815 /* Game.swift in Sources */,
 				C1A1956C21387710000A1A51 /* MyButton.swift in Sources */,
-				C10F3FA2245C8695001D353E /* LoginResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

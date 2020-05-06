@@ -27,10 +27,10 @@ struct GameRequest {
                 return
             }
             guard httpResponse.statusCode == 200, let jsonData = data else {
-                if httpResponse.statusCode == 401 {
-                    completion(.failure(.unauthorised))
-                } else {
-                    completion(.failure(.other))
+                switch httpResponse.statusCode {
+                case 401: completion(.failure(.unauthorised))
+                case 404: completion(.failure(.notFound))
+                default: completion(.failure(.other))
                 }
                 return
             }

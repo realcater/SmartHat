@@ -46,8 +46,7 @@ class NewGameVC: UIViewController {
         super.viewWillAppear(animated)
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
         if mode != .offline {
-            play.isEnabled = false
-            play.backgroundColor = K.Colors.lightGray
+            play.disable()
         }
         if mode == .onlineJoin {
             picker.isUserInteractionEnabled = false
@@ -59,8 +58,8 @@ class NewGameVC: UIViewController {
         if segue.identifier == "toPlayersList" {
             loadPlayersList()
             playersTVC = segue.destination as? PlayersTVC
-            playersTVC?.playersData = playersList
-            playersTVC.mode = mode
+            playersTVC?.playersList = playersList
+            playersTVC.mode =  mode
             playersTVC?.delegate = self
         } else if segue.identifier == "toStartPair" {
             let wordsQty = wordsQtyData[picker.selectedRow(inComponent: 0)]
@@ -123,7 +122,7 @@ extension NewGameVC: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if (component == 1) {
-            play.isEnabled = (hardnessData[row] == .separator1) ? false : true
+            if (hardnessData[row] == .separator1) { play.disable() } else { play.enable() }
         }
     }
     
@@ -144,8 +143,9 @@ protocol NewGameVCDelegate: class {
 
 extension NewGameVC: NewGameVCDelegate {
     func add(toGame player: Player) {
-        playersList.players.append(player)
-        playersTVC.tableView.reloadData()
+        playersTVC.insertRow(player: player, at: playersList.players.count)
+        print(playersList.players.map {$0.name})
+        print(playersTVC.playersList.players.map {$0.name})
     }
     func goToInvitePlayerVC() {
         performSegue(withIdentifier: "toInvitePlayer", sender: self)
