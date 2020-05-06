@@ -55,8 +55,17 @@ extension GameTypeVC {
                 switch result {
                 case .success(let user):
                     self?.name = user.name
-                    self?.title = "Как играем, \(self?.name ?? "")?"
-                    self?.performSegue(withIdentifier: "online", sender: self)
+                    Auth().login() { result in
+                        DispatchQueue.main.async { [weak self] in
+                            switch result {
+                            case .success:
+                                self?.title = "Как играем, \(self?.name ?? "")?"
+                                self?.performSegue(withIdentifier: "online", sender: self)
+                            case .failure(let error):
+                                self?.title = K.Server.warnings[error]
+                            }
+                        }
+                    }
                 case .failure(let error):
                     switch error {
                     case .notFound:

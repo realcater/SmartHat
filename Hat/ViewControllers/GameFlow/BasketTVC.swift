@@ -10,7 +10,7 @@ import UIKit
 
 class BasketTVC: UITableViewController {
     
-    var game: GameData!
+    var game: Game!
     
     @objc func buttonSelected(sender: UIButton){
         let row = Int(sender.accessibilityIdentifier!)!

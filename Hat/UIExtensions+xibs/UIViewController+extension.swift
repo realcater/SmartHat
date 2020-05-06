@@ -12,9 +12,9 @@ struct AlertButton {
     var text: String
     var action: () -> Void
 }
-/*
+
 extension UIViewController {
-    func addTaps(for tappedView: UIView? = nil, singleTapAction: Selector? = nil, doubleTapAction: Selector? = nil, anySwipeAction: Selector? = nil) {
+    func addTaps(for tappedView: UIView? = nil, singleTapAction: Selector? = nil, doubleTapAction: Selector? = nil, anySwipeAction: Selector? = nil, singleTapCancelsTouchesInView: Bool = true) {
         let tappedView: UIView = tappedView ?? self.view //if ==nil than we use default view of VC
         var singleTap: UITapGestureRecognizer!
         var doubleTap: UITapGestureRecognizer!
@@ -40,7 +40,7 @@ extension UIViewController {
         if let doubleTap = doubleTap { tappedView.addGestureRecognizer(doubleTap) }
         if let anySwipe = anySwipe { tappedView.addGestureRecognizer(anySwipe) }
         
+        singleTap.cancelsTouchesInView = singleTapCancelsTouchesInView
         tappedView.isUserInteractionEnabled = true
     }
 }
- */

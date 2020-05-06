@@ -12,7 +12,7 @@ class BasketVC: UIViewController {
 
     @IBOutlet weak var popupView: UIView!
     
-    var game: GameData!
+    var game: Game!
     
     @IBAction func pressSaveButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)

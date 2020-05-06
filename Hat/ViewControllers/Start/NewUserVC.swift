@@ -62,13 +62,14 @@ class NewUserVC: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.addTaps(singleTapAction: #selector(singleTap))
+        self.addTaps(singleTapAction: #selector(singleTap))
         popupView.layer.cornerRadius = K.windowsCornerRadius
         textField.delegate = self
         textField.text = name
         textField.becomeFirstResponder()
         textField.layer.borderColor = K.Colors.foreground.cgColor
         textField.layer.borderWidth = 1.0
+        textField.autocorrectionType = .no
     }
     private func showWarning(_ text: String) {
         self.warningTextView.text = text

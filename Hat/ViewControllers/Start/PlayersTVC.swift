@@ -10,12 +10,17 @@ import UIKit
 
 class PlayersTVC: UITableViewController {
     @IBAction func pressAddPlayerButton(_ sender: Any) {
-        insertRow(player: Player(name: ""), at: playersData.players.count)
+        if mode == .offline {
+            insertRow(player: Player(name: ""), at: playersData.players.count)
+        } else if mode == .onlineNew {
+            delegate?.goToInvitePlayerVC()
+        }
     }
     
-    var playersData: PlayersData!
+    var playersData: PlayersList!
     var rowEdit: Int?
     var mode : Mode!
+    weak var delegate: NewGameVCDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +33,7 @@ class PlayersTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PlayersListItem", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Players", for: indexPath)
         let textField = cell.viewWithTag(1000) as! UITextField
         let addPlayerButton = cell.viewWithTag(1001) as! MyButton
         let statusImageView = cell.viewWithTag(1002) as! UIImageView
@@ -39,7 +44,7 @@ class PlayersTVC: UITableViewController {
         } else {
             textField.text = playersData.players[indexPath.row].name
             addPlayerButton.isHidden = true
-            if mode != .offline {
+            if mode == .onlineJoin {
                 statusImageView.image = UIImage(named: K.FileNames.waitIcon)
                 statusImageView.rotate(duration: 4)
             }
@@ -52,7 +57,11 @@ class PlayersTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return (indexPath.row == playersData.players.count) ? false : true
+        return ((indexPath.row == playersData.players.count) || (mode == .onlineJoin) || (mode == .onlineNew)) ? false : true
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return (mode == .offline) ? .delete : .none
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -72,7 +81,7 @@ class PlayersTVC: UITableViewController {
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
-        return true
+        return (mode == .onlineJoin) ? false : true
     }
     
     override func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {

@@ -2,7 +2,8 @@ import UIKit
 
 class GamesListVC: UIViewController {
 
-    var gamesList: [Game.Public] = []
+    var gamesList: [GameDBItem.Public] = []
+    var gameLoaded: Game?
     
     @IBOutlet weak var chooseGameButton: MyButton!
     
@@ -18,33 +19,49 @@ class GamesListVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toGamesList" {
             let gamesListTVC = segue.destination as! GamesListTVC
-            loadGames(to: gamesListTVC)
+            loadGamesList(to: gamesListTVC)
             gamesListTVC.delegate = self
         } else if segue.identifier == "joinGame" {
             let newGameVC = segue.destination as! NewGameVC
             newGameVC.mode = .onlineJoin
+            newGameVC.game = gameLoaded
         }
     }
 }
 
 extension GamesListVC {
-    func loadGames(to gamesListTVC: GamesListTVC) {
+    func loadGamesList(to gamesListTVC: GamesListTVC) {
         GameRequest.searchMine() { [weak self] result in
             DispatchQueue.main.async { [weak self] in
                 switch result {
-                    case .success(let gamesList):
-                        self?.gamesList = gamesList
-                        gamesListTVC.gamesList = self!.gamesList
-                        self?.title = "Доступные игры"
-                        gamesListTVC.tableView.reloadData()
-                    case .failure(let error):
-                        self?.showWarning(K.Server.warnings[error]!)
-                    }
+                case .success(let gamesList):
+                    self?.gamesList = gamesList
+                    gamesListTVC.gamesList = self!.gamesList
+                    self?.title = "Доступные игры"
+                    gamesListTVC.tableView.reloadData()
+                case .failure(let error):
+                    self?.showWarning(K.Server.warnings[error]!)
+                }
             }
         }
     }
     func showWarning(_ text: String) {
         self.title = text
+    }
+
+    func loadGame(gameID: UUID) {
+        showWarning("Загружаем игру...")
+        GameRequest.search(by: gameID) { [weak self] result in
+            DispatchQueue.main.async { [weak self] in
+                switch result {
+                case .success(let game):
+                    self?.gameLoaded = game
+                    self?.performSegue(withIdentifier: "joinGame", sender: self)
+                case .failure(let error):
+                    self?.showWarning(K.Server.warnings[error]!)
+                }
+            }
+        }
     }
 }
 protocol GameListDelegate {
@@ -53,8 +70,12 @@ protocol GameListDelegate {
 extension GamesListVC: GameListDelegate {
     func confirmJoin(gameNumber: Int) {
         let alert = UIAlertController(title: "Присоединиться к игре от  \(gamesList[gameNumber].userOwnerName)?", message: "", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Да", style: .default, handler: {
-                action in self.performSegue(withIdentifier: "joinGame", sender: self)
+            alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { action in
+                guard let gameID = UUID(uuidString: self.gamesList[gameNumber].gameID) else {
+                    self.showWarning(K.Server.warnings[.other]!)
+                    return
+                }
+                self.loadGame(gameID: gameID)
             }))
             alert.addAction(UIAlertAction(title: "Нет", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)

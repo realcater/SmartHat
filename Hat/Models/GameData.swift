@@ -1,6 +1,6 @@
 import Foundation
 
-enum GameDifficulty: CaseIterable {
+enum GameDifficulty: Int, Codable, CaseIterable {
     case veryEasy
     case easy
     case normal
@@ -20,13 +20,13 @@ enum WordsDifficulty {
     case veryHard
 }
 
-enum WordStatus {
+enum WordStatus: Int, Codable {
     case guessed
     case left
     case missed
 }
 
-class GameData {
+class Game {
     var players: [Player] = []
     var leftWords: [String] = []
     var guessedWords: [String] = []
@@ -59,6 +59,24 @@ class GameData {
             let number = Int.random(in: 0 ..< allWords.count)
             Helper.move(str: allWords[number], from: &allWords, to: &leftWords)
         }
+    }
+    
+    class DB: Codable {
+        var players: [Player]
+        var gameDifficulty: GameDifficulty
+        var leftWords: [String]
+        var guessedWords: [String]
+        var missedWords: [String]
+        var basketWords: [String]
+        var basketStatus: [WordStatus]
+        var time: Int
+        var currentWord: String
+        var tellerNumber: Int
+        var listenerNumber: Int
+        var dist: Int
+        var started: Bool
+        var prevTellerNumber: Int
+        var prevListenerNumber: Int
     }
     
     var currentTeller: Player {

@@ -10,7 +10,7 @@ import UIKit
 
 class PlayVC: UIViewController {
     
-    var game: GameData!
+    var game: Game!
     var timer: Timer?
     var timeLeft: Int!
     
@@ -124,7 +124,7 @@ extension PlayVC {
                                          userInfo: nil,
                                         repeats: true)
             timer?.tolerance = 0.1
-            timeLeft = game.time
+            timeLeft = game.settings.roundDuration
             timerLabel.text = String(timeLeft)
         }
     }

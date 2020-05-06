@@ -10,7 +10,7 @@ import UIKit
 
 class GamesListTVC: UITableViewController {
 
-    var gamesList: [Game.Public] = []
+    var gamesList: [GameDBItem.Public] = []
     var delegate: GameListDelegate?
     
     override func viewDidLoad() {

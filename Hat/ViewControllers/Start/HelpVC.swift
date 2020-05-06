@@ -63,7 +63,7 @@ class HelpVC: UIViewController {
     // MARK:- Override class func
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.addTaps(singleTapAction: #selector(singleTap))
+        self.addTaps(singleTapAction: #selector(singleTap))
         popupView.layer.cornerRadius = K.windowsCornerRadius
     }
     override func viewWillAppear(_ animated: Bool) {

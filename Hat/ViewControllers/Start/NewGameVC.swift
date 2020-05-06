@@ -17,10 +17,11 @@ enum Mode {
 class NewGameVC: UIViewController {
 
     var playersTVC: PlayersTVC!
-    var game: GameData!
-    var playersData = PlayersData()
+    var game: Game!
+    var playersList = PlayersList()
     var wordsQtyData = [20,30,40,50,60,70,80,90,100,120,140,160,250,400,600]
     var hardnessData = GameDifficulty.allCases
+    
     var secQtyData = [10,20,30,40,50,60]
     var mode : Mode!
     
@@ -37,7 +38,7 @@ class NewGameVC: UIViewController {
         picker.dataSource = self
         
         picker.selectRow(4, inComponent: 0, animated: true)
-        picker.selectRow(1, inComponent: 1, animated: true)
+        picker.selectRow(2, inComponent: 1, animated: true)
         picker.selectRow(2, inComponent: 2, animated: true)
     }
 
@@ -48,25 +49,45 @@ class NewGameVC: UIViewController {
             play.isEnabled = false
             play.backgroundColor = K.Colors.lightGray
         }
+        if mode == .onlineJoin {
+            picker.isUserInteractionEnabled = false
+        }
         
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPlayersList" {
-            playersData.load()
+            loadPlayersList()
             playersTVC = segue.destination as? PlayersTVC
-            playersTVC?.playersData = playersData
+            playersTVC?.playersData = playersList
             playersTVC.mode = mode
-            
-        }
-        if segue.identifier == "toStartPair" {
+            playersTVC?.delegate = self
+        } else if segue.identifier == "toStartPair" {
             let wordsQty = wordsQtyData[picker.selectedRow(inComponent: 0)]
-            let gameDifficulty = hardnessData[picker.selectedRow(inComponent: 1)]
-            let time = secQtyData[picker.selectedRow(inComponent: 2)]
-            game = GameData(wordsQty: wordsQty, gameDifficulty: gameDifficulty, time: time, players: playersData.players)
+            let difficulty = hardnessData[picker.selectedRow(inComponent: 1)]
+            let roundDuration = secQtyData[picker.selectedRow(inComponent: 2)]
+            let settings = GameSettings(difficulty: difficulty, wordsQty: wordsQty, roundDuration: roundDuration)
+            game = Game(wordsQty: wordsQty, settings: settings, players: playersList.players)
             let startPairVC = segue.destination as? StartPairVC
             startPairVC?.game = self.game
-            playersData.save()
+            playersList.saveToFile()
+        } else if segue.identifier == "toInvitePlayer" {
+            let invitePlayerVC = segue.destination as? InvitePlayerVC
+            invitePlayerVC?.delegate = self
+        }
+    }
+}
+
+extension NewGameVC {
+    func loadPlayersList() {
+        switch mode {
+        case .offline:
+            playersList.loadFromFile()
+        case .onlineNew:
+            let me = Player(id: Auth().id, name: Auth().name!)
+            playersList.players.append(me)
+        default:
+            playersList.players.append(contentsOf: game.players)
         }
     }
 }
@@ -90,18 +111,13 @@ extension NewGameVC: UIPickerViewDelegate {
         pickerLabel.textColor = K.Colors.foreground
         pickerLabel.textAlignment = NSTextAlignment.center
         
-        switch component {
-        case 0:
-            pickerLabel.text = String(wordsQtyData[row])+" слов"
-            pickerLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        case 1:
-            pickerLabel.text = K.gameDiffNames[hardnessData[row]]!
-            pickerLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        default:
-            pickerLabel.text = String(secQtyData[row])+" сек"
-            pickerLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        }
+        pickerLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         
+        switch component {
+        case 0: pickerLabel.text = String(wordsQtyData[row])+" слов"
+        case 1: pickerLabel.text = K.gameDiffNames[hardnessData[row]]!
+        default: pickerLabel.text = String(secQtyData[row])+" сек"
+        }
         return pickerLabel
     }
     
@@ -118,5 +134,20 @@ extension NewGameVC: UIPickerViewDelegate {
         case 1: return 0.46*width
         default: return 0.27*width
         }
+    }
+}
+
+protocol NewGameVCDelegate: class {
+    func add(toGame player: Player)
+    func goToInvitePlayerVC()
+}
+
+extension NewGameVC: NewGameVCDelegate {
+    func add(toGame player: Player) {
+        playersList.players.append(player)
+        playersTVC.tableView.reloadData()
+    }
+    func goToInvitePlayerVC() {
+        performSegue(withIdentifier: "toInvitePlayer", sender: self)
     }
 }
