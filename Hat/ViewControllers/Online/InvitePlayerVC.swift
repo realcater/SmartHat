@@ -2,7 +2,59 @@ import UIKit
 import SwiftKeychainWrapper
 
 class InvitePlayerVC: UIViewController {
+    weak var delegate: NewGameVCDelegate?
     var _player: Player?
+    var playersList = PlayersList()
+    var invitePlayerTVC: InvitePlayerTVC?
+    
+    @IBOutlet weak var warningTextView: UITextView!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var popupView: UIView!
+    @IBOutlet weak var addPlayerButton: MyButton!
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    @objc private func singleTap(recognizer: UITapGestureRecognizer) {
+        if (recognizer.state == UIGestureRecognizer.State.ended) {
+            if nameTextField.isFirstResponder {
+                nameTextField.resignFirstResponder()
+            } else {
+                dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+    
+    @IBAction func pressRegisterButton(_ sender: Any) {
+        if let player = selectedPlayer {
+            if delegate!.add(toGame: player) {
+                dismiss(animated: true, completion: nil)
+            } else {
+                self.showWarning("Игрок уже добавлен в игру")
+            }
+        } else {
+            self.showWarning("Игрок не найден")
+        }
+    }
+        
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.addTaps(singleTapAction: #selector(singleTap), delegate: self)
+        configure(textField: nameTextField)
+        popupView.layer.cornerRadius = K.windowsCornerRadius
+        
+        addPlayerButton.turnClickSoundOn(sound: K.Sounds.click)
+        addPlayerButton.disable()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toInvitePlayerTVC" {
+            self.invitePlayerTVC = segue.destination as? InvitePlayerTVC
+            self.invitePlayerTVC?.playersList = self.playersList
+            self.invitePlayerTVC?.delegate = self
+        }
+    }
+}
+// MARK: - private funcs
+extension InvitePlayerVC {
     var selectedPlayer: Player? {
         set {
             switch (_player != nil, newValue != nil) {
@@ -18,27 +70,27 @@ class InvitePlayerVC: UIViewController {
             return _player
         }
     }
-    var playersList = PlayersList()
-    weak var delegate: NewGameVCDelegate?
-    var invitePlayerTVC: InvitePlayerTVC?
-    
-    @IBOutlet weak var warningTextView: UITextView!
-    @IBOutlet weak var textField: UITextField!
-    @IBOutlet weak var popupView: UIView!
-    @IBOutlet weak var addPlayerButton: MyButton!
-    
-    @IBAction func pressRegisterButton(_ sender: Any) {
-        if let player = selectedPlayer {
-            delegate?.add(toGame: player)
-            dismiss(animated: true, completion: nil)
-        } else {
-            self.showWarning("Игрок не найден")
-            textField.becomeFirstResponder()
-        }
-        
+    private func configure(textField: UITextField) {
+        textField.delegate = self
+        textField.becomeFirstResponder()
+        textField.layer.borderColor = K.Colors.foreground.cgColor
+        textField.layer.borderWidth = 1.0
+        textField.autocorrectionType = .no
+        textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
     }
-
-    @objc func textFieldDidChange(_ textField: UITextField) {
+    private func showWarning(_ text: String) {
+        self.warningTextView.text = text
+        self.warningTextView.isHidden = false
+        //self.titleLabel.text = text
+        //self.titleLabel.textColor = K.Colors.red
+    }
+    private func hideWarning() {
+        self.warningTextView.isHidden = true
+        //self.titleLabel.text = "Введите никнейм игрока"
+        //self.titleLabel.textColor = K.Colors.foreground
+    }
+    
+    @objc private func textFieldDidChange(_ textField: UITextField) {
         hideWarning()
         guard textField.text!.count > 0 else {
             self.playersList.players = []
@@ -50,7 +102,8 @@ class InvitePlayerVC: UIViewController {
         UserRequest.search(with: searchRequestData) { [weak self] result in
             DispatchQueue.main.async { [weak self] in
                 switch result {
-                case .success(let users):
+                case .success(var users):
+                    users = users.filter{ $0.id != Auth().id}
                     var textIsInTheList = false
                     self?.playersList.players = users.map {
                         if $0.name == textField.text {
@@ -71,44 +124,18 @@ class InvitePlayerVC: UIViewController {
             }
         }
     }
-        
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.addTaps(singleTapAction: #selector(singleTap), singleTapCancelsTouchesInView: false)
-        popupView.layer.cornerRadius = K.windowsCornerRadius
-        addPlayerButton.disable()
-        textField.delegate = self
-        textField.becomeFirstResponder()
-        textField.layer.borderColor = K.Colors.foreground.cgColor
-        textField.layer.borderWidth = 1.0
-        textField.autocorrectionType = .no
-        textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
-        
-    }
-    private func showWarning(_ text: String) {
-        self.warningTextView.text = text
-        self.warningTextView.isHidden = false
-    }
-    private func hideWarning() {
-        self.warningTextView.isHidden = true
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toInvitePlayerTVC" {
-            self.invitePlayerTVC = segue.destination as? InvitePlayerTVC
-            self.invitePlayerTVC?.playersList = self.playersList
-            self.invitePlayerTVC?.delegate = self
-        }
-    }
-    
-    @objc private func singleTap(recognizer: UITapGestureRecognizer) {
-        if (recognizer.state == UIGestureRecognizer.State.ended) {
-            if textField.isFirstResponder {
-                textField.resignFirstResponder()
-            } else {
-                dismiss(animated: true, completion: nil)
-            }
-        }
+}
+
+// MARK: - Delegates
+protocol InvitePlayerVCDelegate: class {
+    func select(player: Player)
+}
+
+extension InvitePlayerVC: InvitePlayerVCDelegate {
+    func select(player: Player) {
+        self.selectedPlayer = player
+        nameTextField.text = player.name
+        textFieldDidChange(nameTextField)
     }
 }
 
@@ -117,20 +144,10 @@ extension InvitePlayerVC: UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        //name = textField.text!
-    }
 }
 
-protocol InvitePlayerVCDelegate: class {
-    func select(player: Player)
-}
-
-extension InvitePlayerVC: InvitePlayerVCDelegate {
-    func select(player: Player) {
-        self.selectedPlayer = player
-        textField.text = player.name
-        textField.becomeFirstResponder()
-        textFieldDidChange(textField)
+extension InvitePlayerVC: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return (touch.view == self.view) ? true : false
     }
 }

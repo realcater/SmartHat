@@ -1,6 +1,10 @@
 import Foundation
 
-class Player: Codable {
+class Player: Codable, Equatable {
+    static func == (lhs: Player, rhs: Player) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     var id: UUID?
     var name: String
     var tellGuessed: Int

@@ -761,7 +761,7 @@
         <scene sceneID="MNT-Sn-xP3">
             <objects>
                 <tableViewController storyboardIdentifier="InvitePlayerTVC" id="MZD-Uz-aHJ" customClass="InvitePlayerTVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lfy-Ut-1Y5">
+                    <tableView key="view" clipsSubviews="YES" tag="2007" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lfy-Ut-1Y5">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="108"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -769,7 +769,7 @@
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Players" id="nsf-rv-4UC">
                                 <rect key="frame" x="0.0" y="28" width="280" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nsf-rv-4UC" id="4cB-Ti-ncU">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="2008" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nsf-rv-4UC" id="4cB-Ti-ncU">
                                     <rect key="frame" x="0.0" y="0.0" width="280" height="40"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -867,7 +867,7 @@
         <!--AboutTableVC-->
         <scene sceneID="YMi-Lg-w1B">
             <objects>
-                <tableViewController id="YyH-et-Rqz" userLabel="AboutTableVC" customClass="AboutTableVC" customModule="Hat" sceneMemberID="viewController">
+                <tableViewController id="YyH-et-Rqz" userLabel="AboutTableVC" customClass="AboutTableVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cs6-gW-pFV">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="372"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1354,11 +1354,11 @@
         <scene sceneID="7L0-2X-PXP">
             <objects>
                 <viewController id="Wva-R8-VaF" userLabel="NewUserVC" customClass="NewUserVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Azp-DJ-4qu">
+                    <view key="view" tag="2001" contentMode="scaleToFill" id="Azp-DJ-4qu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4u8-bi-JWE" userLabel="popupView">
+                            <view tag="2002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4u8-bi-JWE" userLabel="popupView">
                                 <rect key="frame" x="20" y="61" width="280" height="272"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" text="Уникальное имя, которое будет отображаться во всех онлайн-играх" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAU-Yu-Bha">
@@ -1419,7 +1419,7 @@
                                     <constraint firstItem="6Ka-be-hvi" firstAttribute="top" secondItem="4u8-bi-JWE" secondAttribute="top" constant="4" id="sCa-92-PMa"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sOz-cQ-wwU" userLabel="confirmButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
+                            <button opaque="NO" tag="2003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sOz-cQ-wwU" userLabel="confirmButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
                                 <rect key="frame" x="20" y="239" width="280" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1461,7 +1461,7 @@
         <!--AboutVC-->
         <scene sceneID="GgR-XZ-Xng">
             <objects>
-                <viewController storyboardIdentifier="AboutVC" id="Jd3-l1-2NL" userLabel="AboutVC" customClass="AboutVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Jd3-l1-2NL" userLabel="AboutVC" customClass="AboutVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3Sh-sg-737">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1512,11 +1512,11 @@
         <scene sceneID="tia-w2-OPg">
             <objects>
                 <viewController id="Ytd-iO-Tiz" userLabel="InviteUserVC" customClass="InvitePlayerVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8ax-gN-5ro">
+                    <view key="view" tag="2001" contentMode="scaleToFill" id="8ax-gN-5ro">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r9k-dQ-67D" userLabel="popupView">
+                            <view tag="2002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r9k-dQ-67D" userLabel="popupView">
                                 <rect key="frame" x="20" y="31" width="280" height="302"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введите никнейм игрока" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8NP-u3-8ie">
@@ -1529,7 +1529,7 @@
                                         <color key="textColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V15-LC-4qG" customClass="MyTextField" customModule="Шляпа_Онлайн" customModuleProvider="target">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="V15-LC-4qG">
                                         <rect key="frame" x="12" y="44" width="256" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="9Kg-c2-9av"/>
@@ -1538,7 +1538,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="75O-dk-d34" userLabel="tableView">
+                                    <containerView opaque="NO" tag="2004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="75O-dk-d34" userLabel="tableView">
                                         <rect key="frame" x="0.0" y="96" width="280" height="108"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="108" id="Phn-wl-fMX"/>
@@ -1548,12 +1548,9 @@
                                         </connections>
                                     </containerView>
                                     <textView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" text="Warning" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pvc-6v-e5B">
-                                        <rect key="frame" x="0.0" y="178" width="280" height="24"/>
+                                        <rect key="frame" x="0.0" y="274" width="280" height="26"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="24" id="nwT-cP-cma"/>
-                                        </constraints>
                                         <color key="textColor" red="0.75294117650000003" green="0.090196078430000007" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -1572,9 +1569,10 @@
                                     <constraint firstItem="V15-LC-4qG" firstAttribute="top" secondItem="8NP-u3-8ie" secondAttribute="bottom" id="VGv-aw-SlC"/>
                                     <constraint firstItem="pvc-6v-e5B" firstAttribute="leading" secondItem="r9k-dQ-67D" secondAttribute="leading" id="Wfx-T4-7wX"/>
                                     <constraint firstItem="75O-dk-d34" firstAttribute="top" secondItem="V15-LC-4qG" secondAttribute="bottom" constant="4" id="cDu-CM-mKg"/>
+                                    <constraint firstAttribute="bottom" secondItem="pvc-6v-e5B" secondAttribute="bottom" constant="2" id="kXk-ZL-jjl"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S4u-Xo-b6c" userLabel="confirmButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
+                            <button opaque="NO" tag="2003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S4u-Xo-b6c" userLabel="confirmButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
                                 <rect key="frame" x="20" y="239" width="280" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1594,8 +1592,8 @@
                             <constraint firstItem="vkt-tC-FsC" firstAttribute="trailing" secondItem="S4u-Xo-b6c" secondAttribute="trailing" constant="20" id="2Zs-K2-lxl"/>
                             <constraint firstItem="S4u-Xo-b6c" firstAttribute="top" secondItem="75O-dk-d34" secondAttribute="bottom" constant="4" id="9qR-hv-fvN"/>
                             <constraint firstItem="S4u-Xo-b6c" firstAttribute="centerY" secondItem="8ax-gN-5ro" secondAttribute="centerY" constant="-10" id="Bqs-Gb-oOh"/>
-                            <constraint firstItem="S4u-Xo-b6c" firstAttribute="top" secondItem="pvc-6v-e5B" secondAttribute="bottom" constant="6" id="I28-sy-AHz"/>
                             <constraint firstItem="S4u-Xo-b6c" firstAttribute="leading" secondItem="vkt-tC-FsC" secondAttribute="leading" constant="20" id="OFK-HA-eBh"/>
+                            <constraint firstItem="pvc-6v-e5B" firstAttribute="top" secondItem="S4u-Xo-b6c" secondAttribute="bottom" constant="-4" id="SHe-aq-nqv"/>
                             <constraint firstItem="r9k-dQ-67D" firstAttribute="leading" secondItem="vkt-tC-FsC" secondAttribute="leading" constant="20" id="eM9-aT-VCQ"/>
                             <constraint firstItem="S4u-Xo-b6c" firstAttribute="top" secondItem="r9k-dQ-67D" secondAttribute="bottom" constant="-94" id="p7k-Jf-Ql3"/>
                             <constraint firstItem="vkt-tC-FsC" firstAttribute="trailing" secondItem="r9k-dQ-67D" secondAttribute="trailing" constant="20" id="tXa-ue-fsD"/>
@@ -1605,8 +1603,9 @@
                     <navigationItem key="navigationItem" id="fOu-zC-DrH"/>
                     <connections>
                         <outlet property="addPlayerButton" destination="S4u-Xo-b6c" id="6Up-G4-tGz"/>
+                        <outlet property="nameTextField" destination="V15-LC-4qG" id="d9c-zH-P6x"/>
                         <outlet property="popupView" destination="r9k-dQ-67D" id="EER-4r-mr7"/>
-                        <outlet property="textField" destination="V15-LC-4qG" id="d9c-zH-P6x"/>
+                        <outlet property="titleLabel" destination="8NP-u3-8ie" id="cxt-Ez-mf8"/>
                         <outlet property="warningTextView" destination="pvc-6v-e5B" id="zw2-hV-Twp"/>
                     </connections>
                 </viewController>

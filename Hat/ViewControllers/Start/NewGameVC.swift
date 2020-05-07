@@ -137,16 +137,20 @@ extension NewGameVC: UIPickerViewDelegate {
 }
 
 protocol NewGameVCDelegate: class {
-    func add(toGame player: Player)
+    func add(toGame player: Player) -> Bool
     func goToInvitePlayerVC()
 }
 
 extension NewGameVC: NewGameVCDelegate {
-    func add(toGame player: Player) {
-        playersTVC.insertRow(player: player, at: playersList.players.count)
-        print(playersList.players.map {$0.name})
-        print(playersTVC.playersList.players.map {$0.name})
+    func add(toGame player: Player) -> Bool {
+        if playersList.players.contains(player) {
+            return false
+        } else {
+            playersTVC.insertRow(player: player, at: playersList.players.count)
+            return true
+        }
     }
+    
     func goToInvitePlayerVC() {
         performSegue(withIdentifier: "toInvitePlayer", sender: self)
     }

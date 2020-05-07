@@ -12,6 +12,10 @@ struct K {
             .duplicate: "Этот Никнейм уже занят",
             .other: "Ошибка сервера"
         ]
+        static let reservedPlayerNames = [
+            "admin",
+            "app"
+        ]
      }
     static let startPlayers: [Player] = [
         Player(name: "Анжела"),
@@ -68,6 +72,7 @@ struct K {
         static let foregroundLighter = UIColor(red: 0, green: 165/256, blue: 1, alpha: 1)
         static let foregroundDarker = UIColor(red: 0, green: 73/256, blue: 121/256, alpha: 1)
         static let redDarker = UIColor(red: 148/256, green: 17/256, blue: 0, alpha: 1)
+        static let red = UIColor(red: 210/256, green: 38/256, blue: 0, alpha: 1)
         static let gray = UIColor.gray
         static let lightGray = UIColor(red: 170/256, green: 170/256, blue: 170/256, alpha: 1)
         static let background = UIColor.white
