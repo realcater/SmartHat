@@ -16,7 +16,7 @@ class StartPairVC: UIViewController {
     @IBOutlet weak var helpMessage: UILabel!
     @IBOutlet weak var listenerNameLabel: UILabel!
     
-    var game: Game!
+    var gameData: GameData!
     
     var btnTimer: Timer?
     var btnTimeLeft: Int!
@@ -51,8 +51,8 @@ class StartPairVC: UIViewController {
     }
     
     private func checkWordsCount() {
-        title = "Осталось: \(game.leftWords.count) слов"
-        if game.leftWords.count == 0 {
+        title = "Осталось: \(gameData.leftWords.count) слов"
+        if gameData.leftWords.count == 0 {
             showResults()
         }
     }
@@ -68,13 +68,13 @@ class StartPairVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
-        game.startNewPair()
-        tellerNameLabel.text = game.currentTeller.name
-        listenerNameLabel.text = game.currentListener.name
+        gameData.startNewPair()
+        tellerNameLabel.text = gameData.currentTeller.name
+        listenerNameLabel.text = gameData.currentListener.name
         checkWordsCount()
         helpMessage.isHidden = true
         
-        if game.isOneFullCircle() {
+        if gameData.isOneFullCircle() {
             tryEndGame(title: "Вы закончили полный круг", message: "Все сыграли со всеми. Закончим игру?")
         }
     }
@@ -82,13 +82,13 @@ class StartPairVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPlay" {
             let playVC = segue.destination as? PlayVC
-            playVC?.game = self.game
+            playVC?.gameData = self.gameData
         } else if segue.identifier == "toEndGame" {
             let endGameVC = segue.destination as? EndGameVC
-            endGameVC?.players = self.game.players.sorted { $0.ttlGuesses > $1.ttlGuesses }
+            endGameVC?.players = self.gameData.players.sorted { $0.ttlGuesses > $1.ttlGuesses }
         } else if segue.identifier == "toBasket" {
             let basketVC = segue.destination as? BasketVC
-            basketVC?.game = game
+            basketVC?.gameData = gameData
         }
     }
 }

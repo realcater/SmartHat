@@ -10,12 +10,12 @@ import UIKit
 
 class BasketTVC: UITableViewController {
     
-    var game: Game!
+    var gameData: GameData!
     
     @objc func buttonSelected(sender: UIButton){
         let row = Int(sender.accessibilityIdentifier!)!
-        game.changeStatusInBasket(for: row)
-        sender.setTitle(K.statusWordImages[game.basketStatus[row]], for: .normal)
+        gameData.changeStatusInBasket(for: row)
+        sender.setTitle(K.statusWordImages[gameData.basketStatus[row]], for: .normal)
     }
     
     override func viewDidLoad() {
@@ -26,17 +26,17 @@ class BasketTVC: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return game.basketWords.count
+        return gameData.basketWords.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WordsListItem", for: indexPath)
         
         let textField = cell.viewWithTag(1000) as! UITextField
-        textField.text = game.basketWords[indexPath.row]
+        textField.text = gameData.basketWords[indexPath.row]
         
         let button = cell.viewWithTag(1001) as! UIButton
-        button.setTitle(K.statusWordImages[game.basketStatus[indexPath.row]], for: .normal)
+        button.setTitle(K.statusWordImages[gameData.basketStatus[indexPath.row]], for: .normal)
         button.accessibilityIdentifier = String(indexPath.row)
         button.addTarget(self, action: #selector(buttonSelected), for: .touchUpInside)
         

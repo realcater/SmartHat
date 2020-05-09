@@ -12,7 +12,7 @@ class BasketVC: UIViewController {
 
     @IBOutlet weak var popupView: UIView!
     
-    var game: Game!
+    var gameData: GameData!
     
     @IBAction func pressSaveButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -27,7 +27,7 @@ class BasketVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toBasketList" {
             let basketTVC = segue.destination as? BasketTVC
-            basketTVC?.game = game
+            basketTVC?.gameData = gameData
         }
     }
 

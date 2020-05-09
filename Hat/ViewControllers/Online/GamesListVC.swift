@@ -2,8 +2,8 @@ import UIKit
 
 class GamesListVC: UIViewController {
 
-    var gamesList: [GameDBItem.Public] = []
-    var gameLoaded: Game?
+    var gamesList: [Game.Public] = []
+    var gameLoaded: GameData?
     
     @IBOutlet weak var chooseGameButton: MyButton!
     
@@ -24,7 +24,7 @@ class GamesListVC: UIViewController {
         } else if segue.identifier == "joinGame" {
             let newGameVC = segue.destination as! NewGameVC
             newGameVC.mode = .onlineJoin
-            newGameVC.game = gameLoaded
+            newGameVC.gameData = gameLoaded
         }
     }
 }

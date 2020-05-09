@@ -1,55 +1,20 @@
 import Foundation
 
-enum GameDifficulty: Int, Codable, CaseIterable {
-    case veryEasy
-    case easy
-    case normal
-    case hard
-    case veryHard
-    case separator1
-    case easyMix
-    case normalMix
-    case hardMix
-}
-
-enum WordsDifficulty {
-    case veryEasy
-    case easy
-    case normal
-    case hard
-    case veryHard
-}
-
-enum WordStatus: Int, Codable {
-    case guessed
-    case left
-    case missed
-}
-
-struct GameSettings: Codable {
-    var difficulty: GameDifficulty
-    var wordsQty: Int
-    var roundDuration: Int
-}
-
-class Game: Codable {
+class GameData: Codable {
     var players: [Player] = []
     var settings: GameSettings
     var leftWords: [String] = []
     var guessedWords: [String] = []
     var missedWords: [String] = []
-    
     var basketWords: [String] = []
     var basketStatus: [WordStatus] = []
-    
     var currentWord: String = ""
     var tellerNumber: Int = -1
     var listenerNumber: Int = 0
     var dist: Int = 1
     var started = false
-    
-    var prevTellerNumber: Int!
-    var prevListenerNumber: Int!
+    var prevTellerNumber: Int = -1
+    var prevListenerNumber: Int = 0
     
     init(wordsQty: Int, settings: GameSettings, players: [Player]) {
         self.players = players
@@ -147,4 +112,36 @@ class Game: Codable {
             basketStatus[num] = .missed
         }
     }
+}
+
+enum GameDifficulty: Int, Codable, CaseIterable {
+    case veryEasy
+    case easy
+    case normal
+    case hard
+    case veryHard
+    case separator1
+    case easyMix
+    case normalMix
+    case hardMix
+}
+
+enum WordsDifficulty {
+    case veryEasy
+    case easy
+    case normal
+    case hard
+    case veryHard
+}
+
+enum WordStatus: Int, Codable {
+    case guessed
+    case left
+    case missed
+}
+
+struct GameSettings: Codable {
+    var difficulty: GameDifficulty
+    var wordsQty: Int
+    var roundDuration: Int
 }

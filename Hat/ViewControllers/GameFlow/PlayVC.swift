@@ -10,7 +10,7 @@ import UIKit
 
 class PlayVC: UIViewController {
     
-    var game: Game!
+    var gameData: GameData!
     var timer: Timer?
     var timeLeft: Int!
     
@@ -32,7 +32,7 @@ class PlayVC: UIViewController {
     
     @IBAction func guessedPressed(_ sender: Any) {
         K.Sounds.correct?.resetAndPlay()
-        game.setWordGuessed()
+        gameData.setWordGuessed()
         
         guessedQty+=1
         updateTitle()
@@ -41,7 +41,7 @@ class PlayVC: UIViewController {
     }
 
     @IBAction func endTurnButtonPressed(_ sender: Any) {
-        game.setWordLeft()
+        gameData.setWordLeft()
         nextPair()
     }
     
@@ -61,8 +61,8 @@ class PlayVC: UIViewController {
         view.backgroundColor = K.Colors.background
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.lightGray]
         circleView.layer.cornerRadius = K.circleLeftTimeCornerRadius
-        game.basketWords = []
-        game.basketStatus = []
+        gameData.basketWords = []
+        gameData.basketStatus = []
         updateTitle()
         nextWord()
         createTimer()
@@ -73,8 +73,8 @@ class PlayVC: UIViewController {
     }
     
     private func nextWord() {
-        if game.getRandomWordFromPool() {
-             wordLabel.text = game.currentWord
+        if gameData.getRandomWordFromPool() {
+             wordLabel.text = gameData.currentWord
         } else {
             cancelTimer()
             performSegue(withIdentifier: "noWords", sender: self)
@@ -89,7 +89,7 @@ class PlayVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "noWords" {
             let endGameVC = segue.destination as? EndGameVC
-            endGameVC?.players = self.game.players.sorted { $0.ttlGuesses > $1.ttlGuesses }
+            endGameVC?.players = self.gameData.players.sorted { $0.ttlGuesses > $1.ttlGuesses }
         }
     }
 
@@ -103,7 +103,7 @@ extension PlayVC {
 
         if timeLeft == 0 {
             K.Sounds.timeOver?.resetAndPlay()
-            game.setWordLeft()
+            gameData.setWordLeft()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                 self.nextPair()
             })
@@ -124,7 +124,7 @@ extension PlayVC {
                                          userInfo: nil,
                                         repeats: true)
             timer?.tolerance = 0.1
-            timeLeft = game.settings.roundDuration
+            timeLeft = gameData.settings.roundDuration
             timerLabel.text = String(timeLeft)
         }
     }
@@ -138,7 +138,7 @@ extension PlayVC {
 // MARK: - Timer
 extension PlayVC {
     @objc func resolveBtnTimer() {
-        game.setWordMissed()
+        gameData.setWordMissed()
         K.Sounds.error?.play()
         nextPair()
     }

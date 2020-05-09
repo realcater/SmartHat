@@ -34,9 +34,9 @@
 		C1D096852458299600A03A21 /* CreateJoinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D096842458299600A03A21 /* CreateJoinVC.swift */; };
 		C1D0968724582C1A00A03A21 /* GamesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D0968624582C1A00A03A21 /* GamesListVC.swift */; };
 		C1D0968C2458305400A03A21 /* GamesListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D0968B2458305400A03A21 /* GamesListTVC.swift */; };
-		C1D0968E2458329600A03A21 /* GameDBItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D0968D2458329600A03A21 /* GameDBItem.swift */; };
+		C1D0968E2458329600A03A21 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D0968D2458329600A03A21 /* Game.swift */; };
 		C1D09690245832E500A03A21 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D0968F245832E500A03A21 /* User.swift */; };
-		CA023D0F217561CE008AE815 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA023D0C217561CD008AE815 /* Game.swift */; };
+		CA023D0F217561CE008AE815 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA023D0C217561CD008AE815 /* GameData.swift */; };
 		CA023D1C2175620E008AE815 /* true.wav in Resources */ = {isa = PBXBuildFile; fileRef = CA023D142175620E008AE815 /* true.wav */; };
 		CA023D1D2175620E008AE815 /* false.wav in Resources */ = {isa = PBXBuildFile; fileRef = CA023D152175620E008AE815 /* false.wav */; };
 		CA023D202175620E008AE815 /* applause.wav in Resources */ = {isa = PBXBuildFile; fileRef = CA023D182175620E008AE815 /* applause.wav */; };
@@ -91,9 +91,9 @@
 		C1D096842458299600A03A21 /* CreateJoinVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateJoinVC.swift; sourceTree = "<group>"; };
 		C1D0968624582C1A00A03A21 /* GamesListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListVC.swift; sourceTree = "<group>"; };
 		C1D0968B2458305400A03A21 /* GamesListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListTVC.swift; sourceTree = "<group>"; };
-		C1D0968D2458329600A03A21 /* GameDBItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDBItem.swift; sourceTree = "<group>"; };
+		C1D0968D2458329600A03A21 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		C1D0968F245832E500A03A21 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		CA023D0C217561CD008AE815 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		CA023D0C217561CD008AE815 /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
 		CA023D142175620E008AE815 /* true.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = true.wav; sourceTree = "<group>"; };
 		CA023D152175620E008AE815 /* false.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = false.wav; sourceTree = "<group>"; };
 		CA023D182175620E008AE815 /* applause.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = applause.wav; sourceTree = "<group>"; };
@@ -215,6 +215,25 @@
 			path = Sounds;
 			sourceTree = "<group>";
 		};
+		C1C93A6F24657B6C00984158 /* DB */ = {
+			isa = PBXGroup;
+			children = (
+				C1D0968F245832E500A03A21 /* User.swift */,
+				C1D0968D2458329600A03A21 /* Game.swift */,
+				C1669C4F2458806700B19384 /* Player.swift */,
+			);
+			path = DB;
+			sourceTree = "<group>";
+		};
+		C1C93A7024657B8500984158 /* GameModels */ = {
+			isa = PBXGroup;
+			children = (
+				CA023D0C217561CD008AE815 /* GameData.swift */,
+				C10F4260245F5719001D353E /* PlayersList.swift */,
+			);
+			path = GameModels;
+			sourceTree = "<group>";
+		};
 		C1D0968824582C4300A03A21 /* Start */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,11 +299,8 @@
 		CA14E7532175644A008C23A6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C1D0968F245832E500A03A21 /* User.swift */,
-				C1D0968D2458329600A03A21 /* GameDBItem.swift */,
-				CA023D0C217561CD008AE815 /* Game.swift */,
-				C1669C4F2458806700B19384 /* Player.swift */,
-				C10F4260245F5719001D353E /* PlayersList.swift */,
+				C1C93A7024657B8500984158 /* GameModels */,
+				C1C93A6F24657B6C00984158 /* DB */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -426,7 +442,7 @@
 				C130986421239082001D894D /* K.swift in Sources */,
 				C10F3FA6245E0FF2001D353E /* GameRequest.swift in Sources */,
 				C1D0968C2458305400A03A21 /* GamesListTVC.swift in Sources */,
-				C1D0968E2458329600A03A21 /* GameDBItem.swift in Sources */,
+				C1D0968E2458329600A03A21 /* Game.swift in Sources */,
 				C1669C502458806700B19384 /* Player.swift in Sources */,
 				C15647222121FC6100F1602E /* NewGameVC.swift in Sources */,
 				C10F426724622642001D353E /* InvitePlayerTVC.swift in Sources */,
@@ -456,7 +472,7 @@
 				C1A1957021391522000A1A51 /* UIViewController+extension.swift in Sources */,
 				CA5916D423B3C74D007625A1 /* StartPairVC.swift in Sources */,
 				CA0CD5F223B8B2AB00A76B75 /* AboutTableVC.swift in Sources */,
-				CA023D0F217561CE008AE815 /* Game.swift in Sources */,
+				CA023D0F217561CE008AE815 /* GameData.swift in Sources */,
 				C1A1956C21387710000A1A51 /* MyButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

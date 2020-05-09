@@ -34,7 +34,13 @@ struct K {
         .normalMix: "Norm Mix (2-4)",
         .hardMix: "Hard Mix (4-5)"
     ]
-    
+    struct  Buttons {
+        static let newGameVCTitle: [Mode: String] = [
+            .offline: "Играть",
+            .onlineJoin: "Играть",
+            .onlineNew: "Создать игру"
+        ]
+    }
     static let wordsDifInGameDif: [GameDifficulty: [WordsDifficulty]] = [
         .veryEasy: [.veryEasy],
         .easy: [.easy],
@@ -73,6 +79,7 @@ struct K {
         static let foregroundDarker = UIColor(red: 0, green: 73/256, blue: 121/256, alpha: 1)
         static let redDarker = UIColor(red: 148/256, green: 17/256, blue: 0, alpha: 1)
         static let red = UIColor(red: 210/256, green: 38/256, blue: 0, alpha: 1)
+        static let green = UIColor(red: 0, green: 110/256, blue: 0, alpha: 1)
         static let gray = UIColor.gray
         static let lightGray = UIColor(red: 170/256, green: 170/256, blue: 170/256, alpha: 1)
         static let background = UIColor.white
@@ -87,6 +94,7 @@ struct K {
         static let background = "textBackground"
         static let addPlayerIcon = "addPlayerIcon"
         static let waitIcon = "waitIcon"
+        static let acceptedIcon = "acceptedIcon"
     }
     struct Delays {
         static let moveOneRow = 0.2

@@ -45,8 +45,14 @@ class PlayersTVC: UITableViewController {
             textField.text = playersList.players[indexPath.row].name
             addPlayerButton.isHidden = true
             if mode == .onlineJoin {
-                statusImageView.image = UIImage(named: K.FileNames.waitIcon)
-                statusImageView.rotate(duration: 4)
+                if playersList.accepted[indexPath.row] {
+                    statusImageView.image = UIImage(named: K.FileNames.acceptedIcon)
+                    statusImageView.tintColor = K.Colors.green
+                } else {
+                    statusImageView.image = UIImage(named: K.FileNames.waitIcon)
+                    statusImageView.tintColor = K.Colors.gray
+                    statusImageView.rotate(duration: 4)
+                }
             }
         }
         if (indexPath.row == playersList.players.count-1) && (textField.text!.count == 0) {
@@ -61,12 +67,16 @@ class PlayersTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return (mode != .onlineJoin) ? .delete : .none
+        return (mode != .onlineJoin) && (playersList.players[indexPath.row].id != Auth().id) ? .delete : .none
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
-            guard playersList.players.count > K.minPlayersQty else { return }
+            if mode == .offline {
+                guard playersList.players.count > K.minPlayersQty else { return }
+            } else if playersList.players.count <= K.minPlayersQty {
+                delegate?.disableButton()
+            }
             playersList.players.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             if let rowEdit = rowEdit, indexPath.row < rowEdit { self.rowEdit!-=1 }

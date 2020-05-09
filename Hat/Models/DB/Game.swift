@@ -1,13 +1,13 @@
 import Foundation
 
-class GameDBItem {
+class Game: Codable {
     var id: UUID
-    var game: Game
+    var data: GameData
     var userOwner: User
     
-    internal init(id: UUID, game: Game, userOwner: User) {
+    internal init(id: UUID, data: GameData, userOwner: User) {
         self.id = id
-        self.game = game
+        self.data = data
         self.userOwner = userOwner
     }
 
@@ -20,6 +20,12 @@ class GameDBItem {
             self.gameID = gameID
             self.userOwnerName = userOwnerName
             self.createdAt = createdAt
+        }
+    }
+    final class UUIDOnly: Codable {
+        var gameID: UUID
+        init(gameID: UUID) {
+            self.gameID = gameID
         }
     }
 }
