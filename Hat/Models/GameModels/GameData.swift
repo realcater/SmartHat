@@ -2,7 +2,7 @@ import Foundation
 
 class GameData: Codable {
     var players: [Player] = []
-    var settings: GameSettings
+    var settings: Settings
     var leftWords: [String] = []
     var guessedWords: [String] = []
     var missedWords: [String] = []
@@ -16,15 +16,16 @@ class GameData: Codable {
     var prevTellerNumber: Int = -1
     var prevListenerNumber: Int = 0
     
-    init(wordsQty: Int, settings: GameSettings, players: [Player]) {
+    init(settings: Settings, players: [Player]) {
         self.players = players
         self.settings = settings
 
         var allWords: [String] = []
-        for wordsDifficulty in K.wordsDifInGameDif[settings.difficulty]! {
+        for wordsDifficulty in settings.difficulty.toWordDifficulty() {
             allWords.append(contentsOf: Words.words[wordsDifficulty]!)
         }
         print(allWords.count)
+        let wordsQty = settings.wordsQty
         for _ in 0..<wordsQty {
             let number = Int.random(in: 0 ..< allWords.count)
             Helper.move(str: allWords[number], from: &allWords, to: &leftWords)
@@ -124,6 +125,32 @@ enum GameDifficulty: Int, Codable, CaseIterable {
     case easyMix
     case normalMix
     case hardMix
+    func toWordDifficulty() -> [WordsDifficulty] {
+        switch self {
+        case .veryEasy: return [.veryEasy]
+        case .easy: return [.easy]
+        case .normal: return [.normal]
+        case .hard: return [.hard]
+        case .veryHard: return [.veryHard]
+        case .separator1: return []
+        case .easyMix: return [.veryEasy, .easy]
+        case .normalMix: return [.easy,.normal,.hard]
+        case .hardMix: return [.hard,.veryHard]
+        }
+    }
+    func name() -> String {
+        switch self {
+        case .veryEasy: return "Детский (1)"
+        case .easy: return "Легко (2)"
+        case .normal: return "Норм (3)"
+        case .hard: return "Сложно (4)"
+        case .veryHard: return "Безумно (5)"
+        case .separator1: return "-----"
+        case .easyMix: return "Easy Mix (1-2)"
+        case .normalMix: return "Norm Mix (2-4)"
+        case .hardMix: return "Hard Mix (4-5)"
+        }
+    }
 }
 
 enum WordsDifficulty {
@@ -140,8 +167,18 @@ enum WordStatus: Int, Codable {
     case missed
 }
 
-struct GameSettings: Codable {
-    var difficulty: GameDifficulty
-    var wordsQty: Int
-    var roundDuration: Int
+struct Settings: Codable {
+    var difficultyRow: Int
+    var wordsQtyRow: Int
+    var roundDurationRow: Int
+    
+    var difficulty: GameDifficulty {
+        return K.SettingsRow.difficulty[difficultyRow]
+    }
+    var wordsQty: Int {
+        return K.SettingsRow.wordsQty[wordsQtyRow]
+    }
+    var roundDuration: Int {
+        return K.SettingsRow.roundDuration[roundDurationRow]
+    }
 }

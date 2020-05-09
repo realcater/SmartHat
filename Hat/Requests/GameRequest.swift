@@ -55,14 +55,15 @@ struct GameRequest {
         }
         dataTask.resume()
     }
-    static func search(by gameID: UUID, completion: @escaping (GameDataResult) -> Void) {
-        let resourceURL = URL(string: K.Server.name + "games/"+gameID.uuidString)
+    static func search(by gameID: UUID, setAccepted: Bool, completion: @escaping (GameDataResult) -> Void) {
+        let URLPostfix = setAccepted ? "/accept" : ""
+        let resourceURL = URL(string: K.Server.name + "games/"+gameID.uuidString+URLPostfix)
         var urlRequest = URLRequest(url: resourceURL!)
         guard let token = Auth().token else {
             completion(.failure(.unauthorised))
             return
         }
-        urlRequest.httpMethod = "GET"
+        urlRequest.httpMethod = setAccepted ? "POST" : "GET"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         let dataTask = URLSession.shared.dataTask(with: urlRequest) { data, response, _ in

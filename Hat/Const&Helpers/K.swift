@@ -16,6 +16,9 @@ struct K {
             "admin",
             "app"
         ]
+        struct Time {
+            static let updatePlayersStatus = 5.0
+        }
      }
     static let startPlayers: [Player] = [
         Player(name: "Анжела"),
@@ -23,17 +26,14 @@ struct K {
         Player(name: "Снежана"),
         Player(name: "Евлампий")
     ]
-    static let gameDiffNames : [GameDifficulty: String] = [
-        .veryEasy: "Детский (1)",
-        .easy: "Легко (2)",
-        .normal: "Норм (3)",
-        .hard: "Сложно (4)",
-        .veryHard: "Безумно (5)",
-        .separator1: "-----",
-        .easyMix: "Easy Mix (1-2)",
-        .normalMix: "Norm Mix (2-4)",
-        .hardMix: "Hard Mix (4-5)"
-    ]
+
+    struct SettingsRow {
+        static let wordsQty = [20,30,40,50,60,70,80,90,100,120,140,160,250,400,600]
+        static let difficulty = GameDifficulty.allCases
+        static let roundDuration = [10,20,30,40,50,60]
+        static let start = Settings(difficultyRow: 2, wordsQtyRow: 4, roundDurationRow: 2)
+    }
+    
     struct  Buttons {
         static let newGameVCTitle: [Mode: String] = [
             .offline: "Играть",
@@ -41,17 +41,7 @@ struct K {
             .onlineNew: "Создать игру"
         ]
     }
-    static let wordsDifInGameDif: [GameDifficulty: [WordsDifficulty]] = [
-        .veryEasy: [.veryEasy],
-        .easy: [.easy],
-        .normal: [.normal],
-        .hard: [.hard],
-        .veryHard: [.veryHard],
-        .separator1: [],
-        .easyMix: [.veryEasy, .easy],
-        .normalMix: [.easy,.normal,.hard],
-        .hardMix: [.hard,.veryHard]
-    ]
+    
     static let minPlayersQty = 2
     
     static let statusWordImages: [WordStatus: String] = [

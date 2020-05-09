@@ -4,6 +4,7 @@ class GamesListVC: UIViewController {
 
     var gamesList: [Game.Public] = []
     var gameLoaded: GameData?
+    var gameID: UUID?
     
     @IBOutlet weak var chooseGameButton: MyButton!
     
@@ -25,11 +26,13 @@ class GamesListVC: UIViewController {
             let newGameVC = segue.destination as! NewGameVC
             newGameVC.mode = .onlineJoin
             newGameVC.gameData = gameLoaded
+            newGameVC.gameID = gameID
         }
     }
 }
 
-extension GamesListVC {
+//MARK:- Private functions
+private extension GamesListVC {
     func loadGamesList(to gamesListTVC: GamesListTVC) {
         GameRequest.searchMine() { [weak self] result in
             DispatchQueue.main.async { [weak self] in
@@ -51,7 +54,7 @@ extension GamesListVC {
 
     func loadGame(gameID: UUID) {
         showWarning("Загружаем игру...")
-        GameRequest.search(by: gameID) { [weak self] result in
+        GameRequest.search(by: gameID, setAccepted: true) { [weak self] result in
             DispatchQueue.main.async { [weak self] in
                 switch result {
                 case .success(let game):
@@ -71,11 +74,12 @@ extension GamesListVC: GameListDelegate {
     func confirmJoin(gameNumber: Int) {
         let alert = UIAlertController(title: "Присоединиться к игре от  \(gamesList[gameNumber].userOwnerName)?", message: "", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { action in
-                guard let gameID = UUID(uuidString: self.gamesList[gameNumber].gameID) else {
+                self.gameID = UUID(uuidString: self.gamesList[gameNumber].gameID)
+                guard self.gameID != nil else {
                     self.showWarning(K.Server.warnings[.other]!)
                     return
                 }
-                self.loadGame(gameID: gameID)
+                self.loadGame(gameID: self.gameID!)
             }))
             alert.addAction(UIAlertAction(title: "Нет", style: .default, handler: nil))
             present(alert, animated: true, completion: nil)

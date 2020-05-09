@@ -15,15 +15,10 @@ enum Mode {
 }
 
 class NewGameVC: UIViewController {
-
     var playersTVC: PlayersTVC!
     var gameData: GameData!
     var gameID: UUID?
     var playersList = PlayersList()
-    var wordsQtyData = [20,30,40,50,60,70,80,90,100,120,140,160,250,400,600]
-    var hardnessData = GameDifficulty.allCases
-    
-    var secQtyData = [10,20,30,40,50,60]
     var mode : Mode!
     var timer: Timer?
     
@@ -42,21 +37,28 @@ class NewGameVC: UIViewController {
         view.backgroundColor = K.Colors.background
         button.turnClickSoundOn(sound: K.Sounds.click)
         title = "Кто играет?"
-        preparePicker()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
         button.setTitle(K.Buttons.newGameVCTitle[mode], for: .normal)
+        preparePicker(setting: gameData?.settings ?? K.SettingsRow.start)
         if mode != .offline {
             button.disable()
         }
         if mode == .onlineJoin {
             picker.isUserInteractionEnabled = false
+            createUpdateStatusTimer()
         }
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        cancelTimer()
+        print("cancel timer")
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPlayersList" {
             loadPlayersList()
@@ -65,25 +67,26 @@ class NewGameVC: UIViewController {
             playersTVC.mode =  mode
             playersTVC?.delegate = self
         } else if segue.identifier == "toStartPair" {
-            createGameData()
-            let startPairVC = segue.destination as? StartPairVC
-            startPairVC?.gameData = self.gameData
-            playersList.saveToFile()
+                createGameData()
+                let startPairVC = segue.destination as? StartPairVC
+                startPairVC?.gameData = self.gameData
+                playersList.saveToFile()
         } else if segue.identifier == "toInvitePlayer" {
             let invitePlayerVC = segue.destination as? InvitePlayerVC
             invitePlayerVC?.delegate = self
         }
     }
 }
+
 // MARK: - Private functions
 private extension NewGameVC {
-    func preparePicker() {
+    func preparePicker(setting: Settings) {
         picker.delegate = self
         picker.dataSource = self
         
-        picker.selectRow(4, inComponent: 0, animated: true)
-        picker.selectRow(2, inComponent: 1, animated: true)
-        picker.selectRow(2, inComponent: 2, animated: true)
+        picker.selectRow(setting.wordsQtyRow, inComponent: 0, animated: true)
+        picker.selectRow(setting.difficultyRow, inComponent: 1, animated: true)
+        picker.selectRow(setting.roundDurationRow, inComponent: 2, animated: true)
     }
     func loadPlayersList() {
         switch mode {
@@ -97,13 +100,11 @@ private extension NewGameVC {
         }
     }
     func createGameData() {
-        let wordsQty = wordsQtyData[picker.selectedRow(inComponent: 0)]
-        let difficulty = hardnessData[picker.selectedRow(inComponent: 1)]
-        let roundDuration = secQtyData[picker.selectedRow(inComponent: 2)]
-        let settings = GameSettings(difficulty: difficulty, wordsQty: wordsQty, roundDuration: roundDuration)
-        gameData = GameData(wordsQty: wordsQty, settings: settings, players: playersList.players)
-        playersList.accepted = playersList.accepted.map { _ in false }
-        print(playersList.accepted)
+        let settings = Settings(
+            difficultyRow: picker.selectedRow(inComponent: 1),
+            wordsQtyRow: picker.selectedRow(inComponent: 0),
+            roundDurationRow: picker.selectedRow(inComponent: 2))
+        gameData = GameData(settings: settings, players: playersList.players)
     }
     
     func createOnlineGame() {
@@ -123,7 +124,7 @@ private extension NewGameVC {
         }
     }
     func changeModeToOnlineJoin() {
-        setMeAcceptedGame()
+        setAcceptedStatuses()
         mode = .onlineJoin
         button.setTitle(K.Buttons.newGameVCTitle[mode], for: .normal)
         title = "Ждём игроков..."
@@ -131,26 +132,22 @@ private extension NewGameVC {
         playersTVC.mode = mode
         picker.isUserInteractionEnabled = false
         playersTVC.tableView.reloadData()
-        createTimer()
+        createUpdateStatusTimer()
     }
-    func setMeAcceptedGame() {
+    func setAcceptedStatuses() {
         let myID = Auth().id
-        playersList.accepted = playersList.players.map {
-            return $0.id == myID ? true : false }
+        playersList.players.forEach { $0.accepted = ($0.id == myID) }
     }
     func showWarning(_ text: String) {
         self.title = text
     }
-    func startListenToChangeAcceptedStatus() {
-        //let timer =
-    }
     
-    func updatePlayersStatus(_ playersStatus: [PlayerStatus]) {
+    func update(from playersStatus: [PlayerStatus]) {
         var anythingChanged = false
         for playerStatus in playersStatus {
-            let index = playersList.players.firstIndex { $0.id == playerStatus.playerID }
-            if let index = index, playersList.accepted[index] != playerStatus.accepted {
-                playersList.accepted[index] = playerStatus.accepted
+            let player = playersList.players.first { $0.id == playerStatus.playerID }
+            if let player = player, player.accepted != playerStatus.accepted {
+                player.accepted = playerStatus.accepted
                 anythingChanged = true
             }
         }
@@ -167,30 +164,33 @@ private extension NewGameVC {
         }
     }
     var everyPlayerReady: Bool {
-        return !playersList.accepted.contains(false)
+        return !playersList.players.map{$0.accepted}.contains(false)
     }
-}
-
-// MARK: - Timer
-extension NewGameVC {
-    @objc func updateTimer() {
+    func updatePlayerStatus() {
         GameRequest.getPlayersStatus(gameID: self.gameID!) { [weak self] result in
             DispatchQueue.main.async { [weak self] in
-                print("update")
                 switch result {
                 case .success(let playersStatus):
-                    self?.updatePlayersStatus(playersStatus)
+                    self?.update(from: playersStatus)
                 case .failure(let error):
                     self?.showWarning(K.Server.warnings[error]!)
                 }
             }
         }
     }
+}
+
+// MARK: - Timer
+extension NewGameVC {
+    @objc func updateTimer() {
+        updatePlayerStatus()
+    }
     
-    func createTimer() {
+    func createUpdateStatusTimer() {
         if timer == nil {
-            timer = Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: K.Server.Time.updatePlayersStatus, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
             timer?.tolerance = 0.1
+            timer?.fire()
         }
     }
     
@@ -207,9 +207,9 @@ extension NewGameVC: UIPickerViewDataSource {
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch component {
-        case 0: return wordsQtyData.count
-        case 1: return hardnessData.count
-        default: return secQtyData.count
+        case 0: return K.SettingsRow.wordsQty.count
+        case 1: return K.SettingsRow.difficulty.count
+        default: return K.SettingsRow.roundDuration.count
         }
     }
 }
@@ -222,16 +222,16 @@ extension NewGameVC: UIPickerViewDelegate {
         pickerLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         
         switch component {
-        case 0: pickerLabel.text = String(wordsQtyData[row])+" слов"
-        case 1: pickerLabel.text = K.gameDiffNames[hardnessData[row]]!
-        default: pickerLabel.text = String(secQtyData[row])+" сек"
+        case 0: pickerLabel.text = String(K.SettingsRow.wordsQty[row])+" слов"
+        case 1: pickerLabel.text = K.SettingsRow.difficulty[row].name()
+        default: pickerLabel.text = String(K.SettingsRow.roundDuration[row])+" сек"
         }
         return pickerLabel
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if (component == 1) {
-            if (hardnessData[row] == .separator1) { button.disable() } else { button.enable() }
+            if (K.SettingsRow.difficulty[row] == .separator1) { button.disable() } else { button.enable() }
         }
     }
     

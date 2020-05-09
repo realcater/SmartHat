@@ -69,7 +69,7 @@
                     <connections>
                         <outlet property="button" destination="QFM-K3-PgJ" id="o52-Yi-1Fg"/>
                         <outlet property="picker" destination="o2N-Fd-Owz" id="IOm-h2-gyC"/>
-                        <segue destination="Ytd-iO-Tiz" kind="presentation" identifier="toInvitePlayer" modalPresentationStyle="overCurrentContext" id="AKL-pA-k9X"/>
+                        <segue destination="Ytd-iO-Tiz" kind="presentation" identifier="toInvitePlayer" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="AKL-pA-k9X"/>
                         <segue destination="S0w-Z2-ro9" kind="show" identifier="toStartPair" id="ckI-8d-lTO"/>
                     </connections>
                 </viewController>
@@ -1678,7 +1678,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xoX-Tc-HJL"/>
         <segue reference="pE8-Mh-x6y"/>
         <segue reference="Vb6-hb-Jzo"/>
         <segue reference="Dmi-q9-w4E"/>

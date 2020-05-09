@@ -45,7 +45,7 @@ class PlayersTVC: UITableViewController {
             textField.text = playersList.players[indexPath.row].name
             addPlayerButton.isHidden = true
             if mode == .onlineJoin {
-                if playersList.accepted[indexPath.row] {
+                if playersList.players[indexPath.row].accepted {
                     statusImageView.image = UIImage(named: K.FileNames.acceptedIcon)
                     statusImageView.tintColor = K.Colors.green
                 } else {
