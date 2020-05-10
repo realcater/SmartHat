@@ -24,7 +24,6 @@ class GameData: Codable {
         for wordsDifficulty in settings.difficulty.toWordDifficulty() {
             allWords.append(contentsOf: Words.words[wordsDifficulty]!)
         }
-        print(allWords.count)
         let wordsQty = settings.wordsQty
         for _ in 0..<wordsQty {
             let number = Int.random(in: 0 ..< allWords.count)

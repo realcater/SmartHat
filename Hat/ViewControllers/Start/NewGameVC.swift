@@ -32,13 +32,19 @@ class NewGameVC: UIViewController {
             performSegue(withIdentifier: "toStartPair", sender: self)
         }
     }
+    
+    @objc func back(sender: UIBarButtonItem) {
+        showAlert()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = K.Colors.background
         button.turnClickSoundOn(sound: K.Sounds.click)
+        if mode != .offline { replaceBackButton() }
         title = "Кто играет?"
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
@@ -56,7 +62,6 @@ class NewGameVC: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         cancelTimer()
-        print("cancel timer")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -80,6 +85,19 @@ class NewGameVC: UIViewController {
 
 // MARK: - Private functions
 private extension NewGameVC {
+    func replaceBackButton() {
+        self.navigationItem.hidesBackButton = true
+        let newBackButton = UIBarButtonItem(title: "❌", style: .plain, target: self, action: #selector(self.back(sender:)))
+        self.navigationItem.leftBarButtonItem = newBackButton
+    }
+    func showAlert() {
+        let alert = UIAlertController(title: "Вы точно хотите покинуть игру?", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { action in
+            self.navigationController?.popViewController(animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: "Нет", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
     func preparePicker(setting: Settings) {
         picker.delegate = self
         picker.dataSource = self
@@ -154,12 +172,9 @@ private extension NewGameVC {
         if anythingChanged {
             playersTVC?.playersList = playersList
             playersTVC?.tableView.reloadData()
-            print("changed")
             if everyPlayerReady {
-                
                 button.enable()
                 title = "Все готовы!"
-                print("ready")
             }
         }
     }
@@ -231,7 +246,11 @@ extension NewGameVC: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if (component == 1) {
-            if (K.SettingsRow.difficulty[row] == .separator1) { button.disable() } else { button.enable() }
+            if (K.SettingsRow.difficulty[row] == .separator1) { button.disable() } else {
+                if playersList.players.count >= K.minPlayersQty {
+                    button.enable()
+                }
+            }
         }
     }
     

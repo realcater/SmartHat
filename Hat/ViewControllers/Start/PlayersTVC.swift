@@ -67,7 +67,13 @@ class PlayersTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return (mode != .onlineJoin) && (playersList.players[indexPath.row].id != Auth().id) ? .delete : .none
+        let isMe = playersList.players[indexPath.row].id == Auth().id
+        switch (mode,isMe) {
+        case (.onlineJoin,_): return .none
+        case (.onlineNew,true): return .none
+        case (.onlineNew,false): return .delete
+        default: return .delete
+        }
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -106,9 +112,6 @@ class PlayersTVC: UITableViewController {
         let itemToMove = playersList.players[sourceIndexPath.row]
         playersList.players.remove(at: sourceIndexPath.row)
         playersList.players.insert(itemToMove, at: destinationIndexPath.row)
-    }
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Cool!")
     }
 }
 //MARK: - Public functions

@@ -73,15 +73,15 @@ protocol GameListDelegate {
 extension GamesListVC: GameListDelegate {
     func confirmJoin(gameNumber: Int) {
         let alert = UIAlertController(title: "Присоединиться к игре от  \(gamesList[gameNumber].userOwnerName)?", message: "", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { action in
-                self.gameID = UUID(uuidString: self.gamesList[gameNumber].gameID)
-                guard self.gameID != nil else {
-                    self.showWarning(K.Server.warnings[.other]!)
-                    return
-                }
-                self.loadGame(gameID: self.gameID!)
-            }))
-            alert.addAction(UIAlertAction(title: "Нет", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { action in
+            self.gameID = UUID(uuidString: self.gamesList[gameNumber].gameID)
+            guard self.gameID != nil else {
+                self.showWarning(K.Server.warnings[.other]!)
+                return
+            }
+            self.loadGame(gameID: self.gameID!)
+        }))
+        alert.addAction(UIAlertAction(title: "Нет", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }
