@@ -20,6 +20,11 @@ enum PlayerStatusResult {
     case failure(RequestError)
 }
 
+enum OkResult {
+    case success
+    case failure(RequestError)
+}
+
 struct GameRequest {
     static func searchMine(completion: @escaping (GamesPublicResult) -> Void) {
         let resourceURL = URL(string: K.Server.name + "games/mine")
@@ -87,6 +92,32 @@ struct GameRequest {
                 print("Can't parse JSON answer")
                 print(token)
             }
+        }
+        dataTask.resume()
+    }
+    
+    static func reject(gameID: UUID, completion: @escaping (OkResult) -> Void) {
+        let resourceURL = URL(string: K.Server.name + "games/"+gameID.uuidString+"/reject")
+        var urlRequest = URLRequest(url: resourceURL!)
+        guard let token = Auth().token else {
+            completion(.failure(.unauthorised))
+            return
+        }
+        urlRequest.httpMethod = "POST"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        let dataTask = URLSession.shared.dataTask(with: urlRequest) { _, response, _ in
+            guard let httpResponse = response as? HTTPURLResponse else {
+                completion(.failure(.noConnection))
+                return
+            }
+            switch httpResponse.statusCode {
+            case 200: completion(.success)
+            case 401: completion(.failure(.unauthorised))
+            case 404: completion(.failure(.notFound))
+            default: completion(.failure(.other))
+            }
+            return
         }
         dataTask.resume()
     }

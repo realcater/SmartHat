@@ -1,18 +1,10 @@
-//
-//  WordsTVC.swift
-//  Spynames
-//
-//  Created by Dmitry Dementyev on 20/01/2019.
-//  Copyright © 2019 Dmitry Dementyev. All rights reserved.
-//
-
 import UIKit
 
 class PlayersTVC: UITableViewController {
     @IBAction func pressAddPlayerButton(_ sender: Any) {
         if mode == .offline {
             insertRow(player: Player(name: ""), at: playersList.players.count)
-        } else if mode == .onlineNew {
+        } else if mode == .onlineCreate {
             delegate?.goToInvitePlayerVC()
         }
     }
@@ -44,7 +36,7 @@ class PlayersTVC: UITableViewController {
         } else {
             textField.text = playersList.players[indexPath.row].name
             addPlayerButton.isHidden = true
-            if mode == .onlineJoin {
+            if mode == .onlineWait {
                 if playersList.players[indexPath.row].accepted {
                     statusImageView.image = UIImage(named: K.FileNames.acceptedIcon)
                     statusImageView.tintColor = K.Colors.green
@@ -63,15 +55,15 @@ class PlayersTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return ((indexPath.row == playersList.players.count) || (mode == .onlineJoin)) ? false : true
+        return ((indexPath.row == playersList.players.count) || (mode == .onlineWait)) ? false : true
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         let isMe = playersList.players[indexPath.row].id == Auth().id
         switch (mode,isMe) {
-        case (.onlineJoin,_): return .none
-        case (.onlineNew,true): return .none
-        case (.onlineNew,false): return .delete
+        case (.onlineWait,_): return .none
+        case (.onlineCreate,true): return .none
+        case (.onlineCreate,false): return .delete
         default: return .delete
         }
     }
@@ -97,7 +89,7 @@ class PlayersTVC: UITableViewController {
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
-        return (mode == .onlineJoin) ? false : true
+        return (mode == .onlineWait) ? false : true
     }
     
     override func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {

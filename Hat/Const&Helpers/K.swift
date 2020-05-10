@@ -34,11 +34,21 @@ struct K {
         static let start = Settings(difficultyRow: 2, wordsQtyRow: 4, roundDurationRow: 2)
     }
     
-    struct  Buttons {
+    struct Buttons {
         static let newGameVCTitle: [Mode: String] = [
             .offline: "Играть",
-            .onlineJoin: "Играть",
-            .onlineNew: "Создать игру"
+            .onlineWait: "Играть",
+            .onlineCreate: "Создать игру",
+            .onlineReady: "Играть"
+        ]
+    }
+    
+    struct Titles {
+        static let newGame: [Mode: String] = [
+            .offline: "Кто играет?",
+            .onlineCreate: "Кто играет?",
+            .onlineWait: "Ждём игроков...",
+            .onlineReady: "Все готовы!"
         ]
     }
     

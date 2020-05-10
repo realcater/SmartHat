@@ -5,6 +5,7 @@ class GamesListVC: UIViewController {
     var gamesList: [Game.Public] = []
     var gameLoaded: GameData?
     var gameID: UUID?
+    var gamesListTVC: GamesListTVC!
     
     @IBOutlet weak var chooseGameButton: MyButton!
     
@@ -14,17 +15,24 @@ class GamesListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         chooseGameButton.turnClickSoundOn(sound: K.Sounds.click)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         title = "Загружаем..."
+        if let gamesListTVC = gamesListTVC {
+            loadGamesList(to: gamesListTVC)
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toGamesList" {
-            let gamesListTVC = segue.destination as! GamesListTVC
+            gamesListTVC = segue.destination as? GamesListTVC
             loadGamesList(to: gamesListTVC)
             gamesListTVC.delegate = self
         } else if segue.identifier == "joinGame" {
             let newGameVC = segue.destination as! NewGameVC
-            newGameVC.mode = .onlineJoin
+            newGameVC.mode = .onlineWait
             newGameVC.gameData = gameLoaded
             newGameVC.gameID = gameID
         }

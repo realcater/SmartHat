@@ -36,6 +36,12 @@
 		C1D0968C2458305400A03A21 /* GamesListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D0968B2458305400A03A21 /* GamesListTVC.swift */; };
 		C1D0968E2458329600A03A21 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D0968D2458329600A03A21 /* Game.swift */; };
 		C1D09690245832E500A03A21 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D0968F245832E500A03A21 /* User.swift */; };
+		C1EA3F342468305500BBC67E /* +updateStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EA3F332468305500BBC67E /* +updateStatus.swift */; };
+		C1EA3F372468314000BBC67E /* +rejectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EA3F362468314000BBC67E /* +rejectButton.swift */; };
+		C1EA3F39246831B400BBC67E /* +PickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EA3F38246831B400BBC67E /* +PickerDelegate.swift */; };
+		C1EA3F3B2468322900BBC67E /* +NewGameDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EA3F3A2468322900BBC67E /* +NewGameDelegate.swift */; };
+		C1EA3F3D246832E300BBC67E /* +createGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EA3F3C246832E300BBC67E /* +createGame.swift */; };
+		C1EA3F3F2468332E00BBC67E /* +prepareVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EA3F3E2468332E00BBC67E /* +prepareVC.swift */; };
 		CA023D0F217561CE008AE815 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA023D0C217561CD008AE815 /* GameData.swift */; };
 		CA023D1C2175620E008AE815 /* true.wav in Resources */ = {isa = PBXBuildFile; fileRef = CA023D142175620E008AE815 /* true.wav */; };
 		CA023D1D2175620E008AE815 /* false.wav in Resources */ = {isa = PBXBuildFile; fileRef = CA023D152175620E008AE815 /* false.wav */; };
@@ -93,6 +99,12 @@
 		C1D0968B2458305400A03A21 /* GamesListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListTVC.swift; sourceTree = "<group>"; };
 		C1D0968D2458329600A03A21 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		C1D0968F245832E500A03A21 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C1EA3F332468305500BBC67E /* +updateStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+updateStatus.swift"; sourceTree = "<group>"; };
+		C1EA3F362468314000BBC67E /* +rejectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+rejectButton.swift"; sourceTree = "<group>"; };
+		C1EA3F38246831B400BBC67E /* +PickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+PickerDelegate.swift"; sourceTree = "<group>"; };
+		C1EA3F3A2468322900BBC67E /* +NewGameDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+NewGameDelegate.swift"; sourceTree = "<group>"; };
+		C1EA3F3C246832E300BBC67E /* +createGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+createGame.swift"; sourceTree = "<group>"; };
+		C1EA3F3E2468332E00BBC67E /* +prepareVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+prepareVC.swift"; sourceTree = "<group>"; };
 		CA023D0C217561CD008AE815 /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
 		CA023D142175620E008AE815 /* true.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = true.wav; sourceTree = "<group>"; };
 		CA023D152175620E008AE815 /* false.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = false.wav; sourceTree = "<group>"; };
@@ -242,9 +254,8 @@
 				CA0CD5EF23B8B2AB00A76B75 /* AboutVC.swift */,
 				CA0CD5F323B8BA7C00A76B75 /* HelpVC.swift */,
 				C1D0968224579A0E00A03A21 /* GameTypeVC.swift */,
-				C15647212121FC6100F1602E /* NewGameVC.swift */,
-				CA3281D02376DAD200822B22 /* PlayersTVC.swift */,
 				C1669C552458AEB100B19384 /* NewUserVC.swift */,
+				C1EA3F35246830FE00BBC67E /* NewGameVC */,
 			);
 			path = Start;
 			sourceTree = "<group>";
@@ -272,6 +283,21 @@
 				CA8A2FA023B6A1D2008D7EBE /* BasketTVC.swift */,
 			);
 			path = GameFlow;
+			sourceTree = "<group>";
+		};
+		C1EA3F35246830FE00BBC67E /* NewGameVC */ = {
+			isa = PBXGroup;
+			children = (
+				C15647212121FC6100F1602E /* NewGameVC.swift */,
+				C1EA3F3E2468332E00BBC67E /* +prepareVC.swift */,
+				C1EA3F362468314000BBC67E /* +rejectButton.swift */,
+				C1EA3F332468305500BBC67E /* +updateStatus.swift */,
+				C1EA3F3C246832E300BBC67E /* +createGame.swift */,
+				C1EA3F38246831B400BBC67E /* +PickerDelegate.swift */,
+				C1EA3F3A2468322900BBC67E /* +NewGameDelegate.swift */,
+				CA3281D02376DAD200822B22 /* PlayersTVC.swift */,
+			);
+			path = NewGameVC;
 			sourceTree = "<group>";
 		};
 		CA14E751217563DA008C23A6 /* UIExtensions+xibs */ = {
@@ -451,22 +477,28 @@
 				CA023D2321756243008AE815 /* AVAudioPlayer+extension.swift in Sources */,
 				C1561CF42134186E00C8B674 /* StartVC.swift in Sources */,
 				C1D0968324579A0E00A03A21 /* GameTypeVC.swift in Sources */,
+				C1EA3F3B2468322900BBC67E /* +NewGameDelegate.swift in Sources */,
 				C1669C562458AEB100B19384 /* NewUserVC.swift in Sources */,
 				C1D0968724582C1A00A03A21 /* GamesListVC.swift in Sources */,
+				C1EA3F3D246832E300BBC67E /* +createGame.swift in Sources */,
 				C1669C542458ADC600B19384 /* UserRequest.swift in Sources */,
 				C15647202121FC6100F1602E /* AppDelegate.swift in Sources */,
 				CA0CD5F123B8B2AB00A76B75 /* AboutVC.swift in Sources */,
 				CAC9D91823B3E0F9005472AD /* Helper.swift in Sources */,
 				C10F4261245F5719001D353E /* PlayersList.swift in Sources */,
+				C1EA3F372468314000BBC67E /* +rejectButton.swift in Sources */,
 				CA8A2F9F23B6A034008D7EBE /* BasketVC.swift in Sources */,
 				CA8A2FA123B6A1D2008D7EBE /* BasketTVC.swift in Sources */,
+				C1EA3F3F2468332E00BBC67E /* +prepareVC.swift in Sources */,
 				C1D096852458299600A03A21 /* CreateJoinVC.swift in Sources */,
 				C10F42632461CE76001D353E /* InvitePlayerVC.swift in Sources */,
 				C1669C5B245B5E6D00B19384 /* Environment.swift in Sources */,
 				C1A1956A21387531000A1A51 /* UIView+extension.swift in Sources */,
+				C1EA3F39246831B400BBC67E /* +PickerDelegate.swift in Sources */,
 				CA3281D12376DAD200822B22 /* PlayersTVC.swift in Sources */,
 				CA8A2F9D23B66DF7008D7EBE /* EndGameTVC.swift in Sources */,
 				CA5916D623B3CBF1007625A1 /* Words.swift in Sources */,
+				C1EA3F342468305500BBC67E /* +updateStatus.swift in Sources */,
 				CA8A2F9B23B66C64008D7EBE /* EndGameVC.swift in Sources */,
 				CA0CD5F423B8BA7C00A76B75 /* HelpVC.swift in Sources */,
 				C1A1957021391522000A1A51 /* UIViewController+extension.swift in Sources */,
