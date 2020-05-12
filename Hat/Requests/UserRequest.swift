@@ -10,6 +10,12 @@ enum UserPublicResults {
     case failure(RequestError)
 }
 
+enum UserTimeResult {
+    case success(UserTime)
+    case failure(RequestError)
+}
+
+
 struct UserRequest {
     static func search(by userID: UUID?, completion: @escaping (UserPublicResult) -> Void) {
         let resourceURL = URL(string: K.Server.name + "users/"+userID!.uuidString)
@@ -108,6 +114,58 @@ struct UserRequest {
         }
         dataTask.resume()
     }
+
+    static func confirmOnline(completion: @escaping (OkResult) -> Void) {
+        let resourceURL = URL(string: K.Server.name + "users/online")
+        var urlRequest = URLRequest(url: resourceURL!)
+        urlRequest.httpMethod = "POST"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue("Bearer \(Environment.appKey)", forHTTPHeaderField: "Authorization")
+        let dataTask = URLSession.shared.dataTask(with: urlRequest) { _, response, _ in
+            guard let httpResponse = response as? HTTPURLResponse else {
+                completion(.failure(.noConnection))
+                return
+            }
+            switch httpResponse.statusCode {
+                case 200: completion(.success)
+                case 401: completion(.failure(.unauthorised))
+                case 404: completion(.failure(.notFound))
+                default: completion(.failure(.other))
+                }
+                return
+            }
+            dataTask.resume()
+    }
+    
+    static func getLastTimeOnline(userID: UUID?, completion: @escaping (UserTimeResult) -> Void) {
+        let resourceURL = URL(string: K.Server.name + "users/"+userID!.uuidString+"/online")
+        var urlRequest = URLRequest(url: resourceURL!)
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue("Bearer \(Environment.appKey)", forHTTPHeaderField: "Authorization")
+        let dataTask = URLSession.shared.dataTask(with: urlRequest) { data, response, _ in
+            guard let httpResponse = response as? HTTPURLResponse else {
+                completion(.failure(.noConnection))
+                return
+            }
+            guard httpResponse.statusCode == 200, let jsonData = data else {
+                switch httpResponse.statusCode {
+                case 401: completion(.failure(.unauthorised))
+                case 404: completion(.failure(.notFound))
+                default: completion(.failure(.other))
+                }
+                return
+            }
+            do {
+                let userTime = try JSONDecoder().decode(UserTime.self, from: jsonData)
+                completion(.success(userTime))
+            } catch {
+                completion(.failure(.other))
+                print("Can't parse JSON answer")
+            }
+        }
+        dataTask.resume()
+    }
 }
 
 struct SearchRequestData: Codable {
@@ -118,4 +176,9 @@ struct SearchRequestData: Codable {
 struct ErrorResponse: Codable {
     var error: Bool
     var reason: String
+}
+
+struct UserTime: Codable {
+    let id: UUID
+    let lastTimeOnline: String
 }

@@ -4,7 +4,7 @@ import UIKit
 extension NewGameVC {
     func replaceBackButton() {
         self.navigationItem.hidesBackButton = true
-        let newBackButton = UIBarButtonItem(title: "❌", style: .plain, target: self, action: #selector(self.back(sender:)))
+        let newBackButton = UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(self.back(sender:)))
         self.navigationItem.leftBarButtonItem = newBackButton
     }
     func showAlert() {

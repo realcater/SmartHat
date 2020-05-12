@@ -197,4 +197,10 @@ struct GameRequest {
 struct PlayerStatus: Codable {
     var playerID: UUID
     var accepted: Bool
+    var lastTimeInGame: String
+    
+    var inGame: Bool {
+        guard let date = lastTimeInGame.convertFromZ() else { return false }
+        return -date.timeIntervalSinceNow < K.Server.Time.offline
+    }
 }

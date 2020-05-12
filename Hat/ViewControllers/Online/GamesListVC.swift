@@ -6,6 +6,7 @@ class GamesListVC: UIViewController {
     var gameLoaded: GameData?
     var gameID: UUID?
     var gamesListTVC: GamesListTVC!
+    var timer: Timer?
     
     @IBOutlet weak var chooseGameButton: MyButton!
     
@@ -20,9 +21,12 @@ class GamesListVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         title = "Загружаем..."
-        if let gamesListTVC = gamesListTVC {
-            loadGamesList(to: gamesListTVC)
-        }
+        createLoadGameListTimer()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        cancelTimer()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -75,6 +79,8 @@ private extension GamesListVC {
         }
     }
 }
+
+// MARK: - GameListDelegate
 protocol GameListDelegate {
     func confirmJoin(gameNumber: Int)
 }
@@ -91,5 +97,27 @@ extension GamesListVC: GameListDelegate {
         }))
         alert.addAction(UIAlertAction(title: "Нет", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+}
+
+// MARK: - Timer
+extension GamesListVC {
+    @objc func updateTimer() {
+        if let gamesListTVC = gamesListTVC {
+            loadGamesList(to: gamesListTVC)
+        }
+    }
+    
+    func createLoadGameListTimer() {
+        if timer == nil {
+            timer = Timer.scheduledTimer(timeInterval: K.Server.Time.updateGameList, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+            timer?.tolerance = 0.1
+            timer?.fire()
+        }
+    }
+    
+    func cancelTimer() {
+        timer?.invalidate()
+        timer = nil
     }
 }

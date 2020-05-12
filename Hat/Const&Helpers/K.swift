@@ -18,6 +18,8 @@ struct K {
         ]
         struct Time {
             static let updatePlayersStatus = 5.0
+            static let updateGameList = 5.0
+            static let offline = 10.0
         }
      }
     static let startPlayers: [Player] = [
@@ -65,7 +67,7 @@ struct K {
     
     
     struct Sounds {
-        static let click = initSound(filename: "click.wav", volume: 0.1)
+        static let click = initSound(filename: "click.wav", volume: 0.02)
         static let correct = initSound(filename: "true.wav", volume: 0.2)
         static let error = initSound(filename: "false.wav", volume: 0.1)
         static let applause = initSound(filename: "applause.wav", volume: 0.2)
@@ -78,8 +80,8 @@ struct K {
         static let foregroundLighter = UIColor(red: 0, green: 165/256, blue: 1, alpha: 1)
         static let foregroundDarker = UIColor(red: 0, green: 73/256, blue: 121/256, alpha: 1)
         static let redDarker = UIColor(red: 148/256, green: 17/256, blue: 0, alpha: 1)
-        static let red = UIColor(red: 210/256, green: 38/256, blue: 0, alpha: 1)
-        static let green = UIColor(red: 0, green: 110/256, blue: 0, alpha: 1)
+        static let red = UIColor(red: 0.8, green: 0.2, blue: 0, alpha: 1)
+        static let green = UIColor(red: 0.2, green: 0.7, blue: 0, alpha: 1)
         static let gray = UIColor.gray
         static let lightGray = UIColor(red: 170/256, green: 170/256, blue: 170/256, alpha: 1)
         static let background = UIColor.white

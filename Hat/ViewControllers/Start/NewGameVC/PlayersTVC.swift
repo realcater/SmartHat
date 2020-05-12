@@ -31,18 +31,19 @@ class PlayersTVC: UITableViewController {
         let statusImageView = cell.viewWithTag(1002) as! UIImageView
         if (indexPath.row == playersList.players.count) {
             textField.isHidden = true
-            addPlayerButton.isHidden = false
+            addPlayerButton.isHidden = (mode == .onlineWait) || (mode == .onlineReady)
             addPlayerButton.turnClickSoundOn(sound: K.Sounds.click)
         } else {
             textField.text = playersList.players[indexPath.row].name
+            textField.isUserInteractionEnabled = (mode == .offline)
             addPlayerButton.isHidden = true
             if mode == .onlineWait {
                 if playersList.players[indexPath.row].accepted {
                     statusImageView.image = UIImage(named: K.FileNames.acceptedIcon)
-                    statusImageView.tintColor = K.Colors.green
+                    statusImageView.tintColor = playersList.players[indexPath.row].inGame ? K.Colors.green : K.Colors.red
                 } else {
                     statusImageView.image = UIImage(named: K.FileNames.waitIcon)
-                    statusImageView.tintColor = K.Colors.gray
+                    statusImageView.tintColor = K.Colors.foreground
                     statusImageView.rotate(duration: 4)
                 }
             }
@@ -55,7 +56,7 @@ class PlayersTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return ((indexPath.row == playersList.players.count) || (mode == .onlineWait)) ? false : true
+        return ((indexPath.row == playersList.players.count) || (mode == .onlineWait) || (mode == .onlineReady)) ? false : true
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {

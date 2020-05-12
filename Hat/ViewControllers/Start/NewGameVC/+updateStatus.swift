@@ -10,6 +10,7 @@ extension NewGameVC {
                     self?.update(from: playersStatus)
                 case .failure(let error):
                     self?.showWarning(K.Server.warnings[error]!)
+                    if error == .noConnection { self?.makeMeNotInGame() }
                 }
             }
         }
@@ -19,9 +20,15 @@ extension NewGameVC {
         var anythingChanged = false
         for playerStatus in playersStatus {
             let player = playersList.players.first { $0.id == playerStatus.playerID }
-            if let player = player, player.accepted != playerStatus.accepted {
-                player.accepted = playerStatus.accepted
-                anythingChanged = true
+            if let player = player {
+                if player.accepted != playerStatus.accepted {
+                    player.accepted = playerStatus.accepted
+                    anythingChanged = true
+                }
+                if player.inGame != playerStatus.inGame {
+                    player.inGame = playerStatus.inGame
+                    anythingChanged = true
+                }
             }
         }
         if anythingChanged {
@@ -32,7 +39,14 @@ extension NewGameVC {
     }
     
     var everyPlayerReady: Bool {
-        return !playersList.players.map{$0.accepted}.contains(false)
+        return !playersList.players.map{ $0.accepted && $0.inGame }.contains(false)
+    }
+    func makeMeNotInGame() {
+        let myID = Auth().id
+        if let player = playersList.players.first(where: { $0.id == myID }) {
+            player.inGame = false
+        }
+        playersTVC.tableView.reloadData()
     }
 }
 

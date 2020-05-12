@@ -38,7 +38,7 @@ class GamesListTVC: UITableViewController {
         } else {
             gameOwnerNameTextField.text = gamesList[indexPath.row-1].userOwnerName
             let stringCreatedAt = gamesList[indexPath.row-1].createdAt
-            createdAtTextField.text = Helper.getStringTime(from: stringCreatedAt)
+            createdAtTextField.text = stringCreatedAt.convertFromZ()?.convertTo(use: "HH:mm")
         }
         return cell
     }

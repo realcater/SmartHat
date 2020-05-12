@@ -1308,15 +1308,15 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Имя" textAlignment="natural" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="E98-VU-K6d">
-                                            <rect key="frame" x="20" y="0.0" width="172" height="44"/>
+                                        <textField opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Автор" textAlignment="natural" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="E98-VU-K6d">
+                                            <rect key="frame" x="20" y="0.0" width="160" height="44"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="textColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
-                                        <textField opaque="NO" userInteractionEnabled="NO" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="12.04.2020" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jrv-u5-Mvz">
-                                            <rect key="frame" x="212" y="0.0" width="100" height="44"/>
+                                        <textField opaque="NO" userInteractionEnabled="NO" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Создана" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jrv-u5-Mvz">
+                                            <rect key="frame" x="200" y="0.0" width="100" height="44"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="UOo-Bh-u8y"/>
@@ -1334,7 +1334,7 @@
                                         <constraint firstItem="E98-VU-K6d" firstAttribute="leading" secondItem="pQX-0X-Jqz" secondAttribute="leading" constant="20" id="M8O-Nk-V9c"/>
                                         <constraint firstAttribute="bottom" secondItem="Jrv-u5-Mvz" secondAttribute="bottom" id="RU2-i3-D2a"/>
                                         <constraint firstAttribute="bottom" secondItem="E98-VU-K6d" secondAttribute="bottom" id="c2Y-3V-LTd"/>
-                                        <constraint firstAttribute="trailing" secondItem="Jrv-u5-Mvz" secondAttribute="trailing" constant="8" id="gJu-k7-b5O"/>
+                                        <constraint firstAttribute="trailing" secondItem="Jrv-u5-Mvz" secondAttribute="trailing" constant="20" id="gJu-k7-b5O"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

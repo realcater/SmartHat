@@ -17,15 +17,4 @@ class Helper {
         return String((0..<length).compactMap{ _ in pswdChars.randomElement() })
         
     }
-
-    static func getStringTime(from DateTime: String) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
-        let date = dateFormatter.date(from: DateTime)
-        
-        dateFormatter.dateFormat = "hh:mm"
-        dateFormatter.timeZone = NSTimeZone.local
-        return dateFormatter.string(from: date!)
-    }
 }

@@ -10,6 +10,7 @@ class Player: Codable, Equatable {
     var tellGuessed: Int
     var listenGuessed: Int
     var accepted: Bool
+    var inGame: Bool
     var ttlGuesses: Int {
         get {
             return tellGuessed + listenGuessed
@@ -21,5 +22,6 @@ class Player: Codable, Equatable {
         tellGuessed = 0
         listenGuessed = 0
         accepted = false
+        inGame = false
     }
 }

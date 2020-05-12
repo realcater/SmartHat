@@ -480,8 +480,8 @@
             filePath = "Hat/Requests/UserRequest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "search(by:completion:)"
             landmarkType = "7">
             <Locations>
