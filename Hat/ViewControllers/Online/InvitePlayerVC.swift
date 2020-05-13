@@ -98,7 +98,7 @@ extension InvitePlayerVC {
             invitePlayerTVC?.tableView.reloadData()
             return
         }
-        let searchRequestData = SearchRequestData(text: textField.text!, maxResultsQty: 10)
+        let searchRequestData = SearchRequestData(text: textField.text!.uppercased(), maxResultsQty: 10)
         UserRequest.search(with: searchRequestData) { [weak self] result in
             DispatchQueue.main.async { [weak self] in
                 switch result {
@@ -106,7 +106,7 @@ extension InvitePlayerVC {
                     users = users.filter{ $0.id != Auth().id}
                     var textIsInTheList = false
                     self?.playersList.players = users.map {
-                        if $0.name == textField.text {
+                        if $0.name.uppercased() == textField.text?.uppercased() {
                             self?.selectedPlayer = $0.makePlayer()
                             textIsInTheList = true
                         }

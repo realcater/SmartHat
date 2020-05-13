@@ -70,17 +70,12 @@ class NewGameVC: UIViewController {
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
         preparePicker(setting: gameData?.settings ?? K.SettingsRow.start)
         mode = _mode
-        if mode == .onlineWait {
+        if (mode == .onlineWait) || (mode == .onlineReady) {
             picker.isUserInteractionEnabled = false
             createUpdateStatusTimer()
         }
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        cancelTimer()
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPlayersList" {
             loadPlayersList()
@@ -89,10 +84,15 @@ class NewGameVC: UIViewController {
             playersTVC.mode =  mode
             playersTVC?.delegate = self
         } else if segue.identifier == "toStartPair" {
+            if mode == .offline {
                 createGameData()
-                let startPairVC = segue.destination as? StartPairVC
-                startPairVC?.gameData = self.gameData
                 playersList.saveToFile()
+            }
+            let startPairVC = segue.destination as? StartPairVC
+            startPairVC?.gameData = self.gameData
+            startPairVC?.mode = mode
+            startPairVC?.gameID = gameID
+            
         } else if segue.identifier == "toInvitePlayer" {
             let invitePlayerVC = segue.destination as? InvitePlayerVC
             invitePlayerVC?.delegate = self

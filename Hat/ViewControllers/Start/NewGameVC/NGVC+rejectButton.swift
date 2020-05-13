@@ -21,7 +21,7 @@ extension NewGameVC {
             DispatchQueue.main.async { [weak self] in
                 switch result {
                 case .success:
-                    break
+                    self?.cancelTimer()
                 case .failure(let error):
                     self?.showWarning(K.Server.warnings[error]!)
                 }

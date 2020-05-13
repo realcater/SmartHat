@@ -27,7 +27,7 @@ class NewUserVC: UIViewController {
             showWarning(K.Name.maxLengthWarning)
             return
         }
-        let password = Helper.generatePassword()
+        let password = "leoleo"//Helper.generatePassword()
         let user = User(id: id, name: name, password: password)
         UserRequest.create(user) { [weak self] result in
             switch result {

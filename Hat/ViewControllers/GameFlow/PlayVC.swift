@@ -11,8 +11,12 @@ import UIKit
 class PlayVC: UIViewController {
     
     var gameData: GameData!
-    var timer: Timer?
+    var gameID: UUID?
+    
+    
+    var turnTimer: Timer?
     var timeLeft: Int!
+    var lastTime: Int!
     
     var btnTimer: Timer?
     var btnTimeLeft: Int!
@@ -20,70 +24,23 @@ class PlayVC: UIViewController {
     var guessedQty: Int = 0
     
     @IBOutlet weak var wordLabel: UILabel!
-    
     @IBOutlet weak var circleView: UIView!
     @IBOutlet weak var timerLabel: UILabel!
-    
     @IBOutlet weak var guessedButton: MyButton!
     @IBOutlet weak var notGuessedButton: MyButton!
     @IBOutlet weak var endTurnButton: MyButton!
-    
     @IBOutlet weak var helpMessage: UILabel!
-    
-    @IBAction func guessedPressed(_ sender: Any) {
-        K.Sounds.correct?.resetAndPlay()
-        gameData.setWordGuessed()
-        
-        guessedQty+=1
-        updateTitle()
-        
-        nextWord()
-    }
-
-    @IBAction func endTurnButtonPressed(_ sender: Any) {
-        gameData.setWordLeft()
-        nextPair()
-    }
-    
-    @IBAction func notGuessedTouchDown(_ sender: Any) {
-        notGuessedButton.backgroundColor = K.Colors.redDarker
-        createBtnTimer(duration: K.Delays.notGuessedBtn)
-    }
-    @IBAction func notGuessedTouchUp(_ sender: Any) {
-        notGuessedButton.backgroundColor = K.Colors.gray
-        helpMessage.isHidden = false
-        cancelBtnTimer()
-        
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = K.Colors.background
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.lightGray]
-        circleView.layer.cornerRadius = K.circleLeftTimeCornerRadius
-        gameData.basketWords = []
-        gameData.basketStatus = []
+        circleView.layer.cornerRadius = K.CircleCornerRadius.big
+        lastTime = gameData.settings.roundDuration
+        gameData.clear()
         updateTitle()
         nextWord()
-        createTimer()
-    }
-
-    private func updateTitle() {
-        title = "Угадано: \(guessedQty) слов"
-    }
-    
-    private func nextWord() {
-        if gameData.getRandomWordFromPool() {
-             wordLabel.text = gameData.currentWord
-        } else {
-            cancelTimer()
-            performSegue(withIdentifier: "noWords", sender: self)
-        }
-    }
-    
-    private func nextPair() {
-        cancelTimer()
-        navigationController?.popViewController(animated: true)
+        createTurnTimer()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -95,15 +52,89 @@ class PlayVC: UIViewController {
 
 }
 
-// MARK: - Timer
+// MARK: - buttons handlers
+private extension PlayVC {
+    @IBAction func guessedPressed(_ sender: Any) {
+        K.Sounds.correct?.resetAndPlay()
+        gameData.setWordGuessed(time: lastTime - timeLeft)
+        lastTime = timeLeft
+        guessedQty+=1
+        updateTitle()
+        nextWord()
+    }
+
+    @IBAction func endTurnButtonPressed(_ sender: Any) {
+        gameData.setWordLeft(time: lastTime - timeLeft)
+        nextPair()
+    }
+    
+    @IBAction func notGuessedTouchDown(_ sender: Any) {
+        notGuessedButton.backgroundColor = K.Colors.redDarker
+        createBtnTimer(duration: K.Delays.notGuessedBtn)
+    }
+    @IBAction func notGuessedTouchUp(_ sender: Any) {
+        notGuessedButton.backgroundColor = K.Colors.gray
+        helpMessage.isHidden = false
+        cancelBtnTimer()
+    }
+}
+
+// MARK: - private functions
+private extension PlayVC {
+    func updateTitle() {
+        title = "Угадано: \(guessedQty) слов"
+    }
+    func showWarning(_ text: String) {
+        title = text
+    }
+    
+    func nextWord() {
+        updateGameData()
+        if gameData.getRandomWordFromPool() {
+            wordLabel.text = gameData.currentWord
+        } else {
+            cancelTurnTimer()
+            performSegue(withIdentifier: "noWords", sender: self)
+        }
+    }
+    
+    func nextPair() {
+        cancelTurnTimer()
+        gameData.turn += 1
+        gameData.explainTime = Date().addingTimeInterval(100000).convertTo()
+        updateGameData()
+        navigationController?.popViewController(animated: true)
+    }
+    
+    func updateExplainTime() {
+        gameData.explainTime = Date().convertTo(use: "yyyy-MM-dd'T'HH:mm:ss'Z'")
+        updateGameData()
+    }
+
+    func updateGameData() {
+        GameRequest.update(for: gameID!, gameData: gameData) { [weak self] result in
+            DispatchQueue.main.async { [weak self] in
+                switch result {
+                case .success:
+                    break
+                case .failure(let error):
+                    self?.showWarning(K.Server.warnings[error]!)
+                }
+            }
+        }
+    }
+    
+}
+
+// MARK: - TurnTimer
 extension PlayVC {
-    @objc func updateTimer() {
+    @objc func updateTurnTimer() {
         timeLeft -= 1
         timerLabel.text = String(timeLeft)
 
         if timeLeft == 0 {
             K.Sounds.timeOver?.resetAndPlay()
-            gameData.setWordLeft()
+            gameData.setWordLeft(time: lastTime)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                 self.nextPair()
             })
@@ -116,29 +147,31 @@ extension PlayVC {
         }
     }
     
-    func createTimer() {
-        if timer == nil {
-            timer = Timer.scheduledTimer(timeInterval: 1.0,
+    func createTurnTimer() {
+        if turnTimer == nil {
+            
+            turnTimer = Timer.scheduledTimer(timeInterval: 1.0,
                                          target: self,
-                                         selector: #selector(updateTimer),
+                                         selector: #selector(updateTurnTimer),
                                          userInfo: nil,
                                         repeats: true)
-            timer?.tolerance = 0.1
+            turnTimer?.tolerance = 0.1
             timeLeft = gameData.settings.roundDuration
             timerLabel.text = String(timeLeft)
+            updateExplainTime()
         }
     }
     
-    func cancelTimer() {
-        timer?.invalidate()
-        timer = nil
+    func cancelTurnTimer() {
+        turnTimer?.invalidate()
+        turnTimer = nil
     }
 }
 
-// MARK: - Timer
+// MARK: - BtnTimer
 extension PlayVC {
     @objc func resolveBtnTimer() {
-        gameData.setWordMissed()
+        gameData.setWordMissed(time: lastTime-timeLeft)
         K.Sounds.error?.play()
         nextPair()
     }

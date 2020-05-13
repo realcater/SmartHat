@@ -10,17 +10,66 @@ import UIKit
 
 class StartPairVC: UIViewController {
     
+    @IBOutlet weak var barView: UIView!
     @IBOutlet weak var goButton: MyButton!
     @IBOutlet weak var tellerNameLabel: UILabel!
-    
+    @IBOutlet weak var circleView: UIView!
+    @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var helpMessage: UILabel!
     @IBOutlet weak var listenerNameLabel: UILabel!
     
     var gameData: GameData!
-    
+    var gameID: UUID?
     var btnTimer: Timer?
     var btnTimeLeft: Int!
+    var statusTimer: Timer?
+    var turnTimer: Timer?
+    var timeLeft: Int!
+    var mode: Mode?
+    var firstMyTurnAfterLoad = true
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = K.Colors.background
+        view.setBackgroundImage(named: K.FileNames.background, alpha: K.Alpha.Background.main)
+        circleView.layer.cornerRadius = K.CircleCornerRadius.small
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
+        
+        prepareNewTurn()
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if isTeller {
+            barView.makeDoubleColor(leftColor: K.Colors.red80, rightColor: K.Colors.foreground80)
+        } else if isListener {
+            barView.makeDoubleColor(leftColor: K.Colors.foreground80, rightColor: K.Colors.red80)
+        } else {
+            barView.backgroundColor = K.Colors.foreground80
+        }
+        
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toPlay" {
+            let playVC = segue.destination as? PlayVC
+            playVC?.gameData = self.gameData
+            playVC?.gameID = self.gameID
+        } else if segue.identifier == "toEndGame" {
+            let endGameVC = segue.destination as? EndGameVC
+            endGameVC?.players = self.gameData.players.sorted { $0.ttlGuesses > $1.ttlGuesses }
+        } else if segue.identifier == "toBasket" {
+            let basketVC = segue.destination as? BasketVC
+            basketVC?.gameData = gameData
+        }
+    }
+}
+
+// MARK: - buttons handlers
+extension StartPairVC {
     @IBAction func goButtonTouchDown(_ sender: Any) {
         createBtnTimer(duration: K.Delays.goBtn)
         K.Sounds.countdown?.resetAndPlay()
@@ -32,88 +81,85 @@ class StartPairVC: UIViewController {
     }
     
     @IBAction func pressEndButton(_ sender: Any) {
-        tryEndGame(title: "Закончить игру?", message: "")
+        if isMyTurn { tryEndGame(title: "Закончить игру?", message: "") }
     }
     
     @IBAction func unwindFromBasketVC(_ unwindSegue: UIStoryboardSegue) {
         let _ = unwindSegue.source
         checkWordsCount()
     }
+}
+
+// MARK: - private functions
+extension StartPairVC {
+    var isMyTurn: Bool { //always true if offline game)
+        return (mode == .offline) || (gameData.currentTeller.id == Auth().id)
+    }
+    var isTeller: Bool {
+        return gameData.currentTeller.id == Auth().id
+    }
+    var isListener: Bool {
+        return gameData.currentListener.id == Auth().id
+    }
     
-    private func tryEndGame(title: String, message: String) {
+    func showWarning(_ text: String) {
+        self.title = text
+    }
+    
+    var anotherPlayerIsGuessing: Bool {
+        return turnTimer != nil
+    }
+    
+    func reloadNames() {
+        tellerNameLabel.text = gameData.currentTeller.name
+        listenerNameLabel.text = gameData.currentListener.name
+    }
+    
+    func prepareNewTurn() {
+        reloadNames()
+        checkWordsCount()
+        helpMessage.isHidden = true
+        
+        if isMyTurn {
+            if gameData.isOneFullCircle {
+                if firstMyTurnAfterLoad { firstMyTurnAfterLoad = false } else { tryEndGame() }
+            }
+            circleView.isHidden = true
+            timerLabel.isHidden = true
+            goButton.enable()
+        } else {
+            createStatusTimer()
+            goButton.disable()
+            circleView.isHidden = false
+            circleView.backgroundColor = K.Colors.foreground40
+            timerLabel.isHidden = false
+            timeLeft = gameData.settings.roundDuration
+            timerLabel.text = String(timeLeft)
+        }
+    }
+    func tryEndGame(title: String = "Вы закончили полный круг", message: String = "Все сыграли со всеми. Закончим игру?") {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Давно пора", style: .destructive, handler: {
             action in self.showResults()
         }))
         alert.addAction(UIAlertAction(title: "Ещё поиграем", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
-        
     }
     
-    private func checkWordsCount() {
+    func updateTitle() {
+        if anotherPlayerIsGuessing {
+            title = "Угадано: \(gameData.guessedThisTurn) слов"
+        } else {
+            checkWordsCount()
+        }
+    }
+    func checkWordsCount() {
         title = "Осталось: \(gameData.leftWords.count) слов"
         if gameData.leftWords.count == 0 {
             showResults()
         }
     }
-    private func showResults() {
+    func showResults() {
         performSegue(withIdentifier: "toEndGame", sender: self)
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = K.Colors.background
-        view.setBackgroundImage(named: K.FileNames.background, alpha: K.Alpha.Background.main)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
-        gameData.startNewPair()
-        tellerNameLabel.text = gameData.currentTeller.name
-        listenerNameLabel.text = gameData.currentListener.name
-        checkWordsCount()
-        helpMessage.isHidden = true
-        
-        if gameData.isOneFullCircle() {
-            tryEndGame(title: "Вы закончили полный круг", message: "Все сыграли со всеми. Закончим игру?")
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toPlay" {
-            let playVC = segue.destination as? PlayVC
-            playVC?.gameData = self.gameData
-        } else if segue.identifier == "toEndGame" {
-            let endGameVC = segue.destination as? EndGameVC
-            endGameVC?.players = self.gameData.players.sorted { $0.ttlGuesses > $1.ttlGuesses }
-        } else if segue.identifier == "toBasket" {
-            let basketVC = segue.destination as? BasketVC
-            basketVC?.gameData = gameData
-        }
-    }
 }
-
-// MARK: - BtnTimer
-extension StartPairVC {
-    @objc func resolveBtnTimer() {
-        cancelBtnTimer()
-        performSegue(withIdentifier: "toPlay", sender: self)
-    }
-    
-    func createBtnTimer(duration: Double) {
-        if btnTimer == nil {
-            btnTimer = Timer.scheduledTimer(timeInterval: duration,
-                                            target: self,
-                                            selector: #selector(resolveBtnTimer),
-                                            userInfo: nil,
-                                            repeats: false)
-            btnTimer?.tolerance = 0.1
-        }
-    }
-    
-    func cancelBtnTimer() {
-        btnTimer?.invalidate()
-        btnTimer = nil
-    }
-}
-

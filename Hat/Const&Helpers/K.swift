@@ -19,7 +19,8 @@ struct K {
         struct Time {
             static let updatePlayersStatus = 5.0
             static let updateGameList = 5.0
-            static let offline = 10.0
+            static let checkOffline = 10.0
+            static let updateGameData = 1.0
         }
      }
     static let startPlayers: [Player] = [
@@ -56,18 +57,22 @@ struct K {
     
     static let minPlayersQty = 2
     
-    static let statusWordImages: [WordStatus: String] = [
+    static let statusWordImages: [GuessedStatus: String] = [
         .guessed: "✅",
         .missed: "❌",
         .left: "🎩"
     ]
     
     static let windowsCornerRadius : CGFloat = 16
-    static let circleLeftTimeCornerRadius : CGFloat = 40
+    
+    struct CircleCornerRadius {
+        static let big: CGFloat = 40
+        static let small: CGFloat = 40
+    }
     
     
     struct Sounds {
-        static let click = initSound(filename: "click.wav", volume: 0.02)
+        static let click = initSound(filename: "click.wav", volume: 0.05)
         static let correct = initSound(filename: "true.wav", volume: 0.2)
         static let error = initSound(filename: "false.wav", volume: 0.1)
         static let applause = initSound(filename: "applause.wav", volume: 0.2)
@@ -77,10 +82,14 @@ struct K {
     
     struct Colors {
         static let foreground = UIColor(red: 0, green: 110/256, blue: 182/256, alpha: 1)
+        static let foreground80 = UIColor(red: 0, green: 110/256, blue: 182/256, alpha: 0.8)
+        static let foreground40 = UIColor(red: 0, green: 110/256, blue: 182/256, alpha: 0.4)
         static let foregroundLighter = UIColor(red: 0, green: 165/256, blue: 1, alpha: 1)
         static let foregroundDarker = UIColor(red: 0, green: 73/256, blue: 121/256, alpha: 1)
         static let redDarker = UIColor(red: 148/256, green: 17/256, blue: 0, alpha: 1)
         static let red = UIColor(red: 0.8, green: 0.2, blue: 0, alpha: 1)
+        static let red80 = UIColor(red: 0.8, green: 0.1, blue: 0, alpha: 0.8)
+        static let red40 = UIColor(red: 0.8, green: 0.1, blue: 0, alpha: 0.4)
         static let green = UIColor(red: 0.2, green: 0.7, blue: 0, alpha: 1)
         static let gray = UIColor.gray
         static let lightGray = UIColor(red: 170/256, green: 170/256, blue: 170/256, alpha: 1)
@@ -96,7 +105,8 @@ struct K {
         static let background = "textBackground"
         static let addPlayerIcon = "addPlayerIcon"
         static let waitIcon = "waitIcon"
-        static let acceptedIcon = "acceptedIcon"
+        static let offlineIcon = "offline"
+        static let onlineIcon = "online2"
     }
     struct Delays {
         static let moveOneRow = 0.2

@@ -9,10 +9,10 @@
 import Foundation
 
 extension Date {
-    func convertTo(use dateFormat: String) -> String {
+    func convertTo(use dateFormat: String = "yyyy-MM-dd'T'HH:mm:ss'Z'") -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = dateFormat
-        dateFormatter.timeZone = NSTimeZone.local
+        dateFormatter.timeZone = (dateFormat == "yyyy-MM-dd'T'HH:mm:ss'Z'") ? NSTimeZone(name: "UTC") as TimeZone? : NSTimeZone.local
         return dateFormatter.string(from: self)
     }
 }

@@ -37,10 +37,10 @@ class PlayersTVC: UITableViewController {
             textField.text = playersList.players[indexPath.row].name
             textField.isUserInteractionEnabled = (mode == .offline)
             addPlayerButton.isHidden = true
-            if mode == .onlineWait {
+            if (mode == .onlineWait) || (mode == .onlineReady) {
                 if playersList.players[indexPath.row].accepted {
-                    statusImageView.image = UIImage(named: K.FileNames.acceptedIcon)
-                    statusImageView.tintColor = playersList.players[indexPath.row].inGame ? K.Colors.green : K.Colors.red
+                    let iconFileName = playersList.players[indexPath.row].inGame ? K.FileNames.onlineIcon : K.FileNames.offlineIcon
+                    statusImageView.image = UIImage(named: iconFileName)
                 } else {
                     statusImageView.image = UIImage(named: K.FileNames.waitIcon)
                     statusImageView.tintColor = K.Colors.foreground

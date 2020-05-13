@@ -7,18 +7,17 @@ class GameData: Codable {
     var guessedWords: [String] = []
     var missedWords: [String] = []
     var basketWords: [String] = []
-    var basketStatus: [WordStatus] = []
+    var basketStatus: [GuessedStatus] = []
     var currentWord: String = ""
-    var tellerNumber: Int = -1
-    var listenerNumber: Int = 0
-    var dist: Int = 1
-    var started = false
-    var prevTellerNumber: Int = -1
-    var prevListenerNumber: Int = 0
+    var turn: Int = 0
+    var explainTime: String
+    var wordsData: [WordData] = []
+    var guessedThisTurn: Int = 0
     
     init(settings: Settings, players: [Player]) {
         self.players = players
         self.settings = settings
+        self.explainTime = Date().addingTimeInterval(84600).convertTo(use: "yyyy-MM-dd'T'HH:mm:ss'Z'")
 
         var allWords: [String] = []
         for wordsDifficulty in settings.difficulty.toWordDifficulty() {
@@ -31,15 +30,48 @@ class GameData: Codable {
         }
     }
     
+    var everyPlayerReady: Bool {
+        return !players.map{ $0.accepted && $0.inGame }.contains(false)
+    }
+    
+    var tellerNumber: Int {
+        return turn % players.count
+    }
+    var listenerNumber: Int {
+        let bigRoundLength = players.count * (players.count-1)
+        let turnInBigRound = turn % bigRoundLength
+        let round = turnInBigRound / players.count
+        return (tellerNumber+round+1) % players.count
+    }
+    var prevTellerNumber: Int {
+        return (turn-1) % players.count
+    }
+    var prevListenerNumber: Int {
+        let bigRoundLength = players.count * (players.count-1)
+        let turnInBigRound = (turn-1) % bigRoundLength
+        let round = turnInBigRound / players.count
+        return (prevTellerNumber+round+1) % players.count
+    }
     var currentTeller: Player {
-        get {
-            return players[tellerNumber]
-        }
+        return players[tellerNumber]
     }
     var currentListener: Player {
-        get {
-            return players[listenerNumber]
-        }
+        return players[listenerNumber]
+    }
+    var isOneFullCircle: Bool {
+        return (turn > 0) && (turn % ((players.count)*(players.count-1)) == 0)
+    }
+    var timeFromExplain: Int? {
+        //guard let time = explainTime?.timeIntervalSinceNow else { return nil }
+        let time = -Int(explainTime.convertFromZ()!.timeIntervalSinceNow)
+        return ((time < 0) || (time > settings.roundDuration)) ? nil : time
+    }
+    
+    func clear() {
+        basketWords = []
+        basketStatus = []
+        wordsData = []
+        guessedThisTurn = 0
     }
     
     func getRandomWordFromPool() -> Bool {
@@ -49,50 +81,29 @@ class GameData: Codable {
         return true
     }
     
-    func setWordGuessed() {
+    func setWordGuessed(time: Int) {
+        wordsData.append(WordData(word: currentWord, timeGuessed: time, guessedStatus: .guessed))
         Helper.move(str: currentWord, from: &leftWords, to: &guessedWords)
         currentTeller.tellGuessed+=1
         currentListener.listenGuessed+=1
         basketWords.append(currentWord)
         basketStatus.append(.guessed)
+        guessedThisTurn += 1
     }
     
-    func setWordMissed() {
+    func setWordMissed(time: Int) {
+        wordsData.append(WordData(word: currentWord, timeGuessed: time, guessedStatus: .missed))
         Helper.move(str: currentWord, from: &leftWords, to: &missedWords)
         basketWords.append(currentWord)
         basketStatus.append(.missed)
     }
     
-    func setWordLeft() {
+    func setWordLeft(time: Int) {
+        wordsData.append(WordData(word: currentWord, timeGuessed: time, guessedStatus: .left))
         basketWords.append(currentWord)
         basketStatus.append(.left)
     }
-    func startNewPair() {
-        prevTellerNumber = tellerNumber
-        prevListenerNumber = listenerNumber
-        
-        if listenerNumber == 2 { started = true }
-        
-        tellerNumber+=1
-        listenerNumber+=1
-        if listenerNumber == players.count {
-            listenerNumber = 0
-        }
-        if tellerNumber == players.count {
-            dist+=1
-            if dist == players.count {
-                tellerNumber = 0
-                listenerNumber = 1
-                dist = 1
-            } else {
-                tellerNumber = 0
-                listenerNumber = tellerNumber + dist
-            }
-        }
-    }
-    func isOneFullCircle() -> Bool {
-        return tellerNumber == 0 && listenerNumber == 1 && started
-    }
+    
     func changeStatusInBasket(for num: Int) {
         let word = basketWords[num]
         switch basketStatus[num] {
@@ -101,7 +112,6 @@ class GameData: Codable {
             basketStatus[num] = .left
             players[prevListenerNumber].listenGuessed-=1
             players[prevTellerNumber].tellGuessed-=1
-            
         case .missed:
             Helper.move(str: word, from: &missedWords, to: &guessedWords)
             basketStatus[num] = .guessed
@@ -160,7 +170,7 @@ enum WordsDifficulty {
     case veryHard
 }
 
-enum WordStatus: Int, Codable {
+enum GuessedStatus: Int, Codable {
     case guessed
     case left
     case missed
@@ -180,4 +190,10 @@ struct Settings: Codable {
     var roundDuration: Int {
         return K.SettingsRow.roundDuration[roundDurationRow]
     }
+}
+
+struct WordData: Codable {
+    var word: String
+    var timeGuessed: Int
+    var guessedStatus: GuessedStatus
 }

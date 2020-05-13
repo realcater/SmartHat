@@ -36,8 +36,8 @@ class GamesListVC: UIViewController {
             gamesListTVC.delegate = self
         } else if segue.identifier == "joinGame" {
             let newGameVC = segue.destination as! NewGameVC
-            newGameVC.mode = .onlineWait
             newGameVC.gameData = gameLoaded
+            newGameVC.mode = gameLoaded!.everyPlayerReady ? .onlineReady : .onlineWait
             newGameVC.gameID = gameID
         }
     }

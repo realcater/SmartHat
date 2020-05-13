@@ -9,6 +9,7 @@ class PlayersList {
         let fileName = "offline"
         return Helper.plistFileName(fileName)
     }
+    
     func loadFromFile() {
         if let encodedData = NSKeyedUnarchiver.unarchiveObject(withFile: plistFileName) as? Data, let players = try? JSONDecoder().decode([Player].self, from: encodedData) {
             self.players = players
