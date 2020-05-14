@@ -110,8 +110,8 @@ struct K {
     }
     struct Delays {
         static let moveOneRow = 0.2
-        static let notGuessedBtn = 1.1
-        static let goBtn = 2.2
+        static let notGuessedBtn = 1.0
+        static let goBtn = 2.3
         static let withClicks = 5
         static let pageChangeViaPageControl = 0.3
     }
@@ -124,7 +124,7 @@ struct K {
     }
     
     struct Name {
-        static let minLength = 4
+        static let minLength = 3
         static let maxLength = 12
         static let minLengthWarning = "Имя должно быть не менее "+String(minLength)+" символов"
         static let maxLengthWarning = "Имя должно быть не более "+String(maxLength)+" символов"

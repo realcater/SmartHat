@@ -38,26 +38,19 @@ class StartPairVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
-        
-        prepareNewTurn()
+        prepareNewTurn(colorise: false)
         
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if isTeller {
-            barView.makeDoubleColor(leftColor: K.Colors.red80, rightColor: K.Colors.foreground80)
-        } else if isListener {
-            barView.makeDoubleColor(leftColor: K.Colors.foreground80, rightColor: K.Colors.red80)
-        } else {
-            barView.backgroundColor = K.Colors.foreground80
-        }
-        
+        coloriseBarView()
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPlay" {
             let playVC = segue.destination as? PlayVC
             playVC?.gameData = self.gameData
             playVC?.gameID = self.gameID
+            playVC?.mode = self.mode
         } else if segue.identifier == "toEndGame" {
             let endGameVC = segue.destination as? EndGameVC
             endGameVC?.players = self.gameData.players.sorted { $0.ttlGuesses > $1.ttlGuesses }
@@ -102,6 +95,16 @@ extension StartPairVC {
         return gameData.currentListener.id == Auth().id
     }
     
+    func coloriseBarView() {
+        if isTeller {
+            barView.makeDoubleColor(leftColor: K.Colors.red80, rightColor: K.Colors.foreground80)
+        } else if isListener {
+            barView.makeDoubleColor(leftColor: K.Colors.foreground80, rightColor: K.Colors.red80)
+        } else {
+            barView.backgroundColor = K.Colors.foreground80
+            barView.removeDoubleColor()
+        }
+    }
     func showWarning(_ text: String) {
         self.title = text
     }
@@ -115,7 +118,7 @@ extension StartPairVC {
         listenerNameLabel.text = gameData.currentListener.name
     }
     
-    func prepareNewTurn() {
+    func prepareNewTurn(colorise: Bool = true) {
         reloadNames()
         checkWordsCount()
         helpMessage.isHidden = true
@@ -136,6 +139,7 @@ extension StartPairVC {
             timeLeft = gameData.settings.roundDuration
             timerLabel.text = String(timeLeft)
         }
+        if colorise { coloriseBarView() }
     }
     func tryEndGame(title: String = "Вы закончили полный круг", message: String = "Все сыграли со всеми. Закончим игру?") {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)

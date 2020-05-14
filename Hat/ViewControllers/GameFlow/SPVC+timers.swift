@@ -52,7 +52,7 @@ extension StartPairVC {
                                             selector: #selector(resolveBtnTimer),
                                             userInfo: nil,
                                             repeats: false)
-            btnTimer?.tolerance = 0.1
+            btnTimer?.tolerance = 0.01
         }
     }
     

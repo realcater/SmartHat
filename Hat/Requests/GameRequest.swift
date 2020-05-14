@@ -25,6 +25,11 @@ enum OkResult {
     case failure(RequestError)
 }
 
+enum FrequentGameDataResult {
+    case success(FrequentGameData)
+    case failure(RequestError)
+}
+
 struct GameRequest {
     static func searchMine(completion: @escaping (GamesPublicResult) -> Void) {
         let resourceURL = URL(string: K.Server.name + "games/mine")
@@ -182,6 +187,33 @@ struct GameRequest {
         dataTask.resume()
     }
     
+    static func updateFrequent(for gameID: UUID, frequentGameData: FrequentGameData, completion: @escaping (OkResult) -> Void) {
+        let string = K.Server.name + "games/"+gameID.uuidString+"/updatefrequent"
+        let resourceURL = URL(string: string)
+        var urlRequest = URLRequest(url: resourceURL!)
+        guard let token = Auth().token else {
+            completion(.failure(.unauthorised))
+            return
+        }
+        urlRequest.httpMethod = "POST"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        urlRequest.httpBody = try! JSONEncoder().encode(frequentGameData)
+        let dataTask = URLSession.shared.dataTask(with: urlRequest) { _, response, _ in
+            guard let httpResponse = response as? HTTPURLResponse else {
+                completion(.failure(.noConnection))
+                return
+            }
+            switch httpResponse.statusCode {
+            case 200: completion(.success)
+            case 401: completion(.failure(.unauthorised))
+            case 404: completion(.failure(.notFound))
+            default: completion(.failure(.other))
+            }
+        }
+        dataTask.resume()
+    }
+    
     static func getPlayersStatus(gameID: UUID, completion: @escaping (PlayerStatusResult) -> Void) {
         let resourceURL = URL(string: K.Server.name + "games/"+gameID.uuidString+"/players")
         var urlRequest = URLRequest(url: resourceURL!)
@@ -249,6 +281,40 @@ struct GameRequest {
         }
         dataTask.resume()
     }
+    
+    static func getFrequent(gameID: UUID, completion: @escaping (FrequentGameDataResult) -> Void) {
+        let resourceURL = URL(string: K.Server.name + "games/"+gameID.uuidString+"/frequent")
+        var urlRequest = URLRequest(url: resourceURL!)
+        guard let token = Auth().token else {
+            completion(.failure(.unauthorised))
+            return
+        }
+        urlRequest.httpMethod = "GET"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        let dataTask = URLSession.shared.dataTask(with: urlRequest) { data, response, _ in
+            guard let httpResponse = response as? HTTPURLResponse else {
+                completion(.failure(.noConnection))
+                return
+            }
+            guard httpResponse.statusCode == 200, let jsonData = data else {
+                switch httpResponse.statusCode {
+                case 401: completion(.failure(.unauthorised))
+                case 404: completion(.failure(.notFound))
+                default: completion(.failure(.other))
+                }
+                return
+            }
+            do {
+                let frequentGameData = try JSONDecoder().decode(FrequentGameData.self, from: jsonData)
+                completion(.success(frequentGameData))
+            } catch {
+                completion(.failure(.other))
+                print("Can't parse JSON answer")
+            }
+        }
+        dataTask.resume()
+    }
 }
 
 struct PlayerStatus: Codable {
@@ -261,3 +327,16 @@ struct PlayerStatus: Codable {
         return -date.timeIntervalSinceNow < K.Server.Time.checkOffline
     }
 }
+
+struct FrequentGameData: Codable {
+    var explainTime: String
+    var turn: Int
+    var guessedThisTurn: Int
+    
+    var timeFromExplain: Int? {
+        //guard let time = explainTime?.timeIntervalSinceNow else { return nil }
+        let time = -Int(explainTime.convertFromZ()!.timeIntervalSinceNow)
+        return ((time < 0) || (time > 60)) ? nil : time
+    }
+}
+

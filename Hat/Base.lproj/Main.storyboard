@@ -13,11 +13,11 @@
             <objects>
                 <viewController storyboardIdentifier="NewGameVC" id="BYZ-38-t0r" userLabel="NewGame" customClass="NewGameVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFM-K3-PgJ" userLabel="topButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="648" width="375" height="70"/>
+                                <rect key="frame" x="0.0" y="594" width="375" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="LFO-kP-RyD"/>
@@ -31,7 +31,7 @@
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jOy-4v-Nu9">
-                                <rect key="frame" x="0.0" y="44" width="375" height="454"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="444"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="900" constant="250" id="Iru-ri-nO9"/>
                                 </constraints>
@@ -40,7 +40,7 @@
                                 </connections>
                             </containerView>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o2N-Fd-Owz">
-                                <rect key="frame" x="20" y="498" width="335" height="150"/>
+                                <rect key="frame" x="20" y="444" width="335" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="nd8-73-vok"/>
                                 </constraints>
@@ -82,18 +82,18 @@
             <objects>
                 <viewController storyboardIdentifier="StartPairView" id="S0w-Z2-ro9" userLabel="StartPairVC" customClass="StartPairVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="D7Y-BT-YTz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1fa-Tm-ly3" userLabel="bottomView">
-                                <rect key="frame" x="0.0" y="562" width="375" height="250"/>
+                                <rect key="frame" x="0.0" y="508" width="375" height="250"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="ADM-fK-OTa"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Km0-Ta-mCv" userLabel="bottomButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="648" width="375" height="70"/>
+                                <rect key="frame" x="0.0" y="594" width="375" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254901960786" blue="0.71372549019607845" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="n22-b5-0uK"/>
@@ -108,16 +108,16 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Удерживайте, чтобы начать" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKj-I6-lI0">
-                                <rect key="frame" x="0.0" y="653.66666666666663" width="375" height="14.333333333333371"/>
+                                <rect key="frame" x="0.0" y="599.66666666666663" width="375" height="14.333333333333371"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZJB-ZA-Bbp" userLabel="topView">
-                                <rect key="frame" x="0.0" y="88" width="375" height="474"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="452"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QDH-pk-EuF">
-                                        <rect key="frame" x="0.0" y="173" width="375" height="128"/>
+                                        <rect key="frame" x="0.0" y="162" width="375" height="128"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bubble" translatesAutoresizingMaskIntoConstraints="NO" id="tj4-sL-32X">
                                                 <rect key="frame" x="117.66666666666669" y="34" width="60" height="60"/>
@@ -136,13 +136,13 @@
                                                     <constraint firstAttribute="width" constant="60" id="daE-4p-rgH"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дима" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="ojr-U3-i2p">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дима" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="ojr-U3-i2p">
                                                 <rect key="frame" x="12" y="49.666666666666686" width="93.666666666666671" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Лена" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PqC-9K-Psk">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Лена" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PqC-9K-Psk">
                                                 <rect key="frame" x="257.66666666666669" y="49.666666666666686" width="105.33333333333331" height="29"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -175,7 +175,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jbk-oY-03j" userLabel="Circle">
-                                <rect key="frame" x="147.66666666666666" y="106" width="80" height="80"/>
+                                <rect key="frame" x="147.66666666666666" y="74" width="80" height="80"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0dg-KI-KU1">
                                         <rect key="frame" x="21" y="22" width="38" height="36"/>
@@ -249,11 +249,11 @@
             <objects>
                 <viewController id="ogA-h6-WKL" userLabel="StartVC" customClass="StartVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YG3-EU-qXa">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Qi-MR-tuY" userLabel="topButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="371" width="375" height="70"/>
+                                <rect key="frame" x="0.0" y="344" width="375" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="Z9Z-6N-rH2"/>
@@ -267,7 +267,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bag-Ai-49f" userLabel="topButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="441" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="414" width="375" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="RrM-ZK-3cx"/>
@@ -281,10 +281,10 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ucw-yf-pMF">
-                                <rect key="frame" x="0.0" y="44" width="375" height="327"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="344"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hat-rabbit-image" translatesAutoresizingMaskIntoConstraints="NO" id="2Ln-bx-5jL">
-                                        <rect key="frame" x="20" y="32" width="335" height="263"/>
+                                        <rect key="frame" x="20" y="32" width="335" height="280"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </imageView>
                                 </subviews>
@@ -297,7 +297,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nqX-Tj-jb3" userLabel="topButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="491" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="464" width="375" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="rNo-UC-dJd"/>
@@ -347,7 +347,7 @@
             <objects>
                 <tableViewController id="8F1-tt-3SW" customClass="PlayersTVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Rc7-fP-g6l">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="454"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="444"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -418,11 +418,11 @@
             <objects>
                 <viewController storyboardIdentifier="PlayVC" id="n5c-B9-13Q" userLabel="StartGameView" customClass="PlayVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9W2-UA-sYY">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yX4-3S-iOs" userLabel="Circle">
-                                <rect key="frame" x="147.66666666666666" y="100" width="80" height="80"/>
+                                <rect key="frame" x="147.66666666666666" y="68" width="80" height="80"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q68-nO-qYT">
                                         <rect key="frame" x="17.333333333333343" y="18.666666666666671" width="45" height="43"/>
@@ -440,10 +440,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f2g-ek-Jjt" userLabel="WordLabelView">
-                                <rect key="frame" x="0.0" y="180" width="375" height="312"/>
+                                <rect key="frame" x="0.0" y="148" width="375" height="290"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Недоросль" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="21" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gkn-36-nZ5">
-                                        <rect key="frame" x="12" y="130.66666666666669" width="351" height="51"/>
+                                        <rect key="frame" x="12" y="119.66666666666669" width="351" height="51"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="42"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -456,7 +456,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="clg-o4-tCf" userLabel="guessedButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="632" width="375" height="180"/>
+                                <rect key="frame" x="0.0" y="578" width="375" height="180"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="XAw-Jc-Sg1"/>
@@ -469,28 +469,8 @@
                                     <action selector="guessedPressed:" destination="n5c-B9-13Q" eventType="touchUpInside" id="ns1-l9-Zd2"/>
                                 </connections>
                             </button>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8J7-wJ-Imd" userLabel="endTurnButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="492" width="375" height="70"/>
-                                <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="90x-hb-HBk"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Закончить ход">
-                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <state key="selected">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="endTurnButtonPressed:" destination="n5c-B9-13Q" eventType="touchUpInside" id="Uxu-2g-wNM"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BhK-Bc-ojQ" userLabel="notGuessedButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="562" width="375" height="70"/>
+                                <rect key="frame" x="0.0" y="508" width="375" height="70"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="RRE-46-n4B"/>
@@ -511,7 +491,7 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Удерживайте, чтобы отметить ошибку" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MjO-EW-V8Y">
-                                <rect key="frame" x="0.0" y="566" width="375" height="14.666666666666629"/>
+                                <rect key="frame" x="0.0" y="511.66666666666669" width="375" height="14.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -523,20 +503,18 @@
                             <constraint firstItem="yX4-3S-iOs" firstAttribute="top" secondItem="Cc5-gf-Dig" secondAttribute="top" constant="12" id="2XF-w0-OuK"/>
                             <constraint firstItem="MjO-EW-V8Y" firstAttribute="leading" secondItem="Cc5-gf-Dig" secondAttribute="leading" id="67W-6i-JDu"/>
                             <constraint firstAttribute="bottom" secondItem="clg-o4-tCf" secondAttribute="bottom" id="Ayh-cT-LIT"/>
-                            <constraint firstItem="8J7-wJ-Imd" firstAttribute="trailing" secondItem="Cc5-gf-Dig" secondAttribute="trailing" id="EOR-8I-V1x"/>
                             <constraint firstItem="Cc5-gf-Dig" firstAttribute="trailing" secondItem="f2g-ek-Jjt" secondAttribute="trailing" id="FDj-7H-KmS"/>
                             <constraint firstItem="clg-o4-tCf" firstAttribute="trailing" secondItem="Cc5-gf-Dig" secondAttribute="trailing" id="IAm-FZ-k0B"/>
-                            <constraint firstItem="MjO-EW-V8Y" firstAttribute="top" secondItem="f2g-ek-Jjt" secondAttribute="bottom" constant="74" id="JEc-4k-mRr"/>
                             <constraint firstItem="clg-o4-tCf" firstAttribute="top" secondItem="BhK-Bc-ojQ" secondAttribute="bottom" id="MQy-b1-ZPY"/>
+                            <constraint firstItem="BhK-Bc-ojQ" firstAttribute="top" secondItem="f2g-ek-Jjt" secondAttribute="bottom" priority="750" constant="70" id="NDu-9X-a4t"/>
                             <constraint firstItem="clg-o4-tCf" firstAttribute="leading" secondItem="Cc5-gf-Dig" secondAttribute="leading" id="NMK-45-EKi"/>
                             <constraint firstItem="yX4-3S-iOs" firstAttribute="centerX" secondItem="9W2-UA-sYY" secondAttribute="centerX" id="SC0-4G-m1q"/>
                             <constraint firstItem="f2g-ek-Jjt" firstAttribute="top" secondItem="yX4-3S-iOs" secondAttribute="bottom" id="fPi-qN-AT5"/>
+                            <constraint firstItem="BhK-Bc-ojQ" firstAttribute="top" secondItem="MjO-EW-V8Y" secondAttribute="bottom" constant="-18" id="h61-Sk-KuH"/>
                             <constraint firstItem="BhK-Bc-ojQ" firstAttribute="leading" secondItem="Cc5-gf-Dig" secondAttribute="leading" id="hCI-6p-a5A"/>
-                            <constraint firstItem="8J7-wJ-Imd" firstAttribute="leading" secondItem="Cc5-gf-Dig" secondAttribute="leading" id="hW6-kd-mBa"/>
                             <constraint firstAttribute="trailing" secondItem="MjO-EW-V8Y" secondAttribute="trailing" id="j0L-hb-eth"/>
-                            <constraint firstItem="8J7-wJ-Imd" firstAttribute="top" secondItem="f2g-ek-Jjt" secondAttribute="bottom" id="jKQ-dE-hCv"/>
                             <constraint firstItem="BhK-Bc-ojQ" firstAttribute="trailing" secondItem="Cc5-gf-Dig" secondAttribute="trailing" id="mrr-RH-lWF"/>
-                            <constraint firstItem="BhK-Bc-ojQ" firstAttribute="top" secondItem="8J7-wJ-Imd" secondAttribute="bottom" id="zBc-md-11E"/>
+                            <constraint firstItem="Gkn-36-nZ5" firstAttribute="top" relation="greaterThanOrEqual" secondItem="yX4-3S-iOs" secondAttribute="bottom" constant="36" id="vmi-vI-dUT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Cc5-gf-Dig"/>
                     </view>
@@ -546,7 +524,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="circleView" destination="yX4-3S-iOs" id="g7y-Uv-cfm"/>
-                        <outlet property="endTurnButton" destination="8J7-wJ-Imd" id="27g-gB-ITG"/>
                         <outlet property="guessedButton" destination="clg-o4-tCf" id="mbe-hs-rw1"/>
                         <outlet property="helpMessage" destination="MjO-EW-V8Y" id="OKw-Fh-1G3"/>
                         <outlet property="notGuessedButton" destination="BhK-Bc-ojQ" id="WXK-hO-Rfv"/>
@@ -582,11 +559,11 @@
             <objects>
                 <viewController storyboardIdentifier="EndGameVC" id="j10-9v-a03" userLabel="EndGame" customClass="EndGameVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6jk-Ph-c63">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hHa-U1-ACa" userLabel="topButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="648" width="375" height="70"/>
+                                <rect key="frame" x="0.0" y="594" width="375" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="YnC-lg-EuB"/>
@@ -600,7 +577,7 @@
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c4S-Y0-HFs">
-                                <rect key="frame" x="0.0" y="88" width="375" height="560"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="538"/>
                                 <connections>
                                     <segue destination="7Ac-wr-rug" kind="embed" identifier="toResultsList" id="5sW-IW-lD7"/>
                                 </connections>
@@ -635,7 +612,7 @@
             <objects>
                 <tableViewController id="7Ac-wr-rug" userLabel="EndGameTVC" customClass="EndGameTVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="fii-0v-Gnh">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="560"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="538"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="separatorColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1006,7 +983,7 @@
                                         <rect key="frame" x="0.0" y="328" width="335" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UdC-jH-iWa" id="nRk-VC-Kkz">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Изи:      4263 слов" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VGf-9w-mfs">
@@ -1028,7 +1005,7 @@
                                         <rect key="frame" x="0.0" y="372" width="335" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bcP-3C-uO5" id="b50-qR-vCo">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Норм:   6762 слов" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLO-jZ-VxM">
@@ -1050,7 +1027,7 @@
                                         <rect key="frame" x="0.0" y="416" width="335" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7nu-iB-0mp" id="nCi-nv-xf2">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Хард:    2006 слов" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQk-RQ-WqM">
@@ -1086,11 +1063,11 @@
             <objects>
                 <viewController id="FZV-eR-DnT" userLabel="GameTypeVC" customClass="GameTypeVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uHg-pz-cgJ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySx-3t-77M" userLabel="topButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="291" width="375" height="70"/>
+                                <rect key="frame" x="0.0" y="264" width="375" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="lk3-g8-rwT"/>
@@ -1104,7 +1081,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eSq-7o-TXM" userLabel="topButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="431" width="375" height="70"/>
+                                <rect key="frame" x="0.0" y="404" width="375" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254901960786" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="O2W-yo-2t9"/>
@@ -1118,7 +1095,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Играем на одном устройстве, передаём нужному участнику" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KvT-pi-zga">
-                                <rect key="frame" x="20" y="361" width="335" height="60"/>
+                                <rect key="frame" x="20" y="334" width="335" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1129,7 +1106,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Каждый играет на своём устройстве, объясняем по Zoom или Skype (подключаем отдельно)" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jH-9z-IbD">
-                                <rect key="frame" x="20" y="501" width="335" height="60"/>
+                                <rect key="frame" x="20" y="474" width="335" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="UmV-Bu-zNP"/>
@@ -1176,11 +1153,11 @@
             <objects>
                 <viewController id="BIG-0d-DpO" userLabel="CreateJoinVC" customClass="CreateJoinVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tyH-CG-5T1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qet-Sc-iJc" userLabel="topButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="291" width="375" height="70"/>
+                                <rect key="frame" x="0.0" y="264" width="375" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="FoS-m0-P3e"/>
@@ -1194,7 +1171,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BDz-o7-lRK" userLabel="topButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="431" width="375" height="70"/>
+                                <rect key="frame" x="0.0" y="404" width="375" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="tu1-MJ-YVx"/>
@@ -1208,7 +1185,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" text="Создаем новую игру, чтобы остальные участники могли к ней присоединиться со своих устройств" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mux-yr-Qxk">
-                                <rect key="frame" x="20" y="361" width="335" height="60"/>
+                                <rect key="frame" x="20" y="334" width="335" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1219,7 +1196,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Присоединяемся к игре, уже созданной игроком на другом устройстве" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rm7-4e-aKg">
-                                <rect key="frame" x="20" y="501" width="335" height="60"/>
+                                <rect key="frame" x="20" y="474" width="335" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.0" green="0.43137254899999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1265,25 +1242,11 @@
             <objects>
                 <viewController id="P9G-f0-XMa" userLabel="GamesListVC" customClass="GamesListVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UHM-Qf-j4F">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1d-pq-Oid" userLabel="topButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="648" width="375" height="70"/>
-                                <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="F0W-zU-7KJ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Выбрать">
-                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="chooseGameButtonPressed:" destination="P9G-f0-XMa" eventType="touchUpInside" id="70q-cd-nPy"/>
-                                </connections>
-                            </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="52b-Uz-wXM">
-                                <rect key="frame" x="0.0" y="44" width="375" height="604"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
                                 <connections>
                                     <segue destination="vmu-yf-oew" kind="embed" identifier="toGamesList" id="9qh-Pb-qRw"/>
                                 </connections>
@@ -1292,12 +1255,9 @@
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="52b-Uz-wXM" firstAttribute="leading" secondItem="bgd-YR-HVS" secondAttribute="leading" id="5ND-h9-Ux2"/>
-                            <constraint firstItem="bgd-YR-HVS" firstAttribute="bottom" secondItem="K1d-pq-Oid" secondAttribute="bottom" constant="60" id="63i-KR-xKZ"/>
-                            <constraint firstItem="K1d-pq-Oid" firstAttribute="top" secondItem="52b-Uz-wXM" secondAttribute="bottom" id="Nqd-K2-FHU"/>
+                            <constraint firstItem="bgd-YR-HVS" firstAttribute="bottom" secondItem="52b-Uz-wXM" secondAttribute="bottom" id="KPE-8e-tMz"/>
                             <constraint firstItem="bgd-YR-HVS" firstAttribute="trailing" secondItem="52b-Uz-wXM" secondAttribute="trailing" id="QZp-No-eaR"/>
                             <constraint firstItem="52b-Uz-wXM" firstAttribute="top" secondItem="bgd-YR-HVS" secondAttribute="top" id="Uys-hk-jHx"/>
-                            <constraint firstItem="bgd-YR-HVS" firstAttribute="trailing" secondItem="K1d-pq-Oid" secondAttribute="trailing" id="VJp-4H-xVs"/>
-                            <constraint firstItem="K1d-pq-Oid" firstAttribute="leading" secondItem="bgd-YR-HVS" secondAttribute="leading" id="k9x-gH-QeQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bgd-YR-HVS"/>
                     </view>
@@ -1306,7 +1266,6 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="chooseGameButton" destination="K1d-pq-Oid" id="XZJ-Bi-eti"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="joinGame" id="Dmi-q9-w4E"/>
                     </connections>
                 </viewController>
@@ -1319,7 +1278,7 @@
             <objects>
                 <tableViewController id="vmu-yf-oew" userLabel="GameListTVC" customClass="GamesListTVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="XBb-rp-qoI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="604"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="separatorColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1380,11 +1339,11 @@
             <objects>
                 <viewController id="Wva-R8-VaF" userLabel="NewUserVC" customClass="NewUserVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" tag="2001" contentMode="scaleToFill" id="Azp-DJ-4qu">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view tag="2002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4u8-bi-JWE" userLabel="popupView">
-                                <rect key="frame" x="20" y="183" width="335" height="272"/>
+                                <rect key="frame" x="20" y="156" width="335" height="272"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" text="Уникальное имя, которое будет отображаться во всех онлайн-играх" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAU-Yu-Bha">
                                         <rect key="frame" x="0.0" y="100" width="335" height="42"/>
@@ -1445,7 +1404,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" tag="2003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sOz-cQ-wwU" userLabel="confirmButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="20" y="361" width="335" height="70"/>
+                                <rect key="frame" x="20" y="334" width="335" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="g05-zy-etC"/>
@@ -1538,11 +1497,11 @@
             <objects>
                 <viewController id="Ytd-iO-Tiz" userLabel="InviteUserVC" customClass="InvitePlayerVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" tag="2001" contentMode="scaleToFill" id="8ax-gN-5ro">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view tag="2002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r9k-dQ-67D" userLabel="popupView">
-                                <rect key="frame" x="20" y="153" width="335" height="302"/>
+                                <rect key="frame" x="20" y="126" width="335" height="302"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введите никнейм игрока" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8NP-u3-8ie">
                                         <rect key="frame" x="0.0" y="4" width="335" height="40"/>
@@ -1598,7 +1557,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" tag="2003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S4u-Xo-b6c" userLabel="confirmButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="20" y="361" width="335" height="70"/>
+                                <rect key="frame" x="20" y="334" width="335" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="Oiz-WP-xNG"/>
@@ -1643,14 +1602,14 @@
             <objects>
                 <viewController storyboardIdentifier="HelpVC" id="UUy-8x-yIu" customClass="HelpVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lLN-H6-tjC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wk8-M9-rLm" userLabel="popupView">
-                                <rect key="frame" x="20" y="142.66666666666663" width="335" height="527"/>
+                                <rect key="frame" x="20" y="115.66666666666669" width="335" height="527"/>
                                 <subviews>
                                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Q6R-tX-RPa">
-                                        <rect key="frame" x="148" y="490" width="39" height="37"/>
+                                        <rect key="frame" x="148" y="489.99999999999994" width="39" height="37.000000000000057"/>
                                         <color key="pageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="pageChanged:" destination="UUy-8x-yIu" eventType="valueChanged" id="8P6-NT-EEI"/>
@@ -1702,7 +1661,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pE8-Mh-x6y"/>
+        <segue reference="2qu-Nz-h0H"/>
         <segue reference="Vb6-hb-Jzo"/>
         <segue reference="Dmi-q9-w4E"/>
     </inferredMetricsTieBreakers>

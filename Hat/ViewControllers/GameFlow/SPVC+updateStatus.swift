@@ -1,21 +1,19 @@
 import Foundation
 
 extension StartPairVC {
-    func getNewGameData() {
-        GameRequest.get(gameID: gameID!) { [weak self] result in
+    func getFrequentGameData() {
+        GameRequest.getFrequent(gameID: gameID!) { [weak self] result in
             DispatchQueue.main.async { [weak self] in
                 switch result {
-                case .success(let gameData):
-                    if gameData.turn != self?.gameData.turn {
-                        self?.gameData = gameData
-                        self?.cancelTurnTimer()
-                        self?.prepareNewTurn()
-                    } else if gameData.leftWords.count != self?.gameData.leftWords.count {
-                        self?.gameData = gameData
+                case .success(let frequentGameData):
+                    if frequentGameData.turn != self?.gameData.turn {
+                        self?.getFullGameData()
+                    } else if frequentGameData.guessedThisTurn != self?.gameData.guessedThisTurn {
+                        self?.gameData.guessedThisTurn = frequentGameData.guessedThisTurn
                         self?.updateTitle()
                     }
-                    if let timeFromExplain = gameData.timeFromExplain, self?.turnTimer == nil {
-                        self?.createTurnTimer(timeLeft: gameData.settings.roundDuration-timeFromExplain )
+                    if let timeFromExplain = frequentGameData.timeFromExplain, timeFromExplain < self!.gameData.settings.roundDuration, self?.turnTimer == nil {
+                        self?.createTurnTimer(timeLeft: self!.gameData.settings.roundDuration-timeFromExplain )
                     }
                 case .failure(let error):
                     self?.showWarning(K.Server.warnings[error]!)
@@ -23,13 +21,27 @@ extension StartPairVC {
             }
         }
     }
-    
+    func getFullGameData() {
+        GameRequest.get(gameID: gameID!) { [weak self] result in
+            DispatchQueue.main.async { [weak self] in
+                switch result {
+                case .success(let gameData):
+                    self?.gameData = gameData
+                    self?.cancelTurnTimer()
+                    self?.prepareNewTurn()
+                case .failure(let error):
+                    self?.showWarning(K.Server.warnings[error]!)
+                }
+            }
+        }
+    }
 }
 
 // MARK: - UpdateStatusTimer
 extension StartPairVC {
     @objc func updateStatusTimer() {
-        getNewGameData()
+        "getFrequentGameData"
+        getFrequentGameData()
     }
     
     func createStatusTimer() {

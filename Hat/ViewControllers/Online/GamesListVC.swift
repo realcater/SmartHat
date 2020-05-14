@@ -8,14 +8,8 @@ class GamesListVC: UIViewController {
     var gamesListTVC: GamesListTVC!
     var timer: Timer?
     
-    @IBOutlet weak var chooseGameButton: MyButton!
-    
-    @IBAction func chooseGameButtonPressed(_ sender: Any) {
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        chooseGameButton.turnClickSoundOn(sound: K.Sounds.click)
     }
 
     override func viewWillAppear(_ animated: Bool) {

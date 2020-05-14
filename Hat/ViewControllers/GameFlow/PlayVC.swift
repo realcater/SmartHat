@@ -12,7 +12,7 @@ class PlayVC: UIViewController {
     
     var gameData: GameData!
     var gameID: UUID?
-    
+    var mode: Mode?
     
     var turnTimer: Timer?
     var timeLeft: Int!
@@ -28,7 +28,6 @@ class PlayVC: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var guessedButton: MyButton!
     @IBOutlet weak var notGuessedButton: MyButton!
-    @IBOutlet weak var endTurnButton: MyButton!
     @IBOutlet weak var helpMessage: UILabel!
     
     override func viewDidLoad() {
@@ -62,11 +61,6 @@ private extension PlayVC {
         updateTitle()
         nextWord()
     }
-
-    @IBAction func endTurnButtonPressed(_ sender: Any) {
-        gameData.setWordLeft(time: lastTime - timeLeft)
-        nextPair()
-    }
     
     @IBAction func notGuessedTouchDown(_ sender: Any) {
         notGuessedButton.backgroundColor = K.Colors.redDarker
@@ -89,7 +83,7 @@ private extension PlayVC {
     }
     
     func nextWord() {
-        updateGameData()
+        if mode != .offline { updateFrequentGameData() }
         if gameData.getRandomWordFromPool() {
             wordLabel.text = gameData.currentWord
         } else {
@@ -101,16 +95,33 @@ private extension PlayVC {
     func nextPair() {
         cancelTurnTimer()
         gameData.turn += 1
-        gameData.explainTime = Date().addingTimeInterval(100000).convertTo()
-        updateGameData()
+        if mode != .offline {
+            gameData.explainTime = Date().addingTimeInterval(-100000).convertTo()
+            updateGameData()
+        }
         navigationController?.popViewController(animated: true)
     }
     
     func updateExplainTime() {
         gameData.explainTime = Date().convertTo(use: "yyyy-MM-dd'T'HH:mm:ss'Z'")
-        updateGameData()
+        updateFrequentGameData()
     }
 
+    func updateFrequentGameData() {
+        
+        let frequentGameData = FrequentGameData(explainTime: gameData.explainTime, turn: gameData.turn, guessedThisTurn: gameData.guessedThisTurn)
+        GameRequest.updateFrequent(for: gameID!, frequentGameData: frequentGameData) { [weak self] result in
+            DispatchQueue.main.async { [weak self] in
+                switch result {
+                case .success:
+                    break
+                case .failure(let error):
+                    self?.showWarning(K.Server.warnings[error]!)
+                }
+            }
+        }
+    }
+    
     func updateGameData() {
         GameRequest.update(for: gameID!, gameData: gameData) { [weak self] result in
             DispatchQueue.main.async { [weak self] in
@@ -123,7 +134,6 @@ private extension PlayVC {
             }
         }
     }
-    
 }
 
 // MARK: - TurnTimer
@@ -140,7 +150,6 @@ extension PlayVC {
             })
         } else if timeLeft == K.Delays.withClicks {
             K.Sounds.click?.play()
-            endTurnButton.isHidden = false
             circleView.backgroundColor = K.Colors.redDarker
         } else if timeLeft < K.Delays.withClicks {
             K.Sounds.click?.play()
@@ -158,7 +167,7 @@ extension PlayVC {
             turnTimer?.tolerance = 0.1
             timeLeft = gameData.settings.roundDuration
             timerLabel.text = String(timeLeft)
-            updateExplainTime()
+            if mode != .offline { updateExplainTime() }
         }
     }
     

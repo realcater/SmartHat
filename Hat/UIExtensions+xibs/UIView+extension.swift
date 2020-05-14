@@ -42,9 +42,12 @@ extension UIView {
             insertSubview(backgroundImageView, at: 0)
         }
     }
+    
     func makeDoubleColor(leftColor: UIColor, rightColor: UIColor) {
         backgroundColor = UIColor.clear
+        removeDoubleColor()
         let gradientLayer = CAGradientLayer()
+        gradientLayer.name = "doubleColor"
         gradientLayer.frame = bounds
         gradientLayer.locations = [0, 0.5, 0.5, 1.0]
         gradientLayer.colors = [leftColor.cgColor, leftColor.cgColor, rightColor.cgColor, rightColor.cgColor]
@@ -52,6 +55,9 @@ extension UIView {
         gradientLayer.endPoint = CGPoint(x: 1, y: 0)
         layer.masksToBounds = true
         layer.insertSublayer(gradientLayer, at: 0)
+    }
+    func removeDoubleColor() {
+        layer.sublayers?.forEach { if $0.name == "doubleColor" { $0.removeFromSuperlayer() } }
     }
 }
 
