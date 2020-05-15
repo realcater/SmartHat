@@ -40,7 +40,6 @@ extension StartPairVC {
 // MARK: - UpdateStatusTimer
 extension StartPairVC {
     @objc func updateStatusTimer() {
-        "getFrequentGameData"
         getFrequentGameData()
     }
     
