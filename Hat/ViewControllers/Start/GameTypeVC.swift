@@ -17,6 +17,8 @@ class GameTypeVC: UIViewController {
     }
     var notConfirmedName = ""
     var name: String? = nil
+    var tryConnectOnlineGame = true
+    var i = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +35,7 @@ class GameTypeVC: UIViewController {
         if segue.identifier == "offline" {
             let newGameVC = segue.destination as? NewGameVC
             newGameVC?.mode = .offline
+            tryConnectOnlineGame = false
         } else if segue.identifier == "online" {
             let createJoinVC = segue.destination as? CreateJoinVC
             createJoinVC?.title = name
@@ -49,8 +52,16 @@ extension GameTypeVC {
         guard let uuid = UIDevice.current.identifierForVendor else {
             fatalError("Can't get UIDevice")
         }
+        tryConnectOnlineGame = true
         title = "Подключаемся к серверу..."
+        tryGetUser(by: uuid) {
+            self.title = "Как играем, \(self.name ?? "")?"
+            self.performSegue(withIdentifier: "online", sender: self)
+        }
+    }
+    func tryGetUser(by uuid: UUID, completion: @escaping () -> Void) {
         UserRequest.search(by: uuid) { [weak self] result in
+            self?.i += 1
             DispatchQueue.main.async { [weak self] in
                 switch result {
                 case .success(let user):
@@ -59,8 +70,7 @@ extension GameTypeVC {
                         DispatchQueue.main.async { [weak self] in
                             switch result {
                             case .success:
-                                self?.title = "Как играем, \(self?.name ?? "")?"
-                                self?.performSegue(withIdentifier: "online", sender: self)
+                                completion()
                             case .failure(let error):
                                 self?.title = K.Server.warnings[error]
                             }
@@ -73,6 +83,13 @@ extension GameTypeVC {
                         self?.performSegue(withIdentifier: "toRegistration", sender: self)
                     default:
                         self?.title = K.Server.warnings[error]
+                        if error == .noConnection && (self?.tryConnectOnlineGame ?? false) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + K.Server.Time.waitUntilNextTry) {
+                                self?.tryGetUser(by: uuid) {
+                                    self?.title = "Сервер снова доступен"
+                                }
+                            }
+                        }
                     }
                 }
             }

@@ -52,20 +52,20 @@ extension NewGameVC {
 
 // MARK: - Timer
 extension NewGameVC {
-    @objc func updateTimer() {
+    @objc func updateStatusTimer() {
         requestUpdatePlayerStatus()
     }
     
-    func createUpdateStatusTimer() {
-        if timer == nil {
-            timer = Timer.scheduledTimer(timeInterval: K.Server.Time.updatePlayersStatus, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-            timer?.tolerance = 0.1
-            timer?.fire()
+    func createStatusTimer() {
+        if statusTimer == nil {
+            statusTimer = Timer.scheduledTimer(timeInterval: K.Server.Time.updatePlayersStatus, target: self, selector: #selector(updateStatusTimer), userInfo: nil, repeats: true)
+            statusTimer?.tolerance = 0.1
+            statusTimer?.fire()
         }
     }
     
-    func cancelTimer() {
-        timer?.invalidate()
-        timer = nil
+    func cancelStatusTimer() {
+        statusTimer?.invalidate()
+        statusTimer = nil
     }
 }

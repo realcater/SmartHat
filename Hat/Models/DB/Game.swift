@@ -14,11 +14,13 @@ class Game: Codable {
     class Public: Codable {
         var gameID: String
         var userOwnerName: String
+        var turn: Int
         var createdAt: String
         
-        init(gameID: String, userOwnerName: String, createdAt: String) {
+        init(gameID: String, userOwnerName: String, turn: Int, createdAt: String) {
             self.gameID = gameID
             self.userOwnerName = userOwnerName
+            self.turn = turn
             self.createdAt = createdAt
         }
     }

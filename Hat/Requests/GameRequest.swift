@@ -315,6 +315,31 @@ struct GameRequest {
         }
         dataTask.resume()
     }
+    static func delete(gameID: UUID, completion: @escaping (OkResult) -> Void) {
+        let string = K.Server.name + "games/"+gameID.uuidString
+        let resourceURL = URL(string: string)
+        var urlRequest = URLRequest(url: resourceURL!)
+        guard let token = Auth().token else {
+            completion(.failure(.unauthorised))
+            return
+        }
+        urlRequest.httpMethod = "DELETE"
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        let dataTask = URLSession.shared.dataTask(with: urlRequest) { _, response, _ in
+            guard let httpResponse = response as? HTTPURLResponse else {
+                completion(.failure(.noConnection))
+                return
+            }
+            switch httpResponse.statusCode {
+            case 200: completion(.success)
+            case 401: completion(.failure(.unauthorised))
+            case 404: completion(.failure(.notFound))
+            default: completion(.failure(.other))
+            }
+        }
+        dataTask.resume()
+    }
 }
 
 struct PlayerStatus: Codable {

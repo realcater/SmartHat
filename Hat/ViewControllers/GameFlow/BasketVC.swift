@@ -13,6 +13,7 @@ class BasketVC: UIViewController {
     @IBOutlet weak var popupView: UIView!
     
     var gameData: GameData!
+    var editable: Bool!
     
     @IBAction func pressSaveButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -35,6 +36,7 @@ class BasketVC: UIViewController {
         if segue.identifier == "toBasketList" {
             let basketTVC = segue.destination as? BasketTVC
             basketTVC?.gameData = gameData
+            basketTVC?.editable = editable
         }
     }
 

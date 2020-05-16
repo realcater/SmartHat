@@ -11,6 +11,7 @@ import UIKit
 class BasketTVC: UITableViewController {
     
     var gameData: GameData!
+    var editable: Bool!
     
     @objc func buttonSelected(sender: UIButton){
         let row = Int(sender.accessibilityIdentifier!)!
@@ -20,7 +21,6 @@ class BasketTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
 
     // MARK: - Table view data source
@@ -35,10 +35,12 @@ class BasketTVC: UITableViewController {
         let textField = cell.viewWithTag(1000) as! UITextField
         textField.text = gameData.basketWords[indexPath.row]
         
-        let button = cell.viewWithTag(1001) as! UIButton
-        button.setTitle(K.statusWordImages[gameData.basketStatus[indexPath.row]], for: .normal)
-        button.accessibilityIdentifier = String(indexPath.row)
-        button.addTarget(self, action: #selector(buttonSelected), for: .touchUpInside)
+        if editable {
+            let button = cell.viewWithTag(1001) as! UIButton
+            button.setTitle(K.statusWordImages[gameData.basketStatus[indexPath.row]], for: .normal)
+            button.accessibilityIdentifier = String(indexPath.row)
+            button.addTarget(self, action: #selector(buttonSelected), for: .touchUpInside)
+        }
         
         return cell
     }

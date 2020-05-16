@@ -22,6 +22,8 @@ class PlayVC: UIViewController {
     var btnTimeLeft: Int!
     
     var guessedQty: Int = 0
+    var currentTitle: String?
+    var statusTimer: Timer?
     
     @IBOutlet weak var wordLabel: UILabel!
     @IBOutlet weak var circleView: UIView!
@@ -46,9 +48,9 @@ class PlayVC: UIViewController {
         if segue.identifier == "noWords" {
             let endGameVC = segue.destination as? EndGameVC
             endGameVC?.players = self.gameData.players.sorted { $0.ttlGuesses > $1.ttlGuesses }
+            statusTimer?.invalidate()
         }
     }
-
 }
 
 // MARK: - buttons handlers
@@ -76,19 +78,20 @@ private extension PlayVC {
 // MARK: - private functions
 private extension PlayVC {
     func updateTitle() {
-        title = "Угадано: \(guessedQty) слов"
-    }
-    func showWarning(_ text: String) {
-        title = text
+        currentTitle = "Угадано: \(guessedQty) слов"
+        title = currentTitle
     }
     
     func nextWord() {
-        if mode != .offline { updateFrequentGameData() }
+        if mode != .offline {
+            API.updateFrequent(gameID: gameID!, gameData: gameData, title: currentTitle, showWarningOrTitle: self.doNotShowWarnings)
+        }
         if gameData.getRandomWordFromPool() {
             wordLabel.text = gameData.currentWord
         } else {
             cancelTurnTimer()
-            performSegue(withIdentifier: "noWords", sender: self)
+            gameData.turn = K.endTurnNumber
+            API.updateUntilSuccess(gameID: gameID!, gameData: gameData, showWarningOrTitle: self.showWarningOrTitle) { self.performSegue(withIdentifier: "noWords", sender: self) }
         }
     }
     
@@ -97,43 +100,22 @@ private extension PlayVC {
         gameData.turn += 1
         if mode != .offline {
             gameData.explainTime = Date().addingTimeInterval(-100000).convertTo()
-            updateGameData()
+            guessedButton.disable()
+            notGuessedButton.disable()
+            API.updateUntilSuccess(gameID: gameID!, gameData: gameData, title: currentTitle, showWarningOrTitle: self.showWarningOrTitle) {
+                self.navigationController?.popViewController(animated: true)
+            }
         }
-        navigationController?.popViewController(animated: true)
     }
     
     func updateExplainTime() {
         gameData.explainTime = Date().convertTo(use: "yyyy-MM-dd'T'HH:mm:ss'Z'")
-        updateFrequentGameData()
-    }
-
-    func updateFrequentGameData() {
-        
-        let frequentGameData = FrequentGameData(explainTime: gameData.explainTime, turn: gameData.turn, guessedThisTurn: gameData.guessedThisTurn)
-        GameRequest.updateFrequent(for: gameID!, frequentGameData: frequentGameData) { [weak self] result in
-            DispatchQueue.main.async { [weak self] in
-                switch result {
-                case .success:
-                    break
-                case .failure(let error):
-                    self?.showWarning(K.Server.warnings[error]!)
-                }
-            }
-        }
+        API.updateFrequent(gameID: gameID!, gameData: gameData, title: currentTitle, showWarningOrTitle: self.doNotShowWarnings)
     }
     
-    func updateGameData() {
-        GameRequest.update(for: gameID!, gameData: gameData) { [weak self] result in
-            DispatchQueue.main.async { [weak self] in
-                switch result {
-                case .success:
-                    break
-                case .failure(let error):
-                    self?.showWarning(K.Server.warnings[error]!)
-                }
-            }
-        }
+    func doNotShowWarnings(_ error: RequestError?, _ title: String? = nil) {
     }
+
 }
 
 // MARK: - TurnTimer

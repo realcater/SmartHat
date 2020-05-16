@@ -10,13 +10,13 @@ extension StartPairVC {
                         self?.getFullGameData()
                     } else if frequentGameData.guessedThisTurn != self?.gameData.guessedThisTurn {
                         self?.gameData.guessedThisTurn = frequentGameData.guessedThisTurn
-                        self?.updateTitle()
                     }
                     if let timeFromExplain = frequentGameData.timeFromExplain, timeFromExplain < self!.gameData.settings.roundDuration, self?.turnTimer == nil {
                         self?.createTurnTimer(timeLeft: self!.gameData.settings.roundDuration-timeFromExplain )
                     }
+                    self?.updateTitle()
                 case .failure(let error):
-                    self?.showWarning(K.Server.warnings[error]!)
+                    self?.showWarning(error)
                 }
             }
         }
@@ -28,7 +28,11 @@ extension StartPairVC {
                 case .success(let gameData):
                     self?.gameData = gameData
                     self?.cancelTurnTimer()
-                    self?.prepareNewTurn()
+                    if gameData.turn == K.endTurnNumber {
+                        self?.performSegue(withIdentifier: "toEndGame", sender: self )
+                    } else {
+                        self?.prepareNewTurn()
+                    }
                 case .failure(let error):
                     self?.showWarning(K.Server.warnings[error]!)
                 }
@@ -39,20 +43,19 @@ extension StartPairVC {
 
 // MARK: - UpdateStatusTimer
 extension StartPairVC {
-    @objc func updateStatusTimer() {
+    @objc func updateDataTimer() {
         getFrequentGameData()
     }
     
-    func createStatusTimer() {
-        if statusTimer == nil {
-            statusTimer = Timer.scheduledTimer(timeInterval: K.Server.Time.updateGameData, target: self, selector: #selector(updateStatusTimer), userInfo: nil, repeats: true)
-            statusTimer?.tolerance = 0.1
-            statusTimer?.fire()
+    func createDataTimer() {
+        if dataTimer == nil {
+            dataTimer = Timer.scheduledTimer(timeInterval: K.Server.Time.updateGameData, target: self, selector: #selector(updateDataTimer), userInfo: nil, repeats: true)
+            dataTimer?.tolerance = 0.1
+            dataTimer?.fire()
         }
     }
-    
-    func cancelStatusTimer() {
-        statusTimer?.invalidate()
-        statusTimer = nil
+    func cancelDataTimer() {
+        dataTimer?.invalidate()
+        dataTimer = nil
     }
 }

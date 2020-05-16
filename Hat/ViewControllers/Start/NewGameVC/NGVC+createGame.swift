@@ -32,7 +32,7 @@ extension NewGameVC {
         playersTVC.mode = mode
         picker.isUserInteractionEnabled = false
         playersTVC.tableView.reloadData()
-        createUpdateStatusTimer()
+        createStatusTimer()
     }
     func setAcceptedStatuses() {
         let myID = Auth().id

@@ -21,7 +21,7 @@ class NewGameVC: UIViewController {
     var gameID: UUID?
     var playersList = PlayersList()
     var _mode : Mode!
-    var timer: Timer?
+    var statusTimer: Timer?
     
     var mode: Mode {
         get {
@@ -29,6 +29,12 @@ class NewGameVC: UIViewController {
         }
         set {
             _mode = newValue
+            if let gameData = gameData, gameData.turn == K.endTurnNumber {
+                title = "Игра завершена"
+                button?.enable()
+                button?.setTitle("Смотреть результаты", for: .normal)
+                return
+            }
             title = K.Titles.newGame[mode]
             button?.setTitle(K.Buttons.newGameVCTitle[mode], for: .normal)
             if mode == .onlineWait {
@@ -47,16 +53,16 @@ class NewGameVC: UIViewController {
         if mode == .onlineCreate {
             createOnlineGame()
         } else {
+            guard gameData.turn != K.endTurnNumber else {
+                performSegue(withIdentifier: "directToEndGame", sender: self)
+                return
+            }
             performSegue(withIdentifier: "toStartPair", sender: self)
         }
     }
     
     @objc func back(sender: UIBarButtonItem) {
         showAlert()
-    }
-    
-    func showWarning(_ text: String) {
-        self.title = text
     }
     
     override func viewDidLoad() {
@@ -72,10 +78,15 @@ class NewGameVC: UIViewController {
         mode = _mode
         if (mode == .onlineWait) || (mode == .onlineReady) {
             picker.isUserInteractionEnabled = false
-            createUpdateStatusTimer()
+            createStatusTimer()
         }
     }
-
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if isMovingFromParent {
+            cancelStatusTimer()
+        }
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPlayersList" {
             loadPlayersList()
@@ -92,7 +103,11 @@ class NewGameVC: UIViewController {
             startPairVC?.gameData = self.gameData
             startPairVC?.mode = mode
             startPairVC?.gameID = gameID
-            
+            startPairVC?.statusTimer = statusTimer
+        } else if segue.identifier == "directToEndGame" {
+            cancelStatusTimer()
+            let endGameVC = segue.destination as? EndGameVC
+            endGameVC?.players = self.gameData.players.sorted { $0.ttlGuesses > $1.ttlGuesses }
         } else if segue.identifier == "toInvitePlayer" {
             let invitePlayerVC = segue.destination as? InvitePlayerVC
             invitePlayerVC?.delegate = self

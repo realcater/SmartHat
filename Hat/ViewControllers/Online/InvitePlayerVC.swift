@@ -78,20 +78,9 @@ extension InvitePlayerVC {
         textField.autocorrectionType = .no
         textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
     }
-    private func showWarning(_ text: String) {
-        self.warningTextView.text = text
-        self.warningTextView.isHidden = false
-        //self.titleLabel.text = text
-        //self.titleLabel.textColor = K.Colors.red
-    }
-    private func hideWarning() {
-        self.warningTextView.isHidden = true
-        //self.titleLabel.text = "Введите никнейм игрока"
-        //self.titleLabel.textColor = K.Colors.foreground
-    }
     
     @objc private func textFieldDidChange(_ textField: UITextField) {
-        hideWarning()
+        hideWarning(in: warningTextView)
         guard textField.text!.count > 0 else {
             self.playersList.players = []
             self.selectedPlayer = nil

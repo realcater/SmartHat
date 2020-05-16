@@ -15,6 +15,8 @@ class GamesListTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        isEditing = true
+        tableView.allowsSelectionDuringEditing = true
     }
 
     // MARK: - Table view data source
@@ -28,20 +30,46 @@ class GamesListTVC: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GamesList", for: indexPath)
         let gameOwnerNameTextField = cell.viewWithTag(1001) as! UITextField
         let createdAtTextField = cell.viewWithTag(1002) as! UITextField
+        let turnTextField = cell.viewWithTag(1003) as! UITextField
         
         if indexPath.row == 0 {
             gameOwnerNameTextField.text = "Автор"
             createdAtTextField.text = "Создана"
+            turnTextField.text = "Ход"
             cell.viewWithTag(1000)?.backgroundColor = K.Colors.foreground
             gameOwnerNameTextField.textColor = K.Colors.background
             createdAtTextField.textColor = K.Colors.background
+            turnTextField.textColor = K.Colors.background
         } else {
             gameOwnerNameTextField.text = gamesList[indexPath.row-1].userOwnerName
+            
             let stringCreatedAt = gamesList[indexPath.row-1].createdAt
             createdAtTextField.text = stringCreatedAt.convertFromZ()?.convertTo(use: "HH:mm")
+            
+            let turnString = (gamesList[indexPath.row-1].turn == -1) ? "🏆" : String(gamesList[indexPath.row-1].turn)
+            turnTextField.text = turnString
         }
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return gameIsMine(indexPath) ? .delete : .none
+    }
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return gameIsMine(indexPath)
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            if let gameID = getGameID(indexPath) {
+                tryDelete(for: gameID) {
+                    self.gamesList.remove(at: indexPath.row-1)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+            }
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row != 0 {
             tableView.deselectRow(at: indexPath, animated: true)
@@ -49,3 +77,39 @@ class GamesListTVC: UITableViewController {
         }
     }
 }
+
+extension GamesListTVC {
+    func gameIsMine(_ index: IndexPath) -> Bool {
+        if index.row == 0 { return false }
+        return gamesList[index.row-1].userOwnerName == Auth().name
+    }
+    
+    func getGameID(_ index: IndexPath) -> UUID? {
+        if index.row == 0 { return nil }
+        return UUID(uuidString: gamesList[index.row-1].gameID)
+    }
+    
+    func tryDelete(for gameID: UUID, completion: @escaping () -> Void) {
+        let alert = UIAlertController(title: "Вы точно хотите удалить игру?", message: "Данная операция не обратима", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Да", style: .destructive, handler: { action in
+            self.deleteGame(for: gameID) { completion() }
+        }))
+        alert.addAction(UIAlertAction(title: "Нет", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func deleteGame(for gameID: UUID, completion: @escaping () -> Void) {
+        GameRequest.delete(gameID: gameID) { [weak self] result in
+            DispatchQueue.main.async { [weak self] in
+                switch result {
+                case .success:
+                    completion()
+                case .failure(let error):
+                    self?.delegate?.showWarning(error)
+                }
+            }
+        }
+    }
+}
+
+

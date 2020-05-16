@@ -16,15 +16,15 @@ class NewUserVC: UIViewController {
             fatalError("Can't get UIDevice")
         }
         guard let name = textField.text else {
-            showWarning("Имя не может быть пустым")
+            showWarning("Имя не может быть пустым", in: warningTextView)
             return
         }
         guard textField.text!.count >= K.Name.minLength else {
-            showWarning(K.Name.minLengthWarning)
+            showWarning(K.Name.minLengthWarning, in: warningTextView)
             return
         }
         guard textField.text!.count <= K.Name.maxLength else {
-            showWarning(K.Name.maxLengthWarning)
+            showWarning(K.Name.maxLengthWarning, in: warningTextView)
             return
         }
         let password = "leoleo"//Helper.generatePassword()
@@ -40,13 +40,13 @@ class NewUserVC: UIViewController {
                             self?.dismiss(animated: true, completion: nil)
                             self?.delegate?.successfullRegistration(name: name)
                         case .failure(let error):
-                            self?.showWarning(K.Server.warnings[error]!)
+                            self?.showWarning(K.Server.warnings[error]!, in: (self?.warningTextView)!)
                         }
                     }
                 }
             case .failure(let error):
                 DispatchQueue.main.async { [weak self] in
-                    self?.showWarning(K.Server.warnings[error]!)
+                    self?.showWarning(K.Server.warnings[error]!, in: (self?.warningTextView)!)
                 }
             }
         }
@@ -71,10 +71,7 @@ class NewUserVC: UIViewController {
         textField.layer.borderWidth = 1.0
         textField.autocorrectionType = .no
     }
-    private func showWarning(_ text: String) {
-        self.warningTextView.text = text
-        self.warningTextView.isHidden = false
-    }
+
     func saveCredentials(id: UUID, name: String, password: String) {
         KeychainWrapper.standard.set(id.uuidString, forKey: "id")
         KeychainWrapper.standard.set(name, forKey: "name")

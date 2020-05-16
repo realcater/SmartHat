@@ -21,6 +21,7 @@ struct K {
             static let updateGameList = 5.0
             static let checkOffline = 10.0
             static let updateGameData = 1.0
+            static let waitUntilNextTry = 1.0
         }
      }
     static let startPlayers: [Player] = [
@@ -106,7 +107,7 @@ struct K {
         static let addPlayerIcon = "addPlayerIcon"
         static let waitIcon = "waitIcon"
         static let offlineIcon = "offline"
-        static let onlineIcon = "online2"
+        static let onlineIcon = "online"
     }
     struct Delays {
         static let moveOneRow = 0.2
@@ -129,4 +130,5 @@ struct K {
         static let minLengthWarning = "Имя должно быть не менее "+String(minLength)+" символов"
         static let maxLengthWarning = "Имя должно быть не более "+String(maxLength)+" символов"
     }
+    static let endTurnNumber = -1
 }

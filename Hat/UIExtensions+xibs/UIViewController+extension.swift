@@ -45,4 +45,24 @@ extension UIViewController {
         
         tappedView.isUserInteractionEnabled = true
     }
+    func showWarning(_ error: RequestError) {
+        self.title = K.Server.warnings[error]!
+    }
+    func showWarningOrTitle(_ error: RequestError?, _ title: String? = nil) {
+        if let error = error {
+            self.title = K.Server.warnings[error]!
+        } else {
+            self.title = title
+        }
+    }
+    func showWarning(_ text: String) {
+        self.title = text
+    }
+    func showWarning(_ text: String, in textView: UITextView) {
+        textView.text = text
+        textView.isHidden = false
+    }
+    func hideWarning(in textView: UITextView) {
+        textView.isHidden = true
+    }
 }

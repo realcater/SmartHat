@@ -15,7 +15,7 @@ class GamesListVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         title = "Загружаем..."
-        createLoadGameListTimer()
+        createTimer()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -54,9 +54,6 @@ private extension GamesListVC {
             }
         }
     }
-    func showWarning(_ text: String) {
-        self.title = text
-    }
 
     func loadGame(gameID: UUID) {
         showWarning("Загружаем игру...")
@@ -77,6 +74,7 @@ private extension GamesListVC {
 // MARK: - GameListDelegate
 protocol GameListDelegate {
     func confirmJoin(gameNumber: Int)
+    func showWarning(_ error: RequestError)
 }
 extension GamesListVC: GameListDelegate {
     func confirmJoin(gameNumber: Int) {
@@ -102,7 +100,7 @@ extension GamesListVC {
         }
     }
     
-    func createLoadGameListTimer() {
+    func createTimer() {
         if timer == nil {
             timer = Timer.scheduledTimer(timeInterval: K.Server.Time.updateGameList, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
             timer?.tolerance = 0.1
