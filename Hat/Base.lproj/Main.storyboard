@@ -246,6 +246,7 @@
                         <segue destination="j10-9v-a03" kind="show" identifier="toEndGame" id="pE8-Mh-x6y"/>
                         <segue destination="n5c-B9-13Q" kind="show" identifier="toPlay" id="fSr-4v-fY5"/>
                         <segue destination="Ifu-eE-Ltf" kind="presentation" identifier="toBasket" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="2Ca-2X-faM"/>
+                        <segue destination="ogA-h6-WKL" kind="show" identifier="toStart" id="R28-Zd-JTx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KM3-ds-kNL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1682,9 +1683,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xoX-Tc-HJL"/>
-        <segue reference="980-dx-nYB"/>
-        <segue reference="Vb6-hb-Jzo"/>
+        <segue reference="pE8-Mh-x6y"/>
+        <segue reference="R28-Zd-JTx"/>
         <segue reference="yXp-Jh-0Fe"/>
     </inferredMetricsTieBreakers>
     <resources>

@@ -41,13 +41,10 @@ class GamesListTVC: UITableViewController {
             createdAtTextField.textColor = K.Colors.background
             turnTextField.textColor = K.Colors.background
         } else {
-            gameOwnerNameTextField.text = gamesList[indexPath.row-1].userOwnerName
-            
             let stringCreatedAt = gamesList[indexPath.row-1].createdAt
             createdAtTextField.text = stringCreatedAt.convertFromZ()?.convertTo(use: "HH:mm")
-            
-            let turnString = (gamesList[indexPath.row-1].turn == -1) ? "🏆" : String(gamesList[indexPath.row-1].turn)
-            turnTextField.text = turnString
+            gameOwnerNameTextField.text = gamesList[indexPath.row-1].userOwnerName
+            turnTextField.text = toString(turn: gamesList[indexPath.row-1].turn)
         }
         return cell
     }
@@ -108,6 +105,16 @@ extension GamesListTVC {
                     self?.delegate?.showWarning(error)
                 }
             }
+        }
+    }
+}
+
+extension GamesListTVC {
+    func toString(turn: Int) -> String {
+        switch turn {
+        case -1: return "🏆"
+        case 0: return "—"
+        default: return String(turn)
         }
     }
 }

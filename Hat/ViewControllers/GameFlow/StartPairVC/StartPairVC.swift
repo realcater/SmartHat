@@ -145,8 +145,17 @@ extension StartPairVC {
             timeLeft = gameData.settings.roundDuration
             timerLabel.text = String(timeLeft)
         }
-        
     }
+    
+    func tryQuitGame(title: String = "Выйти из игры?", message: String = "") {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Да", style: .destructive, handler: {
+            action in self.moveToStartVC()
+        }))
+        alert.addAction(UIAlertAction(title: "Пока нет", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
     func tryEndGame(title: String = "Вы закончили полный круг", message: String = "Все сыграли со всеми. Закончим игру?") {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Давно пора", style: .destructive, handler: {
@@ -154,6 +163,20 @@ extension StartPairVC {
         }))
         alert.addAction(UIAlertAction(title: "Ещё поиграем", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+    
+    func moveToStartVC() {
+        self.navigationController?.popToRootViewController(animated: true)
+        /*
+        let vc = navigationController!.viewControllers[navigationController!.viewControllers.count - 2]
+        if vc is StartVC {
+            let new
+            // I get the previous controller from it, in this case, the 3rd back in stack
+            let newControllerTarget = navigationController!.viewControllers[navigationController!.viewControllers.count - 3]
+
+            // And finally sends back to desired controller
+            navigationController?.popToViewController(newControllerTarget, animated: true)
+        }*/
     }
     
     func updateTitle() {
