@@ -2,17 +2,17 @@ import Foundation
 
 extension StartPairVC {
     func getFrequentGameData() {
-        GameRequest.getFrequent(gameID: gameID!) { [weak self] result in
+        GameRequest.getFrequent(gameID: game.id) { [weak self] result in
             DispatchQueue.main.async { [weak self] in
                 switch result {
-                case .success(let frequentGameData):
-                    if frequentGameData.turn != self?.gameData.turn {
+                case .success(let frequentData):
+                    if frequentData.turn != self?.game.turn {
                         self?.getFullGameData()
-                    } else if frequentGameData.guessedThisTurn != self?.gameData.guessedThisTurn {
-                        self?.gameData.guessedThisTurn = frequentGameData.guessedThisTurn
+                    } else if frequentData.guessedThisTurn != self?.game.guessedThisTurn {
+                        self?.game.guessedThisTurn = frequentData.guessedThisTurn
                     }
-                    if let timeFromExplain = frequentGameData.timeFromExplain, timeFromExplain < self!.gameData.settings.roundDuration, self?.turnTimer == nil {
-                        self?.createTurnTimer(timeLeft: self!.gameData.settings.roundDuration-timeFromExplain )
+                    if let timeFromExplain = frequentData.timeFromExplain, timeFromExplain < self!.game.data.settings.roundDuration, self?.turnTimer == nil {
+                        self?.createTurnTimer(timeLeft: self!.game.data.settings.roundDuration-timeFromExplain )
                     }
                     self?.updateTitle()
                 case .failure(let error):
@@ -22,13 +22,13 @@ extension StartPairVC {
         }
     }
     func getFullGameData() {
-        GameRequest.get(gameID: gameID!) { [weak self] result in
+        GameRequest.get(gameID: game.id) { [weak self] result in
             DispatchQueue.main.async { [weak self] in
                 switch result {
-                case .success(let gameData):
-                    self?.gameData = gameData
+                case .success(let game):
+                    self?.game = game
                     self?.cancelTurnTimer()
-                    if gameData.turn == K.endTurnNumber {
+                    if game.turn == K.endTurnNumber {
                         self?.performSegue(withIdentifier: "toEndGame", sender: self )
                     } else {
                         self?.prepareNewTurn()

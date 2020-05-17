@@ -17,7 +17,7 @@ extension NewGameVC {
         present(alert, animated: true, completion: nil)
     }
     func rejectGame() {
-        GameRequest.reject(gameID: self.gameID!) { [weak self] result in
+        GameRequest.reject(gameID: self.game.id) { [weak self] result in
             DispatchQueue.main.async { [weak self] in
                 switch result {
                 case .success:

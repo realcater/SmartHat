@@ -10,7 +10,7 @@ import UIKit
 
 class GamesListTVC: UITableViewController {
 
-    var gamesList: [Game.Public] = []
+    var gamesList: [Game.ListElement] = []
     var delegate: GameListDelegate?
     
     override func viewDidLoad() {
@@ -40,6 +40,7 @@ class GamesListTVC: UITableViewController {
             gameOwnerNameTextField.textColor = K.Colors.background
             createdAtTextField.textColor = K.Colors.background
             turnTextField.textColor = K.Colors.background
+            cell.selectionStyle = .none
         } else {
             let stringCreatedAt = gamesList[indexPath.row-1].createdAt
             createdAtTextField.text = stringCreatedAt.convertFromZ()?.convertTo(use: "HH:mm")
@@ -83,7 +84,7 @@ extension GamesListTVC {
     
     func getGameID(_ index: IndexPath) -> UUID? {
         if index.row == 0 { return nil }
-        return UUID(uuidString: gamesList[index.row-1].gameID)
+        return UUID(uuidString: gamesList[index.row-1].id)
     }
     
     func tryDelete(for gameID: UUID, completion: @escaping () -> Void) {
@@ -113,7 +114,7 @@ extension GamesListTVC {
     func toString(turn: Int) -> String {
         switch turn {
         case -1: return "🏆"
-        case 0: return "—"
+        case 0: return ""
         default: return String(turn)
         }
     }

@@ -17,8 +17,9 @@ enum Mode {
 
 class NewGameVC: UIViewController {
     var playersTVC: PlayersTVC!
-    var gameData: GameData!
-    var gameID: UUID?
+    
+    var game: Game!
+    
     var playersList = PlayersList()
     var _mode : Mode!
     var statusTimer: Timer?
@@ -29,7 +30,7 @@ class NewGameVC: UIViewController {
         }
         set {
             _mode = newValue
-            if let gameData = gameData, gameData.turn == K.endTurnNumber {
+            if let game = game, game.turn == K.endTurnNumber {
                 title = "Игра завершена"
                 button?.enable()
                 button?.setTitle("Смотреть результаты", for: .normal)
@@ -50,14 +51,18 @@ class NewGameVC: UIViewController {
     @IBOutlet weak var button: MyButton!
     
     @IBAction func pressButton(_ sender: Any) {
-        if mode == .onlineCreate {
+        switch mode {
+        case .onlineCreate:
             createOnlineGame()
-        } else {
-            guard gameData.turn != K.endTurnNumber else {
-                performSegue(withIdentifier: "directToEndGame", sender: self)
-                return
-            }
+        case .offline:
+            createOfflineGame()
             performSegue(withIdentifier: "toStartPair", sender: self)
+        default:
+            if game?.turn == K.endTurnNumber {
+                performSegue(withIdentifier: "directToEndGame", sender: self)
+            } else {
+                performSegue(withIdentifier: "toStartPair", sender: self)
+            }
         }
     }
     
@@ -74,7 +79,7 @@ class NewGameVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
-        preparePicker(setting: gameData?.settings ?? K.SettingsRow.start)
+        preparePicker()
         mode = _mode
         if (mode == .onlineWait) || (mode == .onlineReady) {
             picker.isUserInteractionEnabled = false
@@ -95,19 +100,14 @@ class NewGameVC: UIViewController {
             playersTVC.mode =  mode
             playersTVC?.delegate = self
         } else if segue.identifier == "toStartPair" {
-            if mode == .offline {
-                createGameData()
-                playersList.saveToFile()
-            }
             let startPairVC = segue.destination as? StartPairVC
-            startPairVC?.gameData = self.gameData
+            startPairVC?.game = self.game
             startPairVC?.mode = mode
-            startPairVC?.gameID = gameID
             startPairVC?.statusTimer = statusTimer
         } else if segue.identifier == "directToEndGame" {
             cancelStatusTimer()
             let endGameVC = segue.destination as? EndGameVC
-            endGameVC?.players = self.gameData.players.sorted { $0.ttlGuesses > $1.ttlGuesses }
+            endGameVC?.players = self.game.data.players.sorted { $0.ttlGuesses > $1.ttlGuesses }
         } else if segue.identifier == "toInvitePlayer" {
             let invitePlayerVC = segue.destination as? InvitePlayerVC
             invitePlayerVC?.delegate = self

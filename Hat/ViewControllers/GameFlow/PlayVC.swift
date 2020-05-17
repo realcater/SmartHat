@@ -10,8 +10,7 @@ import UIKit
 
 class PlayVC: UIViewController {
     
-    var gameData: GameData!
-    var gameID: UUID?
+    var game: Game!
     var mode: Mode?
     
     var turnTimer: Timer?
@@ -37,8 +36,8 @@ class PlayVC: UIViewController {
         view.backgroundColor = K.Colors.background
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.lightGray]
         circleView.layer.cornerRadius = K.CircleCornerRadius.big
-        lastTime = gameData.settings.roundDuration
-        gameData.clear()
+        lastTime = game.data.settings.roundDuration
+        game.clear()
         updateTitle()
         nextWord()
         createTurnTimer()
@@ -47,7 +46,7 @@ class PlayVC: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "noWords" {
             let endGameVC = segue.destination as? EndGameVC
-            endGameVC?.players = self.gameData.players.sorted { $0.ttlGuesses > $1.ttlGuesses }
+            endGameVC?.players = self.game.data.players.sorted { $0.ttlGuesses > $1.ttlGuesses }
             statusTimer?.invalidate()
         }
     }
@@ -57,7 +56,7 @@ class PlayVC: UIViewController {
 private extension PlayVC {
     @IBAction func guessedPressed(_ sender: Any) {
         K.Sounds.correct?.resetAndPlay()
-        gameData.setWordGuessed(time: lastTime - timeLeft)
+        game.setWordGuessed(time: lastTime - timeLeft)
         lastTime = timeLeft
         guessedQty+=1
         updateTitle()
@@ -84,33 +83,35 @@ private extension PlayVC {
     
     func nextWord() {
         if mode != .offline {
-            API.updateFrequent(gameID: gameID!, gameData: gameData, title: currentTitle, showWarningOrTitle: self.doNotShowWarnings)
+            API.updateFrequent(game: game, title: currentTitle, showWarningOrTitle: self.doNotShowWarnings)
         }
-        if gameData.getRandomWordFromPool() {
-            wordLabel.text = gameData.currentWord
+        if game.getRandomWordFromPool() {
+            wordLabel.text = game.data.currentWord
         } else {
             cancelTurnTimer()
-            gameData.turn = K.endTurnNumber
-            API.updateUntilSuccess(gameID: gameID!, gameData: gameData, showWarningOrTitle: self.showWarningOrTitle) { self.performSegue(withIdentifier: "noWords", sender: self) }
+            game.turn = K.endTurnNumber
+            API.updateUntilSuccess(game: game, showWarningOrTitle: self.showWarningOrTitle) { self.performSegue(withIdentifier: "noWords", sender: self) }
         }
     }
     
     func nextPair() {
         cancelTurnTimer()
-        gameData.turn += 1
-        if mode != .offline {
-            gameData.explainTime = Date().addingTimeInterval(-100000).convertTo()
+        game.turn += 1
+        if mode == .offline {
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            game.explainTime = Date().addingTimeInterval(-100000).convertTo()
             guessedButton.disable()
             notGuessedButton.disable()
-            API.updateUntilSuccess(gameID: gameID!, gameData: gameData, title: currentTitle, showWarningOrTitle: self.showWarningOrTitle) {
+            API.updateUntilSuccess(game: game, title: currentTitle, showWarningOrTitle: self.showWarningOrTitle) {
                 self.navigationController?.popViewController(animated: true)
             }
         }
     }
     
     func updateExplainTime() {
-        gameData.explainTime = Date().convertTo(use: "yyyy-MM-dd'T'HH:mm:ss'Z'")
-        API.updateFrequent(gameID: gameID!, gameData: gameData, title: currentTitle, showWarningOrTitle: self.doNotShowWarnings)
+        game.explainTime = Date().convertTo(use: "yyyy-MM-dd'T'HH:mm:ss'Z'")
+        API.updateFrequent(game: game, title: currentTitle, showWarningOrTitle: self.doNotShowWarnings)
     }
     
     func doNotShowWarnings(_ error: RequestError?, _ title: String? = nil) {
@@ -126,7 +127,7 @@ extension PlayVC {
 
         if timeLeft == 0 {
             K.Sounds.timeOver?.resetAndPlay()
-            gameData.setWordLeft(time: lastTime)
+            game.setWordLeft(time: lastTime)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                 self.nextPair()
             })
@@ -147,7 +148,7 @@ extension PlayVC {
                                          userInfo: nil,
                                         repeats: true)
             turnTimer?.tolerance = 0.1
-            timeLeft = gameData.settings.roundDuration
+            timeLeft = game.data.settings.roundDuration
             timerLabel.text = String(timeLeft)
             if mode != .offline { updateExplainTime() }
         }
@@ -162,7 +163,7 @@ extension PlayVC {
 // MARK: - BtnTimer
 extension PlayVC {
     @objc func resolveBtnTimer() {
-        gameData.setWordMissed(time: lastTime-timeLeft)
+        game.setWordMissed(time: lastTime-timeLeft)
         K.Sounds.error?.play()
         nextPair()
     }

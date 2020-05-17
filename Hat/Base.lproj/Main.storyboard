@@ -734,6 +734,12 @@
                                             <segue destination="7ol-hx-XXc" kind="unwind" unwindAction="unwindFromBasketVC:" id="C0f-FV-PMf"/>
                                         </connections>
                                     </button>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Только создатель игры может изменять слова в шляпе" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="mlH-so-rGR">
+                                        <rect key="frame" x="8" y="611" width="358" height="13.333333333333371"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" red="0.75294117647058822" green="0.090196078431372548" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -741,7 +747,10 @@
                                     <constraint firstItem="d0C-bh-Lzq" firstAttribute="top" secondItem="IGJ-Lj-7bd" secondAttribute="top" id="Lsy-Jz-SQU"/>
                                     <constraint firstItem="BGe-d2-DFv" firstAttribute="top" secondItem="d0C-bh-Lzq" secondAttribute="bottom" id="MhM-la-h8h"/>
                                     <constraint firstAttribute="trailing" secondItem="d0C-bh-Lzq" secondAttribute="trailing" id="Tju-sp-num"/>
+                                    <constraint firstItem="mlH-so-rGR" firstAttribute="leading" secondItem="IGJ-Lj-7bd" secondAttribute="leading" constant="8" id="XRf-ZC-I08"/>
                                     <constraint firstItem="BGe-d2-DFv" firstAttribute="leading" secondItem="IGJ-Lj-7bd" secondAttribute="leading" id="bbA-xW-Gzd"/>
+                                    <constraint firstAttribute="trailing" secondItem="mlH-so-rGR" secondAttribute="trailing" constant="8" id="hhK-a1-VYz"/>
+                                    <constraint firstItem="mlH-so-rGR" firstAttribute="top" secondItem="BGe-d2-DFv" secondAttribute="bottom" constant="2" id="nsM-wN-fmN"/>
                                     <constraint firstAttribute="trailing" secondItem="BGe-d2-DFv" secondAttribute="trailing" id="pfz-Lu-O5g"/>
                                     <constraint firstAttribute="bottom" secondItem="BGe-d2-DFv" secondAttribute="bottom" constant="20" id="r4I-FH-aOe"/>
                                 </constraints>
@@ -761,6 +770,8 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="popupView" destination="IGJ-Lj-7bd" id="WnR-vg-rTd"/>
+                        <outlet property="saveButton" destination="BGe-d2-DFv" id="mm6-XS-bj9"/>
+                        <outlet property="warningLabel" destination="mlH-so-rGR" id="ApJ-be-xHX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pIU-cO-kAk" sceneMemberID="firstResponder"/>
@@ -873,7 +884,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i6L-ag-qsy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2726" y="1326"/>
+            <point key="canvasLocation" x="2724.6376811594205" y="1324.8883928571429"/>
         </scene>
         <!--AboutTableVC-->
         <scene sceneID="YMi-Lg-w1B">
@@ -894,7 +905,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Шляпа. Все-против-всех. v1.01" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xrt-Vr-wXh">
-                                                    <rect key="frame" x="20" y="11" width="688" height="22"/>
+                                                    <rect key="frame" x="20" y="11" width="334" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -931,7 +942,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Шляпа. Все-против-всех" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J9P-9U-hPk">
-                                                    <rect key="frame" x="68" y="11.666666666666664" width="640" height="21"/>
+                                                    <rect key="frame" x="68" y="11.666666666666664" width="286" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -969,7 +980,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дмитрий Дементьев" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s1J-RN-TRf">
-                                                    <rect key="frame" x="68" y="11.666666666666664" width="624" height="21"/>
+                                                    <rect key="frame" x="68" y="11.666666666666664" width="270" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -996,7 +1007,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Изи:      4263 слов" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VGf-9w-mfs">
-                                                    <rect key="frame" x="8" y="8" width="712" height="28"/>
+                                                    <rect key="frame" x="8" y="8" width="358" height="28"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1018,7 +1029,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Норм:   6762 слов" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLO-jZ-VxM">
-                                                    <rect key="frame" x="8" y="8" width="712" height="28"/>
+                                                    <rect key="frame" x="8" y="8" width="358" height="28"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1040,7 +1051,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Хард:    2006 слов" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQk-RQ-WqM">
-                                                    <rect key="frame" x="8" y="8" width="712" height="28"/>
+                                                    <rect key="frame" x="8" y="8" width="358" height="28"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1114,7 +1125,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Каждый играет на своём устройстве, объясняем по Zoom или Skype (подключаем отдельно)" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jH-9z-IbD">
+                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Каждый играет на своём устройстве, объясняем по видео или вживую" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jH-9z-IbD">
                                 <rect key="frame" x="20" y="543" width="374" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -1685,7 +1696,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="pE8-Mh-x6y"/>
         <segue reference="R28-Zd-JTx"/>
-        <segue reference="yXp-Jh-0Fe"/>
+        <segue reference="sIo-hW-gb7"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="addPlayerIcon" width="152" height="76"/>

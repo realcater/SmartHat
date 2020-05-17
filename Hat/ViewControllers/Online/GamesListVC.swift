@@ -2,8 +2,8 @@ import UIKit
 
 class GamesListVC: UIViewController {
 
-    var gamesList: [Game.Public] = []
-    var gameLoaded: GameData?
+    var gamesList: [Game.ListElement] = []
+    var gameLoaded: Game?
     var gameID: UUID?
     var gamesListTVC: GamesListTVC!
     var timer: Timer?
@@ -30,9 +30,8 @@ class GamesListVC: UIViewController {
             gamesListTVC.delegate = self
         } else if segue.identifier == "joinGame" {
             let newGameVC = segue.destination as! NewGameVC
-            newGameVC.gameData = gameLoaded
+            newGameVC.game = gameLoaded
             newGameVC.mode = gameLoaded!.everyPlayerReady ? .onlineReady : .onlineWait
-            newGameVC.gameID = gameID
         }
     }
 }
@@ -80,7 +79,7 @@ extension GamesListVC: GameListDelegate {
     func confirmJoin(gameNumber: Int) {
         let alert = UIAlertController(title: "Присоединиться к игре от  \(gamesList[gameNumber].userOwnerName)?", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { action in
-            self.gameID = UUID(uuidString: self.gamesList[gameNumber].gameID)
+            self.gameID = UUID(uuidString: self.gamesList[gameNumber].id)
             guard self.gameID != nil else {
                 self.showWarning(K.Server.warnings[.other]!)
                 return

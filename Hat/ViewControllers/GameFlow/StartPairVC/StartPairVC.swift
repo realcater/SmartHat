@@ -18,8 +18,7 @@ class StartPairVC: UIViewController {
     @IBOutlet weak var helpMessage: UILabel!
     @IBOutlet weak var listenerNameLabel: UILabel!
     
-    var gameData: GameData!
-    var gameID: UUID?
+    var game: Game!
     var btnTimer: Timer?
     var btnTimeLeft: Int!
     var dataTimer: Timer?
@@ -27,7 +26,7 @@ class StartPairVC: UIViewController {
     var statusTimer: Timer?
     var timeLeft: Int!
     var mode: Mode?
-    var firstMyTurnAfterLoad = true
+    var firstTurnAfterLoad = true
     var currentTitle: String?
     
     override func viewDidLoad() {
@@ -40,29 +39,28 @@ class StartPairVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
+        prepareNewTurn(colorise: false)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        prepareNewTurn(colorise: false)
         coloriseBarView()
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPlay" {
             let playVC = segue.destination as? PlayVC
-            playVC?.gameData = self.gameData
-            playVC?.gameID = self.gameID
+            playVC?.game = self.game
             playVC?.mode = self.mode
             playVC?.statusTimer = statusTimer
             cancelDataTimer()
         } else if segue.identifier == "toEndGame" {
             let endGameVC = segue.destination as? EndGameVC
-            endGameVC?.players = self.gameData.players.sorted { $0.ttlGuesses > $1.ttlGuesses }
+            endGameVC?.players = self.game.data.players.sorted { $0.ttlGuesses > $1.ttlGuesses }
             cancelDataTimer()
             statusTimer?.invalidate()
         } else if segue.identifier == "toBasket" {
             let basketVC = segue.destination as? BasketVC
-            basketVC?.gameData = gameData
-            basketVC?.editable = isMyTurn
+            basketVC?.game = game
+            basketVC?.editable = game.userOwnerID == Auth().id
         }
     }
 }
@@ -80,7 +78,13 @@ extension StartPairVC {
     }
     
     @IBAction func pressEndButton(_ sender: Any) {
-        tryEndGame(title: "Выйти из игры?", message: "")
+        if mode == Mode.offline {
+            tryEndGame()
+        } else if game.userOwnerID == Auth().id {
+            tryEndOrQuitGame()
+        } else {
+            tryQuitGame()
+        }
     }
     
     @IBAction func unwindFromBasketVC(_ unwindSegue: UIStoryboardSegue) {
@@ -88,20 +92,20 @@ extension StartPairVC {
         checkWordsCount()
     }
     @IBAction func pressBasketButton(_ sender: Any) {
-        if isMyTurn { performSegue(withIdentifier: "toBasket", sender: self) }
+        performSegue(withIdentifier: "toBasket", sender: self)
     }
 }
 
 // MARK: - private functions
 extension StartPairVC {
     var isMyTurn: Bool { //always true if offline game)
-        return (mode == .offline) || (gameData.currentTeller.id == Auth().id)
+        return (mode == .offline) || (game.currentTeller.id == Auth().id)
     }
     var isTeller: Bool {
-        return gameData.currentTeller.id == Auth().id
+        return game.currentTeller.id == Auth().id
     }
     var isListener: Bool {
-        return gameData.currentListener.id == Auth().id
+        return game.currentListener.id == Auth().id
     }
     func coloriseBarView() {
         if isTeller {
@@ -119,8 +123,8 @@ extension StartPairVC {
     }
     
     func reloadNames() {
-        tellerNameLabel.text = gameData.currentTeller.name
-        listenerNameLabel.text = gameData.currentListener.name
+        tellerNameLabel.text = game.currentTeller.name
+        listenerNameLabel.text = game.currentListener.name
     }
     
     func prepareNewTurn(colorise: Bool = true) {
@@ -130,8 +134,10 @@ extension StartPairVC {
         helpMessage.isHidden = true
         
         if isMyTurn {
-            if gameData.isOneFullCircle {
-                if firstMyTurnAfterLoad { firstMyTurnAfterLoad = false } else { tryEndGame() }
+            if game.isOneFullCircle {
+                if firstTurnAfterLoad { firstTurnAfterLoad = false } else {
+                    tryEndGame(title: "Вы закончили полный круг", message: "Все сыграли со всеми. Закончим игру?")
+                }
             }
             circleView.isHidden = true
             timerLabel.isHidden = true
@@ -142,61 +148,33 @@ extension StartPairVC {
             circleView.isHidden = false
             circleView.backgroundColor = K.Colors.foreground40
             timerLabel.isHidden = false
-            timeLeft = gameData.settings.roundDuration
+            timeLeft = game.data.settings.roundDuration
             timerLabel.text = String(timeLeft)
         }
     }
     
-    func tryQuitGame(title: String = "Выйти из игры?", message: String = "") {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Да", style: .destructive, handler: {
-            action in self.moveToStartVC()
-        }))
-        alert.addAction(UIAlertAction(title: "Пока нет", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
-    
-    func tryEndGame(title: String = "Вы закончили полный круг", message: String = "Все сыграли со всеми. Закончим игру?") {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Давно пора", style: .destructive, handler: {
-            action in self.showResults()
-        }))
-        alert.addAction(UIAlertAction(title: "Ещё поиграем", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
-    
-    func moveToStartVC() {
-        self.navigationController?.popToRootViewController(animated: true)
-        /*
-        let vc = navigationController!.viewControllers[navigationController!.viewControllers.count - 2]
-        if vc is StartVC {
-            let new
-            // I get the previous controller from it, in this case, the 3rd back in stack
-            let newControllerTarget = navigationController!.viewControllers[navigationController!.viewControllers.count - 3]
-
-            // And finally sends back to desired controller
-            navigationController?.popToViewController(newControllerTarget, animated: true)
-        }*/
-    }
-    
     func updateTitle() {
         if anotherPlayerIsGuessing {
-            currentTitle = "Угадано: \(gameData.guessedThisTurn) слов"
+            currentTitle = "Угадано: \(game.guessedThisTurn) слов"
             if title != currentTitle { title = currentTitle }
         } else {
             checkWordsCount()
         }
     }
     func checkWordsCount() {
-        currentTitle = "Осталось: \(gameData.leftWords.count) слов"
+        currentTitle = "Осталось: \(game.data.leftWords.count) слов"
         if title != currentTitle { title = currentTitle }
-        if gameData.leftWords.count == 0 {
+        if game.data.leftWords.count == 0 {
             showResults()
         }
     }
     func showResults() {
-        gameData.turn = K.endTurnNumber
+        game.turn = K.endTurnNumber
         cancelDataTimer()
-        API.updateUntilSuccess(gameID: gameID!, gameData: gameData, showWarningOrTitle: self.showWarningOrTitle) { self.performSegue(withIdentifier: "toEndGame", sender: self) }
+        if mode == .offline {
+            performSegue(withIdentifier: "toEndGame", sender: self)
+        } else {
+            API.updateUntilSuccess(game: game, showWarningOrTitle: self.showWarningOrTitle) { self.performSegue(withIdentifier: "toEndGame", sender: self) }
+        }
     }
 }

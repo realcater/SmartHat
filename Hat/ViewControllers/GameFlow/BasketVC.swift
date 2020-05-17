@@ -12,11 +12,15 @@ class BasketVC: UIViewController {
 
     @IBOutlet weak var popupView: UIView!
     
-    var gameData: GameData!
+    var game: Game!
     var editable: Bool!
+    @IBOutlet weak var warningLabel: UILabel!
     
+    @IBOutlet weak var saveButton: MyButton!
     @IBAction func pressSaveButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        API.updateUntilSuccess(game: game, title: "", showWarningOrTitle: self.showWarningOrTitle) {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @objc private func singleTap(recognizer: UITapGestureRecognizer) {
@@ -30,14 +34,25 @@ class BasketVC: UIViewController {
         popupView.layer.cornerRadius = K.windowsCornerRadius
         popupView.layer.masksToBounds = true
         self.addTaps(singleTapAction: #selector(singleTap))
+        if !editable { saveButton.disable() }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toBasketList" {
             let basketTVC = segue.destination as? BasketTVC
-            basketTVC?.gameData = gameData
+            basketTVC?.game = game
             basketTVC?.editable = editable
+            basketTVC?.delegate = self
         }
     }
+}
 
+protocol BasketVCDelegate: class {
+    func showWarning()
+}
+
+extension BasketVC: BasketVCDelegate {
+    func showWarning() {
+        warningLabel.isHidden = false
+    }
 }

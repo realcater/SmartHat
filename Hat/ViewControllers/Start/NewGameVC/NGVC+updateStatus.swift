@@ -3,7 +3,7 @@ import Foundation
 
 extension NewGameVC {
     func requestUpdatePlayerStatus() {
-        GameRequest.getPlayersStatus(gameID: self.gameID!) { [weak self] result in
+        GameRequest.getPlayersStatus(gameID: self.game.id) { [weak self] result in
             DispatchQueue.main.async { [weak self] in
                 switch result {
                 case .success(let playersStatus):

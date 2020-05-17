@@ -13,9 +13,9 @@ class API {
     typealias warningFunc = (_ error: RequestError?, _ title: String?) -> Void
     typealias completionFunc = () -> Void
     
-    static func updateFrequent(gameID: UUID, gameData: GameData, title: String? = nil,  showWarningOrTitle: @escaping warningFunc) {
-        let frequentGameData = FrequentGameData(explainTime: gameData.explainTime, turn: gameData.turn, guessedThisTurn: gameData.guessedThisTurn)
-        GameRequest.updateFrequent(for: gameID, frequentGameData: frequentGameData) { result in
+    static func updateFrequent(game: Game, title: String? = nil,  showWarningOrTitle: @escaping warningFunc) {
+        let frequentData = game.convertToFrequent()
+        GameRequest.updateFrequent(for: game.id, frequentData: frequentData) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success:
@@ -27,20 +27,8 @@ class API {
         }
     }
     
-    static func tryUpdate(gameID: UUID, gameData: GameData, title: String? = nil, showWarningOrTitle: @escaping warningFunc, completion: @escaping completionFunc) {
-        GameRequest.update(for: gameID, gameData: gameData) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success:
-                    showWarningOrTitle(nil, title)
-                case .failure(let error):
-                    showWarningOrTitle(error, nil)
-                }
-            }
-        }
-    }
-    static func updateUntilSuccess(gameID: UUID, gameData: GameData, title: String? = nil, showWarningOrTitle: @escaping warningFunc, completion: completionFunc?) {
-            GameRequest.update(for: gameID, gameData: gameData) { result in
+    static func updateUntilSuccess(game: Game, title: String? = nil, showWarningOrTitle: @escaping warningFunc, completion: completionFunc?) {
+            GameRequest.update(game: game) { result in
                 switch result {
                 case .success:
                     DispatchQueue.main.async {
@@ -52,7 +40,7 @@ class API {
                         showWarningOrTitle(error, nil)
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + K.Server.Time.waitUntilNextTry) {
-                        updateUntilSuccess(gameID: gameID, gameData: gameData, title: title, showWarningOrTitle: showWarningOrTitle, completion: completion)
+                        updateUntilSuccess(game: game, title: title, showWarningOrTitle: showWarningOrTitle, completion: completion)
                     }
                 }
            }

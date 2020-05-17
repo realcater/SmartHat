@@ -1,12 +1,12 @@
 import Foundation
 
 enum GamesPublicResult {
-    case success([Game.Public])
+    case success([Game.ListElement])
     case failure(RequestError)
 }
 
-enum GameDataResult {
-    case success(GameData)
+enum GameResult {
+    case success(Game)
     case failure(RequestError)
 }
 
@@ -25,8 +25,8 @@ enum OkResult {
     case failure(RequestError)
 }
 
-enum FrequentGameDataResult {
-    case success(FrequentGameData)
+enum FrequentResult {
+    case success(Game.Frequent)
     case failure(RequestError)
 }
 
@@ -55,7 +55,7 @@ struct GameRequest {
                 return
             }
             do {
-                let games = try JSONDecoder().decode([Game.Public].self, from: jsonData)
+                let games = try JSONDecoder().decode([Game.ListElement].self, from: jsonData)
                 completion(.success(games))
             } catch {
                 completion(.failure(.other))
@@ -64,7 +64,7 @@ struct GameRequest {
         }
         dataTask.resume()
     }
-    static func search(by gameID: UUID, setAccepted: Bool, completion: @escaping (GameDataResult) -> Void) {
+    static func search(by gameID: UUID, setAccepted: Bool, completion: @escaping (GameResult) -> Void) {
         let URLPostfix = setAccepted ? "/accept" : ""
         let resourceURL = URL(string: K.Server.name + "games/"+gameID.uuidString+URLPostfix)
         var urlRequest = URLRequest(url: resourceURL!)
@@ -89,8 +89,8 @@ struct GameRequest {
                 return
             }
             do {
-                let gameData = try JSONDecoder().decode(GameData.self, from: jsonData)
-                completion(.success(gameData))
+                let game = try JSONDecoder().decode(Game.self, from: jsonData)
+                completion(.success(game))
             } catch {
                 completion(.failure(.other))
                 print("Can't parse JSON answer")
@@ -160,8 +160,8 @@ struct GameRequest {
         dataTask.resume()
     }
     
-    static func update(for gameID: UUID, gameData: GameData, completion: @escaping (OkResult) -> Void) {
-        let string = K.Server.name + "games/"+gameID.uuidString+"/update"
+    static func update(game: Game, completion: @escaping (OkResult) -> Void) {
+        let string = K.Server.name + "games/" + game.id.uuidString + "/update"
         let resourceURL = URL(string: string)
         var urlRequest = URLRequest(url: resourceURL!)
         guard let token = Auth().token else {
@@ -171,7 +171,7 @@ struct GameRequest {
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        urlRequest.httpBody = try! JSONEncoder().encode(gameData)
+        urlRequest.httpBody = try! JSONEncoder().encode(game)
         let dataTask = URLSession.shared.dataTask(with: urlRequest) { _, response, _ in
             guard let httpResponse = response as? HTTPURLResponse else {
                 completion(.failure(.noConnection))
@@ -187,7 +187,7 @@ struct GameRequest {
         dataTask.resume()
     }
     
-    static func updateFrequent(for gameID: UUID, frequentGameData: FrequentGameData, completion: @escaping (OkResult) -> Void) {
+    static func updateFrequent(for gameID: UUID, frequentData: Game.Frequent, completion: @escaping (OkResult) -> Void) {
         let string = K.Server.name + "games/"+gameID.uuidString+"/updatefrequent"
         let resourceURL = URL(string: string)
         var urlRequest = URLRequest(url: resourceURL!)
@@ -198,7 +198,7 @@ struct GameRequest {
         urlRequest.httpMethod = "POST"
         urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        urlRequest.httpBody = try! JSONEncoder().encode(frequentGameData)
+        urlRequest.httpBody = try! JSONEncoder().encode(frequentData)
         let dataTask = URLSession.shared.dataTask(with: urlRequest) { _, response, _ in
             guard let httpResponse = response as? HTTPURLResponse else {
                 completion(.failure(.noConnection))
@@ -248,7 +248,7 @@ struct GameRequest {
         dataTask.resume()
     }
     
-    static func get(gameID: UUID, completion: @escaping (GameDataResult) -> Void) {
+    static func get(gameID: UUID, completion: @escaping (GameResult) -> Void) {
         let resourceURL = URL(string: K.Server.name + "games/"+gameID.uuidString)
         var urlRequest = URLRequest(url: resourceURL!)
         guard let token = Auth().token else {
@@ -272,8 +272,8 @@ struct GameRequest {
                 return
             }
             do {
-                let gameData = try JSONDecoder().decode(GameData.self, from: jsonData)
-                completion(.success(gameData))
+                let game = try JSONDecoder().decode(Game.self, from: jsonData)
+                completion(.success(game))
             } catch {
                 completion(.failure(.other))
                 print("Can't parse JSON answer")
@@ -282,7 +282,7 @@ struct GameRequest {
         dataTask.resume()
     }
     
-    static func getFrequent(gameID: UUID, completion: @escaping (FrequentGameDataResult) -> Void) {
+    static func getFrequent(gameID: UUID, completion: @escaping (FrequentResult) -> Void) {
         let resourceURL = URL(string: K.Server.name + "games/"+gameID.uuidString+"/frequent")
         var urlRequest = URLRequest(url: resourceURL!)
         guard let token = Auth().token else {
@@ -306,8 +306,8 @@ struct GameRequest {
                 return
             }
             do {
-                let frequentGameData = try JSONDecoder().decode(FrequentGameData.self, from: jsonData)
-                completion(.success(frequentGameData))
+                let frequentData = try JSONDecoder().decode(Game.Frequent.self, from: jsonData)
+                completion(.success(frequentData))
             } catch {
                 completion(.failure(.other))
                 print("Can't parse JSON answer")
@@ -350,18 +350,6 @@ struct PlayerStatus: Codable {
     var inGame: Bool {
         guard let date = lastTimeInGame.convertFromZ() else { return false }
         return -date.timeIntervalSinceNow < K.Server.Time.checkOffline
-    }
-}
-
-struct FrequentGameData: Codable {
-    var explainTime: String
-    var turn: Int
-    var guessedThisTurn: Int
-    
-    var timeFromExplain: Int? {
-        //guard let time = explainTime?.timeIntervalSinceNow else { return nil }
-        let time = -Int(explainTime.convertFromZ()!.timeIntervalSinceNow)
-        return ((time < 0) || (time > 60)) ? nil : time
     }
 }
 

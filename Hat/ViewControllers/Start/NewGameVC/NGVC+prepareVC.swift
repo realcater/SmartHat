@@ -1,7 +1,8 @@
 import Foundation
 
 extension NewGameVC {
-    func preparePicker(setting: Settings) {
+    func preparePicker() {
+        let setting = game?.data.settings ?? K.SettingsRow.start
         picker.delegate = self
         picker.dataSource = self
         
@@ -17,7 +18,7 @@ extension NewGameVC {
             let me = Player(id: Auth().id, name: Auth().name!)
             playersList.players.append(me)
         default:
-            playersList.players.append(contentsOf: gameData.players)
+            playersList.players.append(contentsOf: game.data.players)
         }
     }
 }
