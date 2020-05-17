@@ -83,14 +83,14 @@ private extension PlayVC {
     
     func nextWord() {
         if mode != .offline {
-            API.updateFrequent(game: game, title: currentTitle, showWarningOrTitle: self.doNotShowWarnings)
+            Update().frequent(game: game, title: currentTitle, showWarningOrTitle: self.doNotShowWarnings)
         }
         if game.getRandomWordFromPool() {
             wordLabel.text = game.data.currentWord
         } else {
             cancelTurnTimer()
             game.turn = K.endTurnNumber
-            API.updateUntilSuccess(game: game, showWarningOrTitle: self.showWarningOrTitle) { self.performSegue(withIdentifier: "noWords", sender: self) }
+            Update().fullUntilSuccess(game: game, showWarningOrTitle: self.showWarningOrTitle) { self.performSegue(withIdentifier: "noWords", sender: self) }
         }
     }
     
@@ -103,7 +103,7 @@ private extension PlayVC {
             game.explainTime = Date().addingTimeInterval(-100000).convertTo()
             guessedButton.disable()
             notGuessedButton.disable()
-            API.updateUntilSuccess(game: game, title: currentTitle, showWarningOrTitle: self.showWarningOrTitle) {
+            Update().fullUntilSuccess(game: game, title: currentTitle, showWarningOrTitle: self.showWarningOrTitle) {
                 self.navigationController?.popViewController(animated: true)
             }
         }
@@ -111,7 +111,7 @@ private extension PlayVC {
     
     func updateExplainTime() {
         game.explainTime = Date().convertTo(use: "yyyy-MM-dd'T'HH:mm:ss'Z'")
-        API.updateFrequent(game: game, title: currentTitle, showWarningOrTitle: self.doNotShowWarnings)
+        Update().frequent(game: game, title: currentTitle, showWarningOrTitle: self.doNotShowWarnings)
     }
     
     func doNotShowWarnings(_ error: RequestError?, _ title: String? = nil) {

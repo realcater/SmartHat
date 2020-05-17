@@ -8,12 +8,14 @@
 
 import Foundation
 
-class API {
+class Update {
 
     typealias warningFunc = (_ error: RequestError?, _ title: String?) -> Void
     typealias completionFunc = () -> Void
     
-    static func updateFrequent(game: Game, title: String? = nil,  showWarningOrTitle: @escaping warningFunc) {
+    var attempts = 1
+    
+    func frequent(game: Game, title: String? = nil,  showWarningOrTitle: @escaping warningFunc) {
         let frequentData = game.convertToFrequent()
         GameRequest.updateFrequent(for: game.id, frequentData: frequentData) { result in
             DispatchQueue.main.async {
@@ -27,7 +29,7 @@ class API {
         }
     }
     
-    static func updateUntilSuccess(game: Game, title: String? = nil, showWarningOrTitle: @escaping warningFunc, completion: completionFunc?) {
+    func fullUntilSuccess(game: Game, title: String? = nil, showWarningOrTitle: @escaping warningFunc, completion: completionFunc?) {
             GameRequest.update(game: game) { result in
                 switch result {
                 case .success:
@@ -38,9 +40,15 @@ class API {
                 case .failure(let error):
                     DispatchQueue.main.async {
                         showWarningOrTitle(error, nil)
-                    }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + K.Server.Time.waitUntilNextTry) {
-                        updateUntilSuccess(game: game, title: title, showWarningOrTitle: showWarningOrTitle, completion: completion)
+                        if (error == .noConnection) && self.attempts < Int(K.Server.Time.ttlTryTime / K.Server.Time.waitUntilNextTry) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + K.Server.Time.waitUntilNextTry) {
+                                self.attempts += 1
+                                self.fullUntilSuccess(game: game, title: title, showWarningOrTitle: showWarningOrTitle, completion: completion)
+                            }
+                        } else {
+                            if let completion = completion { completion() }
+                            return
+                        }
                     }
                 }
            }

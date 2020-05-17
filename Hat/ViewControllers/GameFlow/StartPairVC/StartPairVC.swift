@@ -50,7 +50,7 @@ class StartPairVC: UIViewController {
             let playVC = segue.destination as? PlayVC
             playVC?.game = self.game
             playVC?.mode = self.mode
-            playVC?.statusTimer = statusTimer
+            //playVC?.statusTimer = statusTimer
             cancelDataTimer()
         } else if segue.identifier == "toEndGame" {
             let endGameVC = segue.destination as? EndGameVC
@@ -133,6 +133,7 @@ extension StartPairVC {
         checkWordsCount()
         helpMessage.isHidden = true
         
+        if mode != .offline { createDataTimer() }
         if isMyTurn {
             if game.isOneFullCircle {
                 if firstTurnAfterLoad { firstTurnAfterLoad = false } else {
@@ -143,7 +144,6 @@ extension StartPairVC {
             timerLabel.isHidden = true
             goButton.enable()
         } else {
-            createDataTimer()
             goButton.disable()
             circleView.isHidden = false
             circleView.backgroundColor = K.Colors.foreground40
@@ -174,7 +174,7 @@ extension StartPairVC {
         if mode == .offline {
             performSegue(withIdentifier: "toEndGame", sender: self)
         } else {
-            API.updateUntilSuccess(game: game, showWarningOrTitle: self.showWarningOrTitle) { self.performSegue(withIdentifier: "toEndGame", sender: self) }
+            Update().fullUntilSuccess(game: game, showWarningOrTitle: self.showWarningOrTitle) { self.performSegue(withIdentifier: "toEndGame", sender: self) }
         }
     }
 }

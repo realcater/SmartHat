@@ -88,9 +88,9 @@ class NewGameVC: UIViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if isMovingFromParent {
+        //if isMovingFromParent {
             cancelStatusTimer()
-        }
+        //}
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toPlayersList" {
@@ -103,7 +103,7 @@ class NewGameVC: UIViewController {
             let startPairVC = segue.destination as? StartPairVC
             startPairVC?.game = self.game
             startPairVC?.mode = mode
-            startPairVC?.statusTimer = statusTimer
+            //startPairVC?.statusTimer = statusTimer
         } else if segue.identifier == "directToEndGame" {
             cancelStatusTimer()
             let endGameVC = segue.destination as? EndGameVC

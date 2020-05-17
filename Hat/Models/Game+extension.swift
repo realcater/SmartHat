@@ -102,6 +102,6 @@ extension Game {
         }
     }
     func basketWordToShow(for num: Int) -> String {
-        return data.basketStatus[num] == .left ? "XXXXXXXX" : data.basketWords[num]
+        return data.basketStatus[num] == .left ? "########" : data.basketWords[num]
     }
 }

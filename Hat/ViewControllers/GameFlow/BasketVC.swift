@@ -18,14 +18,12 @@ class BasketVC: UIViewController {
     
     @IBOutlet weak var saveButton: MyButton!
     @IBAction func pressSaveButton(_ sender: Any) {
-        API.updateUntilSuccess(game: game, title: "", showWarningOrTitle: self.showWarningOrTitle) {
-            self.dismiss(animated: true, completion: nil)
-        }
+        if editable { saveAndDismiss() }
     }
     
     @objc private func singleTap(recognizer: UITapGestureRecognizer) {
         if (recognizer.state == UIGestureRecognizer.State.ended) {
-            dismiss(animated: true, completion: nil)
+            if editable { saveAndDismiss() }
         }
     }
     
@@ -43,6 +41,12 @@ class BasketVC: UIViewController {
             basketTVC?.game = game
             basketTVC?.editable = editable
             basketTVC?.delegate = self
+        }
+    }
+    func saveAndDismiss() {
+        game.basketChange += 1
+        Update().fullUntilSuccess(game: game, title: "", showWarningOrTitle: self.showWarningOrTitle) {
+            self.dismiss(animated: true, completion: nil)
         }
     }
 }

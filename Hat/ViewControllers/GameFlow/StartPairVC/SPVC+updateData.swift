@@ -6,9 +6,19 @@ extension StartPairVC {
             DispatchQueue.main.async { [weak self] in
                 switch result {
                 case .success(let frequentData):
-                    if frequentData.turn != self?.game.turn {
-                        self?.getFullGameData()
-                    } else if frequentData.guessedThisTurn != self?.game.guessedThisTurn {
+                    if (frequentData.turn != self?.game.turn)  {
+                        self?.getFullGameData() {
+                            self?.cancelTurnTimer()
+                            if self?.game.turn == K.endTurnNumber {
+                                self?.performSegue(withIdentifier: "toEndGame", sender: self )
+                            } else {
+                                self?.prepareNewTurn()
+                            }
+                        }
+                    } else if frequentData.basketChange != self?.game.basketChange {
+                        self?.getFullGameData(completion: nil)
+                    }
+                    else if frequentData.guessedThisTurn != self?.game.guessedThisTurn {
                         self?.game.guessedThisTurn = frequentData.guessedThisTurn
                     }
                     if let timeFromExplain = frequentData.timeFromExplain, timeFromExplain < self!.game.data.settings.roundDuration, self?.turnTimer == nil {
@@ -17,22 +27,19 @@ extension StartPairVC {
                     self?.updateTitle()
                 case .failure(let error):
                     self?.showWarning(error)
+                    self?.goButton.disable()
                 }
             }
         }
     }
-    func getFullGameData() {
+    func getFullGameData(completion: (() -> Void)?) {
         GameRequest.get(gameID: game.id) { [weak self] result in
             DispatchQueue.main.async { [weak self] in
                 switch result {
                 case .success(let game):
                     self?.game = game
-                    self?.cancelTurnTimer()
-                    if game.turn == K.endTurnNumber {
-                        self?.performSegue(withIdentifier: "toEndGame", sender: self )
-                    } else {
-                        self?.prepareNewTurn()
-                    }
+                    if let completion = completion { completion() }
+                    
                 case .failure(let error):
                     self?.showWarning(K.Server.warnings[error]!)
                 }

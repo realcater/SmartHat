@@ -22,6 +22,7 @@ struct K {
             static let checkOffline = 10.0
             static let updateGameData = 1.0
             static let waitUntilNextTry = 1.0
+            static let ttlTryTime = 10.0
         }
      }
     static let startPlayers: [Player] = [

@@ -7,6 +7,7 @@ class Game: Codable {
     var turn: Int
     var guessedThisTurn: Int
     var explainTime: String
+    var basketChange: Int
 
     internal init(id: UUID, data: GameData, userOwner: UUID) {
         self.id = id
@@ -14,6 +15,7 @@ class Game: Codable {
         self.userOwnerID = userOwner
         self.turn = 0
         self.guessedThisTurn = 0
+        self.basketChange = 0
         self.explainTime = Date().addingTimeInterval(-100000).convertTo()
     }
     
@@ -38,11 +40,13 @@ class Game: Codable {
         var turn: Int
         var guessedThisTurn: Int
         var explainTime: String
+        var basketChange: Int
         
-        internal init(turn: Int, guessedThisTurn: Int, explainTime: String) {
+        internal init(turn: Int, guessedThisTurn: Int, explainTime: String, basketChange: Int) {
             self.turn = turn
             self.guessedThisTurn = guessedThisTurn
             self.explainTime = explainTime
+            self.basketChange = 0
         }
         
         var timeFromExplain: Int? {
@@ -52,6 +56,6 @@ class Game: Codable {
         }
     }
     func convertToFrequent() -> Frequent {
-        return Frequent(turn: turn, guessedThisTurn: guessedThisTurn, explainTime: explainTime)
+        return Frequent(turn: turn, guessedThisTurn: guessedThisTurn, explainTime: explainTime, basketChange: basketChange)
     }
 }

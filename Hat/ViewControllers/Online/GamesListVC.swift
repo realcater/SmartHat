@@ -61,6 +61,7 @@ private extension GamesListVC {
                 switch result {
                 case .success(let game):
                     self?.gameLoaded = game
+                    self?.title = ""
                     self?.performSegue(withIdentifier: "joinGame", sender: self)
                 case .failure(let error):
                     self?.showWarning(K.Server.warnings[error]!)
@@ -79,6 +80,7 @@ extension GamesListVC: GameListDelegate {
     func confirmJoin(gameNumber: Int) {
         let alert = UIAlertController(title: "Присоединиться к игре от  \(gamesList[gameNumber].userOwnerName)?", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { action in
+            guard gameNumber < self.gamesList.count else { return }
             self.gameID = UUID(uuidString: self.gamesList[gameNumber].id)
             guard self.gameID != nil else {
                 self.showWarning(K.Server.warnings[.other]!)
