@@ -16,7 +16,7 @@
 		C112465424707A49009FB46D /* Game+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C112465324707A49009FB46D /* Game+extension.swift */; };
 		C127822C246ADDDF002C4E81 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C127822B246ADDDF002C4E81 /* String+extension.swift */; };
 		C127822E246ADEC0002C4E81 /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C127822D246ADEC0002C4E81 /* Date+extension.swift */; };
-		C1278232246C94C9002C4E81 /* SPVC+updateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1278231246C94C8002C4E81 /* SPVC+updateData.swift */; };
+		C1278232246C94C9002C4E81 /* SPVC+delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1278231246C94C8002C4E81 /* SPVC+delegate.swift */; };
 		C1278234246C9590002C4E81 /* SPVC+timers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1278233246C9590002C4E81 /* SPVC+timers.swift */; };
 		C130986421239082001D894D /* K.swift in Sources */ = {isa = PBXBuildFile; fileRef = C130986321239082001D894D /* K.swift */; };
 		C144B470247097F8006B0EDD /* SPVC+stopBtn.swift in Sources */ = {isa = PBXBuildFile; fileRef = C144B46F247097F8006B0EDD /* SPVC+stopBtn.swift */; };
@@ -84,7 +84,7 @@
 		C112465324707A49009FB46D /* Game+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+extension.swift"; sourceTree = "<group>"; };
 		C127822B246ADDDF002C4E81 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
 		C127822D246ADEC0002C4E81 /* Date+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extension.swift"; sourceTree = "<group>"; };
-		C1278231246C94C8002C4E81 /* SPVC+updateData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SPVC+updateData.swift"; sourceTree = "<group>"; };
+		C1278231246C94C8002C4E81 /* SPVC+delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SPVC+delegate.swift"; sourceTree = "<group>"; };
 		C1278233246C9590002C4E81 /* SPVC+timers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SPVC+timers.swift"; sourceTree = "<group>"; };
 		C130986321239082001D894D /* K.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = K.swift; sourceTree = "<group>"; };
 		C144B46F247097F8006B0EDD /* SPVC+stopBtn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SPVC+stopBtn.swift"; sourceTree = "<group>"; };
@@ -247,7 +247,7 @@
 			children = (
 				CA5916D323B3C74D007625A1 /* StartPairVC.swift */,
 				C1278233246C9590002C4E81 /* SPVC+timers.swift */,
-				C1278231246C94C8002C4E81 /* SPVC+updateData.swift */,
+				C1278231246C94C8002C4E81 /* SPVC+delegate.swift */,
 				C144B46F247097F8006B0EDD /* SPVC+stopBtn.swift */,
 			);
 			path = StartPairVC;
@@ -494,7 +494,7 @@
 				C1D0968324579A0E00A03A21 /* GameTypeVC.swift in Sources */,
 				C1EA3F3B2468322900BBC67E /* NGVC+Delegate.swift in Sources */,
 				C1669C562458AEB100B19384 /* NewUserVC.swift in Sources */,
-				C1278232246C94C9002C4E81 /* SPVC+updateData.swift in Sources */,
+				C1278232246C94C9002C4E81 /* SPVC+delegate.swift in Sources */,
 				C127822C246ADDDF002C4E81 /* String+extension.swift in Sources */,
 				C1D0968724582C1A00A03A21 /* GamesListVC.swift in Sources */,
 				C1EA3F3D246832E300BBC67E /* NGVC+createGame.swift in Sources */,

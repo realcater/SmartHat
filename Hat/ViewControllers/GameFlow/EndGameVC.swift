@@ -13,6 +13,9 @@ class EndGameVC: UIViewController {
     @IBOutlet weak var ggButton: MyButton!
     
     var players: [Player]!
+    var game: Game!
+    var mode: Mode?
+    var update: Update?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +23,11 @@ class EndGameVC: UIViewController {
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
         K.Sounds.applause?.play()
         title = "Результаты"
+        if mode != .offline, let update = update {
+            game.turn = K.endTurnNumber
+            update.setFull()
+        }
+         
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

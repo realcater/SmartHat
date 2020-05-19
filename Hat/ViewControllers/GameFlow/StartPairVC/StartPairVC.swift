@@ -21,19 +21,21 @@ class StartPairVC: UIViewController {
     var game: Game!
     var btnTimer: Timer?
     var btnTimeLeft: Int!
-    var dataTimer: Timer?
     var turnTimer: Timer?
     var statusTimer: Timer?
     var timeLeft: Int!
     var mode: Mode?
     var firstTurnAfterLoad = true
     var currentTitle: String?
+    var requestIsBeingHandled = false
+    var update: Update!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = K.Colors.background
         view.setBackgroundImage(named: K.FileNames.background, alpha: K.Alpha.Background.main)
         circleView.layer.cornerRadius = K.CircleCornerRadius.small
+        update = Update(game: game, title: title, sender: self, showWarningOrTitle: self.showWarningOrTitle)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,17 +52,20 @@ class StartPairVC: UIViewController {
             let playVC = segue.destination as? PlayVC
             playVC?.game = self.game
             playVC?.mode = self.mode
-            //playVC?.statusTimer = statusTimer
-            cancelDataTimer()
+            playVC?.update = update
+            update.stopGetFrequent()
         } else if segue.identifier == "toEndGame" {
             let endGameVC = segue.destination as? EndGameVC
             endGameVC?.players = self.game.data.players.sorted { $0.ttlGuesses > $1.ttlGuesses }
-            cancelDataTimer()
+            endGameVC?.game = game
+            endGameVC?.mode = mode
+            update.stopGetFrequent()
             statusTimer?.invalidate()
         } else if segue.identifier == "toBasket" {
             let basketVC = segue.destination as? BasketVC
             basketVC?.game = game
             basketVC?.editable = game.userOwnerID == Auth().id
+            basketVC?.update = update
         }
     }
 }
@@ -128,18 +133,16 @@ extension StartPairVC {
     }
     
     func prepareNewTurn(colorise: Bool = true) {
+        print("=========prepareNewTurn=============")
         if colorise { coloriseBarView() }
         reloadNames()
         checkWordsCount()
         helpMessage.isHidden = true
         
-        if mode != .offline { createDataTimer() }
+        if mode != .offline {
+            update.startGetFrequent(every: K.Server.Time.updateGameData)
+        }
         if isMyTurn {
-            if game.isOneFullCircle {
-                if firstTurnAfterLoad { firstTurnAfterLoad = false } else {
-                    tryEndGame(title: "Вы закончили полный круг", message: "Все сыграли со всеми. Закончим игру?")
-                }
-            }
             circleView.isHidden = true
             timerLabel.isHidden = true
             goButton.enable()
@@ -151,6 +154,15 @@ extension StartPairVC {
             timeLeft = game.data.settings.roundDuration
             timerLabel.text = String(timeLeft)
         }
+        if !firstTurnAfterLoad {
+            print("=========UPDATE STARTPAIR=============")
+            update.setFull() {
+                if self.isMyTurn && self.game.isOneFullCircle {
+                    self.tryEndGame(title: "Вы закончили полный круг", message: "Все сыграли со всеми. Закончим игру?")
+                }
+            }
+        }
+        firstTurnAfterLoad = false
     }
     
     func updateTitle() {
@@ -169,12 +181,13 @@ extension StartPairVC {
         }
     }
     func showResults() {
-        game.turn = K.endTurnNumber
-        cancelDataTimer()
+        update.stopGetFrequent()
         if mode == .offline {
             performSegue(withIdentifier: "toEndGame", sender: self)
         } else {
-            Update().fullUntilSuccess(game: game, showWarningOrTitle: self.showWarningOrTitle) { self.performSegue(withIdentifier: "toEndGame", sender: self) }
+            update.setFull() {
+                self.performSegue(withIdentifier: "toEndGame", sender: self)
+            }
         }
     }
 }

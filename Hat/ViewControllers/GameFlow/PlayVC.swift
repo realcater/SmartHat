@@ -12,6 +12,7 @@ class PlayVC: UIViewController {
     
     var game: Game!
     var mode: Mode?
+    var update: Update!
     
     var turnTimer: Timer?
     var timeLeft: Int!
@@ -47,6 +48,8 @@ class PlayVC: UIViewController {
         if segue.identifier == "noWords" {
             let endGameVC = segue.destination as? EndGameVC
             endGameVC?.players = self.game.data.players.sorted { $0.ttlGuesses > $1.ttlGuesses }
+            endGameVC?.game = game
+            endGameVC?.mode = mode
             statusTimer?.invalidate()
         }
     }
@@ -83,14 +86,14 @@ private extension PlayVC {
     
     func nextWord() {
         if mode != .offline {
-            Update().frequent(game: game, title: currentTitle, showWarningOrTitle: self.doNotShowWarnings)
+            update.setFrequent()
         }
         if game.getRandomWordFromPool() {
             wordLabel.text = game.data.currentWord
         } else {
             cancelTurnTimer()
-            game.turn = K.endTurnNumber
-            Update().fullUntilSuccess(game: game, showWarningOrTitle: self.showWarningOrTitle) { self.performSegue(withIdentifier: "noWords", sender: self) }
+            
+            performSegue(withIdentifier: "noWords", sender: self)
         }
     }
     
@@ -103,15 +106,13 @@ private extension PlayVC {
             game.explainTime = Date().addingTimeInterval(-100000).convertTo()
             guessedButton.disable()
             notGuessedButton.disable()
-            Update().fullUntilSuccess(game: game, title: currentTitle, showWarningOrTitle: self.showWarningOrTitle) {
                 self.navigationController?.popViewController(animated: true)
-            }
         }
     }
     
     func updateExplainTime() {
         game.explainTime = Date().convertTo(use: "yyyy-MM-dd'T'HH:mm:ss'Z'")
-        Update().frequent(game: game, title: currentTitle, showWarningOrTitle: self.doNotShowWarnings)
+        update.setFrequent()
     }
     
     func doNotShowWarnings(_ error: RequestError?, _ title: String? = nil) {

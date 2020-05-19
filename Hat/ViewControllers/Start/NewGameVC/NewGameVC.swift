@@ -103,10 +103,11 @@ class NewGameVC: UIViewController {
             let startPairVC = segue.destination as? StartPairVC
             startPairVC?.game = self.game
             startPairVC?.mode = mode
-            //startPairVC?.statusTimer = statusTimer
         } else if segue.identifier == "directToEndGame" {
             cancelStatusTimer()
             let endGameVC = segue.destination as? EndGameVC
+            endGameVC?.game = self.game
+            endGameVC?.mode = self.mode
             endGameVC?.players = self.game.data.players.sorted { $0.ttlGuesses > $1.ttlGuesses }
         } else if segue.identifier == "toInvitePlayer" {
             let invitePlayerVC = segue.destination as? InvitePlayerVC
