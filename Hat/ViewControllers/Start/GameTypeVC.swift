@@ -86,7 +86,7 @@ extension GameTypeVC {
                         if error == .noConnection && (self?.tryConnectOnlineGame ?? false) {
                             DispatchQueue.main.asyncAfter(deadline: .now() + K.Server.Time.waitUntilNextTry) {
                                 self?.tryGetUser(by: uuid) {
-                                    self?.title = "Сервер снова доступен"
+                                    self?.title = "Сервер доступен"
                                 }
                             }
                         }

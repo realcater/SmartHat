@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - TurnTimer
-extension StartPairVC {
+extension MainVC {
     @objc func updateTurnTimer() {
         timeLeft -= 1
         timerLabel.text = String(timeLeft)
@@ -39,10 +39,10 @@ extension StartPairVC {
 }
 
 // MARK: - BtnTimer
-extension StartPairVC {
+extension MainVC {
     @objc func resolveBtnTimer() {
         cancelBtnTimer()
-        performSegue(withIdentifier: "toPlay", sender: self)
+        performSegue(withIdentifier: "toExplain", sender: self)
     }
     
     func createBtnTimer(duration: Double) {

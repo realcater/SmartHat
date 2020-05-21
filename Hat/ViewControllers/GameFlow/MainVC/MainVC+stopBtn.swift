@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-extension StartPairVC {
+extension MainVC {
     func tryQuitGame(title: String = "Выйти из игры?", message: String = "Вы сможете продолжить позднее") {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Да", style: .destructive, handler: {
@@ -29,6 +29,8 @@ extension StartPairVC {
             action in self.moveToStartVC()
         }))
         alert.addAction(UIAlertAction(title: "Ещё поиграем", style: .default, handler: nil))
+        
+        if turnTimer != nil { alert.actions[0].isEnabled = false }
         present(alert, animated: true, completion: nil)
     }
     

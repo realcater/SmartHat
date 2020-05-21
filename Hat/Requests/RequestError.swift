@@ -3,5 +3,6 @@ enum RequestError {
     case unauthorised
     case notFound
     case duplicate
+    case gameEnded
     case other
 }

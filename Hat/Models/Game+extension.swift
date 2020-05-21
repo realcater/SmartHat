@@ -31,11 +31,16 @@ extension Game {
         let round = turnInBigRound / data.players.count
         return (prevTellerNumber+round+1) % data.players.count
     }
-    var currentTeller: Player {
+    var currentTeller: Player? {
+        guard turn != -1 else { return nil }
         return data.players[tellerNumber]
     }
     var currentListener: Player {
         return data.players[listenerNumber]
+    }
+    var prevTeller: Player? {
+        guard prevTellerNumber>=0 else { return nil }
+        return data.players[prevTellerNumber]
     }
     var isOneFullCircle: Bool {
         return (turn > 0) && (turn % ((data.players.count)*(data.players.count-1)) == 0)
@@ -50,7 +55,7 @@ extension Game {
         data.basketWords = []
         data.basketStatus = []
         data.wordsData = []
-        guessedThisTurn = 0
+        //guessedThisTurn = 0
     }
     
     func getRandomWordFromPool() -> Bool {
@@ -62,17 +67,20 @@ extension Game {
     
     func setWordGuessed(time: Int) {
         data.wordsData.append(WordData(word: data.currentWord, timeGuessed: time, guessedStatus: .guessed))
-        Helper.move(str: data.currentWord, from: &data.leftWords, to: &data.guessedWords)
-        currentTeller.tellGuessed+=1
+        //Helper.move(str: data.currentWord, from: &data.leftWords, to: &data.guessedWords)
+        (data.leftWords,data.guessedWords) = Helper.move2(str: data.currentWord, from: data.leftWords, to: data.guessedWords)
+        currentTeller!.tellGuessed+=1
         currentListener.listenGuessed+=1
         data.basketWords.append(data.currentWord)
         data.basketStatus.append(.guessed)
         guessedThisTurn += 1
+        print("Guessed+1: \(guessedThisTurn-1)->\(guessedThisTurn)")
     }
     
     func setWordMissed(time: Int) {
         data.wordsData.append(WordData(word: data.currentWord, timeGuessed: time, guessedStatus: .missed))
-        Helper.move(str: data.currentWord, from: &data.leftWords, to: &data.missedWords)
+        //Helper.move(str: data.currentWord, from: &data.leftWords, to: &data.missedWords)
+        (data.leftWords,data.missedWords) = Helper.move2(str: data.currentWord, from: data.leftWords, to: data.missedWords)
         data.basketWords.append(data.currentWord)
         data.basketStatus.append(.missed)
     }
@@ -87,17 +95,20 @@ extension Game {
         let word = data.basketWords[num]
         switch data.basketStatus[num] {
         case .guessed:
-            Helper.move(str: word, from: &data.guessedWords, to: &data.leftWords)
+            //Helper.move(str: word, from: &data.guessedWords, to: &data.leftWords)
+            (data.guessedWords,data.leftWords) = Helper.move2(str: word, from: data.guessedWords, to: data.leftWords)
             data.basketStatus[num] = .left
             data.players[prevListenerNumber].listenGuessed-=1
             data.players[prevTellerNumber].tellGuessed-=1
         case .missed:
-            Helper.move(str: word, from: &data.missedWords, to: &data.guessedWords)
+            //Helper.move(str: word, from: &data.missedWords, to: &data.guessedWords)
+            (data.missedWords,data.guessedWords) = Helper.move2(str: word, from: data.missedWords, to: data.guessedWords)
             data.basketStatus[num] = .guessed
             data.players[prevListenerNumber].listenGuessed+=1
             data.players[prevTellerNumber].tellGuessed+=1
         case .left:
-            Helper.move(str: word, from: &data.leftWords, to: &data.missedWords)
+            //Helper.move(str: word, from: &data.leftWords, to: &data.missedWords)
+            (data.leftWords,data.missedWords) = Helper.move2(str: word, from: data.leftWords, to: data.missedWords)
             data.basketStatus[num] = .missed
         }
     }

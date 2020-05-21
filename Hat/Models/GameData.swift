@@ -1,6 +1,6 @@
 import Foundation
 
-class GameData: Codable {
+struct GameData: Codable {
     var players: [Player] = []
     var settings: Settings
     var leftWords: [String] = []
@@ -22,7 +22,8 @@ class GameData: Codable {
         let wordsQty = settings.wordsQty
         for _ in 0..<wordsQty {
             let number = Int.random(in: 0 ..< allWords.count)
-            Helper.move(str: allWords[number], from: &allWords, to: &leftWords)
+            (allWords,leftWords) = Helper.move2(str: allWords[number], from: allWords, to: leftWords)
+            //Helper.move(str: allWords[number], from: &allWords, to: &leftWords)
         }
     }
 }

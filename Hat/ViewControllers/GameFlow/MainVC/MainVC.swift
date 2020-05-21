@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StartPairVC: UIViewController {
+class MainVC: UIViewController {
     
     @IBOutlet weak var barView: UIView!
     @IBOutlet weak var goButton: MyButton!
@@ -29,13 +29,18 @@ class StartPairVC: UIViewController {
     var currentTitle: String?
     var requestIsBeingHandled = false
     var update: Update!
+    var shouldUpdateGameAtTheEnd = true
+    var explainVC: ExplainVC?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = K.Colors.background
         view.setBackgroundImage(named: K.FileNames.background, alpha: K.Alpha.Background.main)
         circleView.layer.cornerRadius = K.CircleCornerRadius.small
-        update = Update(game: game, title: title, sender: self, showWarningOrTitle: self.showWarningOrTitle)
+        print("StartPairVC.game=\(Unmanaged.passUnretained(game).toOpaque())")
+        if mode != .offline {
+            update = Update(game: game, delegate: self, showWarningOrTitle: self.showWarningOrTitle)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,18 +53,18 @@ class StartPairVC: UIViewController {
         coloriseBarView()
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toPlay" {
-            let playVC = segue.destination as? PlayVC
-            playVC?.game = self.game
-            playVC?.mode = self.mode
-            playVC?.update = update
-            update.stopGetFrequent()
+        if segue.identifier == "toExplain" {
+            explainVC = segue.destination as? ExplainVC
+            explainVC?.game = self.game
+            explainVC?.mode = self.mode
+            explainVC?.update = update
+            update?.stopGetFrequent()
         } else if segue.identifier == "toEndGame" {
             let endGameVC = segue.destination as? EndGameVC
             endGameVC?.players = self.game.data.players.sorted { $0.ttlGuesses > $1.ttlGuesses }
             endGameVC?.game = game
-            endGameVC?.mode = mode
-            update.stopGetFrequent()
+            if shouldUpdateGameAtTheEnd { endGameVC?.update = update }
+            update?.stopGetFrequent()
             statusTimer?.invalidate()
         } else if segue.identifier == "toBasket" {
             let basketVC = segue.destination as? BasketVC
@@ -71,7 +76,7 @@ class StartPairVC: UIViewController {
 }
 
 // MARK: - buttons handlers
-extension StartPairVC {
+extension MainVC {
     @IBAction func goButtonTouchDown(_ sender: Any) {
         createBtnTimer(duration: K.Delays.goBtn)
         K.Sounds.countdown?.resetAndPlay()
@@ -102,12 +107,13 @@ extension StartPairVC {
 }
 
 // MARK: - private functions
-extension StartPairVC {
-    var isMyTurn: Bool { //always true if offline game)
-        return (mode == .offline) || (game.currentTeller.id == Auth().id)
+extension MainVC {
+    
+    var isMyPreviousTurn: Bool {  //always false if offline game)
+        return (mode != .offline) && (game.prevTeller?.id == Auth().id)
     }
     var isTeller: Bool {
-        return game.currentTeller.id == Auth().id
+        return game.currentTeller?.id == Auth().id
     }
     var isListener: Bool {
         return game.currentListener.id == Auth().id
@@ -128,25 +134,25 @@ extension StartPairVC {
     }
     
     func reloadNames() {
-        tellerNameLabel.text = game.currentTeller.name
+        tellerNameLabel.text = game.currentTeller?.name
         listenerNameLabel.text = game.currentListener.name
     }
     
     func prepareNewTurn(colorise: Bool = true) {
-        print("=========prepareNewTurn=============")
+        print("=========prepareNewTurn: \(game.turn)=============")
         if colorise { coloriseBarView() }
         reloadNames()
-        checkWordsCount()
         helpMessage.isHidden = true
         
-        if mode != .offline {
-            update.startGetFrequent(every: K.Server.Time.updateGameData)
-        }
+        update?.startGetFrequent(every: K.Server.Time.updateGameData)
+        
         if isMyTurn {
+            print("====MY TURN====")
             circleView.isHidden = true
             timerLabel.isHidden = true
             goButton.enable()
         } else {
+            print("====NOT MY TURN====")
             goButton.disable()
             circleView.isHidden = false
             circleView.backgroundColor = K.Colors.foreground40
@@ -154,13 +160,16 @@ extension StartPairVC {
             timeLeft = game.data.settings.roundDuration
             timerLabel.text = String(timeLeft)
         }
-        if !firstTurnAfterLoad {
-            print("=========UPDATE STARTPAIR=============")
-            update.setFull() {
-                if self.isMyTurn && self.game.isOneFullCircle {
-                    self.tryEndGame(title: "Вы закончили полный круг", message: "Все сыграли со всеми. Закончим игру?")
-                }
-            }
+        
+        if game.guessedThisTurn != 0 {
+            print("guessedThisTurn=\(game.guessedThisTurn). Reset to 0")
+            game.guessedThisTurn = 0
+            
+        }
+        checkWordsCount()
+        if isMyPreviousTurn { update.setFull() }
+        if !firstTurnAfterLoad && self.isMyTurn && self.game.isOneFullCircle {
+            tryEndGame(title: "Вы закончили полный круг", message: "Все сыграли со всеми. Закончим игру?")
         }
         firstTurnAfterLoad = false
     }
@@ -174,20 +183,14 @@ extension StartPairVC {
         }
     }
     func checkWordsCount() {
-        currentTitle = "Осталось: \(game.data.leftWords.count) слов"
+        currentTitle = "Осталось: \(game.data.leftWords.count-game.guessedThisTurn) слов"
         if title != currentTitle { title = currentTitle }
         if game.data.leftWords.count == 0 {
             showResults()
         }
     }
     func showResults() {
-        update.stopGetFrequent()
-        if mode == .offline {
-            performSegue(withIdentifier: "toEndGame", sender: self)
-        } else {
-            update.setFull() {
-                self.performSegue(withIdentifier: "toEndGame", sender: self)
-            }
-        }
+        update?.stopGetFrequent()
+        performSegue(withIdentifier: "toEndGame", sender: self)
     }
 }

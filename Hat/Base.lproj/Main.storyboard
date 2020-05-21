@@ -81,7 +81,7 @@
         <!--StartPairVC-->
         <scene sceneID="JPv-SI-VU0">
             <objects>
-                <viewController storyboardIdentifier="StartPairView" id="S0w-Z2-ro9" userLabel="StartPairVC" customClass="StartPairVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StartPairView" id="S0w-Z2-ro9" userLabel="StartPairVC" customClass="MainVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="D7Y-BT-YTz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -244,7 +244,7 @@
                         <outlet property="tellerNameLabel" destination="ojr-U3-i2p" id="Npj-z7-VuK"/>
                         <outlet property="timerLabel" destination="0dg-KI-KU1" id="Gt4-An-JTB"/>
                         <segue destination="j10-9v-a03" kind="show" identifier="toEndGame" id="pE8-Mh-x6y"/>
-                        <segue destination="n5c-B9-13Q" kind="show" identifier="toPlay" id="fSr-4v-fY5"/>
+                        <segue destination="n5c-B9-13Q" kind="show" identifier="toExplain" id="fSr-4v-fY5"/>
                         <segue destination="Ifu-eE-Ltf" kind="presentation" identifier="toBasket" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="2Ca-2X-faM"/>
                         <segue destination="ogA-h6-WKL" kind="show" identifier="toStart" id="R28-Zd-JTx"/>
                     </connections>
@@ -425,7 +425,7 @@
         <!--StartGameView-->
         <scene sceneID="ne6-Vd-i1P">
             <objects>
-                <viewController storyboardIdentifier="PlayVC" id="n5c-B9-13Q" userLabel="StartGameView" customClass="PlayVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PlayVC" id="n5c-B9-13Q" userLabel="StartGameView" customClass="ExplainVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9W2-UA-sYY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -735,7 +735,7 @@
                                         </connections>
                                     </button>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Только создатель игры может изменять слова в шляпе" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="mlH-so-rGR">
-                                        <rect key="frame" x="8" y="611" width="358" height="13.333333333333371"/>
+                                        <rect key="frame" x="8" y="611" width="358" height="14.666666666666629"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.75294117647058822" green="0.090196078431372548" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -905,7 +905,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Шляпа. Все-против-всех. v1.01" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xrt-Vr-wXh">
-                                                    <rect key="frame" x="20" y="11" width="334" height="22"/>
+                                                    <rect key="frame" x="20" y="11" width="520" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -942,7 +942,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Шляпа. Все-против-всех" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J9P-9U-hPk">
-                                                    <rect key="frame" x="68" y="11.666666666666664" width="286" height="21"/>
+                                                    <rect key="frame" x="68" y="11.666666666666664" width="472" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -980,7 +980,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дмитрий Дементьев" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s1J-RN-TRf">
-                                                    <rect key="frame" x="68" y="11.666666666666664" width="270" height="21"/>
+                                                    <rect key="frame" x="68" y="11.666666666666664" width="456" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>

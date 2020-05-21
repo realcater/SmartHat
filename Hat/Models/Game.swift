@@ -46,7 +46,7 @@ class Game: Codable {
             self.turn = turn
             self.guessedThisTurn = guessedThisTurn
             self.explainTime = explainTime
-            self.basketChange = 0
+            self.basketChange = basketChange
         }
         
         var timeFromExplain: Int? {
@@ -57,5 +57,13 @@ class Game: Codable {
     }
     func convertToFrequent() -> Frequent {
         return Frequent(turn: turn, guessedThisTurn: guessedThisTurn, explainTime: explainTime, basketChange: basketChange)
+    }
+    
+    func copyValues(of game: Game) {
+        self.data = game.data
+        self.turn = game.turn
+        self.guessedThisTurn = game.guessedThisTurn
+        self.basketChange = game.basketChange
+        self.explainTime = game.explainTime
     }
 }

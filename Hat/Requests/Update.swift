@@ -4,21 +4,22 @@ typealias warningFunc = (_ error: RequestError?, _ title: String?) -> Void
 typealias completionFunc = () -> Void
 
 class Update {
-    var stopTrying = false
-    var previousIsBeingHandled = false
+    var stopTrying: Bool!
+    var previousFrequentIsBeingHandled = false
+    var previousFullIsBeingHandled = false
     var setFullTimer: Timer?
     var getFrequentTimer: Timer?
     
     var game: Game
-    var title: String?
     var showWarningOrTitle: warningFunc
-    weak var delegate: StartPairVCDelegate?
+    weak var delegate: MainVCDelegate?
+    var actionAfterFullUpdate: completionFunc?
     
-    internal init(game: Game, title: String? = nil, sender: StartPairVCDelegate, showWarningOrTitle: @escaping warningFunc) {
+    internal init(game: Game, delegate: MainVCDelegate, showWarningOrTitle: @escaping warningFunc) {
         self.game = game
-        self.title = title
+        print("update.game=\(Unmanaged.passUnretained(self.game).toOpaque())")
         self.showWarningOrTitle = showWarningOrTitle
-        self.delegate = sender
+        self.delegate = delegate
     }
     
     func startGetFrequent(every timeInterval: Double) {
@@ -30,86 +31,123 @@ class Update {
     }
     
     func setFrequent() {
+        print("\(Date().convertTo(use: "mm:ss")): ==== ==== UPDATE FREQUENT(START) ====")
         let frequentData = game.convertToFrequent()
-        guard previousIsBeingHandled == false else { return }
-        previousIsBeingHandled = true
+        print("frequentData.guessedThisTurn=\(frequentData.guessedThisTurn)")
         GameRequest.updateFrequent(for: game.id, frequentData: frequentData) { result in
-            self.previousIsBeingHandled = false
             DispatchQueue.main.async {
                 switch result {
                 case .success:
-                    self.showWarningOrTitle(nil, self.title)
+                    print("\(Date().convertTo(use: "mm:ss")): ==== UPDATE FREQUENT(SUCCESS) ====")
+                    print("frequentData.guessedThisTurn=\(frequentData.guessedThisTurn)")
                 case .failure(let error):
-                    self.showWarningOrTitle(error, nil)
+                    if error == .gameEnded {
+                        self.getFull() {
+                            self.delegate?.finishGame()
+                        }
+                    } else {
+                        self.showWarningOrTitle(error, nil)
+                    }
                 }
-                self.previousIsBeingHandled = false
             }
         }
     }
     
     func setFull(completion: completionFunc? = nil) {
         print("\(Date().convertTo(use: "mm:ss")): ==== UPDATE (START) ====")
-        createSetFullTimer(completion: completion)
+        actionAfterFullUpdate = completion
+        stopTrying = false
+        createSetFullTimer()
     }
 }
 // MARK: - private functions
 private extension Update {
-    func setFullOnce(completion: completionFunc? = nil) {
-        guard previousIsBeingHandled == false else { return }
+    func setFullOnce() {
+        guard previousFullIsBeingHandled == false else { return }
         print("\(Date().convertTo(use: "mm:ss")): ==== UPDATE (TRY) ====")
-        previousIsBeingHandled = true
+        previousFullIsBeingHandled = true
         print("\(Date().convertTo(use: "mm:ss")): previousIsBeingHandled = true")
         GameRequest.update(game: game) { result in
-            self.previousIsBeingHandled = false
+            self.previousFullIsBeingHandled = false
             print("\(Date().convertTo(use: "mm:ss")): previousIsBeingHandled = false")
             DispatchQueue.main.async {
                 switch result {
                     case .success:
                         print("\(Date().convertTo(use: "mm:ss")): ==== UPDATE (SUCCESS) ====")
-                        self.showWarningOrTitle(nil, self.title)
                         self.stopTrying = true
                     print("\(Date().convertTo(use: "mm:ss")): stopTrying = true")
                     case .failure(let error):
                         print("\(Date().convertTo(use: "mm:ss")): ==== UPDATE (FAILURE) ====")
-                        self.showWarningOrTitle(error, nil)
+                        if error == .gameEnded {
+                            self.cancelGetFrequentTimer()
+                            self.cancelSetFullTimer()
+                            self.delegate?.finishGame()
+                        } else {
+                            self.showWarningOrTitle(error, nil)
+                        }
                 }
-                if let completion = completion { completion() }
+                if let action = self.actionAfterFullUpdate { action() }
             }
         }
     }
     
     func getFrequent() {
+        print("\(Date().convertTo(use: "mm:ss")): ====GetFrequent (TRY) ====")
+        
+        guard previousFrequentIsBeingHandled == false else {
+            print("\(Date().convertTo(use: "mm:ss")): previousIsBeingHandled = true")
+            return
+        }
+        previousFrequentIsBeingHandled = true
+        print("\(Date().convertTo(use: "mm:ss")): ====GetFrequent (START) ====")
+        print("game.guessedThisTurn=\(game.guessedThisTurn)")
         GameRequest.getFrequent(gameID: game.id) { [weak self] result in
             DispatchQueue.main.async { [weak self] in
+                self?.previousFrequentIsBeingHandled = false
                 switch result {
                 case .success(let frequentData):
+                    print("\(Date().convertTo(use: "mm:ss")): ====GetFrequent (SUCCESS))")
+                    print("game.guessedThisTurn=\(self?.game.guessedThisTurn)")
                     if (frequentData.turn != self?.game.turn)  {
                         self?.getFull() {
-                            self?.delegate?.proceedNextTurnAfterFullUpdate()
+                            self?.delegate?.proceedNextTurn()
                         }
-                    } else if frequentData.basketChange != self?.game.basketChange {
-                        self?.getFull(completion: nil)
+                    } else {
+                        if frequentData.basketChange != self?.game.basketChange {
+                            self?.getFull(completion: nil)
+                        } else if (frequentData.guessedThisTurn != self?.game.guessedThisTurn) {
+                            if self!.delegate!.isMyTurn {
+                                print("===Get guessedThisTurn=\(frequentData.guessedThisTurn). OLD DATA. IGNORED")
+                            } else {
+                                self?.game.guessedThisTurn = frequentData.guessedThisTurn
+                            }
+                        }
+                        self?.delegate?.proceedNotNextTurn(frequentData: frequentData)
                     }
-                    else if frequentData.guessedThisTurn != self?.game.guessedThisTurn {
-                        self?.game.guessedThisTurn = frequentData.guessedThisTurn
-                    }
-                    self?.delegate?.startTurnTimerIfNeeded(frequentData: frequentData)
-                    //self?.updateTitle()
-                    self?.delegate?.enableGoButtonIfNeeded()
                 case .failure(let error):
                     self?.showWarningOrTitle(error, nil)
                     self?.delegate?.disableGoButton()
                 }
+                
             }
         }
     }
     
     func getFull(completion: (() -> Void)?) {
+        print("\(Date().convertTo(use: "mm:ss")): ====GetFull (TRY) ====")
+        guard previousFullIsBeingHandled == false else {
+            print("\(Date().convertTo(use: "mm:ss")): previousIsBeingHandled = true")
+            return
+        }
+        previousFullIsBeingHandled = true
+        print("\(Date().convertTo(use: "mm:ss")): ====GetFull (START) ====")
         GameRequest.get(gameID: game.id) { [weak self] result in
             DispatchQueue.main.async { [weak self] in
+                self?.previousFullIsBeingHandled = false
                 switch result {
                 case .success(let game):
-                    self?.game = game
+                    print("\(Date().convertTo(use: "mm:ss")): ====GetFull (SUCCESS))")
+                    self?.game.copyValues(of: game)
                     if let completion = completion { completion() }
                 case .failure(let error):
                     self?.showWarningOrTitle(error, nil)
@@ -122,22 +160,25 @@ private extension Update {
 
 // MARK: - UpdateStatusTimer
 private extension Update {
-    @objc func updateSetFullTimer(completion: completionFunc? = nil) {
+    @objc func updateSetFullTimer() {
         if stopTrying {
             print("\(Date().convertTo(use: "mm:ss")): ==== Cancel timer ====")
             cancelSetFullTimer()
         } else {
-            if !previousIsBeingHandled {
+            if !previousFullIsBeingHandled {
                 setFullOnce()
             } else {
                 print("\(Date().convertTo(use: "mm:ss")): ==== UPDATE (WAIT) ====")
+                print("game.guessedThisTurn=\(self.game.guessedThisTurn)")
+                
             }
         }
     }
     
-    func createSetFullTimer(completion: completionFunc? = nil) {
+    func createSetFullTimer() {
         if setFullTimer == nil {
-            setFullTimer = Timer.scheduledTimer(timeInterval: K.Server.Time.waitUntilNextTry, target: self, selector: #selector(updateSetFullTimer(completion:)), userInfo: nil, repeats: true)
+            setFullTimer = Timer.scheduledTimer(timeInterval: K.Server.Time.waitUntilNextTry,
+                            target: self, selector: #selector(updateSetFullTimer), userInfo: nil, repeats: true)
             setFullTimer?.tolerance = 0.1
             setFullTimer?.fire()
         }
@@ -158,7 +199,7 @@ private extension Update {
         if getFrequentTimer == nil {
             getFrequentTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(updateGetFrequentTimer), userInfo: nil, repeats: true)
             getFrequentTimer?.tolerance = 0.1
-            //dataTimer?.fire()
+            //getFrequentTimer?.fire()
         }
     }
     func cancelGetFrequentTimer() {

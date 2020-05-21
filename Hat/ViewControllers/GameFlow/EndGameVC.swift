@@ -14,7 +14,6 @@ class EndGameVC: UIViewController {
     
     var players: [Player]!
     var game: Game!
-    var mode: Mode?
     var update: Update?
     
     override func viewDidLoad() {
@@ -23,10 +22,8 @@ class EndGameVC: UIViewController {
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
         K.Sounds.applause?.play()
         title = "Результаты"
-        if mode != .offline, let update = update {
-            game.turn = K.endTurnNumber
-            update.setFull()
-        }
+        game.turn = K.endTurnNumber
+        update?.setFull()
          
     }
 

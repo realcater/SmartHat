@@ -177,10 +177,12 @@ struct GameRequest {
                 completion(.failure(.noConnection))
                 return
             }
+            print("`````````````` \(httpResponse.statusCode) ````````````````")
             switch httpResponse.statusCode {
             case 200: completion(.success)
             case 401: completion(.failure(.unauthorised))
             case 404: completion(.failure(.notFound))
+            case 226: completion(.failure(.gameEnded))
             default: completion(.failure(.other))
             }
         }
@@ -204,10 +206,12 @@ struct GameRequest {
                 completion(.failure(.noConnection))
                 return
             }
+            print("`````````````` \(httpResponse.statusCode) ````````````````")
             switch httpResponse.statusCode {
             case 200: completion(.success)
             case 401: completion(.failure(.unauthorised))
             case 404: completion(.failure(.notFound))
+            case 226: completion(.failure(.gameEnded))
             default: completion(.failure(.other))
             }
         }
@@ -307,6 +311,8 @@ struct GameRequest {
             }
             do {
                 let frequentData = try JSONDecoder().decode(Game.Frequent.self, from: jsonData)
+                print("frequentData.explainTime=\(frequentData.explainTime)")
+                print("frequentData.timeFromExplain=\(frequentData.timeFromExplain)")
                 completion(.success(frequentData))
             } catch {
                 completion(.failure(.other))

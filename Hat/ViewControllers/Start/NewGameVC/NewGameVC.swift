@@ -100,14 +100,13 @@ class NewGameVC: UIViewController {
             playersTVC.mode =  mode
             playersTVC?.delegate = self
         } else if segue.identifier == "toStartPair" {
-            let startPairVC = segue.destination as? StartPairVC
+            let startPairVC = segue.destination as? MainVC
             startPairVC?.game = self.game
             startPairVC?.mode = mode
         } else if segue.identifier == "directToEndGame" {
             cancelStatusTimer()
             let endGameVC = segue.destination as? EndGameVC
             endGameVC?.game = self.game
-            endGameVC?.mode = self.mode
             endGameVC?.players = self.game.data.players.sorted { $0.ttlGuesses > $1.ttlGuesses }
         } else if segue.identifier == "toInvitePlayer" {
             let invitePlayerVC = segue.destination as? InvitePlayerVC

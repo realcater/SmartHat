@@ -48,7 +48,7 @@ class BasketVC: UIViewController {
     func saveAndOrDismiss() {
         if editable {
             game.basketChange += 1
-            update.setFull() {
+            update?.setFull() {
                 self.dismiss(animated: true, completion: nil)
             }
         } else {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PlayVC: UIViewController {
+class ExplainVC: UIViewController {
     
     var game: Game!
     var mode: Mode?
@@ -40,8 +40,10 @@ class PlayVC: UIViewController {
         lastTime = game.data.settings.roundDuration
         game.clear()
         updateTitle()
+        game.explainTime = Date().convertTo(use: "yyyy-MM-dd'T'HH:mm:ss'Z'")
         nextWord()
         createTurnTimer()
+        print("\n\n\n=======START EXPLAIN=======")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -49,14 +51,14 @@ class PlayVC: UIViewController {
             let endGameVC = segue.destination as? EndGameVC
             endGameVC?.players = self.game.data.players.sorted { $0.ttlGuesses > $1.ttlGuesses }
             endGameVC?.game = game
-            endGameVC?.mode = mode
+            endGameVC?.update = update
             statusTimer?.invalidate()
         }
     }
 }
 
 // MARK: - buttons handlers
-private extension PlayVC {
+private extension ExplainVC {
     @IBAction func guessedPressed(_ sender: Any) {
         K.Sounds.correct?.resetAndPlay()
         game.setWordGuessed(time: lastTime - timeLeft)
@@ -78,16 +80,14 @@ private extension PlayVC {
 }
 
 // MARK: - private functions
-private extension PlayVC {
+private extension ExplainVC {
     func updateTitle() {
         currentTitle = "Угадано: \(guessedQty) слов"
         title = currentTitle
     }
     
     func nextWord() {
-        if mode != .offline {
-            update.setFrequent()
-        }
+        update?.setFrequent()
         if game.getRandomWordFromPool() {
             wordLabel.text = game.data.currentWord
         } else {
@@ -109,19 +109,19 @@ private extension PlayVC {
                 self.navigationController?.popViewController(animated: true)
         }
     }
-    
+    /*
     func updateExplainTime() {
         game.explainTime = Date().convertTo(use: "yyyy-MM-dd'T'HH:mm:ss'Z'")
         update.setFrequent()
     }
-    
+    */
     func doNotShowWarnings(_ error: RequestError?, _ title: String? = nil) {
     }
 
 }
 
 // MARK: - TurnTimer
-extension PlayVC {
+extension ExplainVC {
     @objc func updateTurnTimer() {
         timeLeft -= 1
         timerLabel.text = String(timeLeft)
@@ -151,7 +151,7 @@ extension PlayVC {
             turnTimer?.tolerance = 0.1
             timeLeft = game.data.settings.roundDuration
             timerLabel.text = String(timeLeft)
-            if mode != .offline { updateExplainTime() }
+            //if mode != .offline { updateExplainTime() }
         }
     }
     
@@ -162,7 +162,7 @@ extension PlayVC {
 }
 
 // MARK: - BtnTimer
-extension PlayVC {
+extension ExplainVC {
     @objc func resolveBtnTimer() {
         game.setWordMissed(time: lastTime-timeLeft)
         K.Sounds.error?.play()
