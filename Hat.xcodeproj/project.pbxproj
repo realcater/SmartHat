@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C10F3F9E245C6E9E001D353E /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10F3F9D245C6E9E001D353E /* RequestError.swift */; };
 		C10F3FA0245C81FA001D353E /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10F3F9F245C81FA001D353E /* Auth.swift */; };
 		C10F3FA6245E0FF2001D353E /* GameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10F3FA5245E0FF2001D353E /* GameRequest.swift */; };
 		C10F4261245F5719001D353E /* PlayersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10F4260245F5719001D353E /* PlayersList.swift */; };
 		C10F42632461CE76001D353E /* InvitePlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10F42622461CE76001D353E /* InvitePlayerVC.swift */; };
 		C10F426724622642001D353E /* InvitePlayerTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10F426624622642001D353E /* InvitePlayerTVC.swift */; };
 		C112465424707A49009FB46D /* Game+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C112465324707A49009FB46D /* Game+extension.swift */; };
+		C115089224781E08005867CB /* sendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C115089124781E08005867CB /* sendRequest.swift */; };
 		C127822C246ADDDF002C4E81 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C127822B246ADDDF002C4E81 /* String+extension.swift */; };
 		C127822E246ADEC0002C4E81 /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C127822D246ADEC0002C4E81 /* Date+extension.swift */; };
 		C1278232246C94C9002C4E81 /* MainVC+delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1278231246C94C8002C4E81 /* MainVC+delegate.swift */; };
@@ -75,13 +75,13 @@
 		05CA70399D72153473F6A0C9 /* Pods_Hat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E90485291A06DA169FEFF6A /* Pods-Hat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hat.debug.xcconfig"; path = "Target Support Files/Pods-Hat/Pods-Hat.debug.xcconfig"; sourceTree = "<group>"; };
 		BC9B614AEC439B4C0CB0A341 /* Pods-Hat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hat.release.xcconfig"; path = "Target Support Files/Pods-Hat/Pods-Hat.release.xcconfig"; sourceTree = "<group>"; };
-		C10F3F9D245C6E9E001D353E /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
 		C10F3F9F245C81FA001D353E /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		C10F3FA5245E0FF2001D353E /* GameRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRequest.swift; sourceTree = "<group>"; };
 		C10F4260245F5719001D353E /* PlayersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersList.swift; sourceTree = "<group>"; };
 		C10F42622461CE76001D353E /* InvitePlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitePlayerVC.swift; sourceTree = "<group>"; };
 		C10F426624622642001D353E /* InvitePlayerTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitePlayerTVC.swift; sourceTree = "<group>"; };
 		C112465324707A49009FB46D /* Game+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+extension.swift"; sourceTree = "<group>"; };
+		C115089124781E08005867CB /* sendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sendRequest.swift; sourceTree = "<group>"; };
 		C127822B246ADDDF002C4E81 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
 		C127822D246ADEC0002C4E81 /* Date+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extension.swift"; sourceTree = "<group>"; };
 		C1278231246C94C8002C4E81 /* MainVC+delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainVC+delegate.swift"; sourceTree = "<group>"; };
@@ -221,9 +221,9 @@
 			isa = PBXGroup;
 			children = (
 				C10F3F9F245C81FA001D353E /* Auth.swift */,
+				C115089124781E08005867CB /* sendRequest.swift */,
 				C1669C532458ADC600B19384 /* UserRequest.swift */,
 				C10F3FA5245E0FF2001D353E /* GameRequest.swift */,
-				C10F3F9D245C6E9E001D353E /* RequestError.swift */,
 				C1956419246E971B00EDA631 /* Update.swift */,
 			);
 			path = Requests;
@@ -476,13 +476,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C10F3F9E245C6E9E001D353E /* RequestError.swift in Sources */,
 				C1480A912123649500137C37 /* ExplainVC.swift in Sources */,
 				C130986421239082001D894D /* K.swift in Sources */,
 				C10F3FA6245E0FF2001D353E /* GameRequest.swift in Sources */,
 				C112465424707A49009FB46D /* Game+extension.swift in Sources */,
 				C1D0968C2458305400A03A21 /* GamesListTVC.swift in Sources */,
 				C1D0968E2458329600A03A21 /* Game.swift in Sources */,
+				C115089224781E08005867CB /* sendRequest.swift in Sources */,
 				C1669C502458806700B19384 /* Player.swift in Sources */,
 				C15647222121FC6100F1602E /* NewGameVC.swift in Sources */,
 				C10F426724622642001D353E /* InvitePlayerTVC.swift in Sources */,

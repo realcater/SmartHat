@@ -60,7 +60,7 @@ extension GameTypeVC {
         }
     }
     func tryGetUser(by uuid: UUID, completion: @escaping () -> Void) {
-        UserRequest.search(by: uuid) { [weak self] result in
+        UserRequest.get(userID: uuid) { [weak self] result in
             self?.i += 1
             DispatchQueue.main.async { [weak self] in
                 switch result {

@@ -10,6 +10,8 @@ struct K {
             .unauthorised: "Пользователь не авторизован",
             .notFound: "Не найдено",
             .duplicate: "Этот Никнейм уже занят",
+            .JSONParseError: "Ошибка данных",
+            .gameEnded: "Игра завершена",
             .other: "Ошибка сервера"
         ]
         static let reservedPlayerNames = [

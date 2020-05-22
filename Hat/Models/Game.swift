@@ -33,7 +33,7 @@ class Game: Codable {
         }
     }
     class UUIDOnly: Codable {
-        var gameID: UUID
+        var id: UUID
     }
     
     class Frequent: Codable {

@@ -1,350 +1,75 @@
 import Foundation
 
-enum GamesPublicResult {
-    case success([Game.ListElement])
-    case failure(RequestError)
-}
-
-enum GameResult {
-    case success(Game)
-    case failure(RequestError)
-}
-
-enum GameIDResult {
-    case success(UUID)
-    case failure(RequestError)
-}
-
-enum PlayerStatusResult {
-    case success([PlayerStatus])
-    case failure(RequestError)
-}
-
-enum OkResult {
-    case success
-    case failure(RequestError)
-}
-
-enum FrequentResult {
-    case success(Game.Frequent)
-    case failure(RequestError)
-}
-
 struct GameRequest {
-    static func searchMine(completion: @escaping (GamesPublicResult) -> Void) {
-        let resourceURL = URL(string: K.Server.name + "games/mine")
-        var urlRequest = URLRequest(url: resourceURL!)
-        guard let token = Auth().token else {
-            completion(.failure(.unauthorised))
-            return
-        }
-        urlRequest.httpMethod = "GET"
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        let dataTask = URLSession.shared.dataTask(with: urlRequest) { data, response, _ in
-            guard let httpResponse = response as? HTTPURLResponse else {
-                completion(.failure(.noConnection))
-                return
-            }
-            guard httpResponse.statusCode == 200, let jsonData = data else {
-                switch httpResponse.statusCode {
-                case 401: completion(.failure(.unauthorised))
-                case 404: completion(.failure(.notFound))
-                default: completion(.failure(.other))
-                }
-                return
-            }
-            do {
-                let games = try JSONDecoder().decode([Game.ListElement].self, from: jsonData)
-                completion(.success(games))
-            } catch {
-                completion(.failure(.other))
-                print("Can't parse JSON answer")
-            }
-        }
-        dataTask.resume()
+    static func create(_ gameData: GameData, completion: @escaping (Result<Game.UUIDOnly>) -> Void) {
+        sendRequest(
+                    stringUrl: "games",
+                    httpMethod: "POST",
+                    dataIn: gameData,
+                    completion: completion)
     }
-    static func search(by gameID: UUID, setAccepted: Bool, completion: @escaping (GameResult) -> Void) {
-        let URLPostfix = setAccepted ? "/accept" : ""
-        let resourceURL = URL(string: K.Server.name + "games/"+gameID.uuidString+URLPostfix)
-        var urlRequest = URLRequest(url: resourceURL!)
-        guard let token = Auth().token else {
-            completion(.failure(.unauthorised))
-            return
-        }
-        urlRequest.httpMethod = setAccepted ? "POST" : "GET"
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        let dataTask = URLSession.shared.dataTask(with: urlRequest) { data, response, _ in
-            guard let httpResponse = response as? HTTPURLResponse else {
-                completion(.failure(.noConnection))
-                return
-            }
-            guard httpResponse.statusCode == 200, let jsonData = data else {
-                switch httpResponse.statusCode {
-                case 401: completion(.failure(.unauthorised))
-                case 404: completion(.failure(.notFound))
-                default: completion(.failure(.other))
-                }
-                return
-            }
-            do {
-                let game = try JSONDecoder().decode(Game.self, from: jsonData)
-                completion(.success(game))
-            } catch {
-                completion(.failure(.other))
-                print("Can't parse JSON answer")
-            }
-        }
-        dataTask.resume()
+    static func search(by gameID: UUID, completion: @escaping (Result<Game>) -> Void) {
+        sendRequest(
+                    stringUrl: "games/"+gameID.uuidString,
+                    httpMethod: "GET",
+                    completion: completion)
     }
-    
+    static func searchMine(completion: @escaping (Result<[Game.ListElement]>) -> Void) {
+        sendRequest(
+                    stringUrl: "games/mine",
+                    httpMethod: "GET",
+                    completion: completion)
+    }
+    static func accept(by gameID: UUID, completion: @escaping (Result<Game>) -> Void) {
+        sendRequest(
+                    stringUrl: "games/"+gameID.uuidString+"/accept",
+                    httpMethod: "POST",
+                    completion: completion)
+    }
     static func reject(gameID: UUID, completion: @escaping (OkResult) -> Void) {
-        let resourceURL = URL(string: K.Server.name + "games/"+gameID.uuidString+"/reject")
-        var urlRequest = URLRequest(url: resourceURL!)
-        guard let token = Auth().token else {
-            completion(.failure(.unauthorised))
-            return
-        }
-        urlRequest.httpMethod = "POST"
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        let dataTask = URLSession.shared.dataTask(with: urlRequest) { _, response, _ in
-            guard let httpResponse = response as? HTTPURLResponse else {
-                completion(.failure(.noConnection))
-                return
-            }
-            switch httpResponse.statusCode {
-            case 200: completion(.success)
-            case 401: completion(.failure(.unauthorised))
-            case 404: completion(.failure(.notFound))
-            default: completion(.failure(.other))
-            }
-            return
-        }
-        dataTask.resume()
+        sendRequest(
+                    stringUrl: "games"+gameID.uuidString+"/reject",
+                    httpMethod: "POST",
+                    completion: completion)
     }
-    
-    static func create(_ gameData: GameData, completion: @escaping (GameIDResult) -> Void) {
-        let resourceURL = URL(string: K.Server.name + "games")
-        var urlRequest = URLRequest(url: resourceURL!)
-        guard let token = Auth().token else {
-            completion(.failure(.unauthorised))
-            return
-        }
-        urlRequest.httpMethod = "POST"
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        urlRequest.httpBody = try! JSONEncoder().encode(gameData)
-        let dataTask = URLSession.shared.dataTask(with: urlRequest) { data, response, _ in
-            guard let httpResponse = response as? HTTPURLResponse else {
-                completion(.failure(.noConnection))
-                return
-            }
-            guard httpResponse.statusCode == 200, let jsonData = data else {
-                switch httpResponse.statusCode {
-                case 401: completion(.failure(.unauthorised))
-                case 404: completion(.failure(.notFound))
-                default: completion(.failure(.other))
-                }
-                return
-            }
-            do {
-                let gameUUIDOnly = try JSONDecoder().decode(Game.UUIDOnly.self, from: jsonData)
-                completion(.success(gameUUIDOnly.gameID))
-            } catch {
-                completion(.failure(.other))
-                print("Can't parse JSON answer")
-            }
-        }
-        dataTask.resume()
+    static func get(gameID: UUID, completion: @escaping (Result<Game>) -> Void) {
+        sendRequest(
+                    stringUrl: "games/"+gameID.uuidString,
+                    httpMethod: "GET",
+                    completion: completion)
     }
-    
+    static func getFrequent(gameID: UUID, completion: @escaping (Result<Game.Frequent>) -> Void) {
+        sendRequest(
+                    stringUrl: "games/"+gameID.uuidString+"/frequent",
+                    httpMethod: "GET",
+                    completion: completion)
+    }
     static func update(game: Game, completion: @escaping (OkResult) -> Void) {
-        let string = K.Server.name + "games/" + game.id.uuidString + "/update"
-        let resourceURL = URL(string: string)
-        var urlRequest = URLRequest(url: resourceURL!)
-        guard let token = Auth().token else {
-            completion(.failure(.unauthorised))
-            return
-        }
-        urlRequest.httpMethod = "POST"
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        urlRequest.httpBody = try! JSONEncoder().encode(game)
-        let dataTask = URLSession.shared.dataTask(with: urlRequest) { _, response, _ in
-            guard let httpResponse = response as? HTTPURLResponse else {
-                completion(.failure(.noConnection))
-                return
-            }
-            print("`````````````` \(httpResponse.statusCode) ````````````````")
-            switch httpResponse.statusCode {
-            case 200: completion(.success)
-            case 401: completion(.failure(.unauthorised))
-            case 404: completion(.failure(.notFound))
-            case 226: completion(.failure(.gameEnded))
-            default: completion(.failure(.other))
-            }
-        }
-        dataTask.resume()
+        sendRequest(
+                    stringUrl: "games/" + game.id.uuidString + "/update",
+                    httpMethod: "POST",
+                    dataIn: game,
+                    completion: completion)
     }
     
     static func updateFrequent(for gameID: UUID, frequentData: Game.Frequent, completion: @escaping (OkResult) -> Void) {
-        let string = K.Server.name + "games/"+gameID.uuidString+"/updatefrequent"
-        let resourceURL = URL(string: string)
-        var urlRequest = URLRequest(url: resourceURL!)
-        guard let token = Auth().token else {
-            completion(.failure(.unauthorised))
-            return
-        }
-        urlRequest.httpMethod = "POST"
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        urlRequest.httpBody = try! JSONEncoder().encode(frequentData)
-        let dataTask = URLSession.shared.dataTask(with: urlRequest) { _, response, _ in
-            guard let httpResponse = response as? HTTPURLResponse else {
-                completion(.failure(.noConnection))
-                return
-            }
-            print("`````````````` \(httpResponse.statusCode) ````````````````")
-            switch httpResponse.statusCode {
-            case 200: completion(.success)
-            case 401: completion(.failure(.unauthorised))
-            case 404: completion(.failure(.notFound))
-            case 226: completion(.failure(.gameEnded))
-            default: completion(.failure(.other))
-            }
-        }
-        dataTask.resume()
+        sendRequest(
+                    stringUrl: "games/"+gameID.uuidString+"/updatefrequent",
+                    httpMethod: "POST",
+                    dataIn: frequentData,
+                    completion: completion)
     }
-    
-    static func getPlayersStatus(gameID: UUID, completion: @escaping (PlayerStatusResult) -> Void) {
-        let resourceURL = URL(string: K.Server.name + "games/"+gameID.uuidString+"/players")
-        var urlRequest = URLRequest(url: resourceURL!)
-        guard let token = Auth().token else {
-            completion(.failure(.unauthorised))
-            return
-        }
-        urlRequest.httpMethod = "GET"
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        let dataTask = URLSession.shared.dataTask(with: urlRequest) { data, response, _ in
-            guard let httpResponse = response as? HTTPURLResponse else {
-                completion(.failure(.noConnection))
-                return
-            }
-            guard httpResponse.statusCode == 200, let jsonData = data else {
-                switch httpResponse.statusCode {
-                case 401: completion(.failure(.unauthorised))
-                case 404: completion(.failure(.notFound))
-                default: completion(.failure(.other))
-                }
-                return
-            }
-            do {
-                let playersStatus = try JSONDecoder().decode([PlayerStatus].self, from: jsonData)
-                completion(.success(playersStatus))
-            } catch {
-                completion(.failure(.other))
-                print("Can't parse JSON answer")
-            }
-        }
-        dataTask.resume()
-    }
-    
-    static func get(gameID: UUID, completion: @escaping (GameResult) -> Void) {
-        let resourceURL = URL(string: K.Server.name + "games/"+gameID.uuidString)
-        var urlRequest = URLRequest(url: resourceURL!)
-        guard let token = Auth().token else {
-            completion(.failure(.unauthorised))
-            return
-        }
-        urlRequest.httpMethod = "GET"
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        let dataTask = URLSession.shared.dataTask(with: urlRequest) { data, response, _ in
-            guard let httpResponse = response as? HTTPURLResponse else {
-                completion(.failure(.noConnection))
-                return
-            }
-            guard httpResponse.statusCode == 200, let jsonData = data else {
-                switch httpResponse.statusCode {
-                case 401: completion(.failure(.unauthorised))
-                case 404: completion(.failure(.notFound))
-                default: completion(.failure(.other))
-                }
-                return
-            }
-            do {
-                let game = try JSONDecoder().decode(Game.self, from: jsonData)
-                completion(.success(game))
-            } catch {
-                completion(.failure(.other))
-                print("Can't parse JSON answer")
-            }
-        }
-        dataTask.resume()
-    }
-    
-    static func getFrequent(gameID: UUID, completion: @escaping (FrequentResult) -> Void) {
-        let resourceURL = URL(string: K.Server.name + "games/"+gameID.uuidString+"/frequent")
-        var urlRequest = URLRequest(url: resourceURL!)
-        guard let token = Auth().token else {
-            completion(.failure(.unauthorised))
-            return
-        }
-        urlRequest.httpMethod = "GET"
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        let dataTask = URLSession.shared.dataTask(with: urlRequest) { data, response, _ in
-            guard let httpResponse = response as? HTTPURLResponse else {
-                completion(.failure(.noConnection))
-                return
-            }
-            guard httpResponse.statusCode == 200, let jsonData = data else {
-                switch httpResponse.statusCode {
-                case 401: completion(.failure(.unauthorised))
-                case 404: completion(.failure(.notFound))
-                default: completion(.failure(.other))
-                }
-                return
-            }
-            do {
-                let frequentData = try JSONDecoder().decode(Game.Frequent.self, from: jsonData)
-                print("frequentData.explainTime=\(frequentData.explainTime)")
-                print("frequentData.timeFromExplain=\(frequentData.timeFromExplain)")
-                completion(.success(frequentData))
-            } catch {
-                completion(.failure(.other))
-                print("Can't parse JSON answer")
-            }
-        }
-        dataTask.resume()
+    static func getPlayersStatus(gameID: UUID, completion: @escaping (Result<[PlayerStatus]>) -> Void) {
+        sendRequest(
+                    stringUrl: "games/"+gameID.uuidString+"/players",
+                    httpMethod: "GET",
+                    completion: completion)
     }
     static func delete(gameID: UUID, completion: @escaping (OkResult) -> Void) {
-        let string = K.Server.name + "games/"+gameID.uuidString
-        let resourceURL = URL(string: string)
-        var urlRequest = URLRequest(url: resourceURL!)
-        guard let token = Auth().token else {
-            completion(.failure(.unauthorised))
-            return
-        }
-        urlRequest.httpMethod = "DELETE"
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        let dataTask = URLSession.shared.dataTask(with: urlRequest) { _, response, _ in
-            guard let httpResponse = response as? HTTPURLResponse else {
-                completion(.failure(.noConnection))
-                return
-            }
-            switch httpResponse.statusCode {
-            case 200: completion(.success)
-            case 401: completion(.failure(.unauthorised))
-            case 404: completion(.failure(.notFound))
-            default: completion(.failure(.other))
-            }
-        }
-        dataTask.resume()
+            sendRequest(
+                        stringUrl: "games/"+gameID.uuidString,
+                        httpMethod: "DELETE",
+                        completion: completion)
     }
 }
 

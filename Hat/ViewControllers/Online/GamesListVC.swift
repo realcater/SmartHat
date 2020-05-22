@@ -56,7 +56,7 @@ private extension GamesListVC {
 
     func loadGame(gameID: UUID) {
         showWarning("Загружаем игру...")
-        GameRequest.search(by: gameID, setAccepted: true) { [weak self] result in
+        GameRequest.accept(by: gameID) { [weak self] result in
             DispatchQueue.main.async { [weak self] in
                 switch result {
                 case .success(let game):

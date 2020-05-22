@@ -60,10 +60,10 @@ class Update {
         createSetFullTimer()
     }
 }
-// MARK: - private functions
+// MARK:             - private functions
 private extension Update {
     func setFullOnce() {
-        guard previousFullIsBeingHandled == false else { return }
+        //guard previousFullIsBeingHandled == false else { return }
         print("\(Date().convertTo(use: "mm:ss")): ==== UPDATE (TRY) ====")
         previousFullIsBeingHandled = true
         print("\(Date().convertTo(use: "mm:ss")): previousIsBeingHandled = true")
@@ -107,7 +107,6 @@ private extension Update {
                 switch result {
                 case .success(let frequentData):
                     print("\(Date().convertTo(use: "mm:ss")): ====GetFrequent (SUCCESS))")
-                    print("game.guessedThisTurn=\(self?.game.guessedThisTurn)")
                     if (frequentData.turn != self?.game.turn)  {
                         self?.getFull() {
                             self?.delegate?.proceedNextTurn()

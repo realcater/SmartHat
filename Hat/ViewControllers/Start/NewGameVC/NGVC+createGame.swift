@@ -20,8 +20,8 @@ extension NewGameVC {
         GameRequest.create(gameData) { [weak self] result in
             DispatchQueue.main.async { [weak self] in
                 switch result {
-                case .success(let gameID):
-                    self?.game = Game(id: gameID, data: gameData, userOwner: Auth().id!)
+                case .success(let gameUUIDOnly):
+                    self?.game = Game(id: gameUUIDOnly.id, data: gameData, userOwner: Auth().id!)
                     self?.changeModeToOnlineJoin()
                 case .failure(let error):
                     self?.showWarning(K.Server.warnings[error]!)
