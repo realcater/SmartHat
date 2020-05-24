@@ -32,7 +32,7 @@ class PlayersTVC: UITableViewController {
         if (indexPath.row == playersList.players.count) {
             textField.isHidden = true
             addPlayerButton.isHidden = (mode == .onlineWait) || (mode == .onlineReady)
-            addPlayerButton.turnClickSoundOn(sound: K.Sounds.click)
+            addPlayerButton.turnClickSoundOn(sound: K.sounds.click)
         } else {
             textField.text = playersList.players[indexPath.row].name
             textField.isUserInteractionEnabled = (mode == .offline)
@@ -74,6 +74,7 @@ class PlayersTVC: UITableViewController {
             if mode == .offline {
                 guard playersList.players.count > K.minPlayersQty else { return }
             } else if playersList.players.count <= K.minPlayersQty {
+                print("~~~~~~~~~~~\(playersList.players.count)~~~~~~~~")
                 delegate?.disableButton()
             }
             playersList.players.remove(at: indexPath.row)

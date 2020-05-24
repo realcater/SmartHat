@@ -15,7 +15,7 @@ class GameTypeVC: UIViewController {
     @IBAction func onlineGameButtonPressed(_ sender: Any) {
         checkRegistration()
     }
-    var notConfirmedName = ""
+    //var notConfirmedName = ""
     var name: String? = nil
     var tryConnectOnlineGame = true
     var i = 0
@@ -23,14 +23,19 @@ class GameTypeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.setBackgroundImage(named: K.FileNames.background, alpha: K.Alpha.Background.main)
-        offlineGameButton.turnClickSoundOn(sound: K.Sounds.click)
-        onlineGameButton.turnClickSoundOn(sound: K.Sounds.click)
-        title = "Как играем?"
+        offlineGameButton.turnClickSoundOn(sound: K.sounds.click)
+        onlineGameButton.turnClickSoundOn(sound: K.sounds.click)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
+        if let name = Auth().name {
+            title = "Как играем, \(name)?"
+        } else {
+            title = "Как играем?"
+        }
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "offline" {
             let newGameVC = segue.destination as? NewGameVC
@@ -42,7 +47,7 @@ class GameTypeVC: UIViewController {
         } else if segue.identifier == "toRegistration" {
             let newUserVC = segue.destination as? NewUserVC
             newUserVC?.delegate = self
-            newUserVC!.name = notConfirmedName
+            //newUserVC!.name = notConfirmedName
         }
     }
 }
@@ -56,7 +61,11 @@ extension GameTypeVC {
         title = "Подключаемся к серверу..."
         tryGetUser(by: uuid) {
             self.title = "Как играем, \(self.name ?? "")?"
-            self.performSegue(withIdentifier: "online", sender: self)
+            self.loadSettings() {
+                DispatchQueue.main.async { [weak self] in
+                    self?.performSegue(withIdentifier: "online", sender: self)
+                }
+            }
         }
     }
     func tryGetUser(by uuid: UUID, completion: @escaping () -> Void) {
@@ -84,7 +93,7 @@ extension GameTypeVC {
                     default:
                         self?.title = K.Server.warnings[error]
                         if error == .noConnection && (self?.tryConnectOnlineGame ?? false) {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + K.Server.Time.waitUntilNextTry) {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + K.Server.settings.updateFullTillNextTry) {
                                 self?.tryGetUser(by: uuid) {
                                     self?.title = "Сервер доступен"
                                 }
@@ -93,6 +102,19 @@ extension GameTypeVC {
                     }
                 }
             }
+        }
+    }
+    func loadSettings(completion: @escaping () -> Void) {
+        UserRequest.loadSettings() { [weak self] result in
+            switch result {
+            case .success(let clientSettings):
+                K.Server.settings = clientSettings
+            case .failure(let error):
+                DispatchQueue.main.async { [weak self] in
+                    self?.showWarning(K.Server.warnings[error]!)
+                }
+            }
+            completion()
         }
     }
 }

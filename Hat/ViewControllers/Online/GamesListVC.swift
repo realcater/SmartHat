@@ -103,7 +103,7 @@ extension GamesListVC {
     
     func createTimer() {
         if timer == nil {
-            timer = Timer.scheduledTimer(timeInterval: K.Server.Time.updateGameList, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+            timer = Timer.scheduledTimer(timeInterval: K.Server.settings.updateGameList, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
             timer?.tolerance = 0.1
             timer?.fire()
         }

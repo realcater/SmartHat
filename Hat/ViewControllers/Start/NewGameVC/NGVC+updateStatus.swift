@@ -58,7 +58,7 @@ extension NewGameVC {
     
     func createStatusTimer() {
         if statusTimer == nil {
-            statusTimer = Timer.scheduledTimer(timeInterval: K.Server.Time.updatePlayersStatus, target: self, selector: #selector(updateStatusTimer), userInfo: nil, repeats: true)
+            statusTimer = Timer.scheduledTimer(timeInterval: K.Server.settings.updatePlayersStatus, target: self, selector: #selector(updateStatusTimer), userInfo: nil, repeats: true)
             statusTimer?.tolerance = 0.1
             statusTimer?.fire()
         }

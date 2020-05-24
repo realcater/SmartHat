@@ -10,6 +10,8 @@ enum AuthResult {
 class Auth {
     var token: String? {
         get {
+            let token = KeychainWrapper.standard.string(forKey: "token")
+            print("==========\n\(token!)\n==========")
             return KeychainWrapper.standard.string(forKey: "token")
         }
         set {
@@ -47,6 +49,16 @@ class Auth {
         set {
             if let newValue = newValue {
                 KeychainWrapper.standard.set(newValue, forKey: "password")
+            }
+        }
+    }
+    var volume: Int? {
+        get {
+            return KeychainWrapper.standard.integer(forKey: "volume")
+        }
+        set {
+            if let newValue = newValue {
+                KeychainWrapper.standard.set(newValue, forKey: "volume")
             }
         }
     }

@@ -14,6 +14,10 @@
 		C10F426724622642001D353E /* InvitePlayerTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10F426624622642001D353E /* InvitePlayerTVC.swift */; };
 		C112465424707A49009FB46D /* Game+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C112465324707A49009FB46D /* Game+extension.swift */; };
 		C115089224781E08005867CB /* sendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C115089124781E08005867CB /* sendRequest.swift */; };
+		C115089824794E85005867CB /* ClientSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C115089724794E85005867CB /* ClientSettings.swift */; };
+		C115089A2479C5B9005867CB /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C11508992479C5B9005867CB /* SettingsVC.swift */; };
+		C115089E247A9DC5005867CB /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C115089D247A9DC5005867CB /* AppSettings.swift */; };
+		C11508A0247AA03C005867CB /* Sounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = C115089F247AA03C005867CB /* Sounds.swift */; };
 		C127822C246ADDDF002C4E81 /* String+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C127822B246ADDDF002C4E81 /* String+extension.swift */; };
 		C127822E246ADEC0002C4E81 /* Date+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C127822D246ADEC0002C4E81 /* Date+extension.swift */; };
 		C1278232246C94C9002C4E81 /* MainVC+delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1278231246C94C8002C4E81 /* MainVC+delegate.swift */; };
@@ -82,6 +86,10 @@
 		C10F426624622642001D353E /* InvitePlayerTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitePlayerTVC.swift; sourceTree = "<group>"; };
 		C112465324707A49009FB46D /* Game+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+extension.swift"; sourceTree = "<group>"; };
 		C115089124781E08005867CB /* sendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sendRequest.swift; sourceTree = "<group>"; };
+		C115089724794E85005867CB /* ClientSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientSettings.swift; sourceTree = "<group>"; };
+		C11508992479C5B9005867CB /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		C115089D247A9DC5005867CB /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		C115089F247AA03C005867CB /* Sounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sounds.swift; sourceTree = "<group>"; };
 		C127822B246ADDDF002C4E81 /* String+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extension.swift"; sourceTree = "<group>"; };
 		C127822D246ADEC0002C4E81 /* Date+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extension.swift"; sourceTree = "<group>"; };
 		C1278231246C94C8002C4E81 /* MainVC+delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainVC+delegate.swift"; sourceTree = "<group>"; };
@@ -271,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				C1D096842458299600A03A21 /* CreateJoinVC.swift */,
+				C11508992479C5B9005867CB /* SettingsVC.swift */,
 				C1D0968624582C1A00A03A21 /* GamesListVC.swift */,
 				C1D0968B2458305400A03A21 /* GamesListTVC.swift */,
 				C10F42622461CE76001D353E /* InvitePlayerVC.swift */,
@@ -337,9 +346,12 @@
 				C1D0968D2458329600A03A21 /* Game.swift */,
 				C112465324707A49009FB46D /* Game+extension.swift */,
 				CA023D0C217561CD008AE815 /* GameData.swift */,
-				C10F4260245F5719001D353E /* PlayersList.swift */,
 				C1D0968F245832E500A03A21 /* User.swift */,
 				C1669C4F2458806700B19384 /* Player.swift */,
+				C115089724794E85005867CB /* ClientSettings.swift */,
+				C10F4260245F5719001D353E /* PlayersList.swift */,
+				C115089D247A9DC5005867CB /* AppSettings.swift */,
+				C115089F247AA03C005867CB /* Sounds.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -476,8 +488,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C115089824794E85005867CB /* ClientSettings.swift in Sources */,
 				C1480A912123649500137C37 /* ExplainVC.swift in Sources */,
 				C130986421239082001D894D /* K.swift in Sources */,
+				C115089E247A9DC5005867CB /* AppSettings.swift in Sources */,
 				C10F3FA6245E0FF2001D353E /* GameRequest.swift in Sources */,
 				C112465424707A49009FB46D /* Game+extension.swift in Sources */,
 				C1D0968C2458305400A03A21 /* GamesListTVC.swift in Sources */,
@@ -488,6 +502,7 @@
 				C10F426724622642001D353E /* InvitePlayerTVC.swift in Sources */,
 				C10F3FA0245C81FA001D353E /* Auth.swift in Sources */,
 				C144B470247097F8006B0EDD /* MainVC+stopBtn.swift in Sources */,
+				C115089A2479C5B9005867CB /* SettingsVC.swift in Sources */,
 				C1D09690245832E500A03A21 /* User.swift in Sources */,
 				CA023D2321756243008AE815 /* AVAudioPlayer+extension.swift in Sources */,
 				C1561CF42134186E00C8B674 /* StartVC.swift in Sources */,
@@ -506,6 +521,7 @@
 				C1EA3F372468314000BBC67E /* NGVC+rejectButton.swift in Sources */,
 				CA8A2F9F23B6A034008D7EBE /* BasketVC.swift in Sources */,
 				CA8A2FA123B6A1D2008D7EBE /* BasketTVC.swift in Sources */,
+				C11508A0247AA03C005867CB /* Sounds.swift in Sources */,
 				C1EA3F3F2468332E00BBC67E /* NGVC+prepareVC.swift in Sources */,
 				C1D096852458299600A03A21 /* CreateJoinVC.swift in Sources */,
 				C10F42632461CE76001D353E /* InvitePlayerVC.swift in Sources */,

@@ -15,7 +15,8 @@ class StartVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.setBackgroundImage(named: K.FileNames.background, alpha: K.Alpha.Background.main)
-        playButton.turnClickSoundOn(sound: K.Sounds.click)
+        playButton.turnClickSoundOn(sound: K.sounds.click)
+        K.appSettings.load()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

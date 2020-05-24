@@ -20,7 +20,7 @@ class EndGameVC: UIViewController {
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: false)
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
-        K.Sounds.applause?.play()
+        K.sounds.applause?.play()
         title = "Результаты"
         game.turn = K.endTurnNumber
         update?.setFull()

@@ -9,7 +9,7 @@ struct K {
             .noConnection: "Нет связи или сервер не отвечает",
             .unauthorised: "Пользователь не авторизован",
             .notFound: "Не найдено",
-            .duplicate: "Этот Никнейм уже занят",
+            .duplicate: "Этот никнейм уже занят",
             .JSONParseError: "Ошибка данных",
             .gameEnded: "Игра завершена",
             .other: "Ошибка сервера"
@@ -18,15 +18,16 @@ struct K {
             "admin",
             "app"
         ]
-        struct Time {
-            static let updatePlayersStatus = 5.0
-            static let updateGameList = 5.0
-            static let checkOffline = 10.0
-            static let updateGameData = 1.0
-            static let waitUntilNextTry = 1.0
-            static let ttlTryTime = 10.0
-        }
+        static var settings = ClientSettings(
+            updatePlayersStatus: 5.0,
+            updateGameList: 5.0,
+            checkOffline: 10.0,
+            updateFrequent: 1.0,
+            updateFullTillNextTry: 1.0)
      }
+    static var sounds = Sounds()
+    static var appSettings = AppSettings(soundDelegate: sounds)
+    
     static let startPlayers: [Player] = [
         Player(name: "Анжела"),
         Player(name: "Евстигней"),
@@ -75,14 +76,6 @@ struct K {
     }
     
     
-    struct Sounds {
-        static let click = initSound(filename: "click.wav", volume: 0.05)
-        static let correct = initSound(filename: "true.wav", volume: 0.2)
-        static let error = initSound(filename: "false.wav", volume: 0.1)
-        static let applause = initSound(filename: "applause.wav", volume: 0.2)
-        static let countdown = initSound(filename: "countdown.mp3")
-        static let timeOver = initSound(filename: "timeOver.mp3")
-    }
     
     struct Colors {
         static let foreground = UIColor(red: 0, green: 110/256, blue: 182/256, alpha: 1)

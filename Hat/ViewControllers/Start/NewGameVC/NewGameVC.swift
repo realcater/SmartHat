@@ -38,9 +38,11 @@ class NewGameVC: UIViewController {
             }
             title = K.Titles.newGame[mode]
             button?.setTitle(K.Buttons.newGameVCTitle[mode], for: .normal)
-            if mode == .onlineWait {
+            if _mode == .onlineWait {
                 button?.disable()
                 if isViewLoaded { replaceBackButton() }
+            } else if (_mode == .onlineCreate) && (playersList.players.count < K.minPlayersQty) {
+                button?.disable()
             } else {
                 button?.enable()
             }
@@ -73,7 +75,7 @@ class NewGameVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = K.Colors.background
-        button.turnClickSoundOn(sound: K.Sounds.click)
+        button.turnClickSoundOn(sound: K.sounds.click)
     }
     
     override func viewWillAppear(_ animated: Bool) {

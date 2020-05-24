@@ -5,20 +5,12 @@ import Foundation
 
 class PlayersList {
     var players: [Player] = []
-    var plistFileName : String {
-        let fileName = "offline"
-        return Helper.plistFileName(fileName)
-    }
+    let fileName = "offline"
     
     func loadFromFile() {
-        if let encodedData = NSKeyedUnarchiver.unarchiveObject(withFile: plistFileName) as? Data, let players = try? JSONDecoder().decode([Player].self, from: encodedData) {
-            self.players = players
-        } else {
-            self.players = K.startPlayers
-        }
+        players = Helper.load(from: fileName) ?? K.startPlayers
     }
     func saveToFile() {
-        let encodedData = try! JSONEncoder().encode(players)
-        NSKeyedArchiver.archiveRootObject(encodedData, toFile: plistFileName)
+        Helper.save(players,to: fileName)
     }
 }

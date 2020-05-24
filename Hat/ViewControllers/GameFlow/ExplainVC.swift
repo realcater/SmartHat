@@ -60,7 +60,7 @@ class ExplainVC: UIViewController {
 // MARK: - buttons handlers
 private extension ExplainVC {
     @IBAction func guessedPressed(_ sender: Any) {
-        K.Sounds.correct?.resetAndPlay()
+        K.sounds.correct?.resetAndPlay()
         game.setWordGuessed(time: lastTime - timeLeft)
         lastTime = timeLeft
         guessedQty+=1
@@ -127,16 +127,16 @@ extension ExplainVC {
         timerLabel.text = String(timeLeft)
 
         if timeLeft == 0 {
-            K.Sounds.timeOver?.resetAndPlay()
+            K.sounds.timeOver?.resetAndPlay()
             game.setWordLeft(time: lastTime)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
                 self.nextPair()
             })
         } else if timeLeft == K.Delays.withClicks {
-            K.Sounds.click?.play()
+            K.sounds.click?.play()
             circleView.backgroundColor = K.Colors.redDarker
         } else if timeLeft < K.Delays.withClicks {
-            K.Sounds.click?.play()
+            K.sounds.click?.play()
         }
     }
     
@@ -165,7 +165,7 @@ extension ExplainVC {
 extension ExplainVC {
     @objc func resolveBtnTimer() {
         game.setWordMissed(time: lastTime-timeLeft)
-        K.Sounds.error?.play()
+        K.sounds.error?.play()
         nextPair()
     }
     

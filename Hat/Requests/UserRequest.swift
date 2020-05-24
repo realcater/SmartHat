@@ -1,50 +1,30 @@
 import Foundation
 
 struct UserRequest {
-    static func create(_ user: User, completion: @escaping (Result<User.Public>) -> Void) {
-        let resourceURL = URL(string: K.Server.name + "users")
-        var urlRequest = URLRequest(url: resourceURL!)
-        urlRequest.httpMethod = "POST"
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        urlRequest.httpBody = try! JSONEncoder().encode(user)
-        urlRequest.setValue("Bearer \(Environment.appKey)", forHTTPHeaderField: "Authorization")
-        let dataTask = URLSession.shared.dataTask(with: urlRequest) { data, response, _ in
-            guard let _ = response as? HTTPURLResponse else {
-                completion(.failure(.noConnection))
-               return
-            }
-            guard let jsonData = data else {
-                completion(.failure(.other))
-                return
-            }
-            do {
-                let userPublic = try JSONDecoder().decode(User.Public.self, from: jsonData)
-                completion(.success(userPublic))
-            } catch {
-                do {
-                    let errorRespond = try JSONDecoder().decode(ErrorResponse.self, from: jsonData)
-                    if errorRespond.reason.prefix(K.Server.duplicateNameRespondPrefixLength) == K.Server.duplicateNameRespondPrefix {
-                        completion(.failure(.duplicate))
-                    } else {
-                        completion(.failure(.other))
-                    }
-                }
-                catch {
-                    completion(.failure(.JSONParseError))
-                }
-            }
+    static func create(_ user: User, completion: @escaping (OkResult) -> Void) {
+        sendRequestIn(
+                        stringUrl: "users",
+                        httpMethod: "POST",
+                        dataIn: user,
+                        useAppToken: true,
+                        completion: completion)
         }
-        dataTask.resume()
-    }
+    static func changeName(_ updateUserData: UpdateUserData, completion: @escaping (OkResult) -> Void) {
+        sendRequestIn(
+                        stringUrl: "users/changeName",
+                        httpMethod: "POST",
+                        dataIn: updateUserData,
+                        completion: completion)
+        }
     static func get(userID: UUID?, completion: @escaping (Result<User.Public>) -> Void) {
-        sendRequest(
+        sendRequestOut(
                     stringUrl: "users/"+userID!.uuidString,
                     httpMethod: "GET",
                     useAppToken: true,
                     completion: completion)
     }
     static func search(with searchRequestData: SearchRequestData, completion: @escaping (Result<[User.Public]>) -> Void) {
-        sendRequest(
+        sendRequestInOut(
                     stringUrl: "users/search",
                     httpMethod: "POST",
                     dataIn: searchRequestData,
@@ -57,16 +37,27 @@ struct UserRequest {
                     completion: completion)
     }
     static func getLastTimeOnline(userID: UUID?, completion: @escaping (Result<UserTime>) -> Void) {
-        sendRequest(
+        sendRequestOut(
                     stringUrl: "users/"+userID!.uuidString+"/online",
                     httpMethod: "POST",
                     completion: completion)
         }
+    static func loadSettings(completion: @escaping (Result<ClientSettings>) -> Void) {
+        sendRequestOut(
+                    stringUrl: "settings",
+                    httpMethod: "GET",
+                    useAppToken: true,
+                    completion: completion)
+    }
 }
 
 struct SearchRequestData: Codable {
     let text: String
     let maxResultsQty: Int
+}
+
+struct UpdateUserData: Codable {
+    let newName: String
 }
 
 struct ErrorResponse: Codable {

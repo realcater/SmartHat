@@ -19,11 +19,11 @@ class NewUserVC: UIViewController {
             showWarning("Имя не может быть пустым", in: warningTextView)
             return
         }
-        guard textField.text!.count >= K.Name.minLength else {
+        guard name.count >= K.Name.minLength else {
             showWarning(K.Name.minLengthWarning, in: warningTextView)
             return
         }
-        guard textField.text!.count <= K.Name.maxLength else {
+        guard name.count <= K.Name.maxLength else {
             showWarning(K.Name.maxLengthWarning, in: warningTextView)
             return
         }
@@ -62,6 +62,7 @@ class NewUserVC: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerButton.turnClickSoundOn(sound: K.sounds.click)
         self.addTaps(singleTapAction: #selector(singleTap))
         popupView.layer.cornerRadius = K.windowsCornerRadius
         textField.delegate = self

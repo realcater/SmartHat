@@ -79,11 +79,11 @@ class MainVC: UIViewController {
 extension MainVC {
     @IBAction func goButtonTouchDown(_ sender: Any) {
         createBtnTimer(duration: K.Delays.goBtn)
-        K.Sounds.countdown?.resetAndPlay()
+        K.sounds.countdown?.resetAndPlay()
     }
     @IBAction func goButtonTouchUp(_ sender: Any) {
         cancelBtnTimer()
-        K.Sounds.countdown?.stop()
+        K.sounds.countdown?.stop()
         helpMessage.isHidden = false
     }
     
@@ -144,7 +144,7 @@ extension MainVC {
         reloadNames()
         helpMessage.isHidden = true
         
-        update?.startGetFrequent(every: K.Server.Time.updateGameData)
+        update?.startGetFrequent(every: K.Server.settings.updateFrequent)
         
         if isMyTurn {
             print("====MY TURN====")

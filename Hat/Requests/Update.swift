@@ -176,7 +176,8 @@ private extension Update {
     
     func createSetFullTimer() {
         if setFullTimer == nil {
-            setFullTimer = Timer.scheduledTimer(timeInterval: K.Server.Time.waitUntilNextTry,
+            setFullTimer = Timer.scheduledTimer(timeInterval:
+                K.Server.settings.updateFullTillNextTry,
                             target: self, selector: #selector(updateSetFullTimer), userInfo: nil, repeats: true)
             setFullTimer?.tolerance = 0.1
             setFullTimer?.fire()
