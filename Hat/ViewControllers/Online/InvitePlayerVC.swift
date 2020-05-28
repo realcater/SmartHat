@@ -28,10 +28,10 @@ class InvitePlayerVC: UIViewController {
             if delegate!.add(toGame: player) {
                 dismiss(animated: true, completion: nil)
             } else {
-                self.showWarning("Игрок уже добавлен в игру")
+                self.showWarning("Игрок уже добавлен в игру", in: warningTextView)
             }
         } else {
-            self.showWarning("Игрок не найден")
+            self.showWarning("Игрок не найден", in: warningTextView)
         }
     }
         
@@ -108,7 +108,7 @@ extension InvitePlayerVC {
                     self?.playersList.players = []
                     self?.selectedPlayer = nil
                     self?.invitePlayerTVC?.tableView.reloadData()
-                    self?.showWarning(K.Server.warnings[error]!)
+                    self?.showWarning(error)
                 }
             }
         }

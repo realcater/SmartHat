@@ -8,7 +8,7 @@ extension NewGameVC {
         self.navigationItem.leftBarButtonItem = newBackButton
     }
     func showAlert() {
-        let alert = UIAlertController(title: "Вы хотите покинуть игру?", message: "Вы сможете присоединиться к игре позднее", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Выйти из игры?", message: "Вы сможете присоединиться к игре позднее", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { action in
             self.rejectGame()
             self.navigationController?.popViewController(animated: true)
@@ -23,7 +23,7 @@ extension NewGameVC {
                 case .success:
                     self?.cancelStatusTimer()
                 case .failure(let error):
-                    self?.showWarning(K.Server.warnings[error]!)
+                    self?.showWarning(error)
                 }
             }
         }

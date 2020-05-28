@@ -18,7 +18,6 @@ class GameTypeVC: UIViewController {
     //var notConfirmedName = ""
     var name: String? = nil
     var tryConnectOnlineGame = true
-    var i = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,9 +40,11 @@ class GameTypeVC: UIViewController {
             let newGameVC = segue.destination as? NewGameVC
             newGameVC?.mode = .offline
             tryConnectOnlineGame = false
+            self.title = ""
         } else if segue.identifier == "online" {
             let createJoinVC = segue.destination as? CreateJoinVC
             createJoinVC?.title = name
+            self.title = ""
         } else if segue.identifier == "toRegistration" {
             let newUserVC = segue.destination as? NewUserVC
             newUserVC?.delegate = self
@@ -63,6 +64,11 @@ extension GameTypeVC {
             self.title = "Как играем, \(self.name ?? "")?"
             self.loadSettings() {
                 DispatchQueue.main.async { [weak self] in
+                    guard K.Server.currentAppVersion >= K.Server.settings.minimumAppVersion else {
+                        self?.showAlert()
+                        self?.showWarning("Обновите приложение")
+                        return
+                    }
                     self?.performSegue(withIdentifier: "online", sender: self)
                 }
             }
@@ -70,21 +76,11 @@ extension GameTypeVC {
     }
     func tryGetUser(by uuid: UUID, completion: @escaping () -> Void) {
         UserRequest.get(userID: uuid) { [weak self] result in
-            self?.i += 1
             DispatchQueue.main.async { [weak self] in
                 switch result {
                 case .success(let user):
                     self?.name = user.name
-                    Auth().login() { result in
-                        DispatchQueue.main.async { [weak self] in
-                            switch result {
-                            case .success:
-                                completion()
-                            case .failure(let error):
-                                self?.title = K.Server.warnings[error]
-                            }
-                        }
-                    }
+                    completion()
                 case .failure(let error):
                     switch error {
                     case .notFound:
@@ -111,11 +107,16 @@ extension GameTypeVC {
                 K.Server.settings = clientSettings
             case .failure(let error):
                 DispatchQueue.main.async { [weak self] in
-                    self?.showWarning(K.Server.warnings[error]!)
+                    self?.showWarningOrTitle(error)
                 }
             }
             completion()
         }
+    }
+    func showAlert() {
+        let alert = UIAlertController(title: "Обновите приложение", message: "Для онлайн-игры требуется более новая версия программы", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Понятно", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }
 

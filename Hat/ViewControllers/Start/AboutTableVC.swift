@@ -20,6 +20,12 @@ class AboutTableVC: UITableViewController {
             UIApplication.shared.open(url)
         }
     }
+    @IBAction func vkEvgenyTapped(_ sender: Any) {
+        if let url = URL(string: K.Urls.vkEvgeny) {
+            UIApplication.shared.open(url)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
@@ -30,10 +36,10 @@ class AboutTableVC: UITableViewController {
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 4
+        return 5
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return (section==3) ? 3 : 1
+        return (section==4) ? 5 : 1
     }
 }

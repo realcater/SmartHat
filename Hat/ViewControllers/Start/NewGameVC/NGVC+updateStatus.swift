@@ -9,7 +9,7 @@ extension NewGameVC {
                 case .success(let playersStatus):
                     self?.update(from: playersStatus)
                 case .failure(let error):
-                    self?.showWarning(K.Server.warnings[error]!)
+                    self?.showWarning(error)
                     if error == .noConnection { self?.makeMeNotInGame() }
                 }
             }

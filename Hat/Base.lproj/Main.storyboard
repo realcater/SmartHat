@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nVN-h5-dIY">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,11 +13,11 @@
             <objects>
                 <viewController storyboardIdentifier="NewGameVC" id="BYZ-38-t0r" userLabel="NewGame" customClass="NewGameVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFM-K3-PgJ" userLabel="topButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="470" width="600" height="70"/>
+                                <rect key="frame" x="0.0" y="444" width="320" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="LFO-kP-RyD"/>
@@ -29,7 +31,7 @@
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jOy-4v-Nu9">
-                                <rect key="frame" x="0.0" y="44" width="600" height="276"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="250"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="900" constant="250" id="Iru-ri-nO9"/>
                                 </constraints>
@@ -38,7 +40,7 @@
                                 </connections>
                             </containerView>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o2N-Fd-Owz">
-                                <rect key="frame" x="20" y="320" width="560" height="150"/>
+                                <rect key="frame" x="20" y="294" width="280" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="nd8-73-vok"/>
                                 </constraints>
@@ -80,18 +82,18 @@
             <objects>
                 <viewController storyboardIdentifier="StartPairView" id="S0w-Z2-ro9" userLabel="StartPairVC" customClass="MainVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="D7Y-BT-YTz">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1fa-Tm-ly3" userLabel="bottomView">
-                                <rect key="frame" x="0.0" y="350" width="600" height="250"/>
+                                <rect key="frame" x="0.0" y="318" width="320" height="250"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="ADM-fK-OTa"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Km0-Ta-mCv" userLabel="bottomButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="470" width="600" height="70"/>
+                                <rect key="frame" x="0.0" y="438" width="320" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254901960786" blue="0.71372549019607845" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="n22-b5-0uK"/>
@@ -106,19 +108,19 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Удерживайте, чтобы начать" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKj-I6-lI0">
-                                <rect key="frame" x="0.0" y="475.5" width="600" height="14.5"/>
+                                <rect key="frame" x="0.0" y="443.5" width="320" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZJB-ZA-Bbp" userLabel="topView">
-                                <rect key="frame" x="0.0" y="44" width="600" height="306"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="274"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QDH-pk-EuF">
-                                        <rect key="frame" x="0.0" y="116" width="600" height="128"/>
+                                        <rect key="frame" x="0.0" y="116" width="320" height="128"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bubble" translatesAutoresizingMaskIntoConstraints="NO" id="tj4-sL-32X">
-                                                <rect key="frame" x="230" y="34" width="60" height="60"/>
+                                                <rect key="frame" x="90" y="34" width="60" height="60"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -127,7 +129,7 @@
                                                 </constraints>
                                             </imageView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ear" translatesAutoresizingMaskIntoConstraints="NO" id="BDx-Pm-spM">
-                                                <rect key="frame" x="310" y="34" width="60" height="60"/>
+                                                <rect key="frame" x="170" y="34" width="60" height="60"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -135,7 +137,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Realcater" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="ojr-U3-i2p">
-                                                <rect key="frame" x="98" y="49.5" width="120" height="29"/>
+                                                <rect key="frame" x="8" y="49.5" width="70" height="29"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" priority="500" constant="120" id="s9o-RZ-bu1"/>
                                                 </constraints>
@@ -144,7 +146,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ленка" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PqC-9K-Psk">
-                                                <rect key="frame" x="370" y="49.5" width="120" height="29"/>
+                                                <rect key="frame" x="230" y="49.5" width="82" height="29"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" priority="500" constant="120" id="dJ5-zc-Byc"/>
                                                 </constraints>
@@ -177,7 +179,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jbk-oY-03j" userLabel="Circle">
-                                <rect key="frame" x="260" y="62" width="80" height="80"/>
+                                <rect key="frame" x="120" y="62" width="80" height="80"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0dg-KI-KU1">
                                         <rect key="frame" x="21" y="22" width="38" height="36"/>
@@ -255,11 +257,11 @@
             <objects>
                 <viewController id="ogA-h6-WKL" userLabel="StartVC" customClass="StartVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YG3-EU-qXa">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Qi-MR-tuY" userLabel="topButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="265" width="600" height="70"/>
+                                <rect key="frame" x="0.0" y="249" width="320" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="Z9Z-6N-rH2"/>
@@ -273,7 +275,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bag-Ai-49f" userLabel="topButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="335" width="600" height="50"/>
+                                <rect key="frame" x="0.0" y="319" width="320" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="RrM-ZK-3cx"/>
@@ -287,10 +289,10 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ucw-yf-pMF">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="265"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="249"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hat-rabbit-image" translatesAutoresizingMaskIntoConstraints="NO" id="2Ln-bx-5jL">
-                                        <rect key="frame" x="20" y="32" width="560" height="201"/>
+                                        <rect key="frame" x="20" y="32" width="280" height="185"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </imageView>
                                 </subviews>
@@ -303,7 +305,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nqX-Tj-jb3" userLabel="topButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="385" width="600" height="50"/>
+                                <rect key="frame" x="0.0" y="369" width="320" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="rNo-UC-dJd"/>
@@ -353,28 +355,28 @@
             <objects>
                 <tableViewController id="8F1-tt-3SW" customClass="PlayersTVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Rc7-fP-g6l">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="494"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="Players" id="OPR-ZT-XO1">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OPR-ZT-XO1" id="799-xK-PW0">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7CE-i2-d8k">
-                                            <rect key="frame" x="12" y="0.0" width="402" height="44"/>
+                                            <rect key="frame" x="12" y="0.0" width="308" height="44"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="textColor" red="0.0" green="0.43137254901960786" blue="0.71372549019607845" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <button opaque="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5NW-4q-3Nn" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                            <rect key="frame" x="169" y="4" width="76" height="38"/>
+                                            <rect key="frame" x="122" y="4" width="76" height="38"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="5NW-4q-3Nn" secondAttribute="height" multiplier="2:1" id="RPO-3f-AQH"/>
                                             </constraints>
@@ -385,7 +387,7 @@
                                             </connections>
                                         </button>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1002" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eZ3-eU-jyn">
-                                            <rect key="frame" x="370" y="8" width="28" height="28"/>
+                                            <rect key="frame" x="276" y="8" width="28" height="28"/>
                                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="eZ3-eU-jyn" secondAttribute="height" multiplier="1:1" id="oB0-lI-n1F"/>
@@ -424,11 +426,11 @@
             <objects>
                 <viewController storyboardIdentifier="PlayVC" id="n5c-B9-13Q" userLabel="StartGameView" customClass="ExplainVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9W2-UA-sYY">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yX4-3S-iOs" userLabel="Circle">
-                                <rect key="frame" x="260" y="56" width="80" height="80"/>
+                                <rect key="frame" x="120" y="56" width="80" height="80"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q68-nO-qYT">
                                         <rect key="frame" x="17.5" y="18.5" width="45" height="43"/>
@@ -446,10 +448,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f2g-ek-Jjt" userLabel="WordLabelView">
-                                <rect key="frame" x="0.0" y="136" width="600" height="144"/>
+                                <rect key="frame" x="0.0" y="136" width="320" height="112"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Недоросль" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="21" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gkn-36-nZ5">
-                                        <rect key="frame" x="12" y="46.5" width="576" height="51"/>
+                                        <rect key="frame" x="12" y="36" width="296" height="51"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="42"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -462,7 +464,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="clg-o4-tCf" userLabel="guessedButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="420" width="600" height="180"/>
+                                <rect key="frame" x="0.0" y="388" width="320" height="180"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="XAw-Jc-Sg1"/>
@@ -476,7 +478,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BhK-Bc-ojQ" userLabel="notGuessedButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="350" width="600" height="70"/>
+                                <rect key="frame" x="0.0" y="318" width="320" height="70"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="RRE-46-n4B"/>
@@ -497,7 +499,7 @@
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Удерживайте, чтобы отметить ошибку" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MjO-EW-V8Y">
-                                <rect key="frame" x="0.0" y="353.5" width="600" height="14.5"/>
+                                <rect key="frame" x="0.0" y="321.5" width="320" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -548,7 +550,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nVN-h5-dIY" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Tpq-B1-JXZ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -565,11 +567,11 @@
             <objects>
                 <viewController storyboardIdentifier="EndGameVC" id="j10-9v-a03" userLabel="EndGame" customClass="EndGameVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6jk-Ph-c63">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hHa-U1-ACa" userLabel="topButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="470" width="600" height="70"/>
+                                <rect key="frame" x="0.0" y="438" width="320" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="YnC-lg-EuB"/>
@@ -583,7 +585,7 @@
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c4S-Y0-HFs">
-                                <rect key="frame" x="0.0" y="44" width="600" height="426"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="394"/>
                                 <connections>
                                     <segue destination="7Ac-wr-rug" kind="embed" identifier="toResultsList" id="5sW-IW-lD7"/>
                                 </connections>
@@ -618,28 +620,28 @@
             <objects>
                 <tableViewController id="7Ac-wr-rug" userLabel="EndGameTVC" customClass="EndGameTVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="fii-0v-Gnh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="644"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="394"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="separatorColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ResultsListItem" id="Nsg-UN-9bk">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1005" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nsg-UN-9bk" id="ntu-IX-D6N">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Имя" textAlignment="natural" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="mTG-u8-YA0">
-                                            <rect key="frame" x="20" y="0.0" width="194" height="44"/>
+                                            <rect key="frame" x="20" y="0.0" width="100" height="44"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="textColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <textField opaque="NO" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="50" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CGe-aK-TdF">
-                                            <rect key="frame" x="234" y="0.0" width="40" height="44"/>
+                                            <rect key="frame" x="140" y="0.0" width="40" height="44"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="MOS-If-YF6"/>
@@ -649,7 +651,7 @@
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <textField opaque="NO" tag="1003" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="23" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vNF-Wt-AO5">
-                                            <rect key="frame" x="294" y="0.0" width="40" height="44"/>
+                                            <rect key="frame" x="200" y="0.0" width="40" height="44"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="p5h-pn-jXy"/>
@@ -659,7 +661,7 @@
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <textField opaque="NO" tag="1004" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="23" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uU2-oZ-yPZ">
-                                            <rect key="frame" x="354" y="0.0" width="40" height="44"/>
+                                            <rect key="frame" x="260" y="0.0" width="40" height="44"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="40" id="HDE-Cx-Ax5"/>
@@ -704,20 +706,20 @@
             <objects>
                 <viewController storyboardIdentifier="BasketVC" id="Ifu-eE-Ltf" userLabel="BasketVC" customClass="BasketVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kt6-fr-kP8">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IGJ-Lj-7bd" userLabel="popupView">
-                                <rect key="frame" x="20" y="104" width="560" height="411"/>
+                                <rect key="frame" x="20" y="104" width="280" height="379"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d0C-bh-Lzq" userLabel="tableView">
-                                        <rect key="frame" x="0.0" y="0.0" width="560" height="321"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="289"/>
                                         <connections>
                                             <segue destination="a6U-iE-VeZ" kind="embed" identifier="toBasketList" id="9e2-kz-oTf"/>
                                         </connections>
                                     </containerView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BGe-d2-DFv" userLabel="topButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="321" width="560" height="70"/>
+                                        <rect key="frame" x="0.0" y="289" width="280" height="70"/>
                                         <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="Fil-lX-wgM"/>
@@ -732,7 +734,7 @@
                                         </connections>
                                     </button>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Только создатель игры может изменять слова в шляпе" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="mlH-so-rGR">
-                                        <rect key="frame" x="8" y="393" width="544" height="14.5"/>
+                                        <rect key="frame" x="8" y="361" width="264" height="14.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.75294117647058822" green="0.090196078431372548" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -781,19 +783,19 @@
             <objects>
                 <tableViewController storyboardIdentifier="InvitePlayerTVC" id="MZD-Uz-aHJ" customClass="InvitePlayerTVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" tag="2007" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="40" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lfy-Ut-1Y5">
-                        <rect key="frame" x="0.0" y="0.0" width="374" height="108"/>
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="108"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Players" id="nsf-rv-4UC">
-                                <rect key="frame" x="0.0" y="28" width="374" height="40"/>
+                                <rect key="frame" x="0.0" y="28" width="280" height="40"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="2008" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nsf-rv-4UC" id="4cB-Ti-ncU">
-                                    <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="280" height="40"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oS5-ID-2rR">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="40"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="textColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -824,7 +826,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="BasketTVC" id="a6U-iE-VeZ" customClass="BasketTVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="6zm-TA-Lq9">
-                        <rect key="frame" x="0.0" y="0.0" width="374" height="539"/>
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="289"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="separatorColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -832,21 +834,21 @@
                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WordsListItem" id="3fq-lP-auz">
-                                <rect key="frame" x="0.0" y="28" width="374" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="280" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3fq-lP-auz" id="Lwi-vE-KkH">
-                                    <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Слово" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z1P-xA-dit">
-                                            <rect key="frame" x="20" y="0.0" width="295" height="44"/>
+                                            <rect key="frame" x="20" y="0.0" width="201" height="44"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="textColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <button opaque="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vD-7l-c27">
-                                            <rect key="frame" x="315" y="0.0" width="43" height="44"/>
+                                            <rect key="frame" x="221" y="0.0" width="43" height="44"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="43" id="G6E-pv-v6m"/>
                                             </constraints>
@@ -887,21 +889,21 @@
         <scene sceneID="YMi-Lg-w1B">
             <objects>
                 <tableViewController id="YyH-et-Rqz" userLabel="AboutTableVC" customClass="AboutTableVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="cs6-gW-pFV">
-                        <rect key="frame" x="0.0" y="0.0" width="374" height="372"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" id="cs6-gW-pFV">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="422"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
                             <tableViewSection headerTitle="О приложении" id="AVc-Pw-wZ5">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="CGy-jm-bMY">
-                                        <rect key="frame" x="0.0" y="28" width="374" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="280" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CGy-jm-bMY" id="qaE-Pc-EBR">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Шляпа. Все-против-всех. v1.01" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xrt-Vr-wXh">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Шляпа.Онлайн. v2.00" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xrt-Vr-wXh">
                                                     <rect key="frame" x="16" y="11" width="342" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -921,10 +923,10 @@
                             <tableViewSection headerTitle="Страница приложения" id="Xbe-zB-kgy">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="BDr-mQ-562">
-                                        <rect key="frame" x="0.0" y="128" width="374" height="44"/>
+                                        <rect key="frame" x="0.0" y="128" width="280" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BDr-mQ-562" id="cPa-Ex-zDF">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOZ-Zl-u1e">
@@ -938,7 +940,7 @@
                                                         <action selector="fbAppTapped:" destination="YyH-et-Rqz" eventType="touchUpInside" id="jyr-RB-htY"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Шляпа. Все-против-всех" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J9P-9U-hPk">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Шляпа.Онлайн" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J9P-9U-hPk">
                                                     <rect key="frame" x="68" y="11.5" width="290" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -959,10 +961,10 @@
                             <tableViewSection headerTitle="Разработка и дизайн" id="y03-Ae-0Oq">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Xh3-wg-DgR">
-                                        <rect key="frame" x="0.0" y="228" width="374" height="44"/>
+                                        <rect key="frame" x="0.0" y="228" width="280" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xh3-wg-DgR" id="bfI-EN-qG3">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="89g-e7-KfC">
@@ -994,71 +996,153 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Пакеты слов" id="Zvk-wS-SRp">
+                            <tableViewSection headerTitle="Пакеты слов и вдохновение" id="aue-6d-33a">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="UdC-jH-iWa">
-                                        <rect key="frame" x="0.0" y="328" width="374" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="taI-3M-iYY">
+                                        <rect key="frame" x="0.0" y="328" width="280" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UdC-jH-iWa" id="nRk-VC-Kkz">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="taI-3M-iYY" id="wyT-7i-fXM">
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Изи:      4263 слов" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VGf-9w-mfs">
-                                                    <rect key="frame" x="16" y="11" width="342" height="22"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xi3-2f-9ns">
+                                                    <rect key="frame" x="16" y="4" width="36" height="36"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="36" id="Dhs-4P-8RB"/>
+                                                        <constraint firstAttribute="height" constant="36" id="MEO-Sv-Gqq"/>
+                                                    </constraints>
+                                                    <state key="normal" image="vkIcon"/>
+                                                    <connections>
+                                                        <action selector="vkEvgenyTapped:" destination="YyH-et-Rqz" eventType="touchUpInside" id="65J-fS-gef"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Евгений Юртаев" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhq-xo-lhz">
+                                                    <rect key="frame" x="68" y="11.5" width="274" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="VGf-9w-mfs" firstAttribute="top" secondItem="nRk-VC-Kkz" secondAttribute="topMargin" id="HiS-dy-xra"/>
-                                                <constraint firstItem="VGf-9w-mfs" firstAttribute="leading" secondItem="nRk-VC-Kkz" secondAttribute="leadingMargin" id="J6N-6e-w8S"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="VGf-9w-mfs" secondAttribute="trailing" id="dMw-RU-1h7"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="VGf-9w-mfs" secondAttribute="bottom" id="ovO-nZ-6Fe"/>
+                                                <constraint firstItem="Xi3-2f-9ns" firstAttribute="centerY" secondItem="wyT-7i-fXM" secondAttribute="centerY" id="5UW-BU-3AN"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="vhq-xo-lhz" secondAttribute="trailing" constant="16" id="Ujy-Gw-j4j"/>
+                                                <constraint firstItem="vhq-xo-lhz" firstAttribute="leading" secondItem="Xi3-2f-9ns" secondAttribute="trailing" constant="16" id="ebJ-dH-KhY"/>
+                                                <constraint firstItem="vhq-xo-lhz" firstAttribute="centerY" secondItem="wyT-7i-fXM" secondAttribute="centerY" id="isY-Jf-tTW"/>
+                                                <constraint firstItem="Xi3-2f-9ns" firstAttribute="leading" secondItem="wyT-7i-fXM" secondAttribute="leading" constant="16" id="rTQ-K7-Dce"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="bcP-3C-uO5">
-                                        <rect key="frame" x="0.0" y="372" width="374" height="44"/>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Пакеты слов" id="rL8-hM-nmP">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="36" id="Gyd-f1-4RM">
+                                        <rect key="frame" x="0.0" y="428" width="280" height="36"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bcP-3C-uO5" id="b50-qR-vCo">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gyd-f1-4RM" id="18t-Tj-G8W">
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="36"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Норм:   6762 слов" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLO-jZ-VxM">
-                                                    <rect key="frame" x="8" y="8" width="358" height="28"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Детский:   2758 слов" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pEz-WI-vaW">
+                                                    <rect key="frame" x="16" y="0.0" width="252" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="eLO-jZ-VxM" firstAttribute="leading" secondItem="b50-qR-vCo" secondAttribute="leadingMargin" id="4QO-dZ-wdG"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="eLO-jZ-VxM" secondAttribute="trailing" id="Wr5-w9-8OM"/>
-                                                <constraint firstItem="eLO-jZ-VxM" firstAttribute="top" secondItem="b50-qR-vCo" secondAttribute="topMargin" id="bsp-iz-fyr"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="eLO-jZ-VxM" secondAttribute="bottom" id="sBQ-QI-15Z"/>
+                                                <constraint firstItem="pEz-WI-vaW" firstAttribute="top" secondItem="18t-Tj-G8W" secondAttribute="top" id="E7V-TT-CVs"/>
+                                                <constraint firstAttribute="trailing" secondItem="pEz-WI-vaW" secondAttribute="trailing" constant="12" id="Mdq-wS-baO"/>
+                                                <constraint firstAttribute="bottom" secondItem="pEz-WI-vaW" secondAttribute="bottom" id="kAf-Cp-EOW"/>
+                                                <constraint firstItem="pEz-WI-vaW" firstAttribute="leading" secondItem="18t-Tj-G8W" secondAttribute="leading" constant="16" id="wxQ-QL-eYc"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="7nu-iB-0mp">
-                                        <rect key="frame" x="0.0" y="416" width="374" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="36" id="NSn-H8-Lzn">
+                                        <rect key="frame" x="0.0" y="464" width="280" height="36"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7nu-iB-0mp" id="nCi-nv-xf2">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NSn-H8-Lzn" id="p7y-Ly-lpx">
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="36"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Хард:    2006 слов" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQk-RQ-WqM">
-                                                    <rect key="frame" x="8" y="8" width="358" height="28"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Легко:        2419 слов" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSP-RN-d5A">
+                                                    <rect key="frame" x="16" y="0.0" width="252" height="36"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="yQk-RQ-WqM" firstAttribute="leading" secondItem="nCi-nv-xf2" secondAttribute="leadingMargin" id="0kd-r7-THE"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="yQk-RQ-WqM" secondAttribute="bottom" id="22g-NK-Bct"/>
-                                                <constraint firstItem="yQk-RQ-WqM" firstAttribute="top" secondItem="nCi-nv-xf2" secondAttribute="topMargin" id="8XU-1P-CjC"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="yQk-RQ-WqM" secondAttribute="trailing" id="CP1-b3-iPH"/>
+                                                <constraint firstAttribute="trailing" secondItem="dSP-RN-d5A" secondAttribute="trailing" constant="12" id="WvU-ZR-0NZ"/>
+                                                <constraint firstItem="dSP-RN-d5A" firstAttribute="top" secondItem="p7y-Ly-lpx" secondAttribute="top" id="Yld-Ml-Vht"/>
+                                                <constraint firstAttribute="bottom" secondItem="dSP-RN-d5A" secondAttribute="bottom" id="dbo-N1-ec7"/>
+                                                <constraint firstItem="dSP-RN-d5A" firstAttribute="leading" secondItem="p7y-Ly-lpx" secondAttribute="leading" constant="16" id="tTX-wZ-cUs"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="36" id="Eln-X3-59y">
+                                        <rect key="frame" x="0.0" y="500" width="280" height="36"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Eln-X3-59y" id="Qll-SC-LpP">
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="36"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Норм:        2916 слов" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQd-d8-lCL">
+                                                    <rect key="frame" x="16" y="0.0" width="252" height="44"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="wQd-d8-lCL" secondAttribute="bottom" id="5cn-DP-Uyq"/>
+                                                <constraint firstItem="wQd-d8-lCL" firstAttribute="leading" secondItem="Qll-SC-LpP" secondAttribute="leading" constant="16" id="l17-Gy-3R3"/>
+                                                <constraint firstAttribute="trailing" secondItem="wQd-d8-lCL" secondAttribute="trailing" constant="12" id="oGa-qK-OIY"/>
+                                                <constraint firstItem="wQd-d8-lCL" firstAttribute="top" secondItem="Qll-SC-LpP" secondAttribute="top" id="zZl-Z9-Cm1"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="36" id="kch-vK-eef">
+                                        <rect key="frame" x="0.0" y="536" width="280" height="36"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kch-vK-eef" id="drU-Tz-sTz">
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="36"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сложно:    3467 слов" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JlJ-Ka-ltN">
+                                                    <rect key="frame" x="16" y="0.0" width="252" height="44"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="JlJ-Ka-ltN" secondAttribute="trailing" constant="12" id="XHZ-fM-S0e"/>
+                                                <constraint firstItem="JlJ-Ka-ltN" firstAttribute="top" secondItem="drU-Tz-sTz" secondAttribute="top" id="YjA-SW-wZG"/>
+                                                <constraint firstItem="JlJ-Ka-ltN" firstAttribute="leading" secondItem="drU-Tz-sTz" secondAttribute="leading" constant="16" id="jYz-Gw-53V"/>
+                                                <constraint firstAttribute="bottom" secondItem="JlJ-Ka-ltN" secondAttribute="bottom" id="y9o-Sa-b1B"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="36" id="VT1-Tz-tEV">
+                                        <rect key="frame" x="0.0" y="572" width="280" height="36"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VT1-Tz-tEV" id="uj2-Fj-Sf4">
+                                            <rect key="frame" x="0.0" y="0.0" width="280" height="36"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Безумно:   3150 слов" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ivs-tn-a9V">
+                                                    <rect key="frame" x="16" y="0.0" width="252" height="36"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Ivs-tn-a9V" secondAttribute="trailing" constant="12" id="5iy-gR-JRE"/>
+                                                <constraint firstItem="Ivs-tn-a9V" firstAttribute="leading" secondItem="uj2-Fj-Sf4" secondAttribute="leading" constant="16" id="Oga-Qs-eIZ"/>
+                                                <constraint firstItem="Ivs-tn-a9V" firstAttribute="top" secondItem="uj2-Fj-Sf4" secondAttribute="top" id="gXG-ru-2if"/>
+                                                <constraint firstAttribute="bottom" secondItem="Ivs-tn-a9V" secondAttribute="bottom" id="wMC-bX-M2h"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1080,11 +1164,11 @@
             <objects>
                 <viewController id="FZV-eR-DnT" userLabel="GameTypeVC" customClass="GameTypeVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uHg-pz-cgJ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ySx-3t-77M" userLabel="topButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="185" width="600" height="70"/>
+                                <rect key="frame" x="0.0" y="169" width="320" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="lk3-g8-rwT"/>
@@ -1098,7 +1182,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eSq-7o-TXM" userLabel="topButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="325" width="600" height="70"/>
+                                <rect key="frame" x="0.0" y="309" width="320" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254901960786" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="O2W-yo-2t9"/>
@@ -1112,7 +1196,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Играем на одном устройстве, передаём нужному участнику" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KvT-pi-zga">
-                                <rect key="frame" x="20" y="255" width="560" height="60"/>
+                                <rect key="frame" x="20" y="239" width="280" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1123,7 +1207,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Каждый играет на своём устройстве, объясняем по видео или вживую" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jH-9z-IbD">
-                                <rect key="frame" x="20" y="395" width="560" height="60"/>
+                                <rect key="frame" x="20" y="379" width="280" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="UmV-Bu-zNP"/>
@@ -1167,11 +1251,11 @@
             <objects>
                 <viewController id="BIG-0d-DpO" userLabel="CreateJoinVC" customClass="CreateJoinVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tyH-CG-5T1">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qet-Sc-iJc" userLabel="topButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="185" width="600" height="70"/>
+                                <rect key="frame" x="0.0" y="169" width="320" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="FoS-m0-P3e"/>
@@ -1185,7 +1269,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BDz-o7-lRK" userLabel="topButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="325" width="600" height="70"/>
+                                <rect key="frame" x="0.0" y="309" width="320" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="tu1-MJ-YVx"/>
@@ -1199,7 +1283,7 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" text="Создаем новую игру, чтобы остальные участники могли к ней присоединиться со своих устройств" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mux-yr-Qxk">
-                                <rect key="frame" x="20" y="255" width="560" height="60"/>
+                                <rect key="frame" x="20" y="239" width="280" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1210,7 +1294,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Присоединяемся к игре, уже созданной игроком на другом устройстве" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rm7-4e-aKg">
-                                <rect key="frame" x="20" y="395" width="560" height="60"/>
+                                <rect key="frame" x="20" y="379" width="280" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.0" green="0.43137254899999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1262,11 +1346,11 @@
             <objects>
                 <viewController id="P9G-f0-XMa" userLabel="GamesListVC" customClass="GamesListVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UHM-Qf-j4F">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="52b-Uz-wXM">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <connections>
                                     <segue destination="vmu-yf-oew" kind="embed" identifier="toGamesList" id="9qh-Pb-qRw"/>
                                 </connections>
@@ -1298,28 +1382,28 @@
             <objects>
                 <tableViewController id="vmu-yf-oew" userLabel="GameListTVC" customClass="GamesListTVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="XBb-rp-qoI">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="separatorColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="blue" showsReorderControl="YES" indentationWidth="10" reuseIdentifier="GamesList" id="buc-hD-r3X">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="1000" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="buc-hD-r3X" id="pQX-0X-Jqz">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" userInteractionEnabled="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Автор" textAlignment="natural" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="E98-VU-K6d">
-                                            <rect key="frame" x="20" y="0.0" width="224" height="44"/>
+                                            <rect key="frame" x="20" y="0.0" width="130" height="44"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="textColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <textField opaque="NO" userInteractionEnabled="NO" tag="1003" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Ход" textAlignment="center" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="AFs-97-h30">
-                                            <rect key="frame" x="244" y="0.0" width="50" height="44"/>
+                                            <rect key="frame" x="150" y="0.0" width="50" height="44"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="50" id="mzv-Xl-JiV"/>
@@ -1329,7 +1413,7 @@
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <textField opaque="NO" userInteractionEnabled="NO" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Создана" textAlignment="right" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Jrv-u5-Mvz">
-                                            <rect key="frame" x="294" y="0.0" width="100" height="44"/>
+                                            <rect key="frame" x="200" y="0.0" width="100" height="44"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="UOo-Bh-u8y"/>
@@ -1372,14 +1456,14 @@
             <objects>
                 <viewController id="Wva-R8-VaF" userLabel="NewUserVC" customClass="NewUserVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" tag="2001" contentMode="scaleToFill" id="Azp-DJ-4qu">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view tag="2002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4u8-bi-JWE" userLabel="popupView">
-                                <rect key="frame" x="20" y="81" width="560" height="268"/>
+                                <rect key="frame" x="20" y="65" width="280" height="268"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" text="Уникальное имя, которое будет отображаться во всех онлайн-играх" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAU-Yu-Bha">
-                                        <rect key="frame" x="0.0" y="96" width="560" height="42"/>
+                                        <rect key="frame" x="0.0" y="96" width="280" height="42"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -1390,7 +1474,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введите ваш никнейм" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Ka-be-hvi">
-                                        <rect key="frame" x="0.0" y="4" width="560" height="48"/>
+                                        <rect key="frame" x="0.0" y="4" width="280" height="48"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="kId-zp-JmC"/>
@@ -1400,7 +1484,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="i4G-w2-7fZ">
-                                        <rect key="frame" x="24" y="52" width="512" height="48"/>
+                                        <rect key="frame" x="24" y="52" width="232" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="MwE-cs-hAN"/>
                                         </constraints>
@@ -1409,7 +1493,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" text="Имя должно быть уникальным" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oua-Gg-lgb">
-                                        <rect key="frame" x="0.0" y="136" width="560" height="32"/>
+                                        <rect key="frame" x="0.0" y="136" width="280" height="32"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -1437,7 +1521,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" tag="2003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sOz-cQ-wwU" userLabel="confirmButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="20" y="255" width="560" height="70"/>
+                                <rect key="frame" x="20" y="239" width="280" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="g05-zy-etC"/>
@@ -1480,14 +1564,14 @@
             <objects>
                 <viewController id="Jd3-l1-2NL" userLabel="AboutVC" customClass="AboutVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3Sh-sg-737">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yoT-Ro-fjj" userLabel="popupView">
-                                <rect key="frame" x="20" y="90" width="560" height="420"/>
+                                <rect key="frame" x="20" y="49" width="280" height="470"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Rc-wl-CVI" userLabel="tableView">
-                                        <rect key="frame" x="0.0" y="24" width="560" height="372"/>
+                                        <rect key="frame" x="0.0" y="24" width="280" height="422"/>
                                         <connections>
                                             <segue destination="YyH-et-Rqz" kind="embed" id="kIc-j6-r4P"/>
                                         </connections>
@@ -1499,7 +1583,7 @@
                                     <constraint firstItem="3Rc-wl-CVI" firstAttribute="leading" secondItem="yoT-Ro-fjj" secondAttribute="leading" id="F0S-CE-oGK"/>
                                     <constraint firstItem="3Rc-wl-CVI" firstAttribute="leading" secondItem="yoT-Ro-fjj" secondAttribute="leading" id="LKW-vl-lon"/>
                                     <constraint firstAttribute="trailing" secondItem="3Rc-wl-CVI" secondAttribute="trailing" id="Oqe-GJ-pbx"/>
-                                    <constraint firstAttribute="height" constant="420" id="b76-Wg-TMx"/>
+                                    <constraint firstAttribute="height" constant="470" id="b76-Wg-TMx"/>
                                     <constraint firstItem="3Rc-wl-CVI" firstAttribute="top" secondItem="yoT-Ro-fjj" secondAttribute="top" constant="24" id="l8F-hz-AhE"/>
                                     <constraint firstAttribute="trailing" secondItem="3Rc-wl-CVI" secondAttribute="trailing" id="wpe-xV-bbF"/>
                                 </constraints>
@@ -1530,14 +1614,14 @@
             <objects>
                 <viewController id="Ytd-iO-Tiz" userLabel="InviteUserVC" customClass="InvitePlayerVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" tag="2001" contentMode="scaleToFill" id="8ax-gN-5ro">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view tag="2002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r9k-dQ-67D" userLabel="popupView">
-                                <rect key="frame" x="20" y="47" width="560" height="302"/>
+                                <rect key="frame" x="20" y="31" width="280" height="302"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введите никнейм игрока" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8NP-u3-8ie">
-                                        <rect key="frame" x="0.0" y="4" width="560" height="40"/>
+                                        <rect key="frame" x="0.0" y="4" width="280" height="40"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Fkn-Wd-gRz"/>
@@ -1547,7 +1631,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="V15-LC-4qG">
-                                        <rect key="frame" x="12" y="44" width="536" height="48"/>
+                                        <rect key="frame" x="12" y="44" width="256" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="9Kg-c2-9av"/>
                                         </constraints>
@@ -1556,7 +1640,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <containerView opaque="NO" tag="2004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="75O-dk-d34" userLabel="tableView">
-                                        <rect key="frame" x="0.0" y="96" width="560" height="108"/>
+                                        <rect key="frame" x="0.0" y="96" width="280" height="108"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="108" id="Phn-wl-fMX"/>
                                         </constraints>
@@ -1565,7 +1649,7 @@
                                         </connections>
                                     </containerView>
                                     <textView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" text="Warning" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pvc-6v-e5B">
-                                        <rect key="frame" x="0.0" y="274" width="560" height="26"/>
+                                        <rect key="frame" x="0.0" y="274" width="280" height="26"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" red="0.75294117650000003" green="0.090196078430000007" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1590,7 +1674,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" tag="2003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S4u-Xo-b6c" userLabel="confirmButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="20" y="255" width="560" height="70"/>
+                                <rect key="frame" x="20" y="239" width="280" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="Oiz-WP-xNG"/>
@@ -1635,21 +1719,21 @@
             <objects>
                 <viewController storyboardIdentifier="HelpVC" id="UUy-8x-yIu" customClass="HelpVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lLN-H6-tjC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wk8-M9-rLm" userLabel="popupView">
-                                <rect key="frame" x="132.5" y="70" width="335" height="460"/>
+                                <rect key="frame" x="20" y="70" width="280" height="428"/>
                                 <subviews>
                                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="Q6R-tX-RPa">
-                                        <rect key="frame" x="148" y="423" width="39" height="37"/>
+                                        <rect key="frame" x="120.5" y="391" width="39" height="37"/>
                                         <color key="pageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <action selector="pageChanged:" destination="UUy-8x-yIu" eventType="valueChanged" id="8P6-NT-EEI"/>
                                         </connections>
                                     </pageControl>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EEy-IC-FgT" userLabel="scrollView">
-                                        <rect key="frame" x="0.0" y="16" width="335" height="407"/>
+                                        <rect key="frame" x="0.0" y="16" width="280" height="375"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="delegate" destination="UUy-8x-yIu" id="Ynf-xO-FRF"/>
@@ -1697,14 +1781,14 @@
             <objects>
                 <viewController id="1Xq-1T-3Rj" userLabel="NewUserVC" customClass="SettingsVC" customModule="Шляпа_Онлайн" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" tag="2001" contentMode="scaleToFill" id="xnh-t6-Y1j">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view tag="2002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gcu-4j-xXv" userLabel="popupView">
-                                <rect key="frame" x="20" y="75" width="560" height="344"/>
+                                <rect key="frame" x="20" y="55" width="280" height="348"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ваш никнейм" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jmm-vG-iky">
-                                        <rect key="frame" x="0.0" y="12" width="560" height="24"/>
+                                        <rect key="frame" x="0.0" y="12" width="280" height="24"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="Mb5-Pf-8Mc"/>
@@ -1714,7 +1798,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Громкость звуков" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PfS-Pp-iwR">
-                                        <rect key="frame" x="0.0" y="166" width="560" height="24"/>
+                                        <rect key="frame" x="0.0" y="166" width="280" height="24"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="jQa-lD-M1K"/>
@@ -1724,7 +1808,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MwU-an-xxW">
-                                        <rect key="frame" x="24" y="44" width="512" height="48"/>
+                                        <rect key="frame" x="24" y="44" width="232" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="aK9-fx-x4Y"/>
                                         </constraints>
@@ -1733,7 +1817,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" text="Имя должно быть уникальным" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0f5-Co-i5W">
-                                        <rect key="frame" x="0.0" y="220" width="560" height="24"/>
+                                        <rect key="frame" x="0.0" y="224" width="280" height="24"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -1744,13 +1828,13 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="SvU-MC-L9N">
-                                        <rect key="frame" x="22" y="190" width="516" height="31"/>
+                                        <rect key="frame" x="22" y="194" width="236" height="31"/>
                                         <connections>
                                             <action selector="volumeSliderChanged:" destination="1Xq-1T-3Rj" eventType="valueChanged" id="5TC-dk-y9l"/>
                                         </connections>
                                     </slider>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Уникальное имя, которое будет отображаться во всех онлайн-играх" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1D-ku-cio">
-                                        <rect key="frame" x="12" y="88" width="536" height="42"/>
+                                        <rect key="frame" x="12" y="88" width="256" height="42"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="42" id="OHg-Ja-FSj"/>
@@ -1760,7 +1844,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0vs-2s-a5f">
-                                        <rect key="frame" x="0.0" y="84" width="560" height="54"/>
+                                        <rect key="frame" x="0.0" y="84" width="280" height="54"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1774,7 +1858,7 @@
                                     <constraint firstItem="PfS-Pp-iwR" firstAttribute="leading" secondItem="Gcu-4j-xXv" secondAttribute="leading" id="2eL-xw-YPB"/>
                                     <constraint firstItem="M1D-ku-cio" firstAttribute="top" secondItem="MwU-an-xxW" secondAttribute="bottom" constant="-4" id="5rc-z5-IVR"/>
                                     <constraint firstItem="0vs-2s-a5f" firstAttribute="leading" secondItem="Gcu-4j-xXv" secondAttribute="leading" id="Ahs-aT-JbJ"/>
-                                    <constraint firstItem="SvU-MC-L9N" firstAttribute="top" secondItem="PfS-Pp-iwR" secondAttribute="bottom" id="CtR-nz-yCP"/>
+                                    <constraint firstItem="SvU-MC-L9N" firstAttribute="top" secondItem="PfS-Pp-iwR" secondAttribute="bottom" constant="4" id="CtR-nz-yCP"/>
                                     <constraint firstAttribute="trailing" secondItem="Jmm-vG-iky" secondAttribute="trailing" id="Ii5-7w-wKo"/>
                                     <constraint firstItem="0f5-Co-i5W" firstAttribute="leading" secondItem="Gcu-4j-xXv" secondAttribute="leading" id="Jhj-KA-JI6"/>
                                     <constraint firstItem="MwU-an-xxW" firstAttribute="leading" secondItem="Gcu-4j-xXv" secondAttribute="leading" constant="24" id="JmE-gI-9PT"/>
@@ -1795,7 +1879,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" tag="2003" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vlf-fM-KOM" userLabel="confirmButton" customClass="MyButton" customModule="Шляпа_Онлайн" customModuleProvider="target">
-                                <rect key="frame" x="20" y="325" width="560" height="70"/>
+                                <rect key="frame" x="20" y="309" width="280" height="70"/>
                                 <color key="backgroundColor" red="0.0" green="0.43137254899999999" blue="0.71372549019999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="kQ1-bO-VhS"/>
@@ -1836,16 +1920,18 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pE8-Mh-x6y"/>
+        <segue reference="ckI-8d-lTO"/>
+        <segue reference="980-dx-nYB"/>
         <segue reference="R28-Zd-JTx"/>
-        <segue reference="yXp-Jh-0Fe"/>
+        <segue reference="sIo-hW-gb7"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="addPlayerIcon" width="152" height="76"/>
         <image name="bubble" width="128" height="128"/>
         <image name="ear" width="128" height="128"/>
-        <image name="fb" width="72" height="72"/>
+        <image name="fb" width="36" height="36"/>
         <image name="hat-rabbit-image" width="390.5" height="445.5"/>
         <image name="settings" width="25" height="25"/>
+        <image name="vkIcon" width="36" height="36"/>
     </resources>
 </document>

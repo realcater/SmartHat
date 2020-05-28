@@ -15,6 +15,7 @@ struct GameRequest {
                     completion: completion)
     }
     static func searchMine(completion: @escaping (Result<[Game.ListElement]>) -> Void) {
+        print("\n\n\(Date()):========== searchMine (START)===========")
         sendRequestOut(
                     stringUrl: "games/mine",
                     httpMethod: "GET",

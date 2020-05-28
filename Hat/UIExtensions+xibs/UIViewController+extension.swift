@@ -48,6 +48,9 @@ extension UIViewController {
     func showWarning(_ error: RequestError) {
         self.title = K.Server.warnings[error]!
     }
+    func showWarning(_ text: String) {
+        self.title = text
+    }
     func showWarningOrTitle(_ error: RequestError?, _ title: String? = nil) {
         if let error = error {
             self.title = K.Server.warnings[error]!
@@ -55,8 +58,9 @@ extension UIViewController {
             self.title = title
         }
     }
-    func showWarning(_ text: String) {
-        self.title = text
+    func showWarning(_ error: RequestError, in textView: UITextView) {
+        textView.text = K.Server.warnings[error]!
+        textView.isHidden = false
     }
     func showWarning(_ text: String, in textView: UITextView) {
         textView.text = text

@@ -10,8 +10,6 @@ enum AuthResult {
 class Auth {
     var token: String? {
         get {
-            let token = KeychainWrapper.standard.string(forKey: "token")
-            print("==========\n\(token!)\n==========")
             return KeychainWrapper.standard.string(forKey: "token")
         }
         set {
@@ -19,6 +17,22 @@ class Auth {
                 KeychainWrapper.standard.set(newValue, forKey: "token")
             }
         }
+    }
+    var expirationDateString: String? {
+        get {
+            return KeychainWrapper.standard.string(forKey: "expirationDate")
+        }
+        set {
+            if let newValue = newValue {
+                KeychainWrapper.standard.set(newValue, forKey: "expirationDate")
+            }
+        }
+    }
+    var expirationDate: Date? {
+        print("expirationDateString=\(expirationDateString!)")
+        let expirationDate = expirationDateString?.convertFromZ()
+        print("expirationDate=\(expirationDate!)")
+        return expirationDate
     }
     var id: UUID? {
         get {
@@ -52,16 +66,6 @@ class Auth {
             }
         }
     }
-    var volume: Int? {
-        get {
-            return KeychainWrapper.standard.integer(forKey: "volume")
-        }
-        set {
-            if let newValue = newValue {
-                KeychainWrapper.standard.set(newValue, forKey: "volume")
-            }
-        }
-    }
 
     func login(completion: @escaping (AuthResult) -> Void) {
         guard let name = name, let password = password, let loginString = "\(name):\(password)".data(using: .utf8)?.base64EncodedString() else {
@@ -85,6 +89,9 @@ class Auth {
             do {
                 let loginResponse = try JSONDecoder().decode(LoginResponse.self, from: jsonData)
                 self.token = loginResponse.jwtToken
+                self.expirationDateString = loginResponse.expirationDate
+                print("==== \(Date()): LOGIN SUCCESS ====")
+                print("==== expirationDate: \(self.expirationDateString!) ====")
                 completion(.success)
             } catch {
                 completion(.failure(.other))
@@ -98,4 +105,5 @@ struct LoginResponse: Codable {
     let name: String
     let id: UUID
     let jwtToken: String
+    let expirationDate: String
 }

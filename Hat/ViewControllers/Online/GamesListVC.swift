@@ -48,7 +48,7 @@ private extension GamesListVC {
                     self?.title = (gamesListTVC.gamesList.count > 0) ? "Доступные игры" : "Нет доступных игр"
                     gamesListTVC.tableView.reloadData()
                 case .failure(let error):
-                    self?.showWarning(K.Server.warnings[error]!)
+                    self?.showWarning(error)
                 }
             }
         }
@@ -64,7 +64,7 @@ private extension GamesListVC {
                     self?.title = ""
                     self?.performSegue(withIdentifier: "joinGame", sender: self)
                 case .failure(let error):
-                    self?.showWarning(K.Server.warnings[error]!)
+                    self?.showWarning(error)
                 }
             }
         }
@@ -83,7 +83,7 @@ extension GamesListVC: GameListDelegate {
             guard gameNumber < self.gamesList.count else { return }
             self.gameID = UUID(uuidString: self.gamesList[gameNumber].id)
             guard self.gameID != nil else {
-                self.showWarning(K.Server.warnings[.other]!)
+                self.showWarning(.other)
                 return
             }
             self.loadGame(gameID: self.gameID!)
@@ -105,7 +105,7 @@ extension GamesListVC {
         if timer == nil {
             timer = Timer.scheduledTimer(timeInterval: K.Server.settings.updateGameList, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
             timer?.tolerance = 0.1
-            timer?.fire()
+            //timer?.fire()
         }
     }
     

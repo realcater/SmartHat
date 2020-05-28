@@ -24,7 +24,7 @@ extension NewGameVC {
                     self?.game = Game(id: gameUUIDOnly.id, data: gameData, userOwner: Auth().id!)
                     self?.changeModeToOnlineJoin()
                 case .failure(let error):
-                    self?.showWarning(K.Server.warnings[error]!)
+                    self?.showWarning(error)
                     self?.button.enable()
                 }
             }

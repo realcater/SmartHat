@@ -2,9 +2,11 @@ import UIKit
 
 struct K {
     struct Server {
-        static let name = "http://192.168.1.190:8080/api/"
-        static let duplicateNameRespondPrefix = "server: duplicate key value violates unique constraint"
-        static let duplicateNameRespondPrefixLength = duplicateNameRespondPrefix.count
+        //static let name = "http://192.168.1.190:8080/api/"
+        static let name = "https://thehat-online.herokuapp.com/api/"
+        
+        static let currentAppVersion = 2
+        
         static let warnings: [RequestError: String] = [
             .noConnection: "Нет связи или сервер не отвечает",
             .unauthorised: "Пользователь не авторизован",
@@ -23,7 +25,8 @@ struct K {
             updateGameList: 5.0,
             checkOffline: 10.0,
             updateFrequent: 1.0,
-            updateFullTillNextTry: 1.0)
+            updateFullTillNextTry: 1.0,
+            minimumAppVersion: currentAppVersion)
      }
     static var sounds = Sounds()
     static var appSettings = AppSettings(soundDelegate: sounds)
@@ -75,8 +78,6 @@ struct K {
         static let small: CGFloat = 40
     }
     
-    
-    
     struct Colors {
         static let foreground = UIColor(red: 0, green: 110/256, blue: 182/256, alpha: 1)
         static let foreground80 = UIColor(red: 0, green: 110/256, blue: 182/256, alpha: 0.8)
@@ -115,6 +116,7 @@ struct K {
     struct Urls {
         static let fbDmitry = "https://www.facebook.com/dmitry.realcater"
         static let fbApp = "https://www.facebook.com/hat.allvsall"
+        static let vkEvgeny = "https://vk.com/eugene36"
     }
     struct Margins {
         static let helpScreen: CGFloat = 0

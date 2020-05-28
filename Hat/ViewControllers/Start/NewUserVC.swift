@@ -46,7 +46,7 @@ class NewUserVC: UIViewController {
                 }
             case .failure(let error):
                 DispatchQueue.main.async { [weak self] in
-                    self?.showWarning(K.Server.warnings[error]!, in: (self?.warningTextView)!)
+                    self?.showWarning(error, in: self!.warningTextView)
                 }
             }
         }

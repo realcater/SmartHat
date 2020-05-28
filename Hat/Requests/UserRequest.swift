@@ -2,6 +2,7 @@ import Foundation
 
 struct UserRequest {
     static func create(_ user: User, completion: @escaping (OkResult) -> Void) {
+        print("========== create ===========")
         sendRequestIn(
                         stringUrl: "users",
                         httpMethod: "POST",
@@ -17,6 +18,7 @@ struct UserRequest {
                         completion: completion)
         }
     static func get(userID: UUID?, completion: @escaping (Result<User.Public>) -> Void) {
+        print("========== get ===========")
         sendRequestOut(
                     stringUrl: "users/"+userID!.uuidString,
                     httpMethod: "GET",
@@ -24,6 +26,7 @@ struct UserRequest {
                     completion: completion)
     }
     static func search(with searchRequestData: SearchRequestData, completion: @escaping (Result<[User.Public]>) -> Void) {
+        print("========== search ===========")
         sendRequestInOut(
                     stringUrl: "users/search",
                     httpMethod: "POST",
@@ -43,6 +46,7 @@ struct UserRequest {
                     completion: completion)
         }
     static func loadSettings(completion: @escaping (Result<ClientSettings>) -> Void) {
+        print("========== loadSettings ===========")
         sendRequestOut(
                     stringUrl: "settings",
                     httpMethod: "GET",
@@ -58,11 +62,6 @@ struct SearchRequestData: Codable {
 
 struct UpdateUserData: Codable {
     let newName: String
-}
-
-struct ErrorResponse: Codable {
-    var error: Bool
-    var reason: String
 }
 
 struct UserTime: Codable {
