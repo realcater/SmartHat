@@ -40,7 +40,7 @@ class NewUserVC: UIViewController {
                             self?.dismiss(animated: true, completion: nil)
                             self?.delegate?.successfullRegistration(name: name)
                         case .failure(let error):
-                            self?.showWarning(K.Server.warnings[error]!, in: (self?.warningTextView)!)
+                            self?.showWarning(error.warning, in: (self?.warningTextView)!)
                         }
                     }
                 }

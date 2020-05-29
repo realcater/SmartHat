@@ -87,7 +87,7 @@ extension GameTypeVC {
                         self?.title = "Давайте знакомиться!"
                         self?.performSegue(withIdentifier: "toRegistration", sender: self)
                     default:
-                        self?.title = K.Server.warnings[error]
+                        self?.title = error.warning
                         if error == .noConnection && (self?.tryConnectOnlineGame ?? false) {
                             DispatchQueue.main.asyncAfter(deadline: .now() + K.Server.settings.updateFullTillNextTry) {
                                 self?.tryGetUser(by: uuid) {

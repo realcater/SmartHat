@@ -4,18 +4,7 @@ struct K {
     struct Server {
         //static let name = "http://192.168.1.190:8080/api/"
         static let name = "https://thehat-online.herokuapp.com/api/"
-        
-        static let currentAppVersion = 2
-        
-        static let warnings: [RequestError: String] = [
-            .noConnection: "Нет связи или сервер не отвечает",
-            .unauthorised: "Пользователь не авторизован",
-            .notFound: "Не найдено",
-            .duplicate: "Этот никнейм уже занят",
-            .JSONParseError: "Ошибка данных",
-            .gameEnded: "Игра завершена",
-            .other: "Ошибка сервера"
-        ]
+        static let currentAppVersion = 200
         static let reservedPlayerNames = [
             "admin",
             "app"
