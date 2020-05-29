@@ -73,7 +73,6 @@
 		CA8A2F9F23B6A034008D7EBE /* BasketVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8A2F9E23B6A034008D7EBE /* BasketVC.swift */; };
 		CA8A2FA123B6A1D2008D7EBE /* BasketTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8A2FA023B6A1D2008D7EBE /* BasketTVC.swift */; };
 		CAC9D91823B3E0F9005472AD /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC9D91723B3E0F9005472AD /* Helper.swift */; };
-		FAD2EA2C23093FC93CE3CC60 /* Pods_Hat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05CA70399D72153473F6A0C9 /* Pods_Hat.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -155,7 +154,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAD2EA2C23093FC93CE3CC60 /* Pods_Hat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
