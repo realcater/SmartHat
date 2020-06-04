@@ -35,7 +35,6 @@ class PlayersTVC: UITableViewController {
             addPlayerButton.turnClickSoundOn(sound: K.sounds.click)
         } else {
             textField.isHidden = false
-            print("Table: \(playersList.players.map { $0.name })")
             textField.text = playersList.players[indexPath.row].name
             textField.isUserInteractionEnabled = (mode == .offline)
             addPlayerButton.isHidden = true
@@ -73,9 +72,7 @@ class PlayersTVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
-            print("Table: \(playersList.players.map { $0.name })")
             deletePlayer(at: indexPath)
-            print("Table: \(playersList.players.map { $0.name })")
         }
     }
     
@@ -99,24 +96,20 @@ class PlayersTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        print("Table: \(playersList.players.map { $0.name })")
         let itemToMove = playersList.players[sourceIndexPath.row]
         playersList.players.remove(at: sourceIndexPath.row)
         playersList.players.insert(itemToMove, at: destinationIndexPath.row)
         if mode != .offline { delegate?.updatePlayersList(players: playersList.players) }
-        print("Table: \(playersList.players.map { $0.name })")
     }
 }
 //MARK: - Public functions
 extension PlayersTVC {
     func insertRow(player: Player, at row: Int) {
-        print("Table: \(playersList.players.map { $0.name })")
         let indexPath = IndexPath(row: row, section: 0)
         tableView.beginUpdates()
         tableView.insertRows(at: [indexPath], with: .automatic)
         playersList.players.insert(player, at: indexPath.row)
         tableView.endUpdates()
-        print("Table: \(playersList.players.map { $0.name })")
     }
     
     func deletePlayer(at indexPath: IndexPath) {

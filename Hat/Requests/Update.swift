@@ -119,6 +119,8 @@ private extension Update {
                                 print("===Get guessedThisTurn=\(frequentData.guessedThisTurn). OLD DATA. IGNORED")
                             } else {
                                 self?.game.guessedThisTurn = frequentData.guessedThisTurn
+                                self?.game.lastWord = frequentData.lastWord
+                                self?.delegate?.updateGuessedWord() 
                             }
                         }
                         self?.delegate?.proceedNotNextTurn(frequentData: frequentData)

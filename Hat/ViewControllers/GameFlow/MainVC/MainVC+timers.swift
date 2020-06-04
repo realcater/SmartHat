@@ -14,6 +14,7 @@ extension MainVC {
         timeLeft -= 1
         timerLabel.text = String(timeLeft)
         if timeLeft <= 0 {
+            K.sounds.timeOver?.resetAndPlay()
             cancelTurnTimer()
         } else if timeLeft == K.Delays.withClicks {
             circleView.backgroundColor = K.Colors.red40

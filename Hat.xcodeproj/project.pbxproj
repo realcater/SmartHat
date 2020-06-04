@@ -42,6 +42,7 @@
 		C1A1956A21387531000A1A51 /* UIView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1956921387531000A1A51 /* UIView+extension.swift */; };
 		C1A1956C21387710000A1A51 /* MyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1956B21387710000A1A51 /* MyButton.swift */; };
 		C1A1957021391522000A1A51 /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1956F21391522000A1A51 /* UIViewController+extension.swift */; };
+		C1C15A322489237300C28D60 /* attention.wav in Resources */ = {isa = PBXBuildFile; fileRef = C1C15A312489237200C28D60 /* attention.wav */; };
 		C1C8CE1C2487A477001AE20C /* NGVC+mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8CE1B2487A477001AE20C /* NGVC+mode.swift */; };
 		C1D0968324579A0E00A03A21 /* GameTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D0968224579A0E00A03A21 /* GameTypeVC.swift */; };
 		C1D096852458299600A03A21 /* CreateJoinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D096842458299600A03A21 /* CreateJoinVC.swift */; };
@@ -117,6 +118,7 @@
 		C1A1956921387531000A1A51 /* UIView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extension.swift"; sourceTree = "<group>"; };
 		C1A1956B21387710000A1A51 /* MyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyButton.swift; sourceTree = "<group>"; };
 		C1A1956F21391522000A1A51 /* UIViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extension.swift"; sourceTree = "<group>"; };
+		C1C15A312489237200C28D60 /* attention.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = attention.wav; sourceTree = "<group>"; };
 		C1C8CE1B2487A477001AE20C /* NGVC+mode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NGVC+mode.swift"; sourceTree = "<group>"; };
 		C1D0968224579A0E00A03A21 /* GameTypeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTypeVC.swift; sourceTree = "<group>"; };
 		C1D096842458299600A03A21 /* CreateJoinVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateJoinVC.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				CA0CD5ED23B7D56400A76B75 /* timeOver.mp3 */,
+				C1C15A312489237200C28D60 /* attention.wav */,
 				CA0CD5E923B7D52400A76B75 /* countdown.mp3 */,
 				CA023D182175620E008AE815 /* applause.wav */,
 				CA023D192175620E008AE815 /* click.wav */,
@@ -431,6 +434,7 @@
 			files = (
 				CA023D1D2175620E008AE815 /* false.wav in Resources */,
 				C156472A2121FC6200F1602E /* LaunchScreen.storyboard in Resources */,
+				C1C15A322489237300C28D60 /* attention.wav in Resources */,
 				CA0CD5EA23B7D52400A76B75 /* countdown.mp3 in Resources */,
 				C14B02A4212983E300B2E96C /* 12009.ttf in Resources */,
 				CA023D212175620E008AE815 /* click.wav in Resources */,

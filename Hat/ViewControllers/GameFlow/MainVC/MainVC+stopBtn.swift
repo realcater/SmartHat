@@ -22,7 +22,7 @@ extension MainVC {
     
     func tryEndOrQuitGame(title: String = "Что делаем?", message: String = "Вы можете закончить игру или просто выйти, чтобы продолжить позднее") {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Считаем очки!", style: .destructive, handler: {
+        alert.addAction(UIAlertAction(title: "Считаем очки", style: .destructive, handler: {
             action in self.showResults()
         }))
         alert.addAction(UIAlertAction(title: "Просто выйдем", style: .default, handler: {

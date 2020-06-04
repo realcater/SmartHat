@@ -18,6 +18,8 @@ class MainVC: UIViewController {
     @IBOutlet weak var helpMessage: UILabel!
     @IBOutlet weak var listenerNameLabel: UILabel!
     
+    @IBOutlet weak var guessedWordLabel: UILabel!
+    
     var game: Game!
     var btnTimer: Timer?
     var btnTimeLeft: Int!
@@ -119,8 +121,10 @@ extension MainVC {
     func coloriseBarView() {
         if isTeller {
             barView.makeDoubleColor(leftColor: K.Colors.red80, rightColor: K.Colors.foreground80)
+            K.sounds.attention?.resetAndPlay(startVolume: 1.0, fadeDuration: 2.0)
         } else if isListener {
             barView.makeDoubleColor(leftColor: K.Colors.foreground80, rightColor: K.Colors.red80)
+            K.sounds.attention?.resetAndPlay(startVolume: 1.0, fadeDuration: 2.0)
         } else {
             barView.backgroundColor = K.Colors.foreground80
             barView.removeDoubleColor()
@@ -138,6 +142,7 @@ extension MainVC {
     
     func prepareNewTurn(colorise: Bool = true) {
         print("=========prepareNewTurn: \(game.turn)=============")
+        guessedWordLabel.isHidden = true
         if colorise { coloriseBarView() }
         reloadNames()
         helpMessage.isHidden = true
@@ -181,6 +186,7 @@ extension MainVC {
         }
     }
     func checkWordsCount() {
+        
         currentTitle = "Осталось: \(game.data.leftWords.count-game.guessedThisTurn) слов"
         if title != currentTitle { title = currentTitle }
         if game.data.leftWords.count == 0 {

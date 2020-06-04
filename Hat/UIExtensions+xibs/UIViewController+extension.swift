@@ -54,8 +54,10 @@ extension UIViewController {
     func showWarningOrTitle(_ error: RequestError?, _ title: String? = nil) {
         if let error = error {
             self.title = error.warning
+            print("=== Новый тайтл: \(self.title)")
         } else {
             self.title = title
+            print("=== Новый тайтл: \(self.title)")
         }
     }
     func showWarning(_ error: RequestError, in textView: UITextView) {

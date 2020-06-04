@@ -71,6 +71,7 @@ extension Game {
         (data.leftWords,data.guessedWords) = Helper.move2(str: data.currentWord, from: data.leftWords, to: data.guessedWords)
         currentTeller!.tellGuessed+=1
         currentListener.listenGuessed+=1
+        lastWord = data.currentWord
         data.basketWords.append(data.currentWord)
         data.basketStatus.append(.guessed)
         guessedThisTurn += 1

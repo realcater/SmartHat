@@ -8,6 +8,7 @@ class Sounds {
     var applause = initSound(filename: "applause.wav", volume: 0.2)
     var countdown = initSound(filename: "countdown.mp3", volume: 1.0)
     var timeOver = initSound(filename: "timeOver.mp3", volume: 1.0)
+    var attention = initSound(filename: "attention.wav", volume: 1.0)
     
     var _volume: Float = 1.0
     var volume: Float {
@@ -20,6 +21,7 @@ class Sounds {
             applause?.volume = applause!.volume * value / _volume
             countdown?.volume = countdown!.volume * value / _volume
             timeOver?.volume = timeOver!.volume * value / _volume
+            attention?.volume = attention!.volume * value / _volume
             _volume = value
         }
     }

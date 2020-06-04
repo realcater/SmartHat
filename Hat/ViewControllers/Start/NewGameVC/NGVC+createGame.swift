@@ -34,7 +34,6 @@ extension NewGameVC {
     
     func setGameStarted(completion: @escaping ()->Void) {
         game.turn = 0
-        //game.data.players = playersList.players
         let frequentData = game.convertToFrequent()
         GameRequest.updateFrequent(for: game.id, frequentData: frequentData) { result in
             DispatchQueue.main.async {
