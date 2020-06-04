@@ -2,18 +2,21 @@ import Foundation
 
 class Game: Codable {
     var id: UUID
+    var code: String?
     var data: GameData
     var userOwnerID: UUID
     var turn: Int
     var guessedThisTurn: Int
+    var lastWord: String?
     var explainTime: String
     var basketChange: Int
 
-    internal init(id: UUID, data: GameData, userOwner: UUID) {
+    internal init(id: UUID, data: GameData, userOwner: UUID, code: String?) {
         self.id = id
         self.data = data
         self.userOwnerID = userOwner
-        self.turn = 0
+        self.code = code
+        self.turn = -1
         self.guessedThisTurn = 0
         self.basketChange = 0
         self.explainTime = Date().addingTimeInterval(-100000).convertTo()
@@ -32,19 +35,22 @@ class Game: Codable {
             self.createdAt = createdAt
         }
     }
-    class UUIDOnly: Codable {
+    class Created: Codable {
         var id: UUID
+        var code: String?
     }
     
     class Frequent: Codable {
         var turn: Int
         var guessedThisTurn: Int
+        var lastWord: String?
         var explainTime: String
         var basketChange: Int
         
-        internal init(turn: Int, guessedThisTurn: Int, explainTime: String, basketChange: Int) {
+        internal init(turn: Int, guessedThisTurn: Int, lastWord: String?, explainTime: String, basketChange: Int) {
             self.turn = turn
             self.guessedThisTurn = guessedThisTurn
+            self.lastWord = lastWord
             self.explainTime = explainTime
             self.basketChange = basketChange
         }
@@ -56,14 +62,16 @@ class Game: Codable {
         }
     }
     func convertToFrequent() -> Frequent {
-        return Frequent(turn: turn, guessedThisTurn: guessedThisTurn, explainTime: explainTime, basketChange: basketChange)
+        return Frequent(turn: turn, guessedThisTurn: guessedThisTurn,  lastWord: lastWord, explainTime: explainTime, basketChange: basketChange)
     }
     
     func copyValues(of game: Game) {
+        self.code = game.code
         self.data = game.data
         self.turn = game.turn
         self.guessedThisTurn = game.guessedThisTurn
         self.basketChange = game.basketChange
         self.explainTime = game.explainTime
+        self.lastWord = game.lastWord
     }
 }

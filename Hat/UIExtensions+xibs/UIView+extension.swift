@@ -26,6 +26,9 @@ extension UIView {
             }
         }
     }
+    func getConstraint(named: String) -> NSLayoutConstraint? {
+        return constraints.first { $0.identifier == named }
+    }
     func setConstraint(identifier: String, size: CGFloat) {
         for constraint in self.constraints {
             if constraint.identifier == identifier {

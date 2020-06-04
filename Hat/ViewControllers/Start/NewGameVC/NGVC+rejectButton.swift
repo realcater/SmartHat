@@ -11,7 +11,8 @@ extension NewGameVC {
         let alert = UIAlertController(title: "Выйти из игры?", message: "Вы сможете присоединиться к игре позднее", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { action in
             self.rejectGame()
-            self.navigationController?.popViewController(animated: true)
+            self.navigationController?.popToRootViewController(animated: true)
+            //self.performSegue(withIdentifier: "toGameType", sender: self)
         }))
         alert.addAction(UIAlertAction(title: "Нет", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)

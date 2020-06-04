@@ -27,6 +27,10 @@ class BasketTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let frame = CGRect(x: 0, y: 0, width: self.tableView.frame.size.width, height: 0.5)
+        let line = UIView(frame: frame)
+        self.tableView.tableHeaderView = line
+        line.backgroundColor = self.tableView.separatorColor
     }
 
     // MARK: - Table view data source

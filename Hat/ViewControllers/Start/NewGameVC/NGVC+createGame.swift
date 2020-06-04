@@ -10,7 +10,8 @@ extension NewGameVC {
     }
     
     func createOfflineGame() {
-        game = Game(id: UUID(), data: create(), userOwner: Auth().id ?? UUID())
+        game = Game(id: UUID(), data: create(), userOwner: Auth().id ?? UUID(), code: nil)
+        game.turn = 0
         playersList.saveToFile()
     }
     
@@ -20,9 +21,9 @@ extension NewGameVC {
         GameRequest.create(gameData) { [weak self] result in
             DispatchQueue.main.async { [weak self] in
                 switch result {
-                case .success(let gameUUIDOnly):
-                    self?.game = Game(id: gameUUIDOnly.id, data: gameData, userOwner: Auth().id!)
-                    self?.changeModeToOnlineJoin()
+                case .success(let gameCreated):
+                    self?.game = Game(id: gameCreated.id, data: gameData, userOwner: Auth().id!, code: gameCreated.code)
+                    self?.mode = .onlineCreateAfter
                 case .failure(let error):
                     self?.showWarning(error)
                     self?.button.enable()
@@ -30,17 +31,18 @@ extension NewGameVC {
             }
         }
     }
-    func changeModeToOnlineJoin() {
-        setAcceptedStatuses()
-        mode = .onlineWait
-        playersTVC.playersList = playersList
-        playersTVC.mode = mode
-        picker.isUserInteractionEnabled = false
-        playersTVC.tableView.reloadData()
-        createStatusTimer()
-    }
-    func setAcceptedStatuses() {
-        let myID = Auth().id
-        playersList.players.forEach { $0.accepted = ($0.id == myID) }
+    
+    func setGameStarted(completion: @escaping ()->Void) {
+        game.turn = 0
+        //game.data.players = playersList.players
+        let frequentData = game.convertToFrequent()
+        GameRequest.updateFrequent(for: game.id, frequentData: frequentData) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success: completion()
+                case .failure(let error): self.showWarningOrTitle(error, nil)
+                }
+            }
+        }
     }
 }

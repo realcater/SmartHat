@@ -13,6 +13,10 @@ class GamesListTVC: UITableViewController {
     var gamesList: [Game.ListElement] = []
     var delegate: GameListDelegate?
     
+    var noGames: Bool {
+        return gamesList.count == 0
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         isEditing = true
@@ -22,7 +26,7 @@ class GamesListTVC: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return gamesList.count+1
+        return noGames ? gamesList.count+2 : gamesList.count+1
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -32,20 +36,41 @@ class GamesListTVC: UITableViewController {
         let createdAtTextField = cell.viewWithTag(1002) as! UITextField
         let turnTextField = cell.viewWithTag(1003) as! UITextField
         
+        
         if indexPath.row == 0 {
             gameOwnerNameTextField.text = "Автор"
             createdAtTextField.text = "Создана"
             turnTextField.text = "Ход"
             cell.viewWithTag(1000)?.backgroundColor = K.Colors.foreground
             gameOwnerNameTextField.textColor = K.Colors.background
+            gameOwnerNameTextField.font = UIFont.systemFont(ofSize: 20, weight: .medium)
             createdAtTextField.textColor = K.Colors.background
             turnTextField.textColor = K.Colors.background
             cell.selectionStyle = .none
         } else {
-            let stringCreatedAt = gamesList[indexPath.row-1].createdAt
-            createdAtTextField.text = stringCreatedAt.convertFromZ()?.convertTo(use: "HH:mm")
-            gameOwnerNameTextField.text = gamesList[indexPath.row-1].userOwnerName
-            turnTextField.text = toString(turn: gamesList[indexPath.row-1].turn)
+            cell.viewWithTag(1000)?.backgroundColor = UIColor.clear
+            gameOwnerNameTextField.textColor = K.Colors.foreground
+            gameOwnerNameTextField.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+            createdAtTextField.textColor = K.Colors.foreground
+            turnTextField.textColor = K.Colors.foreground
+            let contentView = cell.viewWithTag(1000)
+            
+            if indexPath.row == 1 && noGames {
+                contentView?.getConstraint(named: "trailingCons")?.priority = .defaultLow
+                cell.selectionStyle = .none
+                gameOwnerNameTextField.text = "Нет игр с вашим участием"
+                gameOwnerNameTextField.textAlignment = .center
+                createdAtTextField.text = ""
+                turnTextField.text = ""
+            } else {
+                //contentView?.getConstraint(named: "trailingCons")?.priority = .defaultHigh
+                cell.selectionStyle = .default
+                gameOwnerNameTextField.textAlignment = .left
+                let stringCreatedAt = gamesList[indexPath.row-1].createdAt
+                createdAtTextField.text = stringCreatedAt.convertFromZ()?.convertTo(use: "HH:mm")
+                gameOwnerNameTextField.text = gamesList[indexPath.row-1].userOwnerName
+                turnTextField.text = toString(turn: gamesList[indexPath.row-1].turn)
+            }
         }
         return cell
     }
@@ -62,28 +87,34 @@ class GamesListTVC: UITableViewController {
             if let gameID = getGameID(indexPath) {
                 tryDelete(for: gameID) {
                     self.gamesList.remove(at: indexPath.row-1)
-                    tableView.deleteRows(at: [indexPath], with: .fade)
+                    if self.gamesList.count > 0 {
+                        tableView.deleteRows(at: [indexPath], with: .fade)
+                    } else {
+                        tableView.reloadData()
+                    }
                 }
             }
         }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row != 0 {
+        if indexPath.row != 0 && !noGames {
             tableView.deselectRow(at: indexPath, animated: true)
             delegate?.confirmJoin(gameNumber: indexPath.row-1)
+        } else {
+            tableView.deselectRow(at: indexPath, animated: false)
         }
     }
 }
 
 extension GamesListTVC {
     func gameIsMine(_ index: IndexPath) -> Bool {
-        if index.row == 0 { return false }
+        if index.row == 0 || noGames { return false }
         return gamesList[index.row-1].userOwnerName == Auth().name
     }
     
     func getGameID(_ index: IndexPath) -> UUID? {
-        if index.row == 0 { return nil }
+        if index.row == 0 || noGames { return nil }
         return UUID(uuidString: gamesList[index.row-1].id)
     }
     
@@ -113,9 +144,9 @@ extension GamesListTVC {
 extension GamesListTVC {
     func toString(turn: Int) -> String {
         switch turn {
-        case -1: return "🏆"
-        case 0: return ""
-        default: return String(turn)
+        case K.endTurnNumber: return "🏆"
+        case -1: return ""
+        default: return String(turn+1)
         }
     }
 }

@@ -4,7 +4,7 @@ class PlayersTVC: UITableViewController {
     @IBAction func pressAddPlayerButton(_ sender: Any) {
         if mode == .offline {
             insertRow(player: Player(name: ""), at: playersList.players.count)
-        } else if mode == .onlineCreate {
+        } else if mode == .onlineCreateBefore || mode == .onlineCreateAfter {
             delegate?.goToInvitePlayerVC()
         }
     }
@@ -21,7 +21,7 @@ class PlayersTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return playersList.players.count + 1
+        return playersList.players.count + (mode == .onlineJoin ? 0 : 1)
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -29,15 +29,17 @@ class PlayersTVC: UITableViewController {
         let textField = cell.viewWithTag(1000) as! UITextField
         let addPlayerButton = cell.viewWithTag(1001) as! MyButton
         let statusImageView = cell.viewWithTag(1002) as! UIImageView
-        if (indexPath.row == playersList.players.count) {
+        if mode != .onlineJoin, indexPath.row == playersList.players.count {
             textField.isHidden = true
-            addPlayerButton.isHidden = (mode == .onlineWait) || (mode == .onlineReady)
+            addPlayerButton.isHidden = false
             addPlayerButton.turnClickSoundOn(sound: K.sounds.click)
         } else {
+            textField.isHidden = false
+            print("Table: \(playersList.players.map { $0.name })")
             textField.text = playersList.players[indexPath.row].name
             textField.isUserInteractionEnabled = (mode == .offline)
             addPlayerButton.isHidden = true
-            if (mode == .onlineWait) || (mode == .onlineReady) {
+            if (mode != .offline) && (mode != .onlineCreateBefore) {
                 if playersList.players[indexPath.row].accepted {
                     let iconFileName = playersList.players[indexPath.row].inGame ? K.FileNames.onlineIcon : K.FileNames.offlineIcon
                     statusImageView.image = UIImage(named: iconFileName)
@@ -56,30 +58,24 @@ class PlayersTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return ((indexPath.row == playersList.players.count) || (mode == .onlineWait) || (mode == .onlineReady)) ? false : true
+        return ((indexPath.row == playersList.players.count) || (mode == .onlineJoin)) ? false : true
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         let isMe = playersList.players[indexPath.row].id == Auth().id
         switch (mode,isMe) {
-        case (.onlineWait,_): return .none
-        case (.onlineCreate,true): return .none
-        case (.onlineCreate,false): return .delete
+        case (.onlineJoin,_): return .none
+        case (.onlineCreateBefore,true): return .none
+        case (.onlineCreateAfter,true): return .none
         default: return .delete
         }
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
-            if mode == .offline {
-                guard playersList.players.count > K.minPlayersQty else { return }
-            } else if playersList.players.count <= K.minPlayersQty {
-                print("~~~~~~~~~~~\(playersList.players.count)~~~~~~~~")
-                delegate?.disableButton()
-            }
-            playersList.players.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            if let rowEdit = rowEdit, indexPath.row < rowEdit { self.rowEdit!-=1 }
+            print("Table: \(playersList.players.map { $0.name })")
+            deletePlayer(at: indexPath)
+            print("Table: \(playersList.players.map { $0.name })")
         }
     }
     
@@ -91,7 +87,7 @@ class PlayersTVC: UITableViewController {
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
-        return (mode == .onlineWait) ? false : true
+        return (mode == .onlineJoin) ? false : true
     }
     
     override func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
@@ -103,19 +99,40 @@ class PlayersTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        print("Table: \(playersList.players.map { $0.name })")
         let itemToMove = playersList.players[sourceIndexPath.row]
         playersList.players.remove(at: sourceIndexPath.row)
         playersList.players.insert(itemToMove, at: destinationIndexPath.row)
+        if mode != .offline { delegate?.updatePlayersList(players: playersList.players) }
+        print("Table: \(playersList.players.map { $0.name })")
     }
 }
 //MARK: - Public functions
 extension PlayersTVC {
     func insertRow(player: Player, at row: Int) {
+        print("Table: \(playersList.players.map { $0.name })")
         let indexPath = IndexPath(row: row, section: 0)
         tableView.beginUpdates()
         tableView.insertRows(at: [indexPath], with: .automatic)
         playersList.players.insert(player, at: indexPath.row)
         tableView.endUpdates()
+        print("Table: \(playersList.players.map { $0.name })")
+    }
+    
+    func deletePlayer(at indexPath: IndexPath) {
+        let row = indexPath.row
+        if mode == .offline {
+            guard playersList.players.count > K.minPlayersQty else { return }
+        }
+        playersList.players.remove(at: row)
+        tableView.deleteRows(at: [indexPath], with: .fade)
+        if let rowEdit = rowEdit, row < rowEdit { self.rowEdit!-=1 }
+        if mode == .onlineCreateAfter {
+            delegate?.updatePlayersList(players: playersList.players)
+            if playersList.players.count <= K.minPlayersQty {
+                delegate?.disableButton()
+            }
+        }
     }
 }
 

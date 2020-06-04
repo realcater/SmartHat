@@ -25,11 +25,13 @@ class InvitePlayerVC: UIViewController {
     
     @IBAction func pressRegisterButton(_ sender: Any) {
         if let player = selectedPlayer {
-            if delegate!.add(toGame: player) {
-                dismiss(animated: true, completion: nil)
-            } else {
-                self.showWarning("Игрок уже добавлен в игру", in: warningTextView)
-            }
+            delegate!.add(toGame: player,
+                            successCompletion: {
+                                self.dismiss(animated: true, completion: nil)
+                            },
+                            failedCompletion: {
+                                self.showWarning("Игрок уже добавлен в игру", in: self.warningTextView)
+            })
         } else {
             self.showWarning("Игрок не найден", in: warningTextView)
         }

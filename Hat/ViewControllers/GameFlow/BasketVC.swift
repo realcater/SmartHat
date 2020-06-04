@@ -17,7 +17,6 @@ class BasketVC: UIViewController {
     var update: Update!
     
     @IBOutlet weak var warningLabel: UILabel!
-    
     @IBOutlet weak var saveButton: MyButton!
     @IBAction func pressSaveButton(_ sender: Any) {
         saveAndOrDismiss()
@@ -31,6 +30,8 @@ class BasketVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.layoutIfNeeded()
+        //view.layoutSubviews()
         popupView.layer.cornerRadius = K.windowsCornerRadius
         popupView.layer.masksToBounds = true
         self.addTaps(singleTapAction: #selector(singleTap))

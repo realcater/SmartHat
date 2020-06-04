@@ -38,9 +38,7 @@ class MainVC: UIViewController {
         view.setBackgroundImage(named: K.FileNames.background, alpha: K.Alpha.Background.main)
         circleView.layer.cornerRadius = K.CircleCornerRadius.small
         print("StartPairVC.game=\(Unmanaged.passUnretained(game).toOpaque())")
-        if mode != .offline {
-            update = Update(game: game, delegate: self, showWarningOrTitle: self.showWarningOrTitle)
-        }
+        if mode != .offline { update.delegate = self }
     }
     
     override func viewWillAppear(_ animated: Bool) {

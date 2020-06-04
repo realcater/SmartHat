@@ -38,6 +38,7 @@ func sendRequestInOut<DataTypeIn, DataTypeOut>(stringUrl: String, httpMethod: St
                 case 503: completion(.failure(.serverUnavailable))
                 case 404: completion(.failure(.notFound))
                 case 226: completion(.failure(.gameEnded))
+                case 422: completion(.failure(.gameStarted))
                 default: completion(.failure(.other))
                 }
                 return
@@ -124,7 +125,8 @@ func sendRequestIn<DataTypeIn>(stringUrl: String, httpMethod: String, dataIn: Da
                 case 404: completion(.failure(.notFound))
                 case 409: completion(.failure(.duplicate))
                 case 226: completion(.failure(.gameEnded))
-              default: completion(.failure(.other))
+                case 422: completion(.failure(.gameStarted))
+                default: completion(.failure(.other))
               }
         }
         dataTask.resume()

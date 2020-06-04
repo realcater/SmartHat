@@ -2,14 +2,27 @@ import UIKit
 
 class GamesListVC: UIViewController {
 
-    var gamesList: [Game.ListElement] = []
+    var gamesList: [Game.ListElement]!
     var gameLoaded: Game?
     var gameID: UUID?
     var gamesListTVC: GamesListTVC!
     var timer: Timer?
+    var gameCode: String?
+    
+    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var joinButton: MyButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.addTaps(singleTapAction: #selector(singleTap), delegate: self)
+        textField.becomeFirstResponder()
+        textField.layer.borderColor = K.Colors.foreground.cgColor
+        textField.layer.borderWidth = 1.0
+        textField.autocorrectionType = .no
+        joinButton.disable()
+        textField.resignFirstResponder()
+        textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
+        textField.keyboardType = .decimalPad
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -31,13 +44,51 @@ class GamesListVC: UIViewController {
         } else if segue.identifier == "joinGame" {
             let newGameVC = segue.destination as! NewGameVC
             newGameVC.game = gameLoaded
-            newGameVC.mode = gameLoaded!.everyPlayerReady ? .onlineReady : .onlineWait
+            newGameVC.mode = (gameLoaded?.userOwnerID == Auth().id && gameLoaded?.turn == -1) ? .onlineCreateAfter : .onlineJoin
         }
     }
 }
 
 //MARK:- Private functions
-private extension GamesListVC {
+extension GamesListVC {
+    @objc private func textFieldDidChange(_ textField: UITextField) {
+        gameCode = textField.text
+        guard let gameCode = gameCode else {
+            joinButton.disable()
+            return
+        }
+        checkHackMode()
+        
+        joinButton.enable(if: gameCode.count >= K.Server.gameCodeCount)
+    
+    }
+    @objc private func singleTap(recognizer: UITapGestureRecognizer) {
+        if (recognizer.state == UIGestureRecognizer.State.ended) {
+            if textField.isFirstResponder {
+                textField.resignFirstResponder()
+            } else {
+                dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+    
+    @IBAction func pressJoinButton(_ sender: Any) {
+        let code = textField.text!
+        let joinData = JoinData(code: code)
+        GameRequest.join(joinData: joinData) { [weak self] result in
+            DispatchQueue.main.async { [weak self] in
+                switch result {
+                case .success(let game):
+                    self?.gameLoaded = game
+                    self?.title = ""
+                    self?.performSegue(withIdentifier: "joinGame", sender: self)
+                case .failure(let error):
+                    self?.showWarning(error)
+                }
+          }
+        }
+    }
+    
     func loadGamesList(to gamesListTVC: GamesListTVC) {
         GameRequest.searchMine() { [weak self] result in
             DispatchQueue.main.async { [weak self] in
@@ -45,7 +96,7 @@ private extension GamesListVC {
                 case .success(let gamesList):
                     self?.gamesList = gamesList
                     gamesListTVC.gamesList = self!.gamesList
-                    self?.title = (gamesListTVC.gamesList.count > 0) ? "Доступные игры" : "Нет доступных игр"
+                    self?.title = "Введите код игры"
                     gamesListTVC.tableView.reloadData()
                 case .failure(let error):
                     self?.showWarning(error)
@@ -67,6 +118,11 @@ private extension GamesListVC {
                     self?.showWarning(error)
                 }
             }
+        }
+    }
+    func checkHackMode() {
+        if textField.text?.suffix(3) == ",,," {
+            textField.keyboardType = .default
         }
     }
 }
@@ -112,5 +168,12 @@ extension GamesListVC {
     func cancelTimer() {
         timer?.invalidate()
         timer = nil
+    }
+}
+
+// MARK: - UIGestureRecognizerDelegate
+extension GamesListVC: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return (touch.view == self.view) ? true : false
     }
 }

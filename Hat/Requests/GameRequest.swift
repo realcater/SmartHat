@@ -1,7 +1,7 @@
 import Foundation
 
 struct GameRequest {
-    static func create(_ gameData: GameData, completion: @escaping (Result<Game.UUIDOnly>) -> Void) {
+    static func create(_ gameData: GameData, completion: @escaping (Result<Game.Created>) -> Void) {
         sendRequestInOut(
                     stringUrl: "games",
                     httpMethod: "POST",
@@ -19,6 +19,20 @@ struct GameRequest {
         sendRequestOut(
                     stringUrl: "games/mine",
                     httpMethod: "GET",
+                    completion: completion)
+    }
+    static func join(joinData: JoinData, completion: @escaping (Result<Game>) -> Void) {
+        sendRequestInOut(
+                    stringUrl: "games/join",
+                    httpMethod: "POST",
+                    dataIn: joinData,
+                    completion: completion)
+    }
+    static func add(to gameID: UUID, player: Player, completion: @escaping (OkResult) -> Void) {
+        sendRequestIn(
+                    stringUrl: "games/"+gameID.uuidString+"/addPlayer",
+                    httpMethod: "POST",
+                    dataIn: player,
                     completion: completion)
     }
     static func accept(by gameID: UUID, completion: @escaping (Result<Game>) -> Void) {
@@ -60,7 +74,7 @@ struct GameRequest {
                     dataIn: frequentData,
                     completion: completion)
     }
-    static func getPlayersStatus(gameID: UUID, completion: @escaping (Result<[PlayerStatus]>) -> Void) {
+    static func getPlayersStatus(gameID: UUID, completion: @escaping (Result<StatusBeforeStart>) -> Void) {
         sendRequestOut(
                     stringUrl: "games/"+gameID.uuidString+"/players",
                     httpMethod: "GET",
@@ -76,6 +90,7 @@ struct GameRequest {
 
 struct PlayerStatus: Codable {
     var playerID: UUID
+    var playerName: String
     var accepted: Bool
     var lastTimeInGame: String
     
@@ -83,5 +98,14 @@ struct PlayerStatus: Codable {
         guard let date = lastTimeInGame.convertFromZ() else { return false }
         return -date.timeIntervalSinceNow < K.Server.settings.checkOffline
     }
+}
+
+struct StatusBeforeStart: Codable {
+    var players: [Player]
+    var turn: Int
+}
+
+struct JoinData: Codable {
+    var code: String
 }
 

@@ -37,11 +37,14 @@ class MyButton: UIButton {
         }
     }
     func disable() {
-        self.isEnabled = false
+        isEnabled = false
         self.alpha = 0.1
     }
     func enable() {
-        self.isEnabled = true
+        isEnabled = true
         self.alpha = 1.0
+    }
+    func enable(if condition: Bool) {
+        if condition { enable() } else { disable() }
     }
 }

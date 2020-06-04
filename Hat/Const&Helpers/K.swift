@@ -2,9 +2,9 @@ import UIKit
 
 struct K {
     struct Server {
-        //static let name = "http://192.168.1.190:8080/api/"
-        static let name = "https://thehat-online.herokuapp.com/api/"
-        static let currentAppVersion = 200
+        static let name = "http://192.168.1.190:8080/api/"
+        //static let name = "https://thehat-online.herokuapp.com/api/"
+        static let currentAppVersion = 202
         static let reservedPlayerNames = [
             "admin",
             "app"
@@ -16,7 +16,8 @@ struct K {
             updateFrequent: 1.0,
             updateFullTillNextTry: 1.0,
             minimumAppVersion: currentAppVersion)
-     }
+        static let gameCodeCount = 4
+    }
     static var sounds = Sounds()
     static var appSettings = AppSettings(soundDelegate: sounds)
     
@@ -37,18 +38,18 @@ struct K {
     struct Buttons {
         static let newGameVCTitle: [Mode: String] = [
             .offline: "Играть",
-            .onlineWait: "Играть",
-            .onlineCreate: "Создать игру",
-            .onlineReady: "Играть"
+            .onlineJoin: "Ждём начала игры",
+            .onlineCreateBefore: "Создать игру",
+            .onlineCreateAfter: "Начать игру",
         ]
     }
     
     struct Titles {
         static let newGame: [Mode: String] = [
             .offline: "Кто играет?",
-            .onlineCreate: "Кто играет?",
-            .onlineWait: "Ждём игроков...",
-            .onlineReady: "Все готовы!"
+            .onlineCreateBefore: "Выберите параметры",
+            .onlineCreateAfter: "Код игры: ",
+            .onlineJoin: "Код игры: ",
         ]
     }
     
@@ -117,5 +118,5 @@ struct K {
         static let minLengthWarning = "Имя должно быть не менее "+String(minLength)+" символов"
         static let maxLengthWarning = "Имя должно быть не более "+String(maxLength)+" символов"
     }
-    static let endTurnNumber = -1
+    static let endTurnNumber = -100
 }

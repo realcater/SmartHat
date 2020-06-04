@@ -6,8 +6,8 @@ extension NewGameVC {
         GameRequest.getPlayersStatus(gameID: self.game.id) { [weak self] result in
             DispatchQueue.main.async { [weak self] in
                 switch result {
-                case .success(let playersStatus):
-                    self?.update(from: playersStatus)
+                case .success(let statusBeforeStart):
+                    self?.update(from: statusBeforeStart)
                 case .failure(let error):
                     self?.showWarning(error)
                     if error == .noConnection { self?.makeMeNotInGame() }
@@ -16,35 +16,46 @@ extension NewGameVC {
         }
     }
     
-    func update(from playersStatus: [PlayerStatus]) {
+    func update(from statusBeforeStart: StatusBeforeStart) {
         var anythingChanged = false
-        for playerStatus in playersStatus {
-            let player = playersList.players.first { $0.id == playerStatus.playerID }
-            if let player = player {
-                if player.accepted != playerStatus.accepted {
-                    player.accepted = playerStatus.accepted
-                    anythingChanged = true
-                }
-                if player.inGame != playerStatus.inGame {
-                    player.inGame = playerStatus.inGame
-                    anythingChanged = true
-                }
-            }
+        if statusBeforeStart.turn >= 0 {
+            game.turn = statusBeforeStart.turn
+            performSegue(withIdentifier: "toMain", sender: self)
+            return
+        }
+        let a = playersList.players == statusBeforeStart.players
+        print("Равны?: \(a)")
+        print("playersList.players=\(playersList.players.map {$0.id})")
+        print("statusBeforeStart.players=\(statusBeforeStart.players.map {$0.id})")
+        
+        if statusBeforeStart.players.count != playersList.players.count {
+            anythingChanged = true
+        } else {
+            anythingChanged = zip(statusBeforeStart.players, playersList.players)
+                .map {
+                    $0.id == $1.id && $0.accepted == $1.accepted && $0.inGame == $1.inGame
+            }.contains(false)
         }
         if anythingChanged {
-            playersTVC?.playersList = playersList
+            playersList.players = statusBeforeStart.players
+            game.data.players = statusBeforeStart.players
             playersTVC?.tableView.reloadData()
-            mode = everyPlayerReady ? .onlineReady : .onlineWait
+            if mode == .onlineCreateAfter {
+                if everyPlayerReady {
+                    button.enable(if: everyPlayerReady)
+                }
+            }
         }
     }
     
     var everyPlayerReady: Bool {
+        guard playersList.players.count >= K.minPlayersQty else { return false }
         return !playersList.players.map{ $0.accepted && $0.inGame }.contains(false)
     }
     func makeMeNotInGame() {
         let myID = Auth().id
         if let player = playersList.players.first(where: { $0.id == myID }) {
-            player.inGame = false
+            player.lastTimeInGame = Date(timeIntervalSince1970: 0).convertTo()
         }
         playersTVC.tableView.reloadData()
     }

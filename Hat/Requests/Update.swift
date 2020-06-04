@@ -15,7 +15,7 @@ class Update {
     weak var delegate: MainVCDelegate?
     var actionAfterFullUpdate: completionFunc?
     
-    internal init(game: Game, delegate: MainVCDelegate, showWarningOrTitle: @escaping warningFunc) {
+    internal init(game: Game, delegate: MainVCDelegate? = nil, showWarningOrTitle: @escaping warningFunc) {
         self.game = game
         print("update.game=\(Unmanaged.passUnretained(self.game).toOpaque())")
         self.showWarningOrTitle = showWarningOrTitle

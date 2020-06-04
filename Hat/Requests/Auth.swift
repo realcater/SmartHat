@@ -29,9 +29,7 @@ class Auth {
         }
     }
     var expirationDate: Date? {
-        print("expirationDateString=\(expirationDateString!)")
         let expirationDate = expirationDateString?.convertFromZ()
-        print("expirationDate=\(expirationDate!)")
         return expirationDate
     }
     var id: UUID? {

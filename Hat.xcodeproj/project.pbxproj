@@ -42,6 +42,7 @@
 		C1A1956A21387531000A1A51 /* UIView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1956921387531000A1A51 /* UIView+extension.swift */; };
 		C1A1956C21387710000A1A51 /* MyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1956B21387710000A1A51 /* MyButton.swift */; };
 		C1A1957021391522000A1A51 /* UIViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A1956F21391522000A1A51 /* UIViewController+extension.swift */; };
+		C1C8CE1C2487A477001AE20C /* NGVC+mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8CE1B2487A477001AE20C /* NGVC+mode.swift */; };
 		C1D0968324579A0E00A03A21 /* GameTypeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D0968224579A0E00A03A21 /* GameTypeVC.swift */; };
 		C1D096852458299600A03A21 /* CreateJoinVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D096842458299600A03A21 /* CreateJoinVC.swift */; };
 		C1D0968724582C1A00A03A21 /* GamesListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D0968624582C1A00A03A21 /* GamesListVC.swift */; };
@@ -116,6 +117,7 @@
 		C1A1956921387531000A1A51 /* UIView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extension.swift"; sourceTree = "<group>"; };
 		C1A1956B21387710000A1A51 /* MyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyButton.swift; sourceTree = "<group>"; };
 		C1A1956F21391522000A1A51 /* UIViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+extension.swift"; sourceTree = "<group>"; };
+		C1C8CE1B2487A477001AE20C /* NGVC+mode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NGVC+mode.swift"; sourceTree = "<group>"; };
 		C1D0968224579A0E00A03A21 /* GameTypeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTypeVC.swift; sourceTree = "<group>"; };
 		C1D096842458299600A03A21 /* CreateJoinVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateJoinVC.swift; sourceTree = "<group>"; };
 		C1D0968624582C1A00A03A21 /* GamesListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListVC.swift; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				C15647212121FC6100F1602E /* NewGameVC.swift */,
+				C1C8CE1B2487A477001AE20C /* NGVC+mode.swift */,
 				C1EA3F3E2468332E00BBC67E /* NGVC+prepareVC.swift */,
 				C1EA3F362468314000BBC67E /* NGVC+rejectButton.swift */,
 				C1EA3F332468305500BBC67E /* NGVC+updateStatus.swift */,
@@ -497,6 +500,7 @@
 				C112465424707A49009FB46D /* Game+extension.swift in Sources */,
 				C1D0968C2458305400A03A21 /* GamesListTVC.swift in Sources */,
 				C1D0968E2458329600A03A21 /* Game.swift in Sources */,
+				C1C8CE1C2487A477001AE20C /* NGVC+mode.swift in Sources */,
 				C115089224781E08005867CB /* sendRequest.swift in Sources */,
 				C1669C502458806700B19384 /* Player.swift in Sources */,
 				C15647222121FC6100F1602E /* NewGameVC.swift in Sources */,
@@ -696,7 +700,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.01;
+				MARKETING_VERSION = 2.02;
 				PRODUCT_BUNDLE_IDENTIFIER = realcater.Hat;
 				PRODUCT_NAME = "Шляпа.Онлайн";
 				SWIFT_VERSION = 5.0;
@@ -717,7 +721,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.01;
+				MARKETING_VERSION = 2.02;
 				PRODUCT_BUNDLE_IDENTIFIER = realcater.Hat;
 				PRODUCT_NAME = "Шляпа.Онлайн";
 				SWIFT_VERSION = 5.0;

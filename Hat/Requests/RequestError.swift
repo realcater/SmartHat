@@ -6,6 +6,7 @@ enum RequestError {
     case duplicate
     case gameEnded
     case JSONParseError
+    case gameStarted
     case other
     
     var warning: String {
@@ -17,6 +18,7 @@ enum RequestError {
             case .duplicate: return "Этот никнейм уже занят"
             case .JSONParseError: return "Ошибка данных"
             case .gameEnded: return "Игра завершена"
+            case .gameStarted: return "Игра уже началась"
             case .other: return "Ошибка сервера"
         }
     }

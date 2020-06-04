@@ -14,8 +14,8 @@ extension NewGameVC {
         switch mode {
         case .offline:
             playersList.loadFromFile()
-        case .onlineCreate:
-            let me = Player(id: Auth().id, name: Auth().name!)
+        case .onlineCreateBefore:
+            let me = Player(id: Auth().id, name: Auth().name!, accepted: true)
             playersList.players.append(me)
         default:
             playersList.players.append(contentsOf: game.data.players)

@@ -10,18 +10,22 @@ class Player: Codable, Equatable {
     var tellGuessed: Int
     var listenGuessed: Int
     var accepted: Bool
-    var inGame: Bool
+    var lastTimeInGame: String
     var ttlGuesses: Int {
         get {
             return tellGuessed + listenGuessed
         }
     }
-    init(id: UUID? = nil, name: String) {
+    var inGame: Bool {
+        guard let date = lastTimeInGame.convertFromZ() else { return false }
+        return -date.timeIntervalSinceNow < K.Server.settings.checkOffline
+    }
+    init(id: UUID? = nil, name: String, accepted: Bool = false) {
         self.id = id
         self.name = name
-        tellGuessed = 0
-        listenGuessed = 0
-        accepted = false
-        inGame = false
+        self.tellGuessed = 0
+        self.listenGuessed = 0
+        self.accepted = accepted
+        self.lastTimeInGame = Date(timeIntervalSince1970: 0).convertTo()
     }
 }

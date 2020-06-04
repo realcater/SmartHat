@@ -32,7 +32,7 @@ extension Game {
         return (prevTellerNumber+round+1) % data.players.count
     }
     var currentTeller: Player? {
-        guard turn != -1 else { return nil }
+        guard turn >= 0 else { return nil }
         return data.players[tellerNumber]
     }
     var currentListener: Player {
@@ -113,6 +113,6 @@ extension Game {
         }
     }
     func basketWordToShow(for num: Int) -> String {
-        return data.basketStatus[num] == .left ? "########" : data.basketWords[num]
+        return data.basketStatus[num] == .left ? "********" : data.basketWords[num]
     }
 }

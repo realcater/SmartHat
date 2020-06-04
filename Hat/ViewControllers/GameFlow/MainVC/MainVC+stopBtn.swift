@@ -36,15 +36,5 @@ extension MainVC {
     
     func moveToStartVC() {
         self.navigationController?.popToRootViewController(animated: true)
-        /*
-        let vc = navigationController!.viewControllers[navigationController!.viewControllers.count - 2]
-        if vc is StartVC {
-            let new
-            // I get the previous controller from it, in this case, the 3rd back in stack
-            let newControllerTarget = navigationController!.viewControllers[navigationController!.viewControllers.count - 3]
-
-            // And finally sends back to desired controller
-            navigationController?.popToViewController(newControllerTarget, animated: true)
-        }*/
     }
 }
