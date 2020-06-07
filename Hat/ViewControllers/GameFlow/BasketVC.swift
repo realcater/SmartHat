@@ -30,8 +30,8 @@ class BasketVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        saveButton.makeRounded(sound: K.sounds.click)
         view.layoutIfNeeded()
-        //view.layoutSubviews()
         popupView.layer.cornerRadius = K.windowsCornerRadius
         popupView.layer.masksToBounds = true
         self.addTaps(singleTapAction: #selector(singleTap))

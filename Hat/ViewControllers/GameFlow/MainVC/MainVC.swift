@@ -36,6 +36,7 @@ class MainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        goButton.makeRounded()
         view.backgroundColor = K.Colors.background
         view.setBackgroundImage(named: K.FileNames.background, alpha: K.Alpha.Background.main)
         circleView.layer.cornerRadius = K.CircleCornerRadius.small

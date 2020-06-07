@@ -32,12 +32,14 @@ class PlayersTVC: UITableViewController {
         if mode != .onlineJoin, indexPath.row == playersList.players.count {
             textField.isHidden = true
             addPlayerButton.isHidden = false
-            addPlayerButton.turnClickSoundOn(sound: K.sounds.click)
+            addPlayerButton.makeRounded(sound: K.sounds.click)
+            statusImageView.isHidden = true
         } else {
             textField.isHidden = false
             textField.text = playersList.players[indexPath.row].name
             textField.isUserInteractionEnabled = (mode == .offline)
             addPlayerButton.isHidden = true
+            statusImageView.isHidden = false
             if (mode != .offline) && (mode != .onlineCreateBefore) {
                 if playersList.players[indexPath.row].accepted {
                     let iconFileName = playersList.players[indexPath.row].inGame ? K.FileNames.onlineIcon : K.FileNames.offlineIcon

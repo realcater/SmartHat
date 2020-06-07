@@ -18,6 +18,7 @@ class EndGameVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ggButton.makeRounded()
         self.navigationItem.setHidesBackButton(true, animated: false)
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
         K.sounds.applause?.play()

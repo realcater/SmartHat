@@ -31,7 +31,7 @@ class NewGameVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = K.Colors.background
-        button.turnClickSoundOn(sound: K.sounds.click)
+        button.makeRounded(sound: K.sounds.click)
     }
     
     override func viewWillAppear(_ animated: Bool) {

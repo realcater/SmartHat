@@ -65,7 +65,7 @@
 		CA0CD5EA23B7D52400A76B75 /* countdown.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA0CD5E923B7D52400A76B75 /* countdown.mp3 */; };
 		CA0CD5EE23B7D56400A76B75 /* timeOver.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CA0CD5ED23B7D56400A76B75 /* timeOver.mp3 */; };
 		CA0CD5F123B8B2AB00A76B75 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0CD5EF23B8B2AB00A76B75 /* AboutVC.swift */; };
-		CA0CD5F223B8B2AB00A76B75 /* AboutTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0CD5F023B8B2AB00A76B75 /* AboutTableVC.swift */; };
+		CA0CD5F223B8B2AB00A76B75 /* AboutTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0CD5F023B8B2AB00A76B75 /* AboutTVC.swift */; };
 		CA0CD5F423B8BA7C00A76B75 /* HelpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0CD5F323B8BA7C00A76B75 /* HelpVC.swift */; };
 		CA3281D12376DAD200822B22 /* PlayersTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3281D02376DAD200822B22 /* PlayersTVC.swift */; };
 		CA5916D423B3C74D007625A1 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5916D323B3C74D007625A1 /* MainVC.swift */; };
@@ -141,7 +141,7 @@
 		CA0CD5E923B7D52400A76B75 /* countdown.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = countdown.mp3; path = "../../../../Dropbox/Шляпа/countdown.mp3"; sourceTree = "<group>"; };
 		CA0CD5ED23B7D56400A76B75 /* timeOver.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = timeOver.mp3; sourceTree = "<group>"; };
 		CA0CD5EF23B8B2AB00A76B75 /* AboutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
-		CA0CD5F023B8B2AB00A76B75 /* AboutTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutTableVC.swift; sourceTree = "<group>"; };
+		CA0CD5F023B8B2AB00A76B75 /* AboutTVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutTVC.swift; sourceTree = "<group>"; };
 		CA0CD5F323B8BA7C00A76B75 /* HelpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpVC.swift; sourceTree = "<group>"; };
 		CA3281D02376DAD200822B22 /* PlayersTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersTVC.swift; sourceTree = "<group>"; };
 		CA5916D323B3C74D007625A1 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
@@ -271,7 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				C1561CF32134186E00C8B674 /* StartVC.swift */,
-				CA0CD5F023B8B2AB00A76B75 /* AboutTableVC.swift */,
+				CA0CD5F023B8B2AB00A76B75 /* AboutTVC.swift */,
 				CA0CD5EF23B8B2AB00A76B75 /* AboutVC.swift */,
 				CA0CD5F323B8BA7C00A76B75 /* HelpVC.swift */,
 				C1D0968224579A0E00A03A21 /* GameTypeVC.swift */,
@@ -549,7 +549,7 @@
 				CA0CD5F423B8BA7C00A76B75 /* HelpVC.swift in Sources */,
 				C1A1957021391522000A1A51 /* UIViewController+extension.swift in Sources */,
 				CA5916D423B3C74D007625A1 /* MainVC.swift in Sources */,
-				CA0CD5F223B8B2AB00A76B75 /* AboutTableVC.swift in Sources */,
+				CA0CD5F223B8B2AB00A76B75 /* AboutTVC.swift in Sources */,
 				CA023D0F217561CE008AE815 /* GameData.swift in Sources */,
 				C1A1956C21387710000A1A51 /* MyButton.swift in Sources */,
 			);
@@ -704,7 +704,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.02;
+				MARKETING_VERSION = 2.03;
 				PRODUCT_BUNDLE_IDENTIFIER = realcater.Hat;
 				PRODUCT_NAME = "Шляпа.Онлайн";
 				SWIFT_VERSION = 5.0;
@@ -725,7 +725,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.02;
+				MARKETING_VERSION = 2.03;
 				PRODUCT_BUNDLE_IDENTIFIER = realcater.Hat;
 				PRODUCT_NAME = "Шляпа.Онлайн";
 				SWIFT_VERSION = 5.0;

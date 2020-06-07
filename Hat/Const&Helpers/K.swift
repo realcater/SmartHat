@@ -2,9 +2,9 @@ import UIKit
 
 struct K {
     struct Server {
-        static let name = "http://192.168.1.190:8080/api/"
-        //static let name = "https://thehat-online.herokuapp.com/api/"
-        static let currentAppVersion = 202
+        //static let name = "http://192.168.1.190:8080/api/"
+        static let name = "https://thehat-online.herokuapp.com/api/"
+        static let currentAppVersion = 203
         static let reservedPlayerNames = [
             "admin",
             "app"

@@ -22,8 +22,8 @@ class GameTypeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.setBackgroundImage(named: K.FileNames.background, alpha: K.Alpha.Background.main)
-        offlineGameButton.turnClickSoundOn(sound: K.sounds.click)
-        onlineGameButton.turnClickSoundOn(sound: K.sounds.click)
+        offlineGameButton.makeRounded(sound: K.sounds.click)
+        onlineGameButton.makeRounded(sound: K.sounds.click)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

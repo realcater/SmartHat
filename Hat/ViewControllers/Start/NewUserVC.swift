@@ -62,7 +62,7 @@ class NewUserVC: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerButton.turnClickSoundOn(sound: K.sounds.click)
+        registerButton.makeRounded(sound: K.sounds.click)
         self.addTaps(singleTapAction: #selector(singleTap))
         popupView.layer.cornerRadius = K.windowsCornerRadius
         textField.delegate = self

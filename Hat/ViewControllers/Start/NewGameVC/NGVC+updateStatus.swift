@@ -39,18 +39,17 @@ extension NewGameVC {
         if anythingChanged {
             playersList.players = statusBeforeStart.players
             game.data.players = statusBeforeStart.players
+            checkMeInList()
             playersTVC?.tableView.reloadData()
             if mode == .onlineCreateAfter {
-                if everyPlayerReady {
-                    button.enable(if: everyPlayerReady)
-                }
+                button.enable(if: everyPlayerReady)
             }
         }
     }
     
     var everyPlayerReady: Bool {
         guard playersList.players.count >= K.minPlayersQty else { return false }
-        return !playersList.players.map{ $0.accepted && $0.inGame }.contains(false)
+        return !playersList.players.map{ $0.accepted }.contains(false)
     }
     func makeMeNotInGame() {
         let myID = Auth().id
@@ -58,6 +57,13 @@ extension NewGameVC {
             player.lastTimeInGame = Date(timeIntervalSince1970: 0).convertTo()
         }
         playersTVC.tableView.reloadData()
+    }
+    func checkMeInList() {
+        let myID = Auth().id
+        if !playersList.players.map({$0.id == myID}).contains(true) {
+            //cancelStatusTimer()
+            navigationController?.popToRootViewController(animated: true)
+        }
     }
 }
 

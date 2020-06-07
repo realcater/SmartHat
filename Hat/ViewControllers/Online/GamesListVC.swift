@@ -15,11 +15,12 @@ class GamesListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addTaps(singleTapAction: #selector(singleTap), delegate: self)
+        joinButton.makeRounded(sound: K.sounds.click)
+        joinButton.isEnabled = true
         textField.becomeFirstResponder()
         textField.layer.borderColor = K.Colors.foreground.cgColor
         textField.layer.borderWidth = 1.0
         textField.autocorrectionType = .no
-        joinButton.disable()
         textField.resignFirstResponder()
         textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
         textField.keyboardType = .decimalPad
@@ -53,14 +54,14 @@ class GamesListVC: UIViewController {
 extension GamesListVC {
     @objc private func textFieldDidChange(_ textField: UITextField) {
         gameCode = textField.text
+        /*
         guard let gameCode = gameCode else {
-            joinButton.disable()
+            joinButton.isEnabled = false
             return
         }
-        checkHackMode()
-        
         joinButton.enable(if: gameCode.count >= K.Server.gameCodeCount)
-    
+         */
+        checkHackMode()
     }
     @objc private func singleTap(recognizer: UITapGestureRecognizer) {
         if (recognizer.state == UIGestureRecognizer.State.ended) {

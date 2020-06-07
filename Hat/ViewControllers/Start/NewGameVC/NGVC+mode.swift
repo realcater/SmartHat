@@ -40,7 +40,7 @@ extension NewGameVC {
                 playersTVC?.tableView.reloadData()
                 createStatusTimer()
                 onlineInfoIsVisible = true
-                button?.enable(if: game.data.players.count >= K.minPlayersQty)
+                button?.disable()
                 picker?.isUserInteractionEnabled = false
                 if isViewLoaded { replaceBackButton() }
                 if let title = self.title, let code = game.code {

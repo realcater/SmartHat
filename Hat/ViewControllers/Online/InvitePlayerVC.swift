@@ -43,7 +43,7 @@ class InvitePlayerVC: UIViewController {
         configure(textField: nameTextField)
         popupView.layer.cornerRadius = K.windowsCornerRadius
         
-        addPlayerButton.turnClickSoundOn(sound: K.sounds.click)
+        addPlayerButton.makeRounded(sound: K.sounds.click)
         addPlayerButton.disable()
     }
     

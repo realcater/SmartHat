@@ -19,13 +19,7 @@ extension NewGameVC: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if (component == 1) {
-            if (K.SettingsRow.difficulty[row] == .separator1) {
-                button.disable()
-            } else {
-                if playersList.players.count >= K.minPlayersQty {
-                    button.enable()
-                }
-            }
+            button.enable(if: !(K.SettingsRow.difficulty[row] == .separator1))
         }
     }
     
