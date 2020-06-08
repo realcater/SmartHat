@@ -13,6 +13,6 @@ public enum Environment {
         guard let appKey = ProcessInfo.processInfo.environment["appKey"] else {
             fatalError("AppKey not set in this environment")
         }
-      return appKey
+        return appKey
     }()
 }
