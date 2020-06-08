@@ -24,6 +24,7 @@ extension NewGameVC {
                 case .success(let gameCreated):
                     self?.game = Game(id: gameCreated.id, data: gameData, userOwner: Auth().id!, code: gameCreated.code)
                     self?.mode = .onlineCreateAfter
+                    
                 case .failure(let error):
                     self?.showWarning(error)
                     self?.button.enable()

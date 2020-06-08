@@ -47,7 +47,7 @@ class MainVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
-        prepareNewTurn(colorise: false)
+        setupNewTurn(colorise: false)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -120,13 +120,18 @@ extension MainVC {
         return game.currentListener.id == Auth().id
     }
     func coloriseBarView() {
-        if isTeller {
+        switch (isTeller, isListener) {
+        case (true, false):
             barView.makeDoubleColor(leftColor: K.Colors.red80, rightColor: K.Colors.foreground80)
             K.sounds.attention?.resetAndPlay(startVolume: 1.0, fadeDuration: 2.0)
-        } else if isListener {
+        case (false, true):
             barView.makeDoubleColor(leftColor: K.Colors.foreground80, rightColor: K.Colors.red80)
             K.sounds.attention?.resetAndPlay(startVolume: 1.0, fadeDuration: 2.0)
-        } else {
+        case (true, true):
+            barView.backgroundColor = K.Colors.red80
+            barView.removeDoubleColor()
+            K.sounds.attention?.resetAndPlay(startVolume: 1.0, fadeDuration: 2.0)
+        case (false, false):
             barView.backgroundColor = K.Colors.foreground80
             barView.removeDoubleColor()
         }
@@ -141,8 +146,8 @@ extension MainVC {
         listenerNameLabel.text = game.currentListener.name
     }
     
-    func prepareNewTurn(colorise: Bool = true) {
-        print("=========prepareNewTurn: \(game.turn)=============")
+    func setupNewTurn(colorise: Bool = true) {
+        print("=========setupNewTurn: \(game.turn)=============")
         guessedWordLabel.isHidden = true
         if colorise { coloriseBarView() }
         reloadNames()

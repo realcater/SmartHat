@@ -12,6 +12,10 @@ class InvitePlayerVC: UIViewController {
     @IBOutlet weak var popupView: UIView!
     @IBOutlet weak var addPlayerButton: MyButton!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var playersListView: UIView!
+    
+    var isOnlinePlayerToInvite: Bool!
+    var code: String?
     
     @objc private func singleTap(recognizer: UITapGestureRecognizer) {
         if (recognizer.state == UIGestureRecognizer.State.ended) {
@@ -24,16 +28,10 @@ class InvitePlayerVC: UIViewController {
     }
     
     @IBAction func pressRegisterButton(_ sender: Any) {
-        if let player = selectedPlayer {
-            delegate!.add(toGame: player,
-                            successCompletion: {
-                                self.dismiss(animated: true, completion: nil)
-                            },
-                            failedCompletion: {
-                                self.showWarning("Игрок уже добавлен в игру", in: self.warningTextView)
-            })
+        if isOnlinePlayerToInvite {
+           addOnlinePlayer()
         } else {
-            self.showWarning("Игрок не найден", in: warningTextView)
+            addOfflinePlayer()
         }
     }
         
@@ -45,6 +43,7 @@ class InvitePlayerVC: UIViewController {
         
         addPlayerButton.makeRounded(sound: K.sounds.click)
         addPlayerButton.disable()
+        setup()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -57,6 +56,12 @@ class InvitePlayerVC: UIViewController {
 }
 // MARK: - private funcs
 extension InvitePlayerVC {
+    func setup() {
+        playersListView?.getConstraint(named: "playersListHeight")?.constant =
+            isOnlinePlayerToInvite ? 108 : 0
+        titleLabel.text = isOnlinePlayerToInvite ? "Пригласить игрока онлайн" : "Добавить ещё одного игрока на этом устройстве"
+    }
+    
     var selectedPlayer: Player? {
         set {
             switch (_player != nil, newValue != nil) {
@@ -83,6 +88,10 @@ extension InvitePlayerVC {
     
     @objc private func textFieldDidChange(_ textField: UITextField) {
         hideWarning(in: warningTextView)
+        if !isOnlinePlayerToInvite {
+            addPlayerButton.enable(if: textField.text!.count > 0)
+            return
+        }
         guard textField.text!.count > 0 else {
             self.playersList.players = []
             self.selectedPlayer = nil
@@ -110,6 +119,36 @@ extension InvitePlayerVC {
                     self?.playersList.players = []
                     self?.selectedPlayer = nil
                     self?.invitePlayerTVC?.tableView.reloadData()
+                    self?.showWarning(error)
+                }
+            }
+        }
+    }
+    func addOnlinePlayer() {
+        if let player = selectedPlayer {
+            delegate!.add(toGame: player,
+                            successCompletion: {
+                                self.dismiss(animated: true, completion: nil)
+                            },
+                            failedCompletion: {
+                                self.showWarning("Игрок уже добавлен в игру", in: self.warningTextView)
+            })
+        } else {
+            self.showWarning("Игрок не найден", in: warningTextView)
+        }
+    }
+    
+    func addOfflinePlayer() {
+        guard let additionalName = nameTextField.text else { return }
+        let joinData = JoinData(code: code!, additionalName: additionalName)
+        GameRequest.join(joinData: joinData) { [weak self] result in
+            DispatchQueue.main.async { [weak self] in
+                switch result {
+                case .success:
+                    let player = Player(id: Auth().id!, name: additionalName, accepted: true)
+                    self?.delegate?.add(toLocalData: player)
+                    self?.dismiss(animated: true, completion: nil)
+                case .failure(let error):
                     self?.showWarning(error)
                 }
             }

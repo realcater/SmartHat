@@ -1,8 +1,8 @@
 import Foundation
 
 extension NewGameVC {
-    func preparePicker() {
-        let setting = game?.data.settings ?? K.SettingsRow.start
+    func setupPicker() {
+        let setting = game?.data.settings ?? K.SettingsRow.start[mode]!
         picker.delegate = self
         picker.dataSource = self
         

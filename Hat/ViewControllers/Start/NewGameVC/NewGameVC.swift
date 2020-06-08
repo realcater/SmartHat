@@ -16,15 +16,26 @@ class NewGameVC: UIViewController {
     var _mode : Mode!
     var statusTimer: Timer?
     var update: Update!
+    var isOnlinePlayerToInvite: Bool!
     
     @IBOutlet weak var onlineInfo: UITextView!
     @IBOutlet weak var picker: UIPickerView!
     @IBOutlet weak var button: MyButton!
+    @IBOutlet weak var containerView: UIView!
     
     var onlineInfoIsVisible = false {
         didSet {
             onlineInfo?.getConstraint(named: "onlineInfoHeight")?.constant =
-                onlineInfoIsVisible ? 68 : 0
+                onlineInfoIsVisible ? 100 : 0
+        }
+    }
+    
+    var tableIsVisible: Bool! {
+        didSet {
+            containerView?.getConstraint(named: "tableHeight")?.isActive =
+                !tableIsVisible
+            let pickerHeightIfTableIsVisible = (mode == .offline) ? CGFloat(200) : CGFloat(100)
+            picker?.getConstraint(named: "pickerHeight")?.constant = tableIsVisible ? pickerHeightIfTableIsVisible : 1200
         }
     }
     
@@ -37,7 +48,7 @@ class NewGameVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: K.Colors.foreground]
-        preparePicker()
+        setupPicker()
         mode = _mode
         if (mode == .onlineJoin) || (mode == .onlineCreateAfter) {
             picker.isUserInteractionEnabled = false
@@ -77,6 +88,8 @@ class NewGameVC: UIViewController {
         } else if segue.identifier == "toInvitePlayer" {
             let invitePlayerVC = segue.destination as? InvitePlayerVC
             invitePlayerVC?.delegate = self
+            invitePlayerVC?.isOnlinePlayerToInvite = self.isOnlinePlayerToInvite
+            invitePlayerVC?.code = game.code
         } else if segue.identifier == "toGameType" {
             self.title = ""
         }

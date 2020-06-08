@@ -24,16 +24,16 @@ extension NewGameVC {
             button?.setTitle(K.Buttons.newGameVCTitle[mode], for: .normal)
             
             switch _mode {
-            
             case .onlineJoin:
                 button?.disable()
+                tableIsVisible = true
                 if isViewLoaded { replaceBackButton() }
                 if let title = self.title, let code = game.code {
                     self.title = title + code
                 }
-            
             case .onlineCreateAfter:
                 update = Update(game: game, showWarningOrTitle: showWarningOrTitle)
+                tableIsVisible = true
                 setAcceptedStatuses()
                 playersTVC?.playersList = playersList
                 playersTVC?.mode = _mode
@@ -46,8 +46,11 @@ extension NewGameVC {
                 if let title = self.title, let code = game.code {
                     self.title = title + code
                 }
+            case .onlineCreateBefore:
+                tableIsVisible = false
             default:
                 button?.enable()
+                tableIsVisible = true
             }
         }
     }

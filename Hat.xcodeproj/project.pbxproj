@@ -55,7 +55,7 @@
 		C1EA3F39246831B400BBC67E /* NGVC+Picker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EA3F38246831B400BBC67E /* NGVC+Picker.swift */; };
 		C1EA3F3B2468322900BBC67E /* NGVC+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EA3F3A2468322900BBC67E /* NGVC+Delegate.swift */; };
 		C1EA3F3D246832E300BBC67E /* NGVC+createGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EA3F3C246832E300BBC67E /* NGVC+createGame.swift */; };
-		C1EA3F3F2468332E00BBC67E /* NGVC+prepareVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EA3F3E2468332E00BBC67E /* NGVC+prepareVC.swift */; };
+		C1EA3F3F2468332E00BBC67E /* NGVC+setup.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EA3F3E2468332E00BBC67E /* NGVC+setup.swift */; };
 		CA023D0F217561CE008AE815 /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA023D0C217561CD008AE815 /* GameData.swift */; };
 		CA023D1C2175620E008AE815 /* true.wav in Resources */ = {isa = PBXBuildFile; fileRef = CA023D142175620E008AE815 /* true.wav */; };
 		CA023D1D2175620E008AE815 /* false.wav in Resources */ = {isa = PBXBuildFile; fileRef = CA023D152175620E008AE815 /* false.wav */; };
@@ -131,7 +131,7 @@
 		C1EA3F38246831B400BBC67E /* NGVC+Picker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NGVC+Picker.swift"; sourceTree = "<group>"; };
 		C1EA3F3A2468322900BBC67E /* NGVC+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NGVC+Delegate.swift"; sourceTree = "<group>"; };
 		C1EA3F3C246832E300BBC67E /* NGVC+createGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NGVC+createGame.swift"; sourceTree = "<group>"; };
-		C1EA3F3E2468332E00BBC67E /* NGVC+prepareVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NGVC+prepareVC.swift"; sourceTree = "<group>"; };
+		C1EA3F3E2468332E00BBC67E /* NGVC+setup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NGVC+setup.swift"; sourceTree = "<group>"; };
 		CA023D0C217561CD008AE815 /* GameData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
 		CA023D142175620E008AE815 /* true.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = true.wav; sourceTree = "<group>"; };
 		CA023D152175620E008AE815 /* false.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = false.wav; sourceTree = "<group>"; };
@@ -312,7 +312,7 @@
 			children = (
 				C15647212121FC6100F1602E /* NewGameVC.swift */,
 				C1C8CE1B2487A477001AE20C /* NGVC+mode.swift */,
-				C1EA3F3E2468332E00BBC67E /* NGVC+prepareVC.swift */,
+				C1EA3F3E2468332E00BBC67E /* NGVC+setup.swift */,
 				C1EA3F362468314000BBC67E /* NGVC+rejectButton.swift */,
 				C1EA3F332468305500BBC67E /* NGVC+updateStatus.swift */,
 				C1EA3F3C246832E300BBC67E /* NGVC+createGame.swift */,
@@ -531,7 +531,7 @@
 				CA8A2F9F23B6A034008D7EBE /* BasketVC.swift in Sources */,
 				CA8A2FA123B6A1D2008D7EBE /* BasketTVC.swift in Sources */,
 				C11508A0247AA03C005867CB /* Sounds.swift in Sources */,
-				C1EA3F3F2468332E00BBC67E /* NGVC+prepareVC.swift in Sources */,
+				C1EA3F3F2468332E00BBC67E /* NGVC+setup.swift in Sources */,
 				C1D096852458299600A03A21 /* CreateJoinVC.swift in Sources */,
 				C1804DD52480EAB900FA9B57 /* RequestError.swift in Sources */,
 				C10F42632461CE76001D353E /* InvitePlayerVC.swift in Sources */,
@@ -704,7 +704,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.03;
+				MARKETING_VERSION = 2.04;
 				PRODUCT_BUNDLE_IDENTIFIER = realcater.Hat;
 				PRODUCT_NAME = "Шляпа.Онлайн";
 				SWIFT_VERSION = 5.0;
@@ -725,7 +725,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.03;
+				MARKETING_VERSION = 2.04;
 				PRODUCT_BUNDLE_IDENTIFIER = realcater.Hat;
 				PRODUCT_NAME = "Шляпа.Онлайн";
 				SWIFT_VERSION = 5.0;

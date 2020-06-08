@@ -1,14 +1,20 @@
 import UIKit
 
 class PlayersTVC: UITableViewController {
-    @IBAction func pressAddPlayerButton(_ sender: Any) {
-        if mode == .offline {
-            insertRow(player: Player(name: ""), at: playersList.players.count)
-        } else if mode == .onlineCreateBefore || mode == .onlineCreateAfter {
-            delegate?.goToInvitePlayerVC()
-        }
+    @IBAction func pressAddPlayerOnlineButton(_ sender: Any) {
+        delegate?.goToInvitePlayerVC(isOnlinePlayerToInvite: true)
     }
     
+    @IBAction func pressAddPlayerOfflineButton(_ sender: Any) {
+        switch mode {
+        case .offline:
+            insertRow(player: Player(name: ""), at: playersList.players.count)
+        default:
+            delegate?.goToInvitePlayerVC(isOnlinePlayerToInvite: false)
+            
+        }
+        
+    }
     var playersList: PlayersList!
     var rowEdit: Int?
     var mode : Mode!
@@ -21,29 +27,35 @@ class PlayersTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return playersList.players.count + (mode == .onlineJoin ? 0 : 1)
+        return playersList.players.count + 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Players", for: indexPath)
         let textField = cell.viewWithTag(1000) as! UITextField
-        let addPlayerButton = cell.viewWithTag(1001) as! MyButton
+        let addPlayerOnlineButton = cell.viewWithTag(1001) as! MyButton
+        let addPlayerOffineButton = cell.viewWithTag(1003) as! MyButton
         let statusImageView = cell.viewWithTag(1002) as! UIImageView
-        if mode != .onlineJoin, indexPath.row == playersList.players.count {
+        if indexPath.row == playersList.players.count {
             textField.isHidden = true
-            addPlayerButton.isHidden = false
-            addPlayerButton.makeRounded(sound: K.sounds.click)
             statusImageView.isHidden = true
+            setButtons(contentView: cell.viewWithTag(1004)!, onlineBtn: addPlayerOnlineButton, offlineBtn: addPlayerOffineButton)
         } else {
             textField.isHidden = false
             textField.text = playersList.players[indexPath.row].name
             textField.isUserInteractionEnabled = (mode == .offline)
-            addPlayerButton.isHidden = true
+            addPlayerOnlineButton.isHidden = true
+            addPlayerOffineButton.isHidden = true
             statusImageView.isHidden = false
             if (mode != .offline) && (mode != .onlineCreateBefore) {
                 if playersList.players[indexPath.row].accepted {
-                    let iconFileName = playersList.players[indexPath.row].inGame ? K.FileNames.onlineIcon : K.FileNames.offlineIcon
-                    statusImageView.image = UIImage(named: iconFileName)
+                    if playersList.players[indexPath.row].id == Auth().id {
+                        statusImageView.tintColor = K.Colors.foreground
+                        statusImageView.image = UIImage(named: K.FileNames.iPhoneIcon)
+                    } else {
+                        let iconFileName = playersList.players[indexPath.row].inGame ? K.FileNames.onlineIcon : K.FileNames.offlineIcon
+                        statusImageView.image = UIImage(named: iconFileName)
+                    }
                 } else {
                     statusImageView.image = UIImage(named: K.FileNames.waitIcon)
                     statusImageView.tintColor = K.Colors.foreground
@@ -63,7 +75,7 @@ class PlayersTVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        let isMe = playersList.players[indexPath.row].id == Auth().id
+        let isMe = (playersList.players[indexPath.row].id == Auth().id) && (playersList.players[indexPath.row].name == Auth().name)
         switch (mode,isMe) {
         case (.onlineJoin,_): return .none
         case (.onlineCreateBefore,true): return .none
@@ -127,6 +139,24 @@ extension PlayersTVC {
             if playersList.players.count <= K.minPlayersQty {
                 delegate?.disableButton()
             }
+        }
+    }
+    func setButtons(contentView: UIView, onlineBtn: MyButton, offlineBtn: MyButton) {
+        onlineBtn.makeRounded(sound: K.sounds.click)
+        offlineBtn.makeRounded(sound: K.sounds.click)
+        switch mode {
+        case .onlineCreateBefore:
+            onlineBtn.isHidden = true
+            offlineBtn.isHidden = true
+        case .onlineCreateAfter:
+            onlineBtn.isHidden = false
+            offlineBtn.isHidden = false
+            contentView.getConstraint(named: "OnlineBtnOffset")?.constant = -50
+            contentView.getConstraint(named: "OfflineBtnOffset")?.constant = 50
+        default:
+            onlineBtn.isHidden = true
+            offlineBtn.isHidden = false
+            contentView.getConstraint(named: "OfflineBtnOffset")?.constant = 0
         }
     }
 }

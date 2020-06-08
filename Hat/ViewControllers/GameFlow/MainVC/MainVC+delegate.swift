@@ -25,7 +25,7 @@ extension MainVC:  MainVCDelegate {
             shouldUpdateGameAtTheEnd = false
             performSegue(withIdentifier: "toEndGame", sender: self )
         } else {
-            prepareNewTurn()
+            setupNewTurn()
         }
     }
     

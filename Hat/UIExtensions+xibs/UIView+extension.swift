@@ -62,6 +62,9 @@ extension UIView {
     func removeDoubleColor() {
         layer.sublayers?.forEach { if $0.name == "doubleColor" { $0.removeFromSuperlayer() } }
     }
+    func setConstraint(named: String, value: CGFloat) {
+            self.getConstraint(named: named)?.constant = value
+    }
 }
 
 //MARK:- Rotating & Animations

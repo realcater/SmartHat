@@ -108,7 +108,7 @@ struct StatusBeforeStart: Codable {
 struct JoinData: Codable {
     var code: String
     var additionalName: String?
-    
+    /*
     init(code: String) {
         if code.contains(",,,") {
             self.code = String(code.prefix(4))
@@ -118,5 +118,6 @@ struct JoinData: Codable {
             additionalName = nil
         }
     }
+     */
 }
 

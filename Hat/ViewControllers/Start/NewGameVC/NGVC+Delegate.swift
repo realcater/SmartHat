@@ -2,7 +2,8 @@ import Foundation
 
 protocol NewGameVCDelegate: class {
     func add(toGame player: Player, successCompletion: @escaping ()->Void, failedCompletion: @escaping ()->Void)
-    func goToInvitePlayerVC()
+    func add(toLocalData player: Player)
+    func goToInvitePlayerVC(isOnlinePlayerToInvite: Bool)
     func disableButton()
     func updatePlayersList(players: [Player])
 }
@@ -17,8 +18,7 @@ extension NewGameVC: NewGameVCDelegate {
                     DispatchQueue.main.async { [weak self] in
                         switch result {
                         case .success:
-                            self!.game.data.players.append(player)
-                            self!.playersTVC.insertRow(player: player, at: self!.playersList.players.count)
+                            self!.add(toLocalData: player)
                             successCompletion()
                         case .failure(let error):
                             self?.showWarning(error)
@@ -34,8 +34,13 @@ extension NewGameVC: NewGameVCDelegate {
             }
         }
     }
+    func add(toLocalData player: Player) {
+        game.data.players.append(player)
+        playersTVC.insertRow(player: player, at: playersList.players.count)
+    }
     
-    func goToInvitePlayerVC() {
+    func goToInvitePlayerVC(isOnlinePlayerToInvite: Bool) {
+        self.isOnlinePlayerToInvite = isOnlinePlayerToInvite
         performSegue(withIdentifier: "toInvitePlayer", sender: self)
     }
     func disableButton() {
