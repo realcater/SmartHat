@@ -1,0 +1,738 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "NewGameVC.add(toGame:):NGVC+Delegate.swift">
+      </ContextState>
+      <ContextState
+         contextName = "UIViewController.showWarningOrTitle(_:_:):UIViewController+extension.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "error.warning">
+            </PersistentString>
+            <PersistentString
+               value = "self.title">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in sendRequest&lt;A&gt;(stringUrl:httpMethod:dataIn:useAppToken:completion:):sendRequest.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "response as? HTTPURLResponse">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "StartPairVC.reloadNames():StartPairVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "gameData.currentTeller">
+            </PersistentString>
+            <PersistentString
+               value = "gameData.currentTeller.name">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NewGameVC.requestUpdatePlayerStatus():NGVC+updateStatus.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in sendRequest&lt;A, B&gt;(stringUrl:httpMethod:useAppToken:dataIn:completion:):sendRequest.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "httpResponse.statusCode">
+            </PersistentString>
+            <PersistentString
+               value = "urlRequest.httpMethod">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "StartPairVC.prepareNewTurn(colorise:):StartPairVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "gameData.turn">
+            </PersistentString>
+            <PersistentString
+               value = "game.currentTeller.name">
+            </PersistentString>
+            <PersistentString
+               value = "game.turn">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MainVC.prepareNewTurn(colorise:):MainVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "game.data">
+            </PersistentString>
+            <PersistentString
+               value = "self.title">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in sendRequestOut&lt;A&gt;(stringUrl:httpMethod:useAppToken:completion:):sendRequest.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "httpResponse.statusCode">
+            </PersistentString>
+            <PersistentString
+               value = "Auth().expirationDate">
+            </PersistentString>
+            <PersistentString
+               value = "Auth().expirationDateString">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in NewGameVC.setGameStarted(completion:):NGVC+createGame.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "frequentData">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "sendRequest&lt;A&gt;(stringUrl:httpMethod:completion:):sendRequest.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PlayVC.updateGameData():PlayVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in sendRequest&lt;A&gt;(stringUrl:httpMethod:useAppToken:completion:):sendRequest.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "httpResponse.statusCode">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "StartPairVC.coloriseBarView():StartPairVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ExplainVC.nextWord():ExplainVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in NewGameVC.createOnlineGame():NGVC+createGame.swift">
+      </ContextState>
+      <ContextState
+         contextName = "NewGameVC.tableIsVisible.didset:NewGameVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "picker?.getConstraint(named: &quot;pickerHeight&quot;)?.isActive">
+            </PersistentString>
+            <PersistentString
+               value = "picker?.getConstraint(named: &quot;pickerHeight&quot;)?.constant">
+            </PersistentString>
+            <PersistentString
+               value = "containerView?.getConstraint(named: &quot;tableHeight&quot;)?.isActive">
+            </PersistentString>
+            <PersistentString
+               value = "!tableIsVisible">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MainVC.disableGoButton():MainVC+delegate.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.title">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "mach_msg_trap:(null)">
+         <PersistentStrings>
+            <PersistentString
+               value = "">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "StartPairVC.getNewGameData():StartPairVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "gameData.timeFromExplain">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameData.timeFromExplain.getter:GameData.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "explainTime">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in NewGameVC.add(toGame:successCompletion:failedCompletion:):NGVC+Delegate.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in Auth.login(completion:):Auth.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "httpResponse.statusCode">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NewGameVC.viewDidLoad():NewGameVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "gameData.turn">
+            </PersistentString>
+            <PersistentString
+               value = "tableIsVisible">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in GameTypeVC.tryGetUser(by:completion:):GameTypeVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "uuid.uuidString">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Update.setFull(completion:):Update.swift">
+      </ContextState>
+      <ContextState
+         contextName = "InvitePlayerVC.gestureRecognizer(_:shouldReceive:):InvitePlayerVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "touch.view==self.view">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "StartPairVC.checkWordsCount():StartPairVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "gameData.leftWords.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NewGameVC.viewWillAppear(_:):NewGameVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "gameData.turn">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "EndGameTVC.tableView(_:numberOfRowsInSection:):EndGameTVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "main:AppDelegate.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in Update.setFullOnce():Update.swift">
+      </ContextState>
+      <ContextState
+         contextName = "InvitePlayerVC.textFieldDidChange(_:):InvitePlayerVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "newPosition">
+            </PersistentString>
+            <PersistentString
+               value = "textField.text">
+            </PersistentString>
+            <PersistentString
+               value = "self.currentName">
+            </PersistentString>
+            <PersistentString
+               value = "textField.text!.count &gt; 0">
+            </PersistentString>
+            <PersistentString
+               value = "textField.text!.prefix(currentName.count+1).suffix(1)">
+            </PersistentString>
+            <PersistentString
+               value = "leftSymbolsQty">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "StartPairVC.prepareNewTurn():StartPairVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "turnTimer">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NewGameVC.add(toGame:successCompletion:failedCompletion:):NGVC+Delegate.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in SettingsVC.pressRegisterButton(_:):SettingsVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "NewGameVC.checkMeInList():NGVC+updateStatus.swift">
+      </ContextState>
+      <ContextState
+         contextName = "NewGameVC.setGameStarted(completion:):NGVC+createGame.swift">
+      </ContextState>
+      <ContextState
+         contextName = "NewGameVC.pressButton(_:):NewGameVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "gameData.turn">
+            </PersistentString>
+            <PersistentString
+               value = "tableIsVisible">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in NewUserVC.pressRegisterButton(_:):NewUserVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "StartPairVC.viewWillAppear(_:):StartPairVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "StartPairVC.cancelTurnTimer():SPVC+timers.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "timerLabel.text">
+            </PersistentString>
+            <PersistentString
+               value = "turnTimer">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in GameTypeVC.checkRegistration():GameTypeVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "K.Server.setting.checkOffline">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "static GameRequest.create(_:completion:):GameRequest.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in sendRequestOut&lt;A&gt;(stringUrl:httpMethod:useAppToken:completion:):sendRequest.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "token">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "StartPairVC.proceedNotNextTurn(frequentData:):SPVC+delegate.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "frequentData.timeFromExplain">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NewGameVC.mode.setter:NewGameVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "game.data.players">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NewGameVC.prepare(for:sender:):NewGameVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "gameData.turn">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in sendRequestInOut&lt;A, B&gt;(stringUrl:httpMethod:dataIn:useAppToken:completion:):sendRequest.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "httpResponse.statusCode">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "StartPairVC.lenka.getter:StartPairVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Auth().id">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MainVC.reloadNames():MainVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "turn">
+            </PersistentString>
+            <PersistentString
+               value = "game.currentTeller?.name">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "StartPairVC.updateTurnTimer():SPVC+timers.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "turnTimer">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MainVC.finishGame():MainVC+delegate.swift">
+      </ContextState>
+      <ContextState
+         contextName = "BasketVC.saveAndOrDismiss():BasketVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in NewGameVC.requestUpdatePlayerStatus():NGVC+updateStatus.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "game.turn">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in sendRequest&lt;A&gt;(stringUrl:httpMethod:completion:):sendRequest.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "httpResponse.statusCode">
+            </PersistentString>
+            <PersistentString
+               value = "urlRequest.httpMethod">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NewGameVC.mode.setter:NGVC+mode.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tableIsVisible">
+            </PersistentString>
+            <PersistentString
+               value = "picker">
+            </PersistentString>
+            <PersistentString
+               value = "picker?.getConstraint(named: &quot;pickerHeight&quot;)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "StartPairVC.isMyTurn.getter:StartPairVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "gameData.tellerNumber">
+            </PersistentString>
+            <PersistentString
+               value = "gameData.currentTeller.id!.uuidString">
+            </PersistentString>
+            <PersistentString
+               value = "gameData.turn">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "StartPairVC.proceedNextTurnAfterFullUpdate():SPVC+delegate.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MainVC.updateGuessedWord():MainVC+delegate.swift">
+      </ContextState>
+      <ContextState
+         contextName = "StartPairVC.checkGameEnd():StartPairVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "GameTypeVC.prepare(for:sender:):GameTypeVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "newGameVC.title">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GamesListVC.textFieldDidChange(_:):GamesListVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "textField.keyboardType">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "InvitePlayerVC.singleTap(recognizer:):InvitePlayerVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "StartVC.viewDidLoad():StartVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "NewGameVC.createOnlineGame():NGVC+createGame.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Update.createSetFullTimer():Update.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in Update.getFrequent():Update.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.title">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GamesListTVC.tableView(_:cellForRowAt:):GamesListTVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "noGames">
+            </PersistentString>
+            <PersistentString
+               value = "self.gameList.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GamesListVC.prepare(for:sender:):GamesListVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "gameLoaded!.everyPlayerReady ">
+            </PersistentString>
+            <PersistentString
+               value = "newGameVC.gameData.turn">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Update.setFrequent():Update.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "game.explainTime">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NewGameVC.updatePlayersList(players:):NGVC+Delegate.swift">
+      </ContextState>
+      <ContextState
+         contextName = "StartPairVC.createTurnTimer(timeLeft:):StartPairVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "gameData.ex">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "static UserRequest.create(_:completion:):UserRequest.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Environment.appKey">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameData.currentTeller.getter:GameData.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "players">
+            </PersistentString>
+            <PersistentString
+               value = "players[tellerNumber].name">
+            </PersistentString>
+            <PersistentString
+               value = "tellerNumber">
+            </PersistentString>
+            <PersistentString
+               value = "turn">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in Update.getFull(completion:):Update.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Game.listenerNumber.getter:Game+extension.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "data.players.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MainVC.viewWillAppear(_:):MainVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.title">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "InvitePlayerVC.isOnlinePlayerToInvite.didset:InvitePlayerVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "playersListView?.getConstraint(named: &quot;playersListHeight&quot;)?.constant">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "SettingsVC.volumeSliderChanged(_:):SettingsVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "K.savedSettings">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in Update.setFrequent():Update.swift">
+      </ContextState>
+      <ContextState
+         contextName = "Game.currentTeller.getter:Game+extension.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tellerNumber">
+            </PersistentString>
+            <PersistentString
+               value = "data.players[tellerNumber]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Auth.login(completion:):Auth.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "K.Server.name">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in StartPairVC.getFullGameData():SPVC+updateData.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "gameData.turn == K.endTurnNumber">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameData.tellerNumber.getter:GameData.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "turn">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameTypeVC.tryGetUser(by:completion:):GameTypeVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "uuid.uuidString">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PlayersTVC.tableView(_:moveRowAt:to:):PlayersTVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "playersList.players">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in sendRequestIn&lt;A&gt;(stringUrl:httpMethod:dataIn:useAppToken:completion:):sendRequest.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "httpResponse.statusCode">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "EndGameVC.viewDidLoad():EndGameVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "PlayersTVC.tableView(_:cellForRowAt:):PlayersTVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "PlayVC.updateExplainTime():PlayVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "game.explainTime">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Update.setFullOnce():Update.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "game.data.players">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "StartPairVC.prepare(for:sender:):StartPairVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "statusTimer">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MainVC.viewDidLoad():MainVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "NewGameVC.update(from:):NGVC+updateStatus.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "playerStatus.playerID.uuidString">
+            </PersistentString>
+            <PersistentString
+               value = "everyPlayerReady">
+            </PersistentString>
+            <PersistentString
+               value = "playersList.players">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GamesListVC.confirmJoin(gameNumber:):GamesListVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in StartPairVC.getFrequentGameData():SPVC+updateData.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "frequentData.basketChange">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in GameTypeVC.checkRegistration():GameTypeVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "K.Server.setting">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in NewGameVC.requestUpdatePlayerStatus():NGVC+updateStatus.swift">
+      </ContextState>
+      <ContextState
+         contextName = "sendRequest&lt;A, B&gt;(stringUrl:httpMethod:useAppToken:dataIn:completion:):sendRequest.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in closure #1 in NewGameVC.createOnlineGame():NewGameVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self!.mode">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "GameTypeVC.prepare(for:sender:):GameTypeVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "UserRequest.searchByID(_:completion:):UserRequest.swift">
+      </ContextState>
+      <ContextState
+         contextName = "UserRequest.create(_:completion:):UserRequest.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in UserRequest.searchByID(_:completion:):UserRequest.swift">
+      </ContextState>
+      <ContextState
+         contextName = "PlayersTVC.makeActive(row:):PlayersTVC.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "textField.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__pthread_kill:(null)">
+      </ContextState>
+      <ContextState
+         contextName = "PlayersTVC.insertRow(playerName:at:):PlayersTVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ResourceRequest.save(_:completion:):ResourceRequest.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in UserRequest.create(_:completion:):UserRequest.swift">
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in ResourceRequest.save(_:completion:):ResourceRequest.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "httpResponse.statusCode">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NewUserVC.viewDidLoad():NewUserVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "GameTypeVC.viewWillAppear(_:):GameTypeVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "GameTypeVC.onlineGameButtonPressed(_:):GameTypeVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "main:AppDelegate.swift">
+      </ContextState>
+      <ContextState
+         contextName = "NewGameVC.prepare(for:sender:):NewGameVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "GameTypeVC.checkRegistration():GameTypeVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "NewGameVC.loadPlayers():NewGameVC.swift">
+      </ContextState>
+      <ContextState
+         contextName = "NewGameVC.savePlayers():NewGameVC.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
