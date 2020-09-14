@@ -72,17 +72,30 @@ struct K {
     }
     
     struct Colors {
-        static let foreground = UIColor(red: 0, green: 110/256, blue: 182/256, alpha: 1)
-        static let foreground80 = UIColor(red: 0, green: 110/256, blue: 182/256, alpha: 0.8)
-        static let foreground40 = UIColor(red: 0, green: 110/256, blue: 182/256, alpha: 0.4)
-        static let foregroundLighter = UIColor(red: 0, green: 165/256, blue: 1, alpha: 1)
-        static let foregroundDarker = UIColor(red: 0, green: 73/256, blue: 121/256, alpha: 1)
+        static let foreground = green
+        static let foreground80 = green80
+        static let foreground40 = green40
+        static let foregroundLighter = greenLighter
+        static let foregroundDarker = greenDarker
+        
+        static let blue = UIColor(red: 0, green: 110/256, blue: 182/256, alpha: 1)
+        static let blue80 = UIColor(red: 0, green: 110/256, blue: 182/256, alpha: 0.8)
+        static let blue40 = UIColor(red: 0, green: 110/256, blue: 182/256, alpha: 0.4)
+        static let blueLighter = UIColor(red: 0, green: 165/256, blue: 1, alpha: 1)
+        static let blueDarker = UIColor(red: 0, green: 73/256, blue: 121/256, alpha: 1)
+        
+        static let green = UIColor(red: 0, green: 110/256, blue: 0, alpha: 1)
+        static let green80 = UIColor(red: 0, green: 110/256, blue: 0, alpha: 0.8)
+        static let green40 = UIColor(red: 0, green: 110/256, blue: 0, alpha: 0.4)
+        static let greenLighter = UIColor(red: 0, green: 160/256, blue: 0, alpha: 1)
+        static let greenDarker = UIColor(red: 0, green: 70/256, blue: 0, alpha: 1)
+        
         static let redDarker = UIColor(red: 148/256, green: 17/256, blue: 0, alpha: 1)
         static let red = UIColor(red: 0.8, green: 0.2, blue: 0, alpha: 1)
         static let red80 = UIColor(red: 0.8, green: 0.1, blue: 0, alpha: 0.8)
         static let red40 = UIColor(red: 0.8, green: 0.1, blue: 0, alpha: 0.4)
-        static let green = UIColor(red: 0.2, green: 0.7, blue: 0, alpha: 1)
-        static let greenDarker = UIColor(red: 0, green: 110/256, blue: 0, alpha: 1)
+        
+        
         static let gray = UIColor.gray
         static let lightGray = UIColor(red: 170/256, green: 170/256, blue: 170/256, alpha: 1)
         static let background = UIColor.white
