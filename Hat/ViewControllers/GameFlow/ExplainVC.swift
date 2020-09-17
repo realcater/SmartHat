@@ -44,6 +44,7 @@ class ExplainVC: UIViewController {
         nextWord()
         createTurnTimer()
         print("\n\n\n=======START EXPLAIN=======")
+        guessedButton.backgroundColor = K.Colors.foreground
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
