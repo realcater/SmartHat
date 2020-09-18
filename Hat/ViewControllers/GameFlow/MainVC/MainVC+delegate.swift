@@ -62,7 +62,7 @@ extension MainVC:  MainVCDelegate {
                               duration: 0.5,
                               options: .transitionCrossDissolve,
                               animations: { [weak self] in
-                                self?.guessedWordLabel.text = lastWord
+                                self?.guessedWordLabel.text = lastWord.text
             }, completion: nil)
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                 UIView.transition(with: self.guessedWordLabel,

@@ -90,7 +90,7 @@ private extension ExplainVC {
     func nextWord() {
         update?.setFrequent()
         if game.getRandomWordFromPool() {
-            wordLabel.text = game.data.currentWord
+            wordLabel.text = game.data.currentWord.text
         } else {
             cancelTurnTimer()
             

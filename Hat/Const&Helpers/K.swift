@@ -29,7 +29,7 @@ struct K {
     ]
 
     struct SettingsRow {
-        static let wordsQty = [20,30,40,50,60,70,80,90,100,120,140,160,250,400,600]
+        static let wordsQty = [20,30,40,50,60,70,80,90,100]
         static let difficulty = GameDifficulty.allCases
         static let roundDuration = [20,25,30,35,40,45,50,60,90]
         static let start: [Mode: Settings] = [

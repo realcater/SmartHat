@@ -19,7 +19,7 @@ extension NewGameVC: UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if (component == 1) {
-            button.enable(if: !(K.SettingsRow.difficulty[row] == .separator1))
+            //button.enable(if: !(K.SettingsRow.difficulty[row] == .separator1))
         }
     }
     

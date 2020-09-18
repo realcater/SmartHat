@@ -67,8 +67,7 @@ extension Game {
     
     func setWordGuessed(time: Int) {
         data.wordsData.append(WordData(word: data.currentWord, timeGuessed: time, guessedStatus: .guessed))
-        //Helper.move(str: data.currentWord, from: &data.leftWords, to: &data.guessedWords)
-        (data.leftWords,data.guessedWords) = Helper.move2(str: data.currentWord, from: data.leftWords, to: data.guessedWords)
+        (data.leftWords,data.guessedWords) = Helper.move2(word: data.currentWord, from: data.leftWords, to: data.guessedWords)
         currentTeller!.tellGuessed+=1
         currentListener.listenGuessed+=1
         lastWord = data.currentWord
@@ -81,7 +80,7 @@ extension Game {
     func setWordMissed(time: Int) {
         data.wordsData.append(WordData(word: data.currentWord, timeGuessed: time, guessedStatus: .missed))
         //Helper.move(str: data.currentWord, from: &data.leftWords, to: &data.missedWords)
-        (data.leftWords,data.missedWords) = Helper.move2(str: data.currentWord, from: data.leftWords, to: data.missedWords)
+        (data.leftWords,data.missedWords) = Helper.move2(word: data.currentWord, from: data.leftWords, to: data.missedWords)
         data.basketWords.append(data.currentWord)
         data.basketStatus.append(.missed)
     }
@@ -97,23 +96,23 @@ extension Game {
         switch data.basketStatus[num] {
         case .guessed:
             //Helper.move(str: word, from: &data.guessedWords, to: &data.leftWords)
-            (data.guessedWords,data.leftWords) = Helper.move2(str: word, from: data.guessedWords, to: data.leftWords)
+            (data.guessedWords,data.leftWords) = Helper.move2(word: word, from: data.guessedWords, to: data.leftWords)
             data.basketStatus[num] = .left
             data.players[prevListenerNumber].listenGuessed-=1
             data.players[prevTellerNumber].tellGuessed-=1
         case .missed:
             //Helper.move(str: word, from: &data.missedWords, to: &data.guessedWords)
-            (data.missedWords,data.guessedWords) = Helper.move2(str: word, from: data.missedWords, to: data.guessedWords)
+            (data.missedWords,data.guessedWords) = Helper.move2(word: word, from: data.missedWords, to: data.guessedWords)
             data.basketStatus[num] = .guessed
             data.players[prevListenerNumber].listenGuessed+=1
             data.players[prevTellerNumber].tellGuessed+=1
         case .left:
             //Helper.move(str: word, from: &data.leftWords, to: &data.missedWords)
-            (data.leftWords,data.missedWords) = Helper.move2(str: word, from: data.leftWords, to: data.missedWords)
+            (data.leftWords,data.missedWords) = Helper.move2(word: word, from: data.leftWords, to: data.missedWords)
             data.basketStatus[num] = .missed
         }
     }
     func basketWordToShow(for num: Int) -> String {
-        return data.basketStatus[num] == .left ? "********" : data.basketWords[num]
+        return data.basketStatus[num] == .left ? "********" : data.basketWords[num].text
     }
 }

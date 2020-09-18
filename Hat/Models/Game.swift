@@ -7,7 +7,7 @@ class Game: Codable {
     var userOwnerID: UUID
     var turn: Int
     var guessedThisTurn: Int
-    var lastWord: String?
+    var lastWord: Word?
     var explainTime: String
     var basketChange: Int
 
@@ -43,11 +43,11 @@ class Game: Codable {
     class Frequent: Codable {
         var turn: Int
         var guessedThisTurn: Int
-        var lastWord: String?
+        var lastWord: Word?
         var explainTime: String
         var basketChange: Int
         
-        internal init(turn: Int, guessedThisTurn: Int, lastWord: String?, explainTime: String, basketChange: Int) {
+        internal init(turn: Int, guessedThisTurn: Int, lastWord: Word?, explainTime: String, basketChange: Int) {
             self.turn = turn
             self.guessedThisTurn = guessedThisTurn
             self.lastWord = lastWord
