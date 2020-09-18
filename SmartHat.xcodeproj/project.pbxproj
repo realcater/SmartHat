@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C10CF27F2514EE8F0001EA3F /* DescriptionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10CF27E2514EE8F0001EA3F /* DescriptionsVC.swift */; };
 		C10F3FA0245C81FA001D353E /* Auth.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10F3F9F245C81FA001D353E /* Auth.swift */; };
 		C10F3FA6245E0FF2001D353E /* GameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10F3FA5245E0FF2001D353E /* GameRequest.swift */; };
 		C10F4261245F5719001D353E /* PlayersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10F4260245F5719001D353E /* PlayersList.swift */; };
@@ -81,6 +82,7 @@
 		05CA70399D72153473F6A0C9 /* Pods_Hat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E90485291A06DA169FEFF6A /* Pods-Hat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hat.debug.xcconfig"; path = "Target Support Files/Pods-Hat/Pods-Hat.debug.xcconfig"; sourceTree = "<group>"; };
 		BC9B614AEC439B4C0CB0A341 /* Pods-Hat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hat.release.xcconfig"; path = "Target Support Files/Pods-Hat/Pods-Hat.release.xcconfig"; sourceTree = "<group>"; };
+		C10CF27E2514EE8F0001EA3F /* DescriptionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionsVC.swift; sourceTree = "<group>"; };
 		C10F3F9F245C81FA001D353E /* Auth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auth.swift; sourceTree = "<group>"; };
 		C10F3FA5245E0FF2001D353E /* GameRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRequest.swift; sourceTree = "<group>"; };
 		C10F4260245F5719001D353E /* PlayersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersList.swift; sourceTree = "<group>"; };
@@ -102,7 +104,7 @@
 		C14B02A3212983E200B2E96C /* 12009.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = 12009.ttf; sourceTree = "<group>"; };
 		C1561CEF2133124A00C8B674 /* help.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = help.xib; sourceTree = "<group>"; };
 		C1561CF32134186E00C8B674 /* StartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartVC.swift; sourceTree = "<group>"; };
-		C156471C2121FC6100F1602E /* Шляпа.Онлайн.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Шляпа.Онлайн.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C156471C2121FC6100F1602E /* Умная Шляпа.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Умная Шляпа.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C156471F2121FC6100F1602E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C15647212121FC6100F1602E /* NewGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameVC.swift; sourceTree = "<group>"; };
 		C15647242121FC6100F1602E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -184,7 +186,7 @@
 		C15647132121FC6100F1602E = {
 			isa = PBXGroup;
 			children = (
-				C156471E2121FC6100F1602E /* Hat */,
+				C156471E2121FC6100F1602E /* SmartHat */,
 				C156471D2121FC6100F1602E /* Products */,
 				B78450B772CC32E39C205E93 /* Pods */,
 				00EE110427E35017AFA431B2 /* Frameworks */,
@@ -194,12 +196,12 @@
 		C156471D2121FC6100F1602E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C156471C2121FC6100F1602E /* Шляпа.Онлайн.app */,
+				C156471C2121FC6100F1602E /* Умная Шляпа.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C156471E2121FC6100F1602E /* Hat */ = {
+		C156471E2121FC6100F1602E /* SmartHat */ = {
 			isa = PBXGroup;
 			children = (
 				C156471F2121FC6100F1602E /* AppDelegate.swift */,
@@ -215,7 +217,7 @@
 				C15647282121FC6200F1602E /* LaunchScreen.storyboard */,
 				C15647262121FC6100F1602E /* Assets.xcassets */,
 			);
-			path = Hat;
+			path = SmartHat;
 			sourceTree = "<group>";
 		};
 		C1669C512458AD2000B19384 /* Const&Helpers */ = {
@@ -303,6 +305,7 @@
 				CA8A2F9C23B66DF7008D7EBE /* EndGameTVC.swift */,
 				CA8A2F9E23B6A034008D7EBE /* BasketVC.swift */,
 				CA8A2FA023B6A1D2008D7EBE /* BasketTVC.swift */,
+				C10CF27E2514EE8F0001EA3F /* DescriptionsVC.swift */,
 			);
 			path = GameFlow;
 			sourceTree = "<group>";
@@ -374,9 +377,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C156471B2121FC6100F1602E /* Hat */ = {
+		C156471B2121FC6100F1602E /* SmartHat */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C156472E2121FC6200F1602E /* Build configuration list for PBXNativeTarget "Hat" */;
+			buildConfigurationList = C156472E2121FC6200F1602E /* Build configuration list for PBXNativeTarget "SmartHat" */;
 			buildPhases = (
 				A7E7B485C7102A24D1F0B23E /* [CP] Check Pods Manifest.lock */,
 				C15647182121FC6100F1602E /* Sources */,
@@ -388,9 +391,9 @@
 			);
 			dependencies = (
 			);
-			name = Hat;
+			name = SmartHat;
 			productName = TrustOr;
-			productReference = C156471C2121FC6100F1602E /* Шляпа.Онлайн.app */;
+			productReference = C156471C2121FC6100F1602E /* Умная Шляпа.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -409,7 +412,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C15647172121FC6100F1602E /* Build configuration list for PBXProject "Hat" */;
+			buildConfigurationList = C15647172121FC6100F1602E /* Build configuration list for PBXProject "SmartHat" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -422,7 +425,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C156471B2121FC6100F1602E /* Hat */,
+				C156471B2121FC6100F1602E /* SmartHat */,
 			);
 		};
 /* End PBXProject section */
@@ -525,6 +528,7 @@
 				C1669C542458ADC600B19384 /* UserRequest.swift in Sources */,
 				C15647202121FC6100F1602E /* AppDelegate.swift in Sources */,
 				CA0CD5F123B8B2AB00A76B75 /* AboutVC.swift in Sources */,
+				C10CF27F2514EE8F0001EA3F /* DescriptionsVC.swift in Sources */,
 				CAC9D91823B3E0F9005472AD /* Helper.swift in Sources */,
 				C10F4261245F5719001D353E /* PlayersList.swift in Sources */,
 				C1EA3F372468314000BBC67E /* NGVC+rejectButton.swift in Sources */,
@@ -698,15 +702,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VGMMX96757;
-				INFOPLIST_FILE = "$(SRCROOT)/Hat/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/SmartHat/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.04;
-				PRODUCT_BUNDLE_IDENTIFIER = realcater.Hat;
-				PRODUCT_NAME = "Шляпа.Онлайн";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = realcater.SmartHat;
+				PRODUCT_NAME = "Умная Шляпа";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -719,15 +723,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VGMMX96757;
-				INFOPLIST_FILE = "$(SRCROOT)/Hat/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/SmartHat/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.04;
-				PRODUCT_BUNDLE_IDENTIFIER = realcater.Hat;
-				PRODUCT_NAME = "Шляпа.Онлайн";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = realcater.SmartHat;
+				PRODUCT_NAME = "Умная Шляпа";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -736,7 +740,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C15647172121FC6100F1602E /* Build configuration list for PBXProject "Hat" */ = {
+		C15647172121FC6100F1602E /* Build configuration list for PBXProject "SmartHat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C156472C2121FC6200F1602E /* Debug */,
@@ -745,7 +749,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C156472E2121FC6200F1602E /* Build configuration list for PBXNativeTarget "Hat" */ = {
+		C156472E2121FC6200F1602E /* Build configuration list for PBXNativeTarget "SmartHat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C156472F2121FC6200F1602E /* Debug */,

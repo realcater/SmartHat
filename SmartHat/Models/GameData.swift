@@ -11,6 +11,10 @@ struct GameData: Codable {
     var currentWord: Word = Word(text: "", description: "")
     var wordsData: [WordData] = []
     
+    var atLeastOneWordGuessed: Bool {
+        return basketStatus.contains(.guessed)
+    }
+    
     init(settings: Settings, players: [Player]) {
         self.players = players
         self.settings = settings

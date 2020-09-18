@@ -95,6 +95,7 @@ struct K {
         static let red80 = UIColor(red: 0.8, green: 0.1, blue: 0, alpha: 0.8)
         static let red40 = UIColor(red: 0.8, green: 0.1, blue: 0, alpha: 0.4)
         
+        static let orange = UIColor(red: 217/256, green: 141/256, blue: 52/256, alpha: 1)
         
         static let gray = UIColor.gray
         static let lightGray = UIColor(red: 170/256, green: 170/256, blue: 170/256, alpha: 1)

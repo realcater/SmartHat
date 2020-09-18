@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Hat.xcodeproj">
+      location = "group:/Users/realcater/Documents/SmartHat/SmartHat.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

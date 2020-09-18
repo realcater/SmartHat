@@ -12,13 +12,12 @@ class MainVC: UIViewController {
     
     @IBOutlet weak var barView: UIView!
     @IBOutlet weak var goButton: MyButton!
+    @IBOutlet weak var descriptionButton: MyButton!
     @IBOutlet weak var tellerNameLabel: UILabel!
     @IBOutlet weak var circleView: UIView!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var helpMessage: UILabel!
     @IBOutlet weak var listenerNameLabel: UILabel!
-    
-    @IBOutlet weak var guessedWordLabel: UILabel!
     
     var game: Game!
     var btnTimer: Timer?
@@ -37,6 +36,7 @@ class MainVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         goButton.makeRounded(color: K.Colors.foreground)
+        descriptionButton.makeRounded(color: K.Colors.orange)
         view.backgroundColor = K.Colors.background
         view.setBackgroundImage(named: K.FileNames.background, alpha: K.Alpha.Background.main)
         circleView.layer.cornerRadius = K.CircleCornerRadius.small
@@ -51,7 +51,6 @@ class MainVC: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        coloriseBarView()
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toExplain" {
@@ -64,14 +63,16 @@ class MainVC: UIViewController {
             let endGameVC = segue.destination as? EndGameVC
             endGameVC?.players = self.game.data.players.sorted { $0.ttlGuesses > $1.ttlGuesses }
             endGameVC?.game = game
-            if shouldUpdateGameAtTheEnd { endGameVC?.update = update }
             update?.stopGetFrequent()
             statusTimer?.invalidate()
         } else if segue.identifier == "toBasket" {
             let basketVC = segue.destination as? BasketVC
             basketVC?.game = game
             basketVC?.editable = game.userOwnerID == Auth().id
-            basketVC?.update = update
+        } else if segue.identifier == "showDesciptions" {
+            let descriptionsVC = segue.destination as? DescriptionsVC
+            let basket = zip(game.data.basketWords,game.data.basketStatus)
+            descriptionsVC?.words = basket.filter { $0.1 == GuessedStatus.guessed }.map { $0.0 }
         }
     }
 }
@@ -89,13 +90,7 @@ extension MainVC {
     }
     
     @IBAction func pressEndButton(_ sender: Any) {
-        if mode == Mode.offline {
-            tryEndGame()
-        } else if game.userOwnerID == Auth().id {
-            tryEndOrQuitGame()
-        } else {
-            tryQuitGame()
-        }
+        tryEndGame()
     }
     
     @IBAction func unwindFromBasketVC(_ unwindSegue: UIStoryboardSegue) {
@@ -111,7 +106,7 @@ extension MainVC {
 extension MainVC {
     
     var isMyPreviousTurn: Bool {  //always false if offline game)
-        return (mode != .offline) && (game.prevTeller?.id == Auth().id)
+        return false
     }
     var isTeller: Bool {
         return game.currentTeller?.id == Auth().id
@@ -148,35 +143,11 @@ extension MainVC {
     
     func setupNewTurn(colorise: Bool = true) {
         print("=========setupNewTurn: \(game.turn)=============")
-        guessedWordLabel.isHidden = true
-        if colorise { coloriseBarView() }
+        descriptionButton.isHidden = !game.data.atLeastOneWordGuessed
         reloadNames()
         helpMessage.isHidden = true
         
-        update?.startGetFrequent(every: K.Server.settings.updateFrequent)
-        
-        if isMyTurn {
-            print("====MY TURN====")
-            circleView.isHidden = true
-            timerLabel.isHidden = true
-            goButton.enable()
-        } else {
-            print("====NOT MY TURN====")
-            goButton.disable()
-            circleView.isHidden = false
-            circleView.backgroundColor = K.Colors.foreground40
-            timerLabel.isHidden = false
-            timeLeft = game.data.settings.roundDuration
-            timerLabel.text = String(timeLeft)
-        }
-        
-        if game.guessedThisTurn != 0 {
-            print("guessedThisTurn=\(game.guessedThisTurn). Reset to 0")
-            game.guessedThisTurn = 0
-            
-        }
         checkWordsCount()
-        if isMyPreviousTurn { update.setFull() }
         if !firstTurnAfterLoad && self.isMyTurn && self.game.isOneFullCircle {
             tryEndGame(title: "Вы закончили полный круг", message: "Все сыграли со всеми. Закончим игру?")
         }

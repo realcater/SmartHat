@@ -120,7 +120,6 @@ private extension Update {
                             } else {
                                 self?.game.guessedThisTurn = frequentData.guessedThisTurn
                                 self?.game.lastWord = frequentData.lastWord
-                                self?.delegate?.updateGuessedWord() 
                             }
                         }
                         self?.delegate?.proceedNotNextTurn(frequentData: frequentData)

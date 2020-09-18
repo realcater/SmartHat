@@ -52,7 +52,6 @@ class ExplainVC: UIViewController {
             let endGameVC = segue.destination as? EndGameVC
             endGameVC?.players = self.game.data.players.sorted { $0.ttlGuesses > $1.ttlGuesses }
             endGameVC?.game = game
-            endGameVC?.update = update
             statusTimer?.invalidate()
         }
     }
