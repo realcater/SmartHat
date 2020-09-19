@@ -14,5 +14,6 @@ public enum Environment {
             fatalError("AppKey not set in this environment")
         }
         return appKey
+        
     }()
 }

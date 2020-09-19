@@ -33,7 +33,7 @@ struct K {
         static let difficulty = GameDifficulty.allCases
         static let roundDuration = [20,25,30,35,40,45,50,60,90]
         static let start: [Mode: Settings] = [
-            .offline: Settings(difficultyRow: 2, wordsQtyRow: 6, roundDurationRow: 2),
+            .offline: Settings(difficultyRow: 2, wordsQtyRow: 4, roundDurationRow: 2),
             .onlineCreateBefore: Settings(difficultyRow: 2, wordsQtyRow: 6, roundDurationRow: 4)
         ]
     }

@@ -185,7 +185,7 @@
                                     <constraint firstAttribute="height" constant="70" id="a2p-GV-hLo"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <state key="normal" title="Что значат слова?">
+                                <state key="normal" title="Что означают слова?">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
